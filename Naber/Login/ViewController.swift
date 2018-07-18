@@ -55,7 +55,24 @@ class ViewController: UIViewController {
     @IBAction func goToNextPage(_ sender: Any) {
         print("Account Text:" + account_text.text! as Any);
         print("Password Text:" + password_text.text! as Any);
-       
+        
+        if self.account_text.text != nil && self.password_text.text != nil {
+            
+        }
+        var account: AccountInfoVo = AccountInfoVo()
+        account.phone = "0928297076"
+        account.password = "s123456"
+        account.device_category = "ANDROID"
+        account.device_token = "d014z10rtDE:APA91bEhsTPWD_V2AsWGkE0JrUP7zIE_vaNts-VpkaEzrRfcyEgeXd53YlMxcp-7VF-n1DtM4zIXGTQoW1CrK2d0RutWtwCVsBBMebhp-o7cpy8pVQ8lWnzYZmHfN9a00Vad7EqldPXtH_uwAryI6LLFnH4nzbYX8A"
+        ApiManager.login(account: account, onSuccess: {
+            accountInfoVo in
+            print(accountInfoVo)
+        },onFail: {
+            err_msg in
+            print(err_msg)
+        })
+        
+        
         switch account_text.text {
         case "1":
             // Safe Present

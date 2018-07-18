@@ -1379,8 +1379,15 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bl-iY-yyE">
+                                <rect key="frame" x="0.0" y="88" width="375" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="z9m-ky-cfg" kind="embed" id="Od9-vx-laH"/>
+                                </connections>
+                            </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIy-Ko-cFW">
-                                <rect key="frame" x="0.0" y="275" width="375" height="488"/>
+                                <rect key="frame" x="0.0" y="354" width="375" height="409"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -1496,7 +1503,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BmP-q7-bDw">
-                                <rect key="frame" x="0.0" y="215" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="235" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商家公告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9k-Yq-ycM">
@@ -1517,13 +1524,6 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bl-iY-yyE">
-                                <rect key="frame" x="0.0" y="57" width="375" height="150"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="z9m-ky-cfg" kind="embed" id="Od9-vx-laH"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EdK-wI-OlJ"/>
@@ -1535,7 +1535,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8y-2B-lF0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2662.5" y="-2485"/>
+            <point key="canvasLocation" x="2661.5999999999999" y="-2485.7142857142858"/>
         </scene>
         <!--使用者-首頁-輪撥1-->
         <scene sceneID="Elq-nC-U5V">
@@ -7069,7 +7069,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選項" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ3-F4-AjI">
-                                                                                        <rect key="frame" x="8" y="5.3333333333333321" width="40" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="8" y="6" width="40" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8dP-dg-Pwg"/>
                                                                                             <constraint firstAttribute="width" constant="40" id="w7F-Iz-cOm"/>
@@ -7079,7 +7079,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-H3-iOL" customClass="DesignableTextField" customModule="Naber" customModuleProvider="target">
-                                                                                        <rect key="frame" x="48" y="5.3333333333333321" width="202" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="48" y="6" width="202" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="2f9-gD-P6r"/>
                                                                                         </constraints>
@@ -7096,7 +7096,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sew-Qr-yk8">
-                                                                                        <rect key="frame" x="264" y="5.3333333333333321" width="40" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="264" y="6" width="40" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="40" id="PJr-6s-cM1"/>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tuC-fO-4L7"/>

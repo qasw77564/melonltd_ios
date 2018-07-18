@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27B0AD7B0FF50E62364A5E91 /* Pods_Naber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C98AFE2DD4673B9549200E /* Pods_Naber.framework */; };
+		20AF371C20FF70B100D73F79 /* RespData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF371B20FF70B100D73F79 /* RespData.swift */; };
+		20AF372220FF8BD000D73F79 /* AccountInfoResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfoResp.swift */; };
+		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
+		20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E7C20FF0A4400F9A252 /* ApiManager.swift */; };
+		20E65E7F20FF0AB300F9A252 /* Pods_Naber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */; };
+		20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
+		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
+		20E65E8720FF2F7200F9A252 /* BulletinResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8620FF2F7200F9A252 /* BulletinResp.swift */; };
+		20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8820FF316600F9A252 /* ApiUrl.swift */; };
 		DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CF820CA194B0080CFE2 /* UserPageUITabBarController.swift */; };
 		DD161CFB20CA199A0080CFE2 /* LoginHomeRootUINC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CFA20CA199A0080CFE2 /* LoginHomeRootUINC.swift */; };
 		DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CFC20CA2C220080CFE2 /* SearchMainVC.swift */; };
@@ -54,7 +62,6 @@
 		DDF8C28020B1CA4600BF8904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF8C27E20B1CA4600BF8904 /* LaunchScreen.storyboard */; };
 		DDF8C28B20B1CA4600BF8904 /* NaberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C28A20B1CA4600BF8904 /* NaberTests.swift */; };
 		DDF8C29620B1CA4600BF8904 /* NaberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C29520B1CA4600BF8904 /* NaberUITests.swift */; };
-		DDF8C2A620B1CC2A00BF8904 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
 		DDF8C2B820B226E600BF8904 /* StorePageUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C2B720B226E600BF8904 /* StorePageUITabBarController.swift */; };
 		DDF8C2BA20B3F18400BF8904 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C2B920B3F18400BF8904 /* ForgotPasswordVC.swift */; };
 		DDF8C2BC20B403FF00BF8904 /* RegisterUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C2BB20B403FE00BF8904 /* RegisterUserVC.swift */; };
@@ -94,7 +101,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		68C98AFE2DD4673B9549200E /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20AF371B20FF70B100D73F79 /* RespData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespData.swift; sourceTree = "<group>"; };
+		20AF372120FF8BD000D73F79 /* AccountInfoResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoResp.swift; sourceTree = "<group>"; };
+		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
+		20E65E7C20FF0A4400F9A252 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		20E65E8620FF2F7200F9A252 /* BulletinResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinResp.swift; sourceTree = "<group>"; };
+		20E65E8820FF316600F9A252 /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		710650FF7A33596557DF4B8D /* Pods-Naber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.debug.xcconfig"; sourceTree = "<group>"; };
 		9DC6E6DAC0122EE4004AA8AC /* Pods-Naber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.release.xcconfig"; sourceTree = "<group>"; };
 		DD161CF820CA194B0080CFE2 /* UserPageUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageUITabBarController.swift; sourceTree = "<group>"; };
@@ -177,9 +191,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */,
+				20E65E7F20FF0AB300F9A252 /* Pods_Naber.framework in Frameworks */,
 				DDFEA7E020B7808E00170222 /* UserNotifications.framework in Frameworks */,
-				DDF8C2A620B1CC2A00BF8904 /* MapKit.framework in Frameworks */,
-				27B0AD7B0FF50E62364A5E91 /* Pods_Naber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +214,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20AF372320FF98AA00D73F79 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				20AF372420FF98BA00D73F79 /* NaberConstant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		20E65E7B20FF0A1F00F9A252 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20AF372320FF98AA00D73F79 /* Constant */,
+				20E65E8320FF271D00F9A252 /* Vo */,
+				20E65E7C20FF0A4400F9A252 /* ApiManager.swift */,
+				20E65E8120FF17F100F9A252 /* Loading.swift */,
+				20E65E8820FF316600F9A252 /* ApiUrl.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20E65E8320FF271D00F9A252 /* Vo */ = {
+			isa = PBXGroup;
+			children = (
+				20E65E8620FF2F7200F9A252 /* BulletinResp.swift */,
+				20AF371B20FF70B100D73F79 /* RespData.swift */,
+				20AF372120FF8BD000D73F79 /* AccountInfoResp.swift */,
+			);
+			path = Vo;
+			sourceTree = "<group>";
+		};
 		8565A9AD87693CCE083422AD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +424,7 @@
 		DDF8C27420B1CA4400BF8904 /* Naber */ = {
 			isa = PBXGroup;
 			children = (
+				20E65E7B20FF0A1F00F9A252 /* Model */,
 				DD51D1F420C0A0C4002C5940 /* Common */,
 				DDFEA7D420B6D39E00170222 /* Login */,
 				DDFEA7D320B6D33D00170222 /* User */,
@@ -416,9 +461,9 @@
 		DDF8C2A420B1CC2A00BF8904 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */,
 				DDFEA7DF20B7808E00170222 /* UserNotifications.framework */,
 				DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */,
-				68C98AFE2DD4673B9549200E /* Pods_Naber.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -599,13 +644,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Naber/Pods-Naber-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -637,6 +680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E65E8220FF17F100F9A252 /* Loading.swift in Sources */,
 				DD51D1FA20C0B17B002C5940 /* RestaurantStoreInfoTVCell.swift in Sources */,
 				DD161D0220CAC8A90080CFE2 /* TutorialVC.swift in Sources */,
 				DDCAE00720BB5BBD005E65C4 /* RecordMainPageVC.swift in Sources */,
@@ -656,7 +700,9 @@
 				DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */,
 				DD3FA0B320C79292006BAA51 /* TrendMainVC.swift in Sources */,
 				DDF8C2BA20B3F18400BF8904 /* ForgotPasswordVC.swift in Sources */,
+				20AF371C20FF70B100D73F79 /* RespData.swift in Sources */,
 				DD51D20820C359A5002C5940 /* RestaurantStoreSelectTVCellFoot.swift in Sources */,
+				20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */,
 				DD3FA0C620C8A2DF006BAA51 /* LeftSideMenuTVCell.swift in Sources */,
 				DD51D20020C340BE002C5940 /* RestaurantStoreSelectVC.swift in Sources */,
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,
@@ -679,6 +725,7 @@
 				DD3FA0B120C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift in Sources */,
 				DDCAE00320B99E4B005E65C4 /* RestaurantStoreInfoVC.swift in Sources */,
 				DDF8C2BE20B4258C00BF8904 /* RegisterUserDetailVC.swift in Sources */,
+				20AF372220FF8BD000D73F79 /* AccountInfoResp.swift in Sources */,
 				DDF8C27620B1CA4400BF8904 /* AppDelegate.swift in Sources */,
 				DDFEA7D820B73A2600170222 /* UserSettingAcountRPTVC.swift in Sources */,
 				DDFEA7DA20B74A6400170222 /* UserSettingHelpTVC.swift in Sources */,
@@ -687,8 +734,11 @@
 				DD3FA0B720C7B648006BAA51 /* TrendCompleteOrderTVCell.swift in Sources */,
 				DD161D0D20CAEBF40080CFE2 /* FoodClassTVCell.swift in Sources */,
 				DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */,
+				20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */,
 				DDFEA7E420B871D400170222 /* HomeMainVC.swift in Sources */,
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
+				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
+				20E65E8720FF2F7200F9A252 /* BulletinResp.swift in Sources */,
 				DD161D1720CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift in Sources */,
 				DDCAE00520B9B76E005E65C4 /* RestaurantSearchUINC.swift in Sources */,
 				DDF8C2C020B59B0500BF8904 /* RegisterStoreVC.swift in Sources */,
