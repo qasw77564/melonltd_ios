@@ -64,12 +64,11 @@ class ViewController: UIViewController {
         account.password = "s123456"
         account.device_category = "ANDROID"
         account.device_token = "d014z10rtDE:APA91bEhsTPWD_V2AsWGkE0JrUP7zIE_vaNts-VpkaEzrRfcyEgeXd53YlMxcp-7VF-n1DtM4zIXGTQoW1CrK2d0RutWtwCVsBBMebhp-o7cpy8pVQ8lWnzYZmHfN9a00Vad7EqldPXtH_uwAryI6LLFnH4nzbYX8A"
-        ApiManager.login(account: account, onSuccess: {
-            accountInfoVo in
+        ApiManager.login(account: account, ui:self, onSuccess: { accountInfoVo in
             print(accountInfoVo)
-        },onFail: {
-            err_msg in
+        },onFail: { err_msg in
             print(err_msg)
+            
         })
         
         

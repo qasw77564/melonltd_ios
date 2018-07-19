@@ -9,7 +9,7 @@
 import Foundation
 
 class NaberConstant {
-    static let IS_DEBUG : Bool = true
+    static let IS_DEBUG : Bool = false
     
     
 }

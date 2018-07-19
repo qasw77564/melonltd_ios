@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1379,16 +1380,33 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bl-iY-yyE">
-                                <rect key="frame" x="0.0" y="88" width="375" height="150"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bl-iY-yyE">
+                                <rect key="frame" x="0.0" y="88" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ySy-ni-982"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="z9m-ky-cfg" kind="embed" id="Od9-vx-laH"/>
                                 </connections>
                             </containerView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIy-Ko-cFW">
-                                <rect key="frame" x="0.0" y="354" width="375" height="409"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NABER 公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9k-Yq-ycM">
+                                <rect key="frame" x="142" y="296" width="91" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVl-D4-ZcN">
+                                <rect key="frame" x="8" y="324" width="359" height="41"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="uHN-FX-zhH"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIy-Ko-cFW">
+                                <rect key="frame" x="0.0" y="373" width="375" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="31i-fz-eaa" customClass="RestaurantTVCell" customModule="Naber" customModuleProvider="target">
@@ -1398,81 +1416,93 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Emb-Iw-G4y" userLabel="ThumbView">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Emb-Iw-G4y" userLabel="ThumbView">
                                                     <rect key="frame" x="0.0" y="0.0" width="117" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QF-sb-LIs">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5QF-sb-LIs">
                                                             <rect key="frame" x="10" y="10" width="80" height="80"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="5QF-sb-LIs" secondAttribute="trailing" constant="27" id="3Hu-i7-RKf"/>
+                                                        <constraint firstItem="5QF-sb-LIs" firstAttribute="leading" secondItem="Emb-Iw-G4y" secondAttribute="leading" constant="10" id="YkW-Az-OQx"/>
+                                                        <constraint firstItem="5QF-sb-LIs" firstAttribute="top" secondItem="Emb-Iw-G4y" secondAttribute="top" constant="10" id="c8F-sS-JUk"/>
+                                                        <constraint firstItem="5QF-sb-LIs" firstAttribute="centerY" secondItem="Emb-Iw-G4y" secondAttribute="centerY" id="khP-db-YQG"/>
+                                                    </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-qM-Jek" userLabel="ThumbView">
-                                                    <rect key="frame" x="110" y="-1" width="126" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-qM-Jek" userLabel="ThumbView">
+                                                    <rect key="frame" x="109" y="-45" width="127" height="188"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7I-18-QWS">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7I-18-QWS">
                                                             <rect key="frame" x="10" y="10" width="80" height="80"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="t7I-18-QWS" firstAttribute="top" secondItem="3wf-qM-Jek" secondAttribute="top" constant="10" id="0lf-La-mBS"/>
+                                                        <constraint firstItem="t7I-18-QWS" firstAttribute="leading" secondItem="3wf-qM-Jek" secondAttribute="leading" constant="10" id="ALM-iw-CRT"/>
+                                                        <constraint firstItem="t7I-18-QWS" firstAttribute="centerY" secondItem="3wf-qM-Jek" secondAttribute="centerY" id="S45-UX-ZZU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="t7I-18-QWS" secondAttribute="trailing" constant="36" id="jf0-Dy-Ra9"/>
+                                                    </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-4i-Td9" userLabel="DescriptionView">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-4i-Td9" userLabel="DescriptionView">
                                                     <rect key="frame" x="100" y="0.0" width="275" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="桃園市桃園區中山路988號" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="971-sZ-jU8">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="桃園市桃園區中山路988號" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="971-sZ-jU8">
                                                             <rect key="frame" x="23" y="40" width="252" height="37"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距離1000M" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNP-85-eYM">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="距離1000M" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNP-85-eYM">
                                                             <rect key="frame" x="207" y="0.0" width="68" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="68" id="zeB-aR-gdV"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="弘爺漢堡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpa-Zn-XEd">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弘爺漢堡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpa-Zn-XEd">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日結束接單" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywh-zb-g9x">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="今日結束接單" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywh-zb-g9x">
                                                             <rect key="frame" x="138" y="0.0" width="83" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="SRh-TJ-rCm">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="SRh-TJ-rCm">
                                                             <rect key="frame" x="0.0" y="20" width="20" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="rPI-P8-YNF"/>
+                                                            </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AM10:00~PM13:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-ic-cL8">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="AM10:00~PM13:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-ic-cL8">
                                                             <rect key="frame" x="70" y="20" width="205" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="接單時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ots-G5-vRO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="接單時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ots-G5-vRO">
                                                             <rect key="frame" x="23" y="20" width="60" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="GK8-7E-N4N"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICX-TL-a2T" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICX-TL-a2T" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                             <rect key="frame" x="23" y="78" width="27" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="Hbz-i6-Fjz"/>
+                                                                <constraint firstAttribute="width" constant="27" id="cVu-j7-RdI"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <state key="normal" title="自取">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1488,8 +1518,51 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="CNP-85-eYM" secondAttribute="trailing" id="3uf-gS-M9y"/>
+                                                        <constraint firstItem="CNP-85-eYM" firstAttribute="leading" secondItem="mpa-Zn-XEd" secondAttribute="trailing" constant="77" id="6G7-vi-VmJ"/>
+                                                        <constraint firstItem="Ywh-zb-g9x" firstAttribute="baseline" secondItem="CNP-85-eYM" secondAttribute="baseline" id="9hU-2e-pHk"/>
+                                                        <constraint firstItem="Ywh-zb-g9x" firstAttribute="firstBaseline" secondItem="CNP-85-eYM" secondAttribute="firstBaseline" id="G69-j3-MDV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ICX-TL-a2T" secondAttribute="bottom" constant="2" id="Ksm-UV-IPe"/>
+                                                        <constraint firstItem="MQa-ic-cL8" firstAttribute="leading" secondItem="SRh-TJ-rCm" secondAttribute="trailing" constant="50" id="MWc-SP-tft"/>
+                                                        <constraint firstItem="mpa-Zn-XEd" firstAttribute="leading" secondItem="xDE-4i-Td9" secondAttribute="leading" id="NL6-Ue-2OO"/>
+                                                        <constraint firstItem="SRh-TJ-rCm" firstAttribute="bottom" secondItem="Ots-G5-vRO" secondAttribute="bottom" id="QZn-0u-Lhj"/>
+                                                        <constraint firstItem="mpa-Zn-XEd" firstAttribute="leading" secondItem="SRh-TJ-rCm" secondAttribute="leading" id="Sgn-ko-rl8"/>
+                                                        <constraint firstItem="CNP-85-eYM" firstAttribute="trailing" secondItem="MQa-ic-cL8" secondAttribute="trailing" id="bWW-d6-iSq"/>
+                                                        <constraint firstItem="Ots-G5-vRO" firstAttribute="firstBaseline" secondItem="MQa-ic-cL8" secondAttribute="firstBaseline" id="bb7-WY-Q3Z"/>
+                                                        <constraint firstItem="mpa-Zn-XEd" firstAttribute="bottom" secondItem="Ywh-zb-g9x" secondAttribute="bottom" id="bxl-SL-kWv"/>
+                                                        <constraint firstItem="971-sZ-jU8" firstAttribute="leading" secondItem="ICX-TL-a2T" secondAttribute="leading" id="ddc-cl-rnU"/>
+                                                        <constraint firstItem="Ots-G5-vRO" firstAttribute="leading" secondItem="SRh-TJ-rCm" secondAttribute="trailing" constant="3" id="e2e-eh-cWB"/>
+                                                        <constraint firstItem="mpa-Zn-XEd" firstAttribute="top" secondItem="Ywh-zb-g9x" secondAttribute="top" id="fFM-DV-RkC"/>
+                                                        <constraint firstItem="SRh-TJ-rCm" firstAttribute="top" secondItem="Ots-G5-vRO" secondAttribute="top" id="gBU-oX-6Rm"/>
+                                                        <constraint firstItem="mpa-Zn-XEd" firstAttribute="top" secondItem="xDE-4i-Td9" secondAttribute="top" id="gqV-WE-mdC"/>
+                                                        <constraint firstItem="MQa-ic-cL8" firstAttribute="trailing" secondItem="971-sZ-jU8" secondAttribute="trailing" id="izQ-DD-zuq"/>
+                                                        <constraint firstItem="ICX-TL-a2T" firstAttribute="top" secondItem="971-sZ-jU8" secondAttribute="bottom" constant="1" id="kvj-Q2-bNi"/>
+                                                        <constraint firstItem="Ywh-zb-g9x" firstAttribute="leading" secondItem="mpa-Zn-XEd" secondAttribute="trailing" constant="8" symbolic="YES" id="m4L-s8-2qZ"/>
+                                                        <constraint firstItem="Ots-G5-vRO" firstAttribute="baseline" secondItem="MQa-ic-cL8" secondAttribute="baseline" id="s41-ou-eIM"/>
+                                                        <constraint firstItem="Ots-G5-vRO" firstAttribute="leading" secondItem="971-sZ-jU8" secondAttribute="leading" id="t1x-5v-5gC"/>
+                                                        <constraint firstItem="SRh-TJ-rCm" firstAttribute="top" secondItem="mpa-Zn-XEd" secondAttribute="bottom" id="tLd-QK-EtV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ywh-zb-g9x" secondAttribute="trailing" constant="54" id="tz8-kJ-Ymp"/>
+                                                        <constraint firstItem="971-sZ-jU8" firstAttribute="top" secondItem="MQa-ic-cL8" secondAttribute="bottom" id="uuB-7h-9lf"/>
+                                                        <constraint firstItem="971-sZ-jU8" firstAttribute="leading" secondItem="xDE-4i-Td9" secondAttribute="leading" constant="23" id="vHY-gG-wHs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="SRh-TJ-rCm" secondAttribute="bottom" constant="60" id="zrk-iR-1vy"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Emb-Iw-G4y" firstAttribute="bottom" secondItem="xDE-4i-Td9" secondAttribute="bottom" id="CrE-GE-EbY"/>
+                                                <constraint firstItem="Emb-Iw-G4y" firstAttribute="centerY" secondItem="5nI-yK-fnl" secondAttribute="centerY" id="FUK-v4-Qfs"/>
+                                                <constraint firstItem="Emb-Iw-G4y" firstAttribute="top" secondItem="xDE-4i-Td9" secondAttribute="top" id="LiJ-vK-sNK"/>
+                                                <constraint firstItem="Emb-Iw-G4y" firstAttribute="top" secondItem="5nI-yK-fnl" secondAttribute="top" id="NZf-hP-8E2"/>
+                                                <constraint firstItem="3wf-qM-Jek" firstAttribute="leading" secondItem="5nI-yK-fnl" secondAttribute="leadingMargin" constant="94" id="Owh-9i-MOP"/>
+                                                <constraint firstAttribute="trailing" secondItem="xDE-4i-Td9" secondAttribute="trailing" id="Sq2-bf-ia4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Emb-Iw-G4y" secondAttribute="trailing" constant="258" id="btg-eX-HtG"/>
+                                                <constraint firstAttribute="trailing" secondItem="3wf-qM-Jek" secondAttribute="trailing" constant="139" id="fDE-dY-jlM"/>
+                                                <constraint firstItem="3wf-qM-Jek" firstAttribute="centerY" secondItem="5nI-yK-fnl" secondAttribute="centerY" id="kr8-2a-By4"/>
+                                                <constraint firstItem="3wf-qM-Jek" firstAttribute="top" secondItem="5nI-yK-fnl" secondAttribute="topMargin" constant="-56" id="mF0-5Y-dFt"/>
+                                                <constraint firstItem="Emb-Iw-G4y" firstAttribute="leading" secondItem="5nI-yK-fnl" secondAttribute="leading" id="pq6-CA-hGs"/>
+                                                <constraint firstItem="xDE-4i-Td9" firstAttribute="leading" secondItem="5nI-yK-fnl" secondAttribute="leadingMargin" constant="84" id="ygB-b9-VWs"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="address" destination="971-sZ-jU8" id="zvI-EZ-4uu"/>
@@ -1502,30 +1575,24 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BmP-q7-bDw">
-                                <rect key="frame" x="0.0" y="235" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商家公告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9k-Yq-ycM">
-                                        <rect key="frame" x="158" y="0.0" width="59" height="15"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVl-D4-ZcN">
-                                        <rect key="frame" x="5" y="15" width="365" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="U9k-Yq-ycM" firstAttribute="top" secondItem="5bl-iY-yyE" secondAttribute="bottom" constant="8" id="6y9-fn-Ffg"/>
+                            <constraint firstItem="5bl-iY-yyE" firstAttribute="leading" secondItem="EdK-wI-OlJ" secondAttribute="leading" id="BYa-03-YlP"/>
+                            <constraint firstItem="5bl-iY-yyE" firstAttribute="trailing" secondItem="EdK-wI-OlJ" secondAttribute="trailing" id="Btt-ng-tPo"/>
+                            <constraint firstItem="U9k-Yq-ycM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EdK-wI-OlJ" secondAttribute="leading" id="E0M-h3-gLE"/>
+                            <constraint firstItem="pIy-Ko-cFW" firstAttribute="trailing" secondItem="EdK-wI-OlJ" secondAttribute="trailing" id="M2K-RI-Oov"/>
+                            <constraint firstItem="dVl-D4-ZcN" firstAttribute="top" secondItem="U9k-Yq-ycM" secondAttribute="bottom" constant="8" id="MR4-xW-p0F"/>
+                            <constraint firstItem="dVl-D4-ZcN" firstAttribute="leading" secondItem="EdK-wI-OlJ" secondAttribute="leading" constant="8" id="PxX-gi-uis"/>
+                            <constraint firstItem="5bl-iY-yyE" firstAttribute="top" secondItem="EdK-wI-OlJ" secondAttribute="top" id="UKM-vy-xh3"/>
+                            <constraint firstItem="pIy-Ko-cFW" firstAttribute="top" secondItem="dVl-D4-ZcN" secondAttribute="bottom" constant="8" id="Yyi-hy-mHH"/>
+                            <constraint firstItem="pIy-Ko-cFW" firstAttribute="bottom" secondItem="EdK-wI-OlJ" secondAttribute="bottom" id="rvp-cr-M6X"/>
+                            <constraint firstItem="U9k-Yq-ycM" firstAttribute="centerX" secondItem="pjx-4W-xWf" secondAttribute="centerX" id="skB-9b-g6L"/>
+                            <constraint firstItem="EdK-wI-OlJ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U9k-Yq-ycM" secondAttribute="trailing" id="tyw-pG-RpZ"/>
+                            <constraint firstItem="EdK-wI-OlJ" firstAttribute="trailing" secondItem="dVl-D4-ZcN" secondAttribute="trailing" constant="8" id="wgW-ZW-Q1L"/>
+                            <constraint firstItem="pIy-Ko-cFW" firstAttribute="leading" secondItem="EdK-wI-OlJ" secondAttribute="leading" id="yw4-de-PQK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EdK-wI-OlJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="NABER首頁" id="wM4-xY-ntk"/>
@@ -7069,7 +7136,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選項" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ3-F4-AjI">
-                                                                                        <rect key="frame" x="8" y="6" width="40" height="30"/>
+                                                                                        <rect key="frame" x="8" y="5.3333333333333321" width="40" height="29.999999999999996"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8dP-dg-Pwg"/>
                                                                                             <constraint firstAttribute="width" constant="40" id="w7F-Iz-cOm"/>
@@ -7079,7 +7146,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-H3-iOL" customClass="DesignableTextField" customModule="Naber" customModuleProvider="target">
-                                                                                        <rect key="frame" x="48" y="6" width="202" height="30"/>
+                                                                                        <rect key="frame" x="48" y="5.3333333333333321" width="202" height="29.999999999999996"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="2f9-gD-P6r"/>
                                                                                         </constraints>
@@ -7096,7 +7163,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sew-Qr-yk8">
-                                                                                        <rect key="frame" x="264" y="6" width="40" height="30"/>
+                                                                                        <rect key="frame" x="264" y="5.3333333333333321" width="40" height="29.999999999999996"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="40" id="PJr-6s-cM1"/>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tuC-fO-4L7"/>

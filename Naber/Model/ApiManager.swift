@@ -9,64 +9,57 @@
 import Foundation
 import Alamofire
 
-class ApiManager{
+class ApiManager {
    private static let HTTP_HEADERS: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
     
     // 登入
-    public static func login (account : AccountInfoVo?, onSuccess : @escaping (AccountInfoVo) -> (), onFail : @escaping (String) -> ()) {
-        self.post(url: ApiUrl.LOGIN, data: AccountInfoVo.toJson(account: account!), complete: {
-            response in
+    public static func login (account: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping (AccountInfoVo) -> (), onFail: @escaping (String) -> ()) {
+        self.postData(url: ApiUrl.LOGIN, data: AccountInfoVo.toJson(account: account!),ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
             }
-        }, uncomplete: {
-            err_msg in
-            onFail(err_msg)
         })
-       
     }
     
-
-    private static func post(url: URLConvertible, data: String , complete : @escaping (DataResponse<String>) -> (), uncomplete : @escaping (String) -> ()) {
-        Loading.show()
-        let parameter : Parameters =  ["data": base64Encoding(encod: data)]
-        Alamofire.request(url, method: HTTPMethod.post, parameters:parameter, headers:HTTP_HEADERS).validate().responseString{
-            response in
-            if response.result.isSuccess {
-                complete(response)
-            }else if response.result.isFailure {
-                uncomplete("net work error")
-            }else if (response.result.error != nil) {
-                uncomplete("error")
-            }
-            Loading.hide()
+    private static func postData(url: URLConvertible, data: String , ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
+        let parameter: Parameters =  ["data": base64Encoding(encod: data)]
+        self.post(url: url, parameter: parameter, header: self.HTTP_HEADERS, ui: ui) { response in
+            complete(response)
         }
-
     }
     
-    
-    private static func postAutho(url: URLConvertible, data: String , complete : @escaping (DataResponse<String>) -> (), uncomplete : @escaping (String) -> ()) {
-        Loading.show()
+    private static func postAutho(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
         let autho : String = "";
         let parameter : Parameters =  ["data": data]
         let header: HTTPHeaders = ["Authorization" : autho, "Content-Type": "application/x-www-form-urlencoded"]
 
-        Alamofire.request(url, method: HTTPMethod.post, parameters:parameter, headers:header).validate().responseString{
-            response in
+        self.post(url: url, parameter: parameter, header: header, ui: ui) { response in
+            complete(response)
+        }
+    }
+    
+    private static func post(url: URLConvertible, parameter: Parameters, header: HTTPHeaders, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
+        Loading.show()
+        Alamofire.request(url, method: HTTPMethod.post, parameters:parameter, headers:header).validate().responseString{ response in
             if response.result.isSuccess {
                 complete(response)
-            }else if response.result.isFailure {
-                uncomplete("net work error")
             }else if (response.result.error != nil) {
-                uncomplete("error")
+                let alert = UIAlertController(title: "系統提示", message: "請確認裝置有連結網路！", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "確認", style: .default))
+                ui.present(alert, animated: false)
+            }else if response.result.isFailure {
+                let alert = UIAlertController(title: "系統提示", message: "資料請求失敗，\n可能現在網路處於不穩定狀態，\n請稍後再試！", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "確認", style: .default))
+                ui.present(alert, animated: false)
             }
             Loading.hide()
         }
-        
     }
+    
+    
     
     // Base64 加密
     private static func base64Encoding(encod: String) -> String {
@@ -98,4 +91,34 @@ class ApiManager{
     private static func urlDecoded(str : String) -> String {
         return str.removingPercentEncoding!
     }
+    
+//
+//    func networkStatusChanged(_ notification: Notification) {
+//        let userInfo = (notification as NSNotification).userInfo
+//        print(userInfo!)
+//    }
+    
+//    
+//    private static func checkNetWork() -> Bool {
+//        var checkResult : Bool = true
+//        NetworkReachabilityManager()?.listener = { status in
+//            switch status {
+//            case .notReachable:
+//                print("The network is not reachable")
+//                checkResult = false
+////                self.onInternetDisconnection()
+//            case .unknown :
+//                print("It is unknown whether the network is reachable")
+//            checkResult = false
+////                self.onInternetDisconnection() // not sure what to do for this case
+//            case .reachable(.ethernetOrWiFi):
+//                print("The network is reachable over the WiFi connection")
+////                self.onInternetConnection()
+//            case .reachable(.wwan):
+//                print("The network is reachable over the WWAN connection")
+////                self.onInternetConnection()
+//            }
+//        }
+//        return checkResult
+//    }
 }
