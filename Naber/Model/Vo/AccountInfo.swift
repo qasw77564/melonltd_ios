@@ -12,11 +12,11 @@ struct AccountInfoResp :Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : AccountInfoVo
+    var data : AccountInfoVo!
     
-    public static func toJson(account : AccountInfoResp) -> String {
+    public static func toJson(structs : AccountInfoResp) -> String {
         do {
-            return String(data: try JSONEncoder().encode(account), encoding: .utf8)!
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {
             return ""
         }
@@ -56,9 +56,9 @@ struct AccountInfoVo : Codable{
     
     
     
-    public static func toJson(account : AccountInfoVo) -> String {
+    public static func toJson(structs : AccountInfoVo) -> String {
         do {
-            return String(data: try JSONEncoder().encode(account), encoding: .utf8)!
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {
             return ""
         }

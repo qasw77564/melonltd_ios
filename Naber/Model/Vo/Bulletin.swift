@@ -5,11 +5,11 @@ struct BulletinResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : BulletinVo
+    var data : [BulletinVo?]!
     
-    public static func toJson(account : BulletinResp) -> String {
+    public static func toJson(structs : BulletinResp) -> String {
         do {
-            return String(data: try JSONEncoder().encode(account), encoding: .utf8)!
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {
             return ""
         }
@@ -30,9 +30,9 @@ struct BulletinVo : Codable {
     var content_text : String!
     var bulletin_category : String!
     
-    public static func toJson(account : BulletinVo) -> String {
+    public static func toJson(structs : BulletinVo) -> String {
         do {
-            return String(data: try JSONEncoder().encode(account), encoding: .utf8)!
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {
             return ""
         }
