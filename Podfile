@@ -4,6 +4,10 @@ use_frameworks!
 
 target 'Naber' do
     pod 'Alamofire', '~> 4.7'
-    pod 'SwiftyJSON', '~> 4.0'
+#    pod 'SwiftyJSON', '~> 4.0'
     pod 'NVActivityIndicatorView'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
 end
