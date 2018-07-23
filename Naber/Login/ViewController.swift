@@ -58,37 +58,37 @@ class ViewController: UIViewController {
         print("Account Text:" + account_text.text! as Any);
         print("Password Text:" + password_text.text! as Any);
         
-        if self.account_text.text != "" && self.password_text.text != "" {
-            var account: AccountInfoVo = AccountInfoVo()
-            account.phone = self.account_text.text
-            account.password = self.password_text.text
-            account.device_category = "IOS"
-            account.device_token = Messaging.messaging().fcmToken
-            print(account.device_token)
-            ApiManager.login(structs: account, ui: self, onSuccess: { accountInfoVo in
-                print(accountInfoVo)
-                if Identity.USER_TYPE().contains(accountInfoVo.identity) {
-                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
-                        self.present(vc, animated: false, completion: nil)
-                    }
-                }else if Identity.SELLERS == accountInfoVo.identity {
-                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
-                        self.present(vc, animated: false, completion: nil)
-                    }
-                }
-               
-            },onFail: { err_msg in
-                print(err_msg)
-                let alert = UIAlertController(title: "系統提示", message: err_msg, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "確認", style: .default))
-                self.present(alert, animated: false)
-                
-            })
-        }else {
-            let alert = UIAlertController(title: "系統提示", message: "請確認密碼與帳號", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "確認", style: .default))
-            self.present(alert, animated: false)
-        }
+//        if self.account_text.text != "" && self.password_text.text != "" {
+//            var account: AccountInfoVo = AccountInfoVo()
+//            account.phone = self.account_text.text
+//            account.password = self.password_text.text
+//            account.device_category = "IOS"
+//            account.device_token = Messaging.messaging().fcmToken
+//            print(account.device_token)
+//            ApiManager.login(structs: account, ui: self, onSuccess: { accountInfoVo in
+//                print(accountInfoVo)
+//                if Identity.USER_TYPE().contains(accountInfoVo.identity) {
+//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+//                        self.present(vc, animated: false, completion: nil)
+//                    }
+//                }else if Identity.SELLERS == accountInfoVo.identity {
+//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
+//                        self.present(vc, animated: false, completion: nil)
+//                    }
+//                }
+//
+//            },onFail: { err_msg in
+//                print(err_msg)
+//                let alert = UIAlertController(title: "系統提示", message: err_msg, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "確認", style: .default))
+//                self.present(alert, animated: false)
+//
+//            })
+//        }else {
+//            let alert = UIAlertController(title: "系統提示", message: "請確認密碼與帳號", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "確認", style: .default))
+//            self.present(alert, animated: false)
+//        }
        
         
 //
@@ -194,26 +194,26 @@ class ViewController: UIViewController {
 //        }
         
        
-//        switch account_text.text {
-//        case "1":
-//            // Safe Present
-//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController
-//            {
-//                present(vc, animated: false, completion: nil)
-//            }
-//        case "2":
-//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController
-//            {
-//                present(vc, animated: false, completion: nil)
-//            }
-//        case "3":
-//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Tutorial") as? TutorialVC
-//            {
-//                present(vc, animated: false, completion: nil)
-//            }
-//        default:
-//            print("Stop running")
-//        }
+        switch account_text.text {
+        case "1":
+            // Safe Present
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController
+            {
+                present(vc, animated: false, completion: nil)
+            }
+        case "2":
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController
+            {
+                present(vc, animated: false, completion: nil)
+            }
+        case "3":
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Tutorial") as? TutorialVC
+            {
+                present(vc, animated: false, completion: nil)
+            }
+        default:
+            print("Stop running")
+        }
     }
   
     

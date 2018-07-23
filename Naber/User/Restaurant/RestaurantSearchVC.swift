@@ -29,6 +29,11 @@ class RestaurantSearchVC: UIViewController{
     
     @IBOutlet weak var segmentedChoose: UISegmentedControl!
     
+    @IBOutlet weak var areaBtn: UIButton!
+    @IBOutlet weak var categoryBtn: UIButton!
+    @IBOutlet weak var distanceBtn: UIButton!
+    
+    
     @IBOutlet weak var restaurantTableView: UITableView!
     
     override func viewDidLoad() {
@@ -48,8 +53,8 @@ class RestaurantSearchVC: UIViewController{
     func initialFirstTable(){
         let storeInfo = StoreInfoClass()
         storeInfo.storeName="Berkeley Cafe"
-        storeInfo.workStatus="Cosy"
-        storeInfo.distance="100M";
+        storeInfo.workStatus="該商家尚未營業"
+        storeInfo.distance="1.7公里";
         storeInfo.time="AM08:00~PM10:00";
         storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
         storeInfo.storeImage="berkeleyCafe";
@@ -195,10 +200,10 @@ class RestaurantSearchVC: UIViewController{
 
 extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+//    {
+//        return 100
+//    }
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

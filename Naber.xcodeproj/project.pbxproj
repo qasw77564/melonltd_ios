@@ -16,19 +16,28 @@
 		20AF3731210082A600D73F79 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF3730210082A600D73F79 /* Advertisement.swift */; };
 		20AF37332100BC1500D73F79 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF37322100BC1500D73F79 /* UserDefaults.swift */; };
 		20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4777A2101A7EE007F6EA8 /* Identity.swift */; };
+		20D9DBD22102563E00D643FE /* HomeMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBD12102563D00D643FE /* HomeMainVC.swift */; };
+		20D9DBD621025AC700D643FE /* Pods_Naber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9DBD521025AC700D643FE /* Pods_Naber.framework */; };
+		20D9DC0421025F4700D643FE /* FSPagerViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBFD21025F4600D643FE /* FSPagerViewLayoutAttributes.swift */; };
+		20D9DC0521025F4700D643FE /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBFE21025F4600D643FE /* FSPageControl.swift */; };
+		20D9DC0621025F4700D643FE /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBFF21025F4600D643FE /* FSPageViewTransformer.swift */; };
+		20D9DC0721025F4700D643FE /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC0021025F4600D643FE /* FSPageViewLayout.swift */; };
+		20D9DC0821025F4700D643FE /* FSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC0121025F4600D643FE /* FSPagerViewCell.swift */; };
+		20D9DC0921025F4700D643FE /* FSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC0221025F4600D643FE /* FSPagerView.swift */; };
+		20D9DC0A21025F4700D643FE /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC0321025F4700D643FE /* FSPagerCollectionView.swift */; };
+		20D9DC1F2103674C00D643FE /* TransformerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC1E2103674C00D643FE /* TransformerHelper.swift */; };
+		20D9DC2121038E2000D643FE /* naber_default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9DC2021038E2000D643FE /* naber_default_image.png */; };
+		20D9DC232105813500D643FE /* RestaurantCategoryRel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC222105813500D643FE /* RestaurantCategoryRel.swift */; };
+		20D9DC2B2105814300D643FE /* RestaurantTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC242105814200D643FE /* RestaurantTemplate.swift */; };
+		20D9DC2D2105814300D643FE /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC262105814300D643FE /* Food.swift */; };
+		20D9DC2E2105814300D643FE /* ReqData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC272105814300D643FE /* ReqData.swift */; };
+		20D9DC2F2105814300D643FE /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC282105814300D643FE /* FoodList.swift */; };
+		20D9DC302105814300D643FE /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC292105814300D643FE /* Order.swift */; };
 		20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E7C20FF0A4400F9A252 /* ApiManager.swift */; };
-		20E65E7F20FF0AB300F9A252 /* Pods_Naber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */; };
 		20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
 		20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8620FF2F7200F9A252 /* Bulletin.swift */; };
 		20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8820FF316600F9A252 /* ApiUrl.swift */; };
-		77B7A12A2101B76A009B4642 /* RestaurantTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A1292101B76A009B4642 /* RestaurantTemplate.swift */; };
-		77B7A12C2101C611009B4642 /* RestaurantCategoryRel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A12B2101C611009B4642 /* RestaurantCategoryRel.swift */; };
-		77B7A12E2101C6C7009B4642 /* SwitchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A12D2101C6C7009B4642 /* SwitchStatus.swift */; };
-		77B7A1302101CAA4009B4642 /* ReqData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A12F2101CAA4009B4642 /* ReqData.swift */; };
-		77B7A1382101E091009B4642 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A1372101E091009B4642 /* Food.swift */; };
-		77B7A13A2101E351009B4642 /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A1392101E351009B4642 /* FoodList.swift */; };
-		77B7A13C2101E6F7009B4642 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7A13B2101E6F7009B4642 /* Order.swift */; };
 		DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CF820CA194B0080CFE2 /* UserPageUITabBarController.swift */; };
 		DD161CFB20CA199A0080CFE2 /* LoginHomeRootUINC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CFA20CA199A0080CFE2 /* LoginHomeRootUINC.swift */; };
 		DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CFC20CA2C220080CFE2 /* SearchMainVC.swift */; };
@@ -88,8 +97,6 @@
 		DDFEA7DA20B74A6400170222 /* UserSettingHelpTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEA7D920B74A6400170222 /* UserSettingHelpTVC.swift */; };
 		DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEA7DB20B74A8E00170222 /* UserSettingTutorialTVC.swift */; };
 		DDFEA7E020B7808E00170222 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDFEA7DF20B7808E00170222 /* UserNotifications.framework */; };
-		DDFEA7E220B8622900170222 /* HomeSliderPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEA7E120B8622900170222 /* HomeSliderPVC.swift */; };
-		DDFEA7E420B871D400170222 /* HomeMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEA7E320B871D400170222 /* HomeMainVC.swift */; };
 		DDFEA7E620B8726600170222 /* RestaurantTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEA7E520B8726600170222 /* RestaurantTVCell.swift */; };
 		DDFECA0120BBEFFF00E253B6 /* ShoppingCarMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFECA0020BBEFFF00E253B6 /* ShoppingCarMainVC.swift */; };
 		DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFECA0220BBF98A00E253B6 /* ShoppingCarMainTVCell.swift */; };
@@ -123,19 +130,30 @@
 		20AF3730210082A600D73F79 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		20AF37322100BC1500D73F79 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		20B4777A2101A7EE007F6EA8 /* Identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
+		20D9DBD12102563D00D643FE /* HomeMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainVC.swift; sourceTree = "<group>"; };
+		20D9DBD3210259A300D643FE /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D9DBD521025AC700D643FE /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D9DBFD21025F4600D643FE /* FSPagerViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewLayoutAttributes.swift; sourceTree = "<group>"; };
+		20D9DBFE21025F4600D643FE /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
+		20D9DBFF21025F4600D643FE /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
+		20D9DC0021025F4600D643FE /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
+		20D9DC0121025F4600D643FE /* FSPagerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewCell.swift; sourceTree = "<group>"; };
+		20D9DC0221025F4600D643FE /* FSPagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerView.swift; sourceTree = "<group>"; };
+		20D9DC0321025F4700D643FE /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
+		20D9DC1E2103674C00D643FE /* TransformerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerHelper.swift; sourceTree = "<group>"; };
+		20D9DC2021038E2000D643FE /* naber_default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = naber_default_image.png; sourceTree = "<group>"; };
+		20D9DC222105813500D643FE /* RestaurantCategoryRel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryRel.swift; sourceTree = "<group>"; };
+		20D9DC242105814200D643FE /* RestaurantTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTemplate.swift; sourceTree = "<group>"; };
+		20D9DC262105814300D643FE /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		20D9DC272105814300D643FE /* ReqData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqData.swift; sourceTree = "<group>"; };
+		20D9DC282105814300D643FE /* FoodList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
+		20D9DC292105814300D643FE /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		20E65E7C20FF0A4400F9A252 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		20E65E8620FF2F7200F9A252 /* Bulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulletin.swift; sourceTree = "<group>"; };
 		20E65E8820FF316600F9A252 /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		710650FF7A33596557DF4B8D /* Pods-Naber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.debug.xcconfig"; sourceTree = "<group>"; };
-		77B7A1292101B76A009B4642 /* RestaurantTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTemplate.swift; sourceTree = "<group>"; };
-		77B7A12B2101C611009B4642 /* RestaurantCategoryRel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryRel.swift; sourceTree = "<group>"; };
-		77B7A12D2101C6C7009B4642 /* SwitchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchStatus.swift; sourceTree = "<group>"; };
-		77B7A12F2101CAA4009B4642 /* ReqData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqData.swift; sourceTree = "<group>"; };
-		77B7A1372101E091009B4642 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		77B7A1392101E351009B4642 /* FoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
-		77B7A13B2101E6F7009B4642 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9DC6E6DAC0122EE4004AA8AC /* Pods-Naber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.release.xcconfig"; sourceTree = "<group>"; };
 		DD161CF820CA194B0080CFE2 /* UserPageUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageUITabBarController.swift; sourceTree = "<group>"; };
 		DD161CFA20CA199A0080CFE2 /* LoginHomeRootUINC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHomeRootUINC.swift; sourceTree = "<group>"; };
@@ -204,8 +222,6 @@
 		DDFEA7D920B74A6400170222 /* UserSettingHelpTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingHelpTVC.swift; sourceTree = "<group>"; };
 		DDFEA7DB20B74A8E00170222 /* UserSettingTutorialTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingTutorialTVC.swift; sourceTree = "<group>"; };
 		DDFEA7DF20B7808E00170222 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		DDFEA7E120B8622900170222 /* HomeSliderPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSliderPVC.swift; sourceTree = "<group>"; };
-		DDFEA7E320B871D400170222 /* HomeMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainVC.swift; sourceTree = "<group>"; };
 		DDFEA7E520B8726600170222 /* RestaurantTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTVCell.swift; sourceTree = "<group>"; };
 		DDFECA0020BBEFFF00E253B6 /* ShoppingCarMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCarMainVC.swift; sourceTree = "<group>"; };
 		DDFECA0220BBF98A00E253B6 /* ShoppingCarMainTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCarMainTVCell.swift; sourceTree = "<group>"; };
@@ -217,8 +233,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D9DBD621025AC700D643FE /* Pods_Naber.framework in Frameworks */,
 				20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */,
-				20E65E7F20FF0AB300F9A252 /* Pods_Naber.framework in Frameworks */,
 				DDFEA7E020B7808E00170222 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,14 +285,45 @@
 			isa = PBXGroup;
 			children = (
 				20B4777A2101A7EE007F6EA8 /* Identity.swift */,
-				77B7A12D2101C6C7009B4642 /* SwitchStatus.swift */,
 			);
 			path = Typ;
+			sourceTree = "<group>";
+		};
+		20D9DC0B21025F9200D643FE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20D9DC2021038E2000D643FE /* naber_default_image.png */,
+				DDF8C27C20B1CA4600BF8904 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20D9DC1A210265D400D643FE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				20D9DBFE21025F4600D643FE /* FSPageControl.swift */,
+				20D9DC0321025F4700D643FE /* FSPagerCollectionView.swift */,
+				20D9DC0221025F4600D643FE /* FSPagerView.swift */,
+				20D9DC0121025F4600D643FE /* FSPagerViewCell.swift */,
+				20D9DC0021025F4600D643FE /* FSPageViewLayout.swift */,
+				20D9DBFF21025F4600D643FE /* FSPageViewTransformer.swift */,
+				20D9DBFD21025F4600D643FE /* FSPagerViewLayoutAttributes.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		20D9DC1D2103673C00D643FE /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				20D9DC1E2103674C00D643FE /* TransformerHelper.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		20E65E7B20FF0A1F00F9A252 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20D9DC1D2103673C00D643FE /* Util */,
 				20B477792101A7DC007F6EA8 /* Typ */,
 				20B47778210197A1007F6EA8 /* UserStorage */,
 				20B477772101976C007F6EA8 /* Api */,
@@ -290,18 +337,18 @@
 		20E65E8320FF271D00F9A252 /* Vo */ = {
 			isa = PBXGroup;
 			children = (
+				20D9DC262105814300D643FE /* Food.swift */,
+				20D9DC282105814300D643FE /* FoodList.swift */,
+				20D9DC292105814300D643FE /* Order.swift */,
+				20D9DC272105814300D643FE /* ReqData.swift */,
+				20D9DC242105814200D643FE /* RestaurantTemplate.swift */,
+				20D9DC222105813500D643FE /* RestaurantCategoryRel.swift */,
 				20E65E8620FF2F7200F9A252 /* Bulletin.swift */,
 				20AF372120FF8BD000D73F79 /* AccountInfo.swift */,
 				20AF372A2100551500D73F79 /* RespData.swift */,
 				20AF372C210059AD00D73F79 /* SMSCode.swift */,
 				20AF372E21007E7600D73F79 /* SellerRegistered.swift */,
 				20AF3730210082A600D73F79 /* Advertisement.swift */,
-				77B7A1292101B76A009B4642 /* RestaurantTemplate.swift */,
-				77B7A12B2101C611009B4642 /* RestaurantCategoryRel.swift */,
-				77B7A12F2101CAA4009B4642 /* ReqData.swift */,
-				77B7A1372101E091009B4642 /* Food.swift */,
-				77B7A1392101E351009B4642 /* FoodList.swift */,
-				77B7A13B2101E6F7009B4642 /* Order.swift */,
 			);
 			path = Vo;
 			sourceTree = "<group>";
@@ -363,8 +410,7 @@
 		DDEA6EE320CA12FB008CC5D8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DDFEA7E120B8622900170222 /* HomeSliderPVC.swift */,
-				DDFEA7E320B871D400170222 /* HomeMainVC.swift */,
+				20D9DBD12102563D00D643FE /* HomeMainVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -464,6 +510,7 @@
 		DDF8C26920B1CA4400BF8904 = {
 			isa = PBXGroup;
 			children = (
+				20D9DC1A210265D400D643FE /* Sources */,
 				DDF8C27420B1CA4400BF8904 /* Naber */,
 				DDF8C28920B1CA4600BF8904 /* NaberTests */,
 				DDF8C29420B1CA4600BF8904 /* NaberUITests */,
@@ -490,11 +537,11 @@
 				DD51D1F420C0A0C4002C5940 /* Common */,
 				DDFEA7D420B6D39E00170222 /* Login */,
 				DDFEA7D320B6D33D00170222 /* User */,
+				20D9DC0B21025F9200D643FE /* Resources */,
 				DD3FA0AB20C77111006BAA51 /* Store */,
 				DDF8C2A320B1CBF300BF8904 /* Naber.entitlements */,
 				DDF8C27520B1CA4400BF8904 /* AppDelegate.swift */,
 				DDF8C27920B1CA4400BF8904 /* Main.storyboard */,
-				DDF8C27C20B1CA4600BF8904 /* Assets.xcassets */,
 				DDF8C27E20B1CA4600BF8904 /* LaunchScreen.storyboard */,
 				DDF8C28120B1CA4600BF8904 /* Info.plist */,
 				20AF37262100447400D73F79 /* GoogleService-Info.plist */,
@@ -524,6 +571,8 @@
 		DDF8C2A420B1CC2A00BF8904 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20D9DBD521025AC700D643FE /* Pods_Naber.framework */,
+				20D9DBD3210259A300D643FE /* FSPagerView.framework */,
 				20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */,
 				DDFEA7DF20B7808E00170222 /* UserNotifications.framework */,
 				DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */,
@@ -679,6 +728,7 @@
 				20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */,
 				DDF8C27D20B1CA4600BF8904 /* Assets.xcassets in Resources */,
 				DDF8C27B20B1CA4400BF8904 /* Main.storyboard in Resources */,
+				20D9DC2121038E2000D643FE /* naber_default_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +759,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/MapleBacon/MapleBacon.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -718,6 +769,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapleBacon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -752,34 +804,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B7A1382101E091009B4642 /* Food.swift in Sources */,
 				20E65E8220FF17F100F9A252 /* Loading.swift in Sources */,
 				DD51D1FA20C0B17B002C5940 /* RestaurantStoreInfoTVCell.swift in Sources */,
+				20D9DC0821025F4700D643FE /* FSPagerViewCell.swift in Sources */,
 				20AF372F21007E7600D73F79 /* SellerRegistered.swift in Sources */,
 				DD161D0220CAC8A90080CFE2 /* TutorialVC.swift in Sources */,
+				20D9DC0721025F4700D643FE /* FSPageViewLayout.swift in Sources */,
 				DDCAE00720BB5BBD005E65C4 /* RecordMainPageVC.swift in Sources */,
 				DDF8C2B820B226E600BF8904 /* StorePageUITabBarController.swift in Sources */,
 				DDFECA0120BBEFFF00E253B6 /* ShoppingCarMainVC.swift in Sources */,
 				DD161D1520CB1DDF0080CFE2 /* FoodDetailExtraTVCell.swift in Sources */,
 				DD161D0420CAD01E0080CFE2 /* Tutorial4VC.swift in Sources */,
 				DDFEA7D620B6D47300170222 /* UserSettingAboutUsTVC.swift in Sources */,
-				DDFEA7E220B8622900170222 /* HomeSliderPVC.swift in Sources */,
 				DD161CFF20CA2E320080CFE2 /* SearchMainTVCell.swift in Sources */,
 				DD161D0920CAD70B0080CFE2 /* FoodTVCell.swift in Sources */,
 				DDFEA7D220B6BC4800170222 /* UserSettingAccountDetailTVC.swift in Sources */,
 				DD161D1920CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift in Sources */,
 				DD161D1320CB1DCD0080CFE2 /* FoodDetailTypeTVCell.swift in Sources */,
 				DDFEA7E620B8726600170222 /* RestaurantTVCell.swift in Sources */,
+				20D9DC232105813500D643FE /* RestaurantCategoryRel.swift in Sources */,
 				DD3FA0AF20C77193006BAA51 /* StoreSettingAboutUsTVC.swift in Sources */,
-				77B7A12C2101C611009B4642 /* RestaurantCategoryRel.swift in Sources */,
 				DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */,
 				DD3FA0B320C79292006BAA51 /* TrendMainVC.swift in Sources */,
 				20AF372D210059AD00D73F79 /* SMSCode.swift in Sources */,
 				DDF8C2BA20B3F18400BF8904 /* ForgotPasswordVC.swift in Sources */,
+				20D9DC0621025F4700D643FE /* FSPageViewTransformer.swift in Sources */,
 				DD51D20820C359A5002C5940 /* RestaurantStoreSelectTVCellFoot.swift in Sources */,
+				20D9DBD22102563E00D643FE /* HomeMainVC.swift in Sources */,
 				20AF3731210082A600D73F79 /* Advertisement.swift in Sources */,
 				20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */,
 				DD3FA0C620C8A2DF006BAA51 /* LeftSideMenuTVCell.swift in Sources */,
+				20D9DC2E2105814300D643FE /* ReqData.swift in Sources */,
 				20AF37332100BC1500D73F79 /* UserDefaults.swift in Sources */,
 				DD51D20020C340BE002C5940 /* RestaurantStoreSelectVC.swift in Sources */,
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,
@@ -788,23 +843,26 @@
 				DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */,
 				20AF372B2100551500D73F79 /* RespData.swift in Sources */,
 				DD161D0F20CB1D5C0080CFE2 /* FoodDetailVC.swift in Sources */,
-				77B7A13C2101E6F7009B4642 /* Order.swift in Sources */,
-				77B7A1302101CAA4009B4642 /* ReqData.swift in Sources */,
 				DDF8C27820B1CA4400BF8904 /* ViewController.swift in Sources */,
 				DD161D0720CAD6D50080CFE2 /* FoodVC.swift in Sources */,
+				20D9DC2D2105814300D643FE /* Food.swift in Sources */,
 				DDFECA0520BBF9C100E253B6 /* ShoppingCardSubTVCell.swift in Sources */,
+				20D9DC0521025F4700D643FE /* FSPageControl.swift in Sources */,
 				DDCAE00B20BB70E9005E65C4 /* RecordInfoDetailVC.swift in Sources */,
 				DD51D1F620C0A117002C5940 /* UIBorderRadius.swift in Sources */,
+				20D9DC1F2103674C00D643FE /* TransformerHelper.swift in Sources */,
 				DD161D0B20CAEBC80080CFE2 /* FoodClassVC.swift in Sources */,
-				77B7A12A2101B76A009B4642 /* RestaurantTemplate.swift in Sources */,
 				DDCAE00120B97266005E65C4 /* RestaurantSearchVC.swift in Sources */,
 				DDF8C2BC20B403FF00BF8904 /* RegisterUserVC.swift in Sources */,
 				DD3FA0AD20C77174006BAA51 /* StoreSettingMainPageTVC.swift in Sources */,
+				20D9DC0921025F4700D643FE /* FSPagerView.swift in Sources */,
 				DD51D20620C3598E002C5940 /* RestaurantStoreSelectTCCellHead.swift in Sources */,
 				DD51D20420C34204002C5940 /* RestaurantStoreSelectTVCell.swift in Sources */,
 				DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */,
-				77B7A13A2101E351009B4642 /* FoodList.swift in Sources */,
 				DD3FA0B120C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift in Sources */,
+				20D9DC302105814300D643FE /* Order.swift in Sources */,
+				20D9DC2F2105814300D643FE /* FoodList.swift in Sources */,
+				20D9DC0A21025F4700D643FE /* FSPagerCollectionView.swift in Sources */,
 				DDCAE00320B99E4B005E65C4 /* RestaurantStoreInfoVC.swift in Sources */,
 				DDF8C2BE20B4258C00BF8904 /* RegisterUserDetailVC.swift in Sources */,
 				20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */,
@@ -813,16 +871,16 @@
 				20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */,
 				DDFEA7DA20B74A6400170222 /* UserSettingHelpTVC.swift in Sources */,
 				DD161CFB20CA199A0080CFE2 /* LoginHomeRootUINC.swift in Sources */,
+				20D9DC0421025F4700D643FE /* FSPagerViewLayoutAttributes.swift in Sources */,
 				DD3FA0B520C7B065006BAA51 /* TrendCompleteOrderVC.swift in Sources */,
 				DD3FA0B720C7B648006BAA51 /* TrendCompleteOrderTVCell.swift in Sources */,
 				DD161D0D20CAEBF40080CFE2 /* FoodClassTVCell.swift in Sources */,
 				DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */,
 				20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */,
-				DDFEA7E420B871D400170222 /* HomeMainVC.swift in Sources */,
-				77B7A12E2101C6C7009B4642 /* SwitchStatus.swift in Sources */,
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
 				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
 				20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */,
+				20D9DC2B2105814300D643FE /* RestaurantTemplate.swift in Sources */,
 				DD161D1720CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift in Sources */,
 				DDCAE00520B9B76E005E65C4 /* RestaurantSearchUINC.swift in Sources */,
 				DDF8C2C020B59B0500BF8904 /* RegisterStoreVC.swift in Sources */,

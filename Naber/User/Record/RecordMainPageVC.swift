@@ -66,7 +66,7 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RecordInfoDetailTVCell
         cell.storeName.text = recordInfos[indexPath.row].storeName
-        cell.time.text = recordInfos[indexPath.row].time
+//        cell.time.text = recordInfos[indexPath.row].time
         cell.recordTime.text = recordInfos[indexPath.row].recordTime
         cell.totalPayment.text = recordInfos[indexPath.row].totalPayment
         return cell
