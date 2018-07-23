@@ -27,6 +27,12 @@
 		20D9DC0A21025F4700D643FE /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC0321025F4700D643FE /* FSPagerCollectionView.swift */; };
 		20D9DC1F2103674C00D643FE /* TransformerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC1E2103674C00D643FE /* TransformerHelper.swift */; };
 		20D9DC2121038E2000D643FE /* naber_default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9DC2021038E2000D643FE /* naber_default_image.png */; };
+		20D9DC232105813500D643FE /* RestaurantCategoryRel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC222105813500D643FE /* RestaurantCategoryRel.swift */; };
+		20D9DC2B2105814300D643FE /* RestaurantTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC242105814200D643FE /* RestaurantTemplate.swift */; };
+		20D9DC2D2105814300D643FE /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC262105814300D643FE /* Food.swift */; };
+		20D9DC2E2105814300D643FE /* ReqData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC272105814300D643FE /* ReqData.swift */; };
+		20D9DC2F2105814300D643FE /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC282105814300D643FE /* FoodList.swift */; };
+		20D9DC302105814300D643FE /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC292105814300D643FE /* Order.swift */; };
 		20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E7C20FF0A4400F9A252 /* ApiManager.swift */; };
 		20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
@@ -136,6 +142,12 @@
 		20D9DC0321025F4700D643FE /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
 		20D9DC1E2103674C00D643FE /* TransformerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerHelper.swift; sourceTree = "<group>"; };
 		20D9DC2021038E2000D643FE /* naber_default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = naber_default_image.png; sourceTree = "<group>"; };
+		20D9DC222105813500D643FE /* RestaurantCategoryRel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryRel.swift; sourceTree = "<group>"; };
+		20D9DC242105814200D643FE /* RestaurantTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTemplate.swift; sourceTree = "<group>"; };
+		20D9DC262105814300D643FE /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		20D9DC272105814300D643FE /* ReqData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqData.swift; sourceTree = "<group>"; };
+		20D9DC282105814300D643FE /* FoodList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
+		20D9DC292105814300D643FE /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		20E65E7C20FF0A4400F9A252 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -325,6 +337,12 @@
 		20E65E8320FF271D00F9A252 /* Vo */ = {
 			isa = PBXGroup;
 			children = (
+				20D9DC262105814300D643FE /* Food.swift */,
+				20D9DC282105814300D643FE /* FoodList.swift */,
+				20D9DC292105814300D643FE /* Order.swift */,
+				20D9DC272105814300D643FE /* ReqData.swift */,
+				20D9DC242105814200D643FE /* RestaurantTemplate.swift */,
+				20D9DC222105813500D643FE /* RestaurantCategoryRel.swift */,
 				20E65E8620FF2F7200F9A252 /* Bulletin.swift */,
 				20AF372120FF8BD000D73F79 /* AccountInfo.swift */,
 				20AF372A2100551500D73F79 /* RespData.swift */,
@@ -804,6 +822,7 @@
 				DD161D1920CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift in Sources */,
 				DD161D1320CB1DCD0080CFE2 /* FoodDetailTypeTVCell.swift in Sources */,
 				DDFEA7E620B8726600170222 /* RestaurantTVCell.swift in Sources */,
+				20D9DC232105813500D643FE /* RestaurantCategoryRel.swift in Sources */,
 				DD3FA0AF20C77193006BAA51 /* StoreSettingAboutUsTVC.swift in Sources */,
 				DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */,
 				DD3FA0B320C79292006BAA51 /* TrendMainVC.swift in Sources */,
@@ -815,6 +834,7 @@
 				20AF3731210082A600D73F79 /* Advertisement.swift in Sources */,
 				20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */,
 				DD3FA0C620C8A2DF006BAA51 /* LeftSideMenuTVCell.swift in Sources */,
+				20D9DC2E2105814300D643FE /* ReqData.swift in Sources */,
 				20AF37332100BC1500D73F79 /* UserDefaults.swift in Sources */,
 				DD51D20020C340BE002C5940 /* RestaurantStoreSelectVC.swift in Sources */,
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,
@@ -825,6 +845,7 @@
 				DD161D0F20CB1D5C0080CFE2 /* FoodDetailVC.swift in Sources */,
 				DDF8C27820B1CA4400BF8904 /* ViewController.swift in Sources */,
 				DD161D0720CAD6D50080CFE2 /* FoodVC.swift in Sources */,
+				20D9DC2D2105814300D643FE /* Food.swift in Sources */,
 				DDFECA0520BBF9C100E253B6 /* ShoppingCardSubTVCell.swift in Sources */,
 				20D9DC0521025F4700D643FE /* FSPageControl.swift in Sources */,
 				DDCAE00B20BB70E9005E65C4 /* RecordInfoDetailVC.swift in Sources */,
@@ -839,6 +860,8 @@
 				DD51D20420C34204002C5940 /* RestaurantStoreSelectTVCell.swift in Sources */,
 				DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */,
 				DD3FA0B120C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift in Sources */,
+				20D9DC302105814300D643FE /* Order.swift in Sources */,
+				20D9DC2F2105814300D643FE /* FoodList.swift in Sources */,
 				20D9DC0A21025F4700D643FE /* FSPagerCollectionView.swift in Sources */,
 				DDCAE00320B99E4B005E65C4 /* RestaurantStoreInfoVC.swift in Sources */,
 				DDF8C2BE20B4258C00BF8904 /* RegisterUserDetailVC.swift in Sources */,
@@ -857,6 +880,7 @@
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
 				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
 				20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */,
+				20D9DC2B2105814300D643FE /* RestaurantTemplate.swift in Sources */,
 				DD161D1720CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift in Sources */,
 				DDCAE00520B9B76E005E65C4 /* RestaurantSearchUINC.swift in Sources */,
 				DDF8C2C020B59B0500BF8904 /* RegisterStoreVC.swift in Sources */,
