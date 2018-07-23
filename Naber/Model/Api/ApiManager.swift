@@ -119,15 +119,166 @@ class ApiManager {
             }
         })
     }
+
+    // 取得餐館地理位置模板
+    public static func restaurantTemplate (ui: UIViewController, onSuccess: @escaping ([RestaurantTemplateVo?]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.BULLETIN, data: "", ui:ui, complete: { response in
+            let resp: RestaurantTemplateResp = RestaurantTemplateResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
     
     
+    // 餐館列表 TOP, AREA, CATEGORY, DISTANCE(未改動)
+//    public static void restaurantList(ReqData req, ThreadCallback callback) {
+//    Call call = getClient().postHeader(ApiUrl.RESTAURANT_LIST, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+//
+
+    // 餐館細節，系列列表
+    public static func restaurantDetail (uuid: String, ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
+        var req: ReqData = ReqData()
+        req.uuid = uuid
+        self.postAutho(url: ApiUrl.RESTAURANT_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: RestaurantCategoryRelResp = RestaurantCategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 系列下品項列表
+    public static func restaurantFoodList (uuid: String, ui: UIViewController, onSuccess: @escaping ([FoodVo?]) -> (), onFail: @escaping (String) -> ()) {
+        var req: ReqData = ReqData()
+        req.uuid = uuid
+        self.postAutho(url: ApiUrl.RESTAURANT_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 品項細節
+//    public static void restaurantFoodDetail(String uuid, ThreadCallback callback) {
+//    ReqData req = new ReqData();
+//    req.uuid = uuid;
+//    Call call = getClient().postHeader(ApiUrl.RESTAURANT_FOOD_DETAIL, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+//
+    
+    // 品項細節
+    public static func restaurantFoodDetail (uuid: String, ui: UIViewController, onSuccess: @escaping (FoodVo?) -> (), onFail: @escaping (String) -> ()) {
+        var req: ReqData = ReqData()
+        req.uuid = uuid
+        self.postAutho(url: ApiUrl.RESTAURANT_FOOD_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: FoodResp = FoodResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    
+//    public static void userOrderHistory(ReqData req, ThreadCallback callback) {
+//    Call call = getClient().postHeader(ApiUrl.USER_ORDER_HISTORY, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+    
+    // 使用者訂單記錄
+    public static func userOrderHistory (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.USER_ORDER_HISTORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+   
+    // 使用者資訊
+    public static func userFindAccountInfo (uuid: String, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+        var req: ReqData = ReqData()
+        req.uuid = uuid
+        self.postAutho(url: ApiUrl.FIND_ACCOUNT_INFO, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 上傳圖片
+//    public static void uploadPhoto(ReqData req, ThreadCallback callback) {
+//    Call call = getClient().postHeader(ApiUrl.IMAGE_UPLOAD, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+    
+    // 上傳圖片(未更改)
+    public static func uploadPhoto (uuid: String, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+        var req: ReqData = ReqData()
+        req.uuid = uuid
+        self.postAutho(url: ApiUrl.IMAGE_UPLOAD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    
+//    // 更新密碼
+//    public static void reseatPassword(Map<String, String> req, ThreadCallback callback) {
+//    Call call = getClient().postHeader(ApiUrl.RESEAT_PSW, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+//
+//    // 忘記密碼
+//    public static void forgetPassword(Map<String, String> req, ThreadCallback callback) {
+//    Call call = getClient().postHeader(ApiUrl.FORGET_PSW, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+//
+    // 提交訂單
+//    public static void userOrderSubmit(OrderDetail req, ThreadCallback callback) {
+//    Call call = getClient().postHeader(ApiUrl.ORDER_SUBMIT, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
+//    call.enqueue(callback);
+//    }
+//
+    
+    
+    
+    
+    
+    
+    
+    //要 Data的,但是沒有header
     private static func postData(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
         let parameter: Parameters =  ["data": base64Encoding(encod: data)]
         self.post(url: url, parameter: parameter, header: self.HTTP_HEADERS, ui: ui) { response in
             complete(response)
         }
     }
-    
+    //傳header的POST,不要Data傳空字串
+    //header的key=Authorization,Value=acount_uuid
     private static func postAutho(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
         let autho: String = "USER_20180709_123225_469_bbdd78cc-9786-49eb-8ca5-5ad07446a2ed"
         let parameter: Parameters =  ["data": base64Encoding(encod: data)]
@@ -138,6 +289,7 @@ class ApiManager {
         }
     }
     
+    //主要的POST Method
     private static func post(url: URLConvertible, parameter: Parameters, header: HTTPHeaders, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
         Loading.show()
         Alamofire.request(url, method: HTTPMethod.post, parameters:parameter, headers:header).validate().responseString{ response in
