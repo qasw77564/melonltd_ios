@@ -209,11 +209,8 @@ class ApiManager {
         })
     }
     
-   
     // 使用者資訊
-    public static func userFindAccountInfo (uuid: String, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
-        req.uuid = uuid
+    public static func userFindAccountInfo (req: ReqData,ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.FIND_ACCOUNT_INFO, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
@@ -231,9 +228,8 @@ class ApiManager {
 //    }
     
     // 上傳圖片(未更改)
-    public static func uploadPhoto (uuid: String, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
-        req.uuid = uuid
+    public static func uploadPhoto (req: ReqData, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+       
         self.postAutho(url: ApiUrl.IMAGE_UPLOAD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
