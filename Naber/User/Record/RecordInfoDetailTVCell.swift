@@ -11,7 +11,7 @@ import UIKit
 class RecordInfoDetailTVCell: UITableViewCell {
     
     @IBOutlet var storeName: UILabel!
-    @IBOutlet var time: UILabel!
+//    @IBOutlet var time: UILabel!
     @IBOutlet var recordTime: UILabel!
     @IBOutlet var totalPayment: UILabel!
     

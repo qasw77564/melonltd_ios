@@ -10,4 +10,6 @@ target 'Naber' do
     pod 'Firebase/Messaging'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
+#    pod 'FSPagerView'
+    pod 'MapleBacon'
 end

@@ -55,7 +55,7 @@ class RegisterUserDetailVC: UIViewController {
         }
     }
     
-    @IBOutlet weak var datePickerTextField: UITextField!
+//    @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var pickerViewTextField : UITextField!
     private var customerIdentifyDataPicker: UIPickerView!
     
@@ -112,8 +112,8 @@ class RegisterUserDetailVC: UIViewController {
     }
     
     func setupUI(){
-        datePickerTextField.inputView = datePicker
-        datePickerTextField.inputAccessoryView = accessoryToolbar
+//        datePickerTextField.inputView = datePicker
+//        datePickerTextField.inputAccessoryView = accessoryToolbar
         // Giving the date picker text field an initial value.
         
         
@@ -124,14 +124,14 @@ class RegisterUserDetailVC: UIViewController {
     }
     
     @objc func onDateChanged(sender: UIDatePicker) {
-        datePickerTextField.text = sender.date.mediumDateString
+//        datePickerTextField.text = sender.date.mediumDateString
     }
     
     @objc func onDoneButtonTapped(sender: UIBarButtonItem) {
-        if datePickerTextField.isFirstResponder {
-            oldBirthDateText = datePickerTextField.text
-            datePickerTextField.resignFirstResponder()
-        }
+//        if datePickerTextField.isFirstResponder {
+//            oldBirthDateText = datePickerTextField.text
+//            datePickerTextField.resignFirstResponder()
+//        }
         
         if pickerViewTextField.isFirstResponder {
             oldIdentityText = pickerViewTextField.text
@@ -140,10 +140,10 @@ class RegisterUserDetailVC: UIViewController {
     }
     
     @objc func onCancelButtonTapped(sender: UIBarButtonItem) {
-        if datePickerTextField.isFirstResponder {
-            datePickerTextField.resignFirstResponder()
-            datePickerTextField.text = oldBirthDateText
-        }
+//        if datePickerTextField.isFirstResponder {
+//            datePickerTextField.resignFirstResponder()
+//            datePickerTextField.text = oldBirthDateText
+//        }
         
         if pickerViewTextField.isFirstResponder {
             pickerViewTextField.text = oldIdentityText
@@ -153,9 +153,9 @@ class RegisterUserDetailVC: UIViewController {
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        datePickerTextField.text = dateFormatter.string(from: datePicker.date)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        datePickerTextField.text = dateFormatter.string(from: datePicker.date)
         
     }
     
