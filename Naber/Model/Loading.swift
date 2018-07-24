@@ -14,8 +14,8 @@ public class Loading {
     static let data : ActivityData = ActivityData(
         size: CGSize(width: 80, height: 80),
         type: NVActivityIndicatorType.ballSpinFadeLoader,
-        color: UIColor.white,
-        backgroundColor: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+        color: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0),
+        backgroundColor: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
     )
     
     public static func show(){

@@ -9,7 +9,7 @@
 import Foundation
 
 class NaberConstant {
-    static let IS_DEBUG : Bool = true
-    
+    static let IS_DEBUG : Bool = false
+    static let REMEMBER_DAY : Int = 1000 * 60 * 60 * 24 * 7 * 2;
     
 }

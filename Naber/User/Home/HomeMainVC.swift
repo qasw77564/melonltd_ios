@@ -8,6 +8,7 @@
 
 import UIKit
 //import MapleBacon
+import CoreLocation
 
 class StoreInfoClass {
     //等於Objective-C的 @property (strong) NSString *city;
@@ -17,19 +18,16 @@ class StoreInfoClass {
     var time:String = ""
     var address:String = ""
     var storeImage:String = ""
-    
+
     //一個Class的宣告，在有效的Scope內預設就會有 init
     //init(){
     //
     //}
-    
+
 }
 
 class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,FSPagerViewDataSource, FSPagerViewDelegate{
     
-    
-    // 輪播圖 start
-    fileprivate var advertisements : [AdvertisementVo?] = []
     fileprivate var adUIImages : [UIImageView] = []
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
@@ -42,7 +40,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
  
     @IBOutlet weak var pageControl: FSPageControl! {
         didSet {
-            self.pageControl.numberOfPages = self.advertisements.count
+            self.pageControl.numberOfPages = Model.ADVERTISEMENTS.count
             self.pageControl.contentHorizontalAlignment = .center
             self.pageControl.setPath(UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 10, height: 10)), for: .normal)
             self.pageControl.setPath(UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 10, height: 10)), for: .selected)
@@ -50,92 +48,79 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
             self.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 30, bottom: 10, right: 30)
         }
     }
-    // 輪播圖 end
-    
-    // test data
-    var storeInfos = [StoreInfoClass]()
-    var storeName = ["Berkeley Cafe", "Black Cafe", "Black Ring Coffee", "Camber Coffee", "Coffee Shop"]
-    var workStatus = ["該商家尚未營業", "今天不營業", "Cool", "Cosy", "Classy"]
-    var distance = ["1.3公里", "1.4公里", "1.3公里", "1.3公里", "1.3公里"]
-    var time = ["12:00~13:00", "12:00~13:00","12:00~13:00","12:00~13:00","12:00~13:00",]
-    var address = ["桃園市桃園區中山路100號", "桃園市桃園區中山路200號", "桃園市桃園區中山路300號", "桃園市桃園區中山路400號", "桃園市桃園區中山路500號"]
-    var storeImage = ["Logo", "Logo", "blackRingCoffee", "camberCoffee", "coffeeShop"]
 
-    @IBOutlet weak var storeTableView: UITableView!
+    @IBOutlet weak var storeTableView: UITableView! {
+        didSet {
+            self.storeTableView.dataSource = self
+            self.storeTableView.delegate = self
+            let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+            refreshControl.tintColor = UIColor.clear
+            self.storeTableView.addSubview(refreshControl)
+        }
+    }
+    
+    @objc func refresh(sender: UIRefreshControl){
+//        startLoadDeviceStats()
+        Model.TOP_RESTAURANT_LIST.removeAll()
+        sender.endRefreshing()
+        self.storeTableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        storeTableView.delegate = self
-        storeTableView.dataSource = self
-        
-
-        
-        let storeInfo = StoreInfoClass()
-        storeInfo.storeName="Berkeley Cafe"
-        storeInfo.workStatus="Cosy"
-        storeInfo.distance="100M";
-        storeInfo.time="AM08:00~PM10:00";
-        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
-        storeInfo.storeImage="berkeleyCafe";
-        
-        for i in storeName {
-            let index = storeName.index(of: i)
-            let storeInfo = StoreInfoClass()
-            storeInfo.storeName = storeName[index!]
-            storeInfo.workStatus = workStatus[index!]
-            storeInfo.distance = distance[index!]
-            storeInfo.time = time[index!]
-            storeInfo.address = address[index!]
-            storeInfo.storeImage = storeImage[index!]
-            storeInfos.append(storeInfo)
-        }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        
+  
         // 加載輪播圖
         ApiManager.advertisement(ui: self, onSuccess: { advertisements in
-            // List<T> .clear().
-            self.advertisements.removeAll()
-            // List<T> .addAll().
-            self.advertisements.append(contentsOf: advertisements)
-            self.pageControl.numberOfPages = self.advertisements.count
+            Model.ADVERTISEMENTS.removeAll()
+            Model.ADVERTISEMENTS.append(contentsOf: advertisements)
+            self.pageControl.numberOfPages = Model.ADVERTISEMENTS.count
 
             // 處理網路圖像加載
-            self.advertisements.forEach({ ad in
+            Model.ADVERTISEMENTS.forEach({ ad in
                 let image :UIImageView = UIImageView.init();
-                image.setImage(with: URL(string: (ad?.photo)!), transformer: TransformerHelper.transformer(identifier: (ad?.photo)!))
+                image.setImage(with: URL(string: ad.photo), transformer: TransformerHelper.transformer(identifier: ad.photo!))
                 self.adUIImages.append(image)
             })
             self.pagerView.reloadData()
         }) { err_msg in
             print(err_msg)
         }
-
+        
+        Model.TOP_RESTAURANT_LIST.removeAll()
+        let req : ReqData = ReqData()
+        req.search_type = "TOP"
+        ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurantInfos in
+            Model.TOP_RESTAURANT_LIST = restaurantInfos
+            self.storeTableView.reloadData()
+        }) { err_msg in
+            print(err_msg)
+        }
     }
+    
+    
+   override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
-        // Configure the cell...
-//        cell.storeName.text = storeName[indexPath.row]
-//        cell.address.text = address[indexPath.row]
-//        cell.workStatus.text = workStatus[indexPath.row]
-//        cell.distance.text = distance[indexPath.row]
-//        cell.time.text = time[indexPath.row]
-//        cell.thumbnailImageView.image = UIImage(named: storeImage[indexPath.row])
+        cell.storeName.text = Model.TOP_RESTAURANT_LIST[indexPath.row].name
+        cell.address.text = Model.TOP_RESTAURANT_LIST[indexPath.row].address
+//        cell.workStatus.text = storeInfos[indexPath.row].workStatus
+//        cell.distance.text = storeInfos[indexPath.row].distance
+
+        cell.workStatus.isHidden = true
         
-        cell.storeName.text = storeInfos[indexPath.row].storeName
-        cell.address.text = storeInfos[indexPath.row].address
-        cell.workStatus.text = storeInfos[indexPath.row].workStatus
-        cell.distance.text = storeInfos[indexPath.row].distance
-        cell.time.text = storeInfos[indexPath.row].time
-        cell.thumbnailImageView.image = UIImage(named: storeInfos[indexPath.row].storeImage)
+        let locationManager = CLLocationManager()
+        let distance: Double = locationManager.location!.distance(from:  CLLocation (latitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].latitude)!, longitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].longitude)!))
+        print(distance)
         
+        cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
+        cell.thumbnailImageView.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
         return cell
     }
     
@@ -145,20 +130,13 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     }
     
     // MARK: - Table view data source
-    
-
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //return storeName.count
-        return storeInfos.count
-
+        return Model.TOP_RESTAURANT_LIST.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -196,7 +174,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
 
     // MARK:- FSPagerView DataSource
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return self.advertisements.count
+        return Model.ADVERTISEMENTS.count
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {

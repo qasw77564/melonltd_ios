@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2036B845210760190081FE92 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B844210760190081FE92 /* BaseVC.swift */; };
+		2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B8462107621C0081FE92 /* DateTimeHelper.swift */; };
 		20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfo.swift */; };
 		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
 		20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20AF37262100447400D73F79 /* GoogleService-Info.plist */; };
@@ -14,7 +16,7 @@
 		20AF372D210059AD00D73F79 /* SMSCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372C210059AD00D73F79 /* SMSCode.swift */; };
 		20AF372F21007E7600D73F79 /* SellerRegistered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372E21007E7600D73F79 /* SellerRegistered.swift */; };
 		20AF3731210082A600D73F79 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF3730210082A600D73F79 /* Advertisement.swift */; };
-		20AF37332100BC1500D73F79 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF37322100BC1500D73F79 /* UserDefaults.swift */; };
+		20AF37332100BC1500D73F79 /* UserSstorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF37322100BC1500D73F79 /* UserSstorage.swift */; };
 		20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4777A2101A7EE007F6EA8 /* Identity.swift */; };
 		20D9DBD22102563E00D643FE /* HomeMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBD12102563D00D643FE /* HomeMainVC.swift */; };
 		20D9DBD621025AC700D643FE /* Pods_Naber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9DBD521025AC700D643FE /* Pods_Naber.framework */; };
@@ -33,6 +35,8 @@
 		20D9DC2E2105814300D643FE /* ReqData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC272105814300D643FE /* ReqData.swift */; };
 		20D9DC2F2105814300D643FE /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC282105814300D643FE /* FoodList.swift */; };
 		20D9DC302105814300D643FE /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC292105814300D643FE /* Order.swift */; };
+		20DEC9D72107891000476917 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEC9D62107891000476917 /* Model.swift */; };
+		20DEC9D92107903600476917 /* DistanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEC9D82107903600476917 /* DistanceHelper.swift */; };
 		20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E7C20FF0A4400F9A252 /* ApiManager.swift */; };
 		20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
@@ -125,6 +129,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2036B844210760190081FE92 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		2036B8462107621C0081FE92 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		20AF372120FF8BD000D73F79 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
 		20AF37262100447400D73F79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -132,7 +138,7 @@
 		20AF372C210059AD00D73F79 /* SMSCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSCode.swift; sourceTree = "<group>"; };
 		20AF372E21007E7600D73F79 /* SellerRegistered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerRegistered.swift; sourceTree = "<group>"; };
 		20AF3730210082A600D73F79 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
-		20AF37322100BC1500D73F79 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		20AF37322100BC1500D73F79 /* UserSstorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSstorage.swift; sourceTree = "<group>"; };
 		20B4777A2101A7EE007F6EA8 /* Identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
 		20D9DBD12102563D00D643FE /* HomeMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainVC.swift; sourceTree = "<group>"; };
 		20D9DBD3210259A300D643FE /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +158,8 @@
 		20D9DC272105814300D643FE /* ReqData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqData.swift; sourceTree = "<group>"; };
 		20D9DC282105814300D643FE /* FoodList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
 		20D9DC292105814300D643FE /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		20DEC9D62107891000476917 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		20DEC9D82107903600476917 /* DistanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceHelper.swift; sourceTree = "<group>"; };
 		20E65E7C20FF0A4400F9A252 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -284,7 +292,7 @@
 		20B47778210197A1007F6EA8 /* UserStorage */ = {
 			isa = PBXGroup;
 			children = (
-				20AF37322100BC1500D73F79 /* UserDefaults.swift */,
+				20AF37322100BC1500D73F79 /* UserSstorage.swift */,
 			);
 			path = UserStorage;
 			sourceTree = "<group>";
@@ -324,13 +332,24 @@
 			isa = PBXGroup;
 			children = (
 				20D9DC1E2103674C00D643FE /* TransformerHelper.swift */,
+				2036B8462107621C0081FE92 /* DateTimeHelper.swift */,
+				20DEC9D82107903600476917 /* DistanceHelper.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		20DEC9D52107890100476917 /* Bean */ = {
+			isa = PBXGroup;
+			children = (
+				20DEC9D62107891000476917 /* Model.swift */,
+			);
+			path = Bean;
 			sourceTree = "<group>";
 		};
 		20E65E7B20FF0A1F00F9A252 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20DEC9D52107890100476917 /* Bean */,
 				20D9DC1D2103673C00D643FE /* Util */,
 				20B477792101A7DC007F6EA8 /* Typ */,
 				20B47778210197A1007F6EA8 /* UserStorage */,
@@ -414,6 +433,7 @@
 		DD51D1F420C0A0C4002C5940 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2036B844210760190081FE92 /* BaseVC.swift */,
 				DD51D1F520C0A117002C5940 /* UIBorderRadius.swift */,
 			);
 			path = Common;
@@ -847,14 +867,16 @@
 				20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */,
 				DD3FA0C620C8A2DF006BAA51 /* LeftSideMenuTVCell.swift in Sources */,
 				20D9DC2E2105814300D643FE /* ReqData.swift in Sources */,
-				20AF37332100BC1500D73F79 /* UserDefaults.swift in Sources */,
+				20AF37332100BC1500D73F79 /* UserSstorage.swift in Sources */,
 				DD51D20020C340BE002C5940 /* RestaurantStoreSelectVC.swift in Sources */,
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,
 				DDCAE00920BB5F10005E65C4 /* RecordInfoDetailTVCell.swift in Sources */,
 				DD3FA0C420C8A23F006BAA51 /* LeftSideMenuVC.swift in Sources */,
+				2036B845210760190081FE92 /* BaseVC.swift in Sources */,
 				77376C5C2105A2930087F08E /* SellerStat.swift in Sources */,
 				DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */,
 				20AF372B2100551500D73F79 /* RespData.swift in Sources */,
+				2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */,
 				DD161D0F20CB1D5C0080CFE2 /* FoodDetailVC.swift in Sources */,
 				DDF8C27820B1CA4400BF8904 /* LoginVC.swift in Sources */,
 				DD161D0720CAD6D50080CFE2 /* FoodVC.swift in Sources */,
@@ -892,12 +914,14 @@
 				DD161D0D20CAEBF40080CFE2 /* FoodClassTVCell.swift in Sources */,
 				DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */,
 				20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */,
+				20DEC9D92107903600476917 /* DistanceHelper.swift in Sources */,
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
 				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
 				20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */,
 				20D9DC2B2105814300D643FE /* RestaurantTemplate.swift in Sources */,
 				DD161D1720CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift in Sources */,
 				DDCAE00520B9B76E005E65C4 /* RestaurantSearchUINC.swift in Sources */,
+				20DEC9D72107891000476917 /* Model.swift in Sources */,
 				DDF8C2C020B59B0500BF8904 /* RegisterStoreVC.swift in Sources */,
 				DDFEA7CE20B661E500170222 /* UserSettingPageVC.swift in Sources */,
 				77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */,
@@ -1081,6 +1105,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HB4HJB5J8;
 				INFOPLIST_FILE = Naber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1101,6 +1126,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HB4HJB5J8;
 				INFOPLIST_FILE = Naber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

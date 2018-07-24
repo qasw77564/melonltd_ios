@@ -10,8 +10,15 @@ import Foundation
 import Alamofire
 
 class ApiManager {
+    private static let SESSION_MANAGER: SessionManager = {
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 3
+        manager.session.configuration.timeoutIntervalForResource = 3
+        return manager
+    }()
+
     private static let HTTP_HEADERS: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
-    
+
     /**
      * 以下為共用 API
      */
@@ -66,7 +73,7 @@ class ApiManager {
     }
     
     // 登入
-    public static func login (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping (AccountInfoVo) -> (), onFail: @escaping (String) -> ()) {
+    public static func login (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.LOGIN, data: AccountInfoVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
@@ -95,7 +102,7 @@ class ApiManager {
      */
     //1.首頁
     // 輪播圖(測試OK)
-    public static func advertisement (ui: UIViewController, onSuccess: @escaping ([AdvertisementVo?]) -> (), onFail: @escaping (String) -> ()) {
+    public static func advertisement (ui: UIViewController, onSuccess: @escaping ([AdvertisementVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ADVERTISEMENT, data: "", ui:ui, complete: { response in
             let resp: AdvertisementResp = AdvertisementResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
@@ -496,7 +503,10 @@ class ApiManager {
     //傳header的POST,不要Data傳空字串
     //header的key=Authorization,Value=acount_uuid
     private static func postAutho(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
-        let autho: String = "USER_20180710_154348_764_3c10ef4f-734c-45ee-b45f-05aeb14d35b1"
+        var autho: String = ""
+        if let account = UserSstorage.getAccount() {
+            autho = account.account_uuid
+        }
         let parameter: Parameters =  ["data": base64Encoding(encod: data)]
         let header: HTTPHeaders = ["Authorization" : autho, "Content-Type": "application/x-www-form-urlencoded"]
 
@@ -508,7 +518,7 @@ class ApiManager {
     //主要的POST Method
     private static func post(url: URLConvertible, parameter: Parameters, header: HTTPHeaders, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
         Loading.show()
-        Alamofire.request(url, method: HTTPMethod.post, parameters:parameter, headers:header).validate().responseString{ response in
+        SESSION_MANAGER.request(url, method: HTTPMethod.post, parameters:parameter, headers:header).validate().responseString{ response in
             if response.result.isSuccess {
                 complete(response)
             }else if (response.result.error != nil) {

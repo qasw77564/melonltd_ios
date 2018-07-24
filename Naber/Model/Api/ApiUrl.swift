@@ -12,8 +12,8 @@ import Foundation
 
 class ApiUrl{   
     
-    public static var DOMAIN : String = "http://192.168.2.100/ap"
-//    public static var DOMAIN : String = "http://192.168.2.101:8080/melonltd-ap"
+//    public static var DOMAIN : String = "http://192.168.2.100/ap"
+    public static var DOMAIN : String = "http://192.168.31.14:8080/melonltd-ap"
 //    public static var DOMAIN : String = "https://ap.melonltd.com.tw"
     public static var LOGIN : String = DOMAIN + "/login";
     public static var LOGOUT : String = DOMAIN + "/logout";
