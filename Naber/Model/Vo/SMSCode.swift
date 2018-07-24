@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SMSCodeResp: Codable {
+class SMSCodeResp: Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
@@ -33,7 +33,7 @@ struct SMSCodeResp: Codable {
 }
 
 
-struct SMSCodeVo: Codable{
+class SMSCodeVo: Codable{
     var batch_id: String!
     var phone: String!
     var code: String!

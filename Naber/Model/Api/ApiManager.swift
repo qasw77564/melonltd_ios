@@ -29,11 +29,11 @@ class ApiManager {
     }
     
     // 送出SMS驗證碼
-    public static func verifySMSCode (structs: SMSCodeVo?, ui: UIViewController, onSuccess: @escaping (String) -> (), onFail: @escaping (String) -> ()) {
+    public static func verifySMSCode (structs: SMSCodeVo?, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.SMS_VERIFY_CODE, data: SMSCodeVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
-                onSuccess(resp.data)
+                onSuccess()
             }else {
                 onFail(resp.err_msg)
             }
@@ -78,25 +78,23 @@ class ApiManager {
     }
     
     // 登出
-    public static func logout (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping (String) -> (), onFail: @escaping (String) -> ()) {
+    public static func logout (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.LOGOUT, data: AccountInfoVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
-                onSuccess(resp.data)
+                onSuccess()
             }else {
                 onFail(resp.err_msg)
             }
         })
     }
-    
-    
-    
-    
+
     
     /**
      * 以下為使用者是使用 API
      */
-    // 輪播圖
+    //1.首頁
+    // 輪播圖(測試OK)
     public static func advertisement (ui: UIViewController, onSuccess: @escaping ([AdvertisementVo?]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ADVERTISEMENT, data: "", ui:ui, complete: { response in
             let resp: AdvertisementResp = AdvertisementResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -107,8 +105,8 @@ class ApiManager {
             }
         })
     }
-    
-    // 全部公告
+    //2.首頁須取得的公告
+    // 全部公告(測試OK)
     public static func bulletin (ui: UIViewController, onSuccess: @escaping ([BulletinVo?]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.BULLETIN, data: "", ui:ui, complete: { response in
             let resp: BulletinResp = BulletinResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -119,8 +117,8 @@ class ApiManager {
             }
         })
     }
-
-    // 取得餐館地理位置模板
+    //Login成功就要去加載User位置
+    // 取得餐館地理位置模板(測試OK)
     public static func restaurantTemplate (ui: UIViewController, onSuccess: @escaping ([RestaurantTemplateVo?]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.BULLETIN, data: "", ui:ui, complete: { response in
             let resp: RestaurantTemplateResp = RestaurantTemplateResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -132,17 +130,23 @@ class ApiManager {
         })
     }
     
-    
-    // 餐館列表 TOP, AREA, CATEGORY, DISTANCE(未改動)
-//    public static void restaurantList(ReqData req, ThreadCallback callback) {
-//    Call call = getClient().postHeader(ApiUrl.RESTAURANT_LIST, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-//
+    //Category=種類,Detail=細節,Area=區域
+    //3.取得餐館列表(TOP,列表無分頁) 4.餐館頁面取得(AREA,CATEGORY)
+    // 餐館列表 TOP, AREA, CATEGORY, DISTANCE(測試OK)
+    public static func restaurantList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([RestaurantInfoVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.RESTAURANT_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: RestaurantListResp = RestaurantListResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
 
-    // 餐館細節，系列列表
+    // 餐館細節，系列列表(測試OK)
     public static func restaurantDetail (uuid: String, ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
+        let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RestaurantCategoryRelResp = RestaurantCategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -154,9 +158,9 @@ class ApiManager {
         })
     }
     
-    // 系列下品項列表
+    // 系列下品項列表(測試OK)
     public static func restaurantFoodList (uuid: String, ui: UIViewController, onSuccess: @escaping ([FoodVo?]) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
+        let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -169,17 +173,8 @@ class ApiManager {
     }
     
     // 品項細節
-//    public static void restaurantFoodDetail(String uuid, ThreadCallback callback) {
-//    ReqData req = new ReqData();
-//    req.uuid = uuid;
-//    Call call = getClient().postHeader(ApiUrl.RESTAURANT_FOOD_DETAIL, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-//
-    
-    // 品項細節
     public static func restaurantFoodDetail (uuid: String, ui: UIViewController, onSuccess: @escaping (FoodVo?) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
+        let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_FOOD_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: FoodResp = FoodResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -191,13 +186,7 @@ class ApiManager {
         })
     }
     
-    
-//    public static void userOrderHistory(ReqData req, ThreadCallback callback) {
-//    Call call = getClient().postHeader(ApiUrl.USER_ORDER_HISTORY, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-    
-    // 使用者訂單記錄
+    // 使用者訂單記錄(未測試）
     public static func userOrderHistory (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.USER_ORDER_HISTORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -209,11 +198,8 @@ class ApiManager {
         })
     }
     
-   
-    // 使用者資訊
-    public static func userFindAccountInfo (uuid: String, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
-        req.uuid = uuid
+    // 使用者資訊(未測試）
+    public static func userFindAccountInfo (req: ReqData,ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.FIND_ACCOUNT_INFO, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
@@ -223,17 +209,8 @@ class ApiManager {
             }
         })
     }
-    
-    // 上傳圖片
-//    public static void uploadPhoto(ReqData req, ThreadCallback callback) {
-//    Call call = getClient().postHeader(ApiUrl.IMAGE_UPLOAD, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-    
-    // 上傳圖片(未更改)
-    public static func uploadPhoto (uuid: String, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
-        var req: ReqData = ReqData()
-        req.uuid = uuid
+    // 上傳圖片(未測試）
+    public static func uploadPhoto (req: ReqData, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.IMAGE_UPLOAD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status == "true" {
@@ -243,26 +220,265 @@ class ApiManager {
             }
         })
     }
+
+    // 更新密碼(未測試）
+    public static func reseatPassword (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.RESEAT_PSW, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 忘記密碼(未測試）
+    public static func forgetPassword (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.FORGET_PSW, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 提交訂單(未測試）
+    public static func userOrderSubmit (req: OrderDetail, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.ORDER_SUBMIT, data: OrderDetail.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
     
     
-//    // 更新密碼
-//    public static void reseatPassword(Map<String, String> req, ThreadCallback callback) {
-//    Call call = getClient().postHeader(ApiUrl.RESEAT_PSW, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-//
-//    // 忘記密碼
-//    public static void forgetPassword(Map<String, String> req, ThreadCallback callback) {
-//    Call call = getClient().postHeader(ApiUrl.FORGET_PSW, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-//
-    // 提交訂單
-//    public static void userOrderSubmit(OrderDetail req, ThreadCallback callback) {
-//    Call call = getClient().postHeader(ApiUrl.ORDER_SUBMIT, SPService.getOauth(), Base64Service.encryptBASE64(Tools.JSONPARSE.toJson(req)));
-//    call.enqueue(callback);
-//    }
-//
+    
+    
+    
+    
+    
+    /////// SELLSE API /////
+    
+    // 取得每日營業時段(未測試）
+    public static func sellerBusinessTime (req: ReqData, ui: UIViewController, onSuccess: @escaping (DateRangeVo?) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.BUSINESS_TIME, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  DateRangeResp = DateRangeResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 更新每日營業時段(未測試）
+    public static func sellerChangeBusinessTime (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.CHANGE_BUSINESS_TIME, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    
+    // 快速查詢訂單(未測試）
+    public static func sellerQuickSearch (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.QUICK_SEARCH, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 更改訂單狀況(未測試)
+    public static func sellerChangeOrder (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.CHANGE_ORDER, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 取得訂單列表(未測試)
+    public static func sellerOrderList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.ORDER_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+
+    // 取得即時訂單列表(未測試)
+    public static func sellerOrderLive (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.ORDER_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 取得營運概況(未測試)
+    public static func sellerStat (ui: UIViewController, onSuccess: @escaping (SellerStatVo?) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_STAT, data: "" , ui:ui, complete: { response in
+            let resp:  SellerStatResp = SellerStatResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 取得營運概況已完成訂單列表(未測試)
+    public static func sellerStatLog (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_STAT_LOG, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 取得種類列表(未測試)
+    public static func sellerCategoryList (req: ReqData, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_CATEGORY_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 新增種類(未測試)
+    public static func sellerAddCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_ADD_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+     // 更新種類狀態(未測試)
+    public static func sellerChangeCategoryStatus (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_CHANGE_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 刪除種類(未測試)
+    public static func sellerDeleteCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_DELETE_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+   // 品項列表(未測試)
+    public static func sellerFoodList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([FoodVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 品項更新(未測試)
+    public static func sellerFoodUpdate (req: FoodVo, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_CHANGE_FOOD, data: FoodVo.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 品項刪除(未測試)
+    public static func sellerFoodDelete (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_DELETE_FOOD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    // 品項加入(未測試)
+    public static func sellerFoodAdd (req: FoodVo, ui: UIViewController, onSuccess: @escaping (FoodVo) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_ADD_FOOD, data: FoodVo.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: FoodResp = FoodResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 取得餐館資訊(未測試)
+    public static func sellerRestaurantInfo (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_RESTAURANT_INFO, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 設定餐館資訊(未測試)
+    public static func sellerRestaurantSetting (req: RestaurantInfoVo ,ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_RESTAURANT_SETTING, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    // 設定餐館隔日接單開關(未測試)
+    public static func sellerRestaurantSettingBusiness (req: ReqData,ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_RESTAURANT_SETTING_BUSINESS, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+            let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status == "true" {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
     
     
     
@@ -280,7 +496,7 @@ class ApiManager {
     //傳header的POST,不要Data傳空字串
     //header的key=Authorization,Value=acount_uuid
     private static func postAutho(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
-        let autho: String = "USER_20180709_123225_469_bbdd78cc-9786-49eb-8ca5-5ad07446a2ed"
+        let autho: String = "USER_20180710_154348_764_3c10ef4f-734c-45ee-b45f-05aeb14d35b1"
         let parameter: Parameters =  ["data": base64Encoding(encod: data)]
         let header: HTTPHeaders = ["Authorization" : autho, "Content-Type": "application/x-www-form-urlencoded"]
 
@@ -342,33 +558,4 @@ class ApiManager {
         return str.removingPercentEncoding!
     }
     
-//
-//    func networkStatusChanged(_ notification: Notification) {
-//        let userInfo = (notification as NSNotification).userInfo
-//        print(userInfo!)
-//    }
-    
-//    
-//    private static func checkNetWork() -> Bool {
-//        var checkResult : Bool = true
-//        NetworkReachabilityManager()?.listener = { status in
-//            switch status {
-//            case .notReachable:
-//                print("The network is not reachable")
-//                checkResult = false
-////                self.onInternetDisconnection()
-//            case .unknown :
-//                print("It is unknown whether the network is reachable")
-//            checkResult = false
-////                self.onInternetDisconnection() // not sure what to do for this case
-//            case .reachable(.ethernetOrWiFi):
-//                print("The network is reachable over the WiFi connection")
-////                self.onInternetConnection()
-//            case .reachable(.wwan):
-//                print("The network is reachable over the WWAN connection")
-////                self.onInternetConnection()
-//            }
-//        }
-//        return checkResult
-//    }
 }

@@ -1,11 +1,11 @@
 
 import Foundation
 
-struct BulletinResp : Codable {
+class BulletinResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : [BulletinVo?]!
+    var data : [BulletinVo]! = []
     
     public static func toJson(structs : BulletinResp) -> String {
         do {
@@ -25,7 +25,7 @@ struct BulletinResp : Codable {
 }
 
 
-struct BulletinVo : Codable {
+class BulletinVo : Codable {
     var title : String!
     var content_text : String!
     var bulletin_category : String!

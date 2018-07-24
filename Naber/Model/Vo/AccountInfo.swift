@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AccountInfoResp :Codable {
+class AccountInfoResp :Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
@@ -32,7 +32,7 @@ struct AccountInfoResp :Codable {
 }
 
 
-struct AccountInfoVo : Codable{
+class AccountInfoVo : Codable{
     var account : String!
     var account_uuid : String!
     var restaurant_uuid : String!

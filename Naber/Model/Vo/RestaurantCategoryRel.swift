@@ -9,11 +9,11 @@
 import Foundation
 
 
-struct RestaurantCategoryRelResp : Codable {
+class RestaurantCategoryRelResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : [RestaurantCategoryRelVo?]!
+    var data : [RestaurantCategoryRelVo]! = []
     
     public static func toJson(structs : RestaurantCategoryRelResp) -> String {
         do {
@@ -34,7 +34,7 @@ struct RestaurantCategoryRelResp : Codable {
 }
 
 
-struct RestaurantCategoryRelVo : Codable {
+class RestaurantCategoryRelVo : Codable {
     
     var category_uuid: String!
     var restaurant_uuid: String!

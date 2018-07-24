@@ -9,11 +9,11 @@
 import Foundation
 
 
-struct AdvertisementResp: Codable {
+class AdvertisementResp: Codable {
     var status: String!
     var err_code: String!
     var err_msg: String!
-    var data: [AdvertisementVo?]!
+    var data: [AdvertisementVo]! = []
     
     public static func toJson(structs: AdvertisementResp) -> String {
         do {
@@ -33,7 +33,7 @@ struct AdvertisementResp: Codable {
 }
 
 
-struct AdvertisementVo: Codable {
+class AdvertisementVo: Codable {
     var title: String!
     var content_text: String!
     var photo: String!

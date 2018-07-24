@@ -9,12 +9,11 @@
 import Foundation
 
 
-struct RespData: Codable {
+class RespData: Codable {
     var status: String!
     var err_code: String!
     var err_msg: String!
-    var data: String!
-    
+
     public static func toJson(structs : RespData) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
