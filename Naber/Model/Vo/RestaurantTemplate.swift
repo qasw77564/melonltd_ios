@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct RestaurantTemplateResp : Codable {
+class RestaurantTemplateResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : [RestaurantTemplateVo?]!
+    var data : [RestaurantTemplateVo]! = []
     
     public static func toJson(structs : RestaurantTemplateResp) -> String {
         do {
@@ -31,7 +31,7 @@ struct RestaurantTemplateResp : Codable {
     }
 }
 
-struct RestaurantTemplateVo : Codable {
+class RestaurantTemplateVo : Codable {
     var restaurant_uuid : String!
     var latitude : String!
     var longitude : String!

@@ -38,6 +38,10 @@
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
 		20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8620FF2F7200F9A252 /* Bulletin.swift */; };
 		20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8820FF316600F9A252 /* ApiUrl.swift */; };
+		77376C58210587510087F08E /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C57210587510087F08E /* DateRange.swift */; };
+		77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C5921058F110087F08E /* RestaurantInfo.swift */; };
+		77376C5C2105A2930087F08E /* SellerStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C5B2105A2930087F08E /* SellerStat.swift */; };
+		77376C5E2105B6E00087F08E /* RestaurantListResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C5D2105B6E00087F08E /* RestaurantListResp.swift */; };
 		DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CF820CA194B0080CFE2 /* UserPageUITabBarController.swift */; };
 		DD161CFB20CA199A0080CFE2 /* LoginHomeRootUINC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CFA20CA199A0080CFE2 /* LoginHomeRootUINC.swift */; };
 		DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD161CFC20CA2C220080CFE2 /* SearchMainVC.swift */; };
@@ -154,6 +158,10 @@
 		20E65E8620FF2F7200F9A252 /* Bulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulletin.swift; sourceTree = "<group>"; };
 		20E65E8820FF316600F9A252 /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		710650FF7A33596557DF4B8D /* Pods-Naber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.debug.xcconfig"; sourceTree = "<group>"; };
+		77376C57210587510087F08E /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
+		77376C5921058F110087F08E /* RestaurantInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfo.swift; sourceTree = "<group>"; };
+		77376C5B2105A2930087F08E /* SellerStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerStat.swift; sourceTree = "<group>"; };
+		77376C5D2105B6E00087F08E /* RestaurantListResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListResp.swift; sourceTree = "<group>"; };
 		9DC6E6DAC0122EE4004AA8AC /* Pods-Naber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.release.xcconfig"; sourceTree = "<group>"; };
 		DD161CF820CA194B0080CFE2 /* UserPageUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageUITabBarController.swift; sourceTree = "<group>"; };
 		DD161CFA20CA199A0080CFE2 /* LoginHomeRootUINC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHomeRootUINC.swift; sourceTree = "<group>"; };
@@ -349,6 +357,10 @@
 				20AF372C210059AD00D73F79 /* SMSCode.swift */,
 				20AF372E21007E7600D73F79 /* SellerRegistered.swift */,
 				20AF3730210082A600D73F79 /* Advertisement.swift */,
+				77376C57210587510087F08E /* DateRange.swift */,
+				77376C5921058F110087F08E /* RestaurantInfo.swift */,
+				77376C5B2105A2930087F08E /* SellerStat.swift */,
+				77376C5D2105B6E00087F08E /* RestaurantListResp.swift */,
 			);
 			path = Vo;
 			sourceTree = "<group>";
@@ -840,6 +852,7 @@
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,
 				DDCAE00920BB5F10005E65C4 /* RecordInfoDetailTVCell.swift in Sources */,
 				DD3FA0C420C8A23F006BAA51 /* LeftSideMenuVC.swift in Sources */,
+				77376C5C2105A2930087F08E /* SellerStat.swift in Sources */,
 				DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */,
 				20AF372B2100551500D73F79 /* RespData.swift in Sources */,
 				DD161D0F20CB1D5C0080CFE2 /* FoodDetailVC.swift in Sources */,
@@ -858,8 +871,10 @@
 				20D9DC0921025F4700D643FE /* FSPagerView.swift in Sources */,
 				DD51D20620C3598E002C5940 /* RestaurantStoreSelectTCCellHead.swift in Sources */,
 				DD51D20420C34204002C5940 /* RestaurantStoreSelectTVCell.swift in Sources */,
+				77376C58210587510087F08E /* DateRange.swift in Sources */,
 				DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */,
 				DD3FA0B120C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift in Sources */,
+				77376C5E2105B6E00087F08E /* RestaurantListResp.swift in Sources */,
 				20D9DC302105814300D643FE /* Order.swift in Sources */,
 				20D9DC2F2105814300D643FE /* FoodList.swift in Sources */,
 				20D9DC0A21025F4700D643FE /* FSPagerCollectionView.swift in Sources */,
@@ -885,6 +900,7 @@
 				DDCAE00520B9B76E005E65C4 /* RestaurantSearchUINC.swift in Sources */,
 				DDF8C2C020B59B0500BF8904 /* RegisterStoreVC.swift in Sources */,
 				DDFEA7CE20B661E500170222 /* UserSettingPageVC.swift in Sources */,
+				77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */,
 				DDFEA7D020B6A60A00170222 /* UserSettingMainPageTVC.swift in Sources */,
 				DD3FA0BA20C7E025006BAA51 /* OrderMainVC.swift in Sources */,
 				DD3FA0C220C89D15006BAA51 /* OrderMainTVCell.swift in Sources */,

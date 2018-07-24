@@ -9,12 +9,21 @@
 import Foundation
 
 
-struct ReqData : Codable {
+class ReqData : Codable {
     var uuid: String!
     var page: Int! = 0
-    
-    
-    
+    var top: Int! = 0
+    var phone: String!
+    var old_password: String!
+    var password: String!
+    var email: String!
+    var date: String!
+    var status: String!
+    var search_type: String!
+    var uuids: [String]! = []
+    var category: String!
+    var area: String!
+   
     public static func toJson(structs : ReqData) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!

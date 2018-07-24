@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OrderResp : Codable {
+class OrderResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
@@ -32,7 +32,7 @@ struct OrderResp : Codable {
     
 }
 
-struct OrderVo : Codable {
+class OrderVo : Codable {
 
     var  order_uuid: String!
     var  account_uuid: String!
@@ -65,7 +65,7 @@ struct OrderVo : Codable {
 }
 
 
-struct OrderDetail : Codable {
+class OrderDetail : Codable {
     
     var restaurant_uuid : String!
     var restaurant_name : String! = ""
@@ -74,7 +74,7 @@ struct OrderDetail : Codable {
     var user_phone : String!
     var fetch_date : String!
     var user_message : String!
-    var orders : [OrderData]!
+    var orders : [OrderData]! = []
 
     
     public static func toJson(structs : OrderDetail) -> String {
@@ -95,7 +95,7 @@ struct OrderDetail : Codable {
 }
 
 
-struct OrderData: Codable {
+class OrderData: Codable {
     
     var count: Int! = 0
     var category_uuid: String!

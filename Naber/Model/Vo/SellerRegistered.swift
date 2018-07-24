@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SellerRegisteredResp: Codable {
+class SellerRegisteredResp: Codable {
     var status: String!
     var err_code: String!
     var err_msg: String!
@@ -32,7 +32,7 @@ struct SellerRegisteredResp: Codable {
 }
 
 
-struct SellerRegisteredVo: Codable {
+class SellerRegisteredVo: Codable {
     var seller_name: String!
     var phone: String!
     var address: String!
