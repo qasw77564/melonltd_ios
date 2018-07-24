@@ -82,7 +82,7 @@
 		DDCAE00920BB5F10005E65C4 /* RecordInfoDetailTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAE00820BB5F10005E65C4 /* RecordInfoDetailTVCell.swift */; };
 		DDCAE00B20BB70E9005E65C4 /* RecordInfoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAE00A20BB70E9005E65C4 /* RecordInfoDetailVC.swift */; };
 		DDF8C27620B1CA4400BF8904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C27520B1CA4400BF8904 /* AppDelegate.swift */; };
-		DDF8C27820B1CA4400BF8904 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C27720B1CA4400BF8904 /* ViewController.swift */; };
+		DDF8C27820B1CA4400BF8904 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8C27720B1CA4400BF8904 /* LoginVC.swift */; };
 		DDF8C27B20B1CA4400BF8904 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF8C27920B1CA4400BF8904 /* Main.storyboard */; };
 		DDF8C27D20B1CA4600BF8904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF8C27C20B1CA4600BF8904 /* Assets.xcassets */; };
 		DDF8C28020B1CA4600BF8904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF8C27E20B1CA4600BF8904 /* LaunchScreen.storyboard */; };
@@ -204,7 +204,7 @@
 		DDCAE00A20BB70E9005E65C4 /* RecordInfoDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInfoDetailVC.swift; sourceTree = "<group>"; };
 		DDF8C27220B1CA4400BF8904 /* Naber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Naber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF8C27520B1CA4400BF8904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DDF8C27720B1CA4400BF8904 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DDF8C27720B1CA4400BF8904 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDF8C27A20B1CA4400BF8904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDF8C27C20B1CA4600BF8904 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF8C27F20B1CA4600BF8904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -609,7 +609,7 @@
 		DDFEA7D420B6D39E00170222 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				DDF8C27720B1CA4400BF8904 /* ViewController.swift */,
+				DDF8C27720B1CA4400BF8904 /* LoginVC.swift */,
 				DDF8C2BB20B403FE00BF8904 /* RegisterUserVC.swift */,
 				DDF8C2BF20B59B0500BF8904 /* RegisterStoreVC.swift */,
 				DDF8C2BD20B4258C00BF8904 /* RegisterUserDetailVC.swift */,
@@ -856,7 +856,7 @@
 				DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */,
 				20AF372B2100551500D73F79 /* RespData.swift in Sources */,
 				DD161D0F20CB1D5C0080CFE2 /* FoodDetailVC.swift in Sources */,
-				DDF8C27820B1CA4400BF8904 /* ViewController.swift in Sources */,
+				DDF8C27820B1CA4400BF8904 /* LoginVC.swift in Sources */,
 				DD161D0720CAD6D50080CFE2 /* FoodVC.swift in Sources */,
 				20D9DC2D2105814300D643FE /* Food.swift in Sources */,
 				DDFECA0520BBF9C100E253B6 /* ShoppingCardSubTVCell.swift in Sources */,

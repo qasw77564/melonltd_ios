@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
 
     @IBOutlet weak var account_text: UITextField!
     
