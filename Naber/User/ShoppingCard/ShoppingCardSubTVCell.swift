@@ -21,7 +21,7 @@ class ShoppingCardSubTVCell: UITableViewCell {
 
     @IBOutlet weak var itemName: UILabel!
 
-    @IBOutlet weak var itemType: UILabel!
+//    @IBOutlet weak var itemType: UILabel!
     
     @IBOutlet weak var itemMoney: UILabel!
 

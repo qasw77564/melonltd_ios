@@ -13,9 +13,20 @@ class RestaurantStoreSelectTCCellHead: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     
     
+    override var frame: CGRect {
+        didSet {
+            var newFrame = frame
+            newFrame.origin.x += 8
+            newFrame.size.width -= 16
+            super.frame = newFrame
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.borderWidth = 0.5
+        self.borderColor = UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

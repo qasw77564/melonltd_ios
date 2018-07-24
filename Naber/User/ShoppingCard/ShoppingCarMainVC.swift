@@ -125,12 +125,10 @@ class ShoppingCarMainVC: UIViewController {
 
 extension ShoppingCarMainVC: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return(CGFloat(toltalItem[indexPath.row].subItems.count*110+30))
-        //Choose your custom row height
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return(CGFloat(toltalItem[indexPath.row].subItems.count * 96 + 104))
     }
-    
+//
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -156,7 +154,8 @@ extension ShoppingCarMainVC: UITableViewDataSource, UITableViewDelegate {
         cell.cancelOrder.addTarget(self, action: #selector(cancelOrderMethod(sender:)), for: .touchUpInside)
         cell.oldIndexFromData = indexPath.row
         cell.mainCellDelegate = self
-        //KVO
+        cell.itemTable.reloadData()
+        //
         //NotificationCenter
 
         return cell

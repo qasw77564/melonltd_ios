@@ -10,13 +10,13 @@ import UIKit
 
 class UserSettingAcountRPTVC: UITableViewController {
 
-    @IBOutlet weak var resetPasswordTitleView: UIView!
-    
-    @IBOutlet weak var inputPasswordView: UIView!
-    
-    @IBOutlet weak var newPasswordView: UIView!
-    
-    @IBOutlet weak var newPasswordViewSecond: UIView!
+//    @IBOutlet weak var resetPasswordTitleView: UIView!
+//
+//    @IBOutlet weak var inputPasswordView: UIView!
+//
+//    @IBOutlet weak var newPasswordView: UIView!
+//    
+//    @IBOutlet weak var newPasswordViewSecond: UIView!
     
     
     override func viewDidLoad() {

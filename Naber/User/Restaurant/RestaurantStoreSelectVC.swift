@@ -137,11 +137,21 @@ class RestaurantStoreSelectVC: UIViewController {
 
 }
 
-extension RestaurantStoreSelectVC:UITableViewDelegate, UITableViewDataSource{
+extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 30
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var rowNum = 0;
+        switch (section) {
+        case 0:
+            rowNum = selectMenu.scopes.count
+        case 1:
+            rowNum = selectMenu.options.count
+        case 2...99:
+            rowNum = selectMenu.demands[section-2].subs.count
+        default:
+            rowNum = 0
+        }
+        return rowNum
     }
     
     
@@ -154,42 +164,13 @@ extension RestaurantStoreSelectVC:UITableViewDelegate, UITableViewDataSource{
     }
 
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let  footerCell = tableView.dequeueReusableCell(withIdentifier: "Footer") as! RestaurantStoreSelectTVCellFoot
-        footerCell.contentView.layer.addBorder(edge: UIRectEdge.top, color: UIColor.gray, thickness: 0.5)
-
-        return footerCell
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowNum = 0;
-        switch (section) {
-            case 0:
-                rowNum = selectMenu.scopes.count
-            case 1:
-                rowNum = selectMenu.options.count
-            case 2...99:
-                rowNum = selectMenu.demands[section-2].subs.count
-            default:
-                rowNum = 0
-        }
-        return rowNum
+        return 36
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCell(withIdentifier: "Header") as! RestaurantStoreSelectTCCellHead
-        headerCell.backgroundColor = UIColor.yellow
-        headerCell.borderWidth=1
-        headerCell.borderColor=UIColor.gray
+
         switch (section) {
         case 0:
             headerCell.name.text = "規格必選"
@@ -207,12 +188,20 @@ extension RestaurantStoreSelectVC:UITableViewDelegate, UITableViewDataSource{
         return headerCell
     }
     
+    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    //        return 30
+    //    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let  footerCell = tableView.dequeueReusableCell(withIdentifier: "Footer") as! RestaurantStoreSelectTVCellFoot
+        return footerCell
+    }
+
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 30
+//    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RestaurantStoreSelectTVCell
-        
-        
-        cell.contentView.layer.addBorder(edge: UIRectEdge.left, color: UIColor.gray, thickness: 0.5)
-        cell.contentView.layer.addBorder(edge: UIRectEdge.right, color: UIColor.gray, thickness: 0.5)
         
         switch (indexPath.section) {
         case 0:
@@ -223,8 +212,6 @@ extension RestaurantStoreSelectVC:UITableViewDelegate, UITableViewDataSource{
             }else{
                 cell.radioButton.setImage(UIImage(named: "radioNoSelect"), for: .normal)
             }
-
-            
         case 1:
             cell.name?.text = selectMenu.options[indexPath.row].name
             cell.money?.text = selectMenu.options[indexPath.row].money

@@ -16,7 +16,7 @@ protocol MainCellDelegate: class {
 class ShoppingCarMainTVCell: UITableViewCell{
 
     var oldIndexFromData = 0;
-    var oldIndexSubFromData=0;
+    var oldIndexSubFromData = 0;
     
     weak var mainCellDelegate: MainCellDelegate?
 
@@ -35,9 +35,8 @@ class ShoppingCarMainTVCell: UITableViewCell{
         
         self.itemTable.delegate = self
         self.itemTable.dataSource = self
-        self.itemTable.estimatedRowHeight = 44
-        self.itemTable.rowHeight = UITableViewAutomaticDimension
-        
+//        self.itemTable.estimatedRowHeight = 44
+//        self.itemTable.rowHeight = UITableViewAutomaticDimension
         self.totalMoney.text = "0"
         self.totalBonus.text = "0"
         // Initialization code
@@ -66,11 +65,6 @@ extension ShoppingCarMainTVCell: SubCellDelegate {
 }
 
 extension ShoppingCarMainTVCell: UITableViewDataSource, UITableViewDelegate{
-   
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 100
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -92,7 +86,7 @@ extension ShoppingCarMainTVCell: UITableViewDataSource, UITableViewDelegate{
         cell.itemImage.image = UIImage(named: totalSubItem[indexPath.row].itemImage)
         cell.itemName.text = totalSubItem[indexPath.row].itemName
         cell.itemMoney.text = totalSubItem[indexPath.row].itemMoney
-        cell.itemType.text = totalSubItem[indexPath.row].itemType
+//        cell.itemType.text = totalSubItem[indexPath.row].itemType
         cell.numberLabel.text = totalSubItem[indexPath.row].numberLabel
         cell.numberPicker.value = Double(totalSubItem[indexPath.row].numberLabel)!
         cell.trashCanImageView.tag = indexPath.row
