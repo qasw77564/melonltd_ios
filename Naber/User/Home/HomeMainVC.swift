@@ -30,6 +30,8 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     var LM : CLLocationManager!; //座標管理元件
     var location : CLLocation!
+    var cycleBulletinView : LLCycleScrollView!
+    
     
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
@@ -51,6 +53,8 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         }
     }
 
+    @IBOutlet weak var bulletinView: UIView!
+    
     @IBOutlet weak var storeTableView: UITableView! {
         didSet {
             self.storeTableView.dataSource = self
@@ -68,7 +72,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         self.loadData(refresh: true)
     }
  
-    
+
     func loadData(refresh: Bool){
         if refresh {
             Model.TOP_RESTAURANT_LIST.removeAll()
@@ -90,6 +94,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configLLCycleScrollView()
         // 確認 GPS 權限
         enableBasicLocationServices()
         
@@ -111,12 +116,35 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
             })
             let naberBulletins: [String] = Model.ALL_BULLETINS["HOME"]!.components(separatedBy: "$split")
             Model.NABER_BULLETINS.append(contentsOf: naberBulletins)
-            
+            self.cycleBulletinView.titles = Model.NABER_BULLETINS
+            self.cycleBulletinView.reloadInputViews()
         }) { err_msg in
             print(err_msg)
         }
         
         self.loadData(refresh: true)
+        
+    }
+    
+    
+    func configLLCycleScrollView() {
+        cycleBulletinView = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 60 )) { (index) in
+            print("当前点击文本的位置为:\(index)")
+        }
+        cycleBulletinView.customPageControlStyle = .none
+        cycleBulletinView.scrollDirection = .vertical
+        cycleBulletinView.font = UIFont.systemFont(ofSize: 14)
+        cycleBulletinView.textColor = UIColor.black
+        cycleBulletinView.titleBackgroundColor = UIColor.white
+        cycleBulletinView.numberOfLines = 2
+        cycleBulletinView.autoScroll = true
+        cycleBulletinView.autoScrollTimeInterval = 5.0
+        cycleBulletinView.customPageControlIndicatorPadding = 0.0
+        cycleBulletinView.pageControlPosition = .left
+        cycleBulletinView.titles = Model.NABER_BULLETINS
+        // 文本　Leading约束
+        cycleBulletinView.titleLeading = 16
+        self.bulletinView.addSubview(cycleBulletinView)
     }
     
    override func viewDidAppear(_ animated: Bool) {

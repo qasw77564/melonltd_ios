@@ -573,13 +573,12 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ORo-m0-Rgh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jNi-xW-yga">
                                 <rect key="frame" x="0.0" y="88" width="375" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="J6E-q7-of3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="白底黃閃電" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-ka-To4">
                                             <rect key="frame" x="87" y="16" width="200" height="200"/>
@@ -592,21 +591,27 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Naber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG0-3A-Zmp">
-                                            <rect key="frame" x="8" y="224" width="359" height="22"/>
+                                            <rect key="frame" x="87" y="224" width="200" height="12"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="12" id="ZRG-pS-M72"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的好鄰居" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGr-Yo-Km2">
-                                            <rect key="frame" x="8" y="254" width="359" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="你的好鄰居" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGr-Yo-Km2">
+                                            <rect key="frame" x="87" y="248" width="200" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="MUg-Nq-la0"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手機號或帳號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDG-yd-0Uv">
-                                            <rect key="frame" x="16" y="284" width="343" height="25"/>
+                                            <rect key="frame" x="16" y="276" width="343" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="fkn-UW-rWZ"/>
+                                                <constraint firstAttribute="height" constant="30" id="fkn-UW-rWZ"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="239" id="une-qF-ZL3"/>
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -614,19 +619,21 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8V-ng-RD9">
-                                            <rect key="frame" x="268" y="322" width="25" height="24"/>
+                                            <rect key="frame" x="267" y="318" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="6DC-rl-NaQ"/>
-                                                <constraint firstAttribute="width" constant="25" id="TxV-4x-MfH"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="Mm9-ba-j9d"/>
+                                                <constraint firstAttribute="width" constant="24" id="TxV-4x-MfH"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="cRY-ob-MwA"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="kcj-vd-1aY"/>
                                             </constraints>
                                             <state key="normal" title="Button" image="cbNoSelect"/>
                                             <connections>
-                                                <action selector="rememberMeSwithOnImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eh-bk-MXI"/>
+                                                <action selector="rememberMeSwithOnImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yrx-fm-uIS"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc4-Kz-et6">
-                                            <rect key="frame" x="293" y="317" width="66" height="32"/>
+                                            <rect key="frame" x="293" y="314" width="66" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="66" id="4zH-Va-btI"/>
                                                 <constraint firstAttribute="height" constant="32" id="qa7-Ac-fpY"/>
@@ -636,13 +643,13 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                 <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="rememberMeSwitch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pby-4c-2rh"/>
+                                                <action selector="rememberMeSwithOnImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DKQ-GI-bSN"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GbD-gl-OnQ">
-                                            <rect key="frame" x="16" y="357" width="343" height="25"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GbD-gl-OnQ">
+                                            <rect key="frame" x="16" y="356" width="343" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="g9u-Aq-QYA"/>
+                                                <constraint firstAttribute="height" constant="30" id="g9u-Aq-QYA"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="257" id="o6r-wL-xTG"/>
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -650,7 +657,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCU-JY-Afh" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="430" width="375" height="48"/>
+                                            <rect key="frame" x="0.0" y="436" width="375" height="48"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.90980392160000001" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="qqu-At-3W3"/>
@@ -680,8 +687,21 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                 <action selector="goToNextPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KLg-Sk-ceH"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O47-DX-ahO">
+                                            <rect key="frame" x="277" y="394" width="82" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="YzJ-6h-iWy"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="忘記密碼？">
+                                                <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="MFZ-hB-ebg" kind="show" id="892-oJ-hOz"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfr-Q7-4KP" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
-                                            <rect key="frame" x="277" y="486" width="90" height="32"/>
+                                            <rect key="frame" x="269" y="496" width="90" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="8of-tI-Gaf"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="VFz-xD-RZR"/>
@@ -702,18 +722,8 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                 <segue destination="B5r-nR-55Q" kind="show" id="WlK-2v-6UB"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O47-DX-ahO">
-                                            <rect key="frame" x="277" y="390" width="82" height="32"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" title="忘記密碼？">
-                                                <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="MFZ-hB-ebg" kind="show" id="892-oJ-hOz"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irM-kq-hv6" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
-                                            <rect key="frame" x="179" y="486" width="90" height="32"/>
+                                            <rect key="frame" x="171" y="496" width="90" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="T6q-au-G5E"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="fia-x2-U89"/>
@@ -738,51 +748,55 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="irM-kq-hv6" firstAttribute="leading" relation="lessThanOrEqual" secondItem="J6E-q7-of3" secondAttribute="leading" constant="179" id="1GD-8F-7uH"/>
-                                        <constraint firstItem="DGr-Yo-Km2" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="8" id="1xy-K9-2cu"/>
-                                        <constraint firstAttribute="trailing" secondItem="O47-DX-ahO" secondAttribute="trailing" constant="16" id="2PP-Rh-pub"/>
-                                        <constraint firstAttribute="trailing" secondItem="Hc4-Kz-et6" secondAttribute="trailing" constant="16" id="4Rx-vW-dT0"/>
-                                        <constraint firstAttribute="trailing" secondItem="HCU-JY-Afh" secondAttribute="trailing" id="4Z2-d2-Bfn"/>
-                                        <constraint firstItem="YG0-3A-Zmp" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="8" id="87A-dW-rbH"/>
-                                        <constraint firstItem="O47-DX-ahO" firstAttribute="top" secondItem="GbD-gl-OnQ" secondAttribute="bottom" constant="8" id="9kr-Ya-13g"/>
-                                        <constraint firstAttribute="trailing" secondItem="UDG-yd-0Uv" secondAttribute="trailing" constant="16" id="ANS-v2-RA1"/>
-                                        <constraint firstItem="zfr-Q7-4KP" firstAttribute="top" secondItem="HCU-JY-Afh" secondAttribute="bottom" constant="8" id="DWd-oL-bEm"/>
-                                        <constraint firstItem="GbD-gl-OnQ" firstAttribute="top" secondItem="Hc4-Kz-et6" secondAttribute="bottom" constant="8" id="FfA-qt-knG"/>
-                                        <constraint firstItem="DGr-Yo-Km2" firstAttribute="top" secondItem="YG0-3A-Zmp" secondAttribute="bottom" constant="8" id="Jvb-kj-03c"/>
-                                        <constraint firstItem="v8V-ng-RD9" firstAttribute="top" secondItem="UDG-yd-0Uv" secondAttribute="bottom" constant="13" id="K8A-Ng-Eyd"/>
-                                        <constraint firstAttribute="trailing" secondItem="GbD-gl-OnQ" secondAttribute="trailing" constant="16" id="KQ7-Rt-gSp"/>
-                                        <constraint firstItem="Hc4-Kz-et6" firstAttribute="leading" secondItem="v8V-ng-RD9" secondAttribute="trailing" id="LCj-cJ-qf0"/>
-                                        <constraint firstItem="HCU-JY-Afh" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" id="MYu-rQ-NgX"/>
-                                        <constraint firstItem="UDG-yd-0Uv" firstAttribute="top" secondItem="DGr-Yo-Km2" secondAttribute="bottom" constant="8" id="OZg-li-7hR"/>
-                                        <constraint firstAttribute="trailing" secondItem="zfr-Q7-4KP" secondAttribute="trailing" constant="8" id="Pzt-1z-DS3"/>
-                                        <constraint firstAttribute="trailing" secondItem="DGr-Yo-Km2" secondAttribute="trailing" constant="8" id="U1a-NK-ouY"/>
-                                        <constraint firstItem="Ifg-ka-To4" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="87" id="UVL-4i-mnD"/>
-                                        <constraint firstItem="Hc4-Kz-et6" firstAttribute="top" secondItem="UDG-yd-0Uv" secondAttribute="bottom" constant="8" id="a4G-4Y-5kT"/>
-                                        <constraint firstItem="UDG-yd-0Uv" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="16" id="bvU-e2-Jf3"/>
-                                        <constraint firstItem="irM-kq-hv6" firstAttribute="top" secondItem="HCU-JY-Afh" secondAttribute="bottom" constant="8" id="dwo-hP-qSp"/>
-                                        <constraint firstItem="O47-DX-ahO" firstAttribute="leading" relation="lessThanOrEqual" secondItem="J6E-q7-of3" secondAttribute="leading" constant="277" id="fs1-dx-jLf"/>
-                                        <constraint firstItem="Ifg-ka-To4" firstAttribute="top" secondItem="J6E-q7-of3" secondAttribute="top" constant="16" id="iGd-7e-O7b"/>
-                                        <constraint firstItem="GbD-gl-OnQ" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="16" id="nWm-yl-x3A"/>
-                                        <constraint firstAttribute="trailing" secondItem="YG0-3A-Zmp" secondAttribute="trailing" constant="8" id="s69-jI-3On"/>
-                                        <constraint firstItem="v8V-ng-RD9" firstAttribute="leading" relation="lessThanOrEqual" secondItem="J6E-q7-of3" secondAttribute="leading" constant="268" id="sa2-hI-yRv"/>
-                                        <constraint firstItem="zfr-Q7-4KP" firstAttribute="leading" secondItem="irM-kq-hv6" secondAttribute="trailing" constant="8" id="tpk-Ab-Tmw"/>
-                                        <constraint firstItem="YG0-3A-Zmp" firstAttribute="top" secondItem="Ifg-ka-To4" secondAttribute="bottom" constant="8" id="vtx-BB-pyx"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ifg-ka-To4" secondAttribute="trailing" constant="88" id="yBw-rL-63d"/>
-                                        <constraint firstItem="HCU-JY-Afh" firstAttribute="top" secondItem="O47-DX-ahO" secondAttribute="bottom" constant="8" id="zPT-3M-WAp"/>
+                                        <constraint firstItem="Hc4-Kz-et6" firstAttribute="top" secondItem="UDG-yd-0Uv" secondAttribute="bottom" constant="8" id="0JI-i8-sir"/>
+                                        <constraint firstItem="YG0-3A-Zmp" firstAttribute="leading" secondItem="Ifg-ka-To4" secondAttribute="leading" id="15X-QV-7gt"/>
+                                        <constraint firstAttribute="trailing" secondItem="UDG-yd-0Uv" secondAttribute="trailing" constant="16" id="2UJ-xI-FPx"/>
+                                        <constraint firstItem="GbD-gl-OnQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UDG-yd-0Uv" secondAttribute="leading" id="34X-0A-dCs"/>
+                                        <constraint firstItem="UDG-yd-0Uv" firstAttribute="top" secondItem="DGr-Yo-Km2" secondAttribute="bottom" constant="8" id="3rA-bU-eBd"/>
+                                        <constraint firstItem="O47-DX-ahO" firstAttribute="top" secondItem="GbD-gl-OnQ" secondAttribute="bottom" constant="8" id="40k-4A-lnf"/>
+                                        <constraint firstItem="HCU-JY-Afh" firstAttribute="top" secondItem="GbD-gl-OnQ" secondAttribute="bottom" constant="50" id="4Ib-Zi-kE8"/>
+                                        <constraint firstItem="O47-DX-ahO" firstAttribute="trailing" secondItem="Hc4-Kz-et6" secondAttribute="trailing" id="8V2-C7-C0d"/>
+                                        <constraint firstItem="zfr-Q7-4KP" firstAttribute="centerY" secondItem="irM-kq-hv6" secondAttribute="centerY" id="9WY-pd-ox6"/>
+                                        <constraint firstItem="GbD-gl-OnQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UDG-yd-0Uv" secondAttribute="trailing" id="EGi-3I-UPv"/>
+                                        <constraint firstAttribute="trailing" secondItem="HCU-JY-Afh" secondAttribute="trailing" id="Hh3-SC-Ohc"/>
+                                        <constraint firstAttribute="trailing" secondItem="zfr-Q7-4KP" secondAttribute="trailing" constant="16" id="Hsg-rh-sD3"/>
+                                        <constraint firstItem="O47-DX-ahO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J6E-q7-of3" secondAttribute="leading" constant="10" id="IFy-3q-cT0"/>
+                                        <constraint firstItem="YG0-3A-Zmp" firstAttribute="trailing" secondItem="Ifg-ka-To4" secondAttribute="trailing" id="MOu-ue-DTS"/>
+                                        <constraint firstItem="DGr-Yo-Km2" firstAttribute="leading" secondItem="Ifg-ka-To4" secondAttribute="leading" id="OMk-GW-jyO"/>
+                                        <constraint firstAttribute="trailing" secondItem="GbD-gl-OnQ" secondAttribute="trailing" constant="16" id="OUJ-yp-Mr9"/>
+                                        <constraint firstItem="DGr-Yo-Km2" firstAttribute="trailing" secondItem="Ifg-ka-To4" secondAttribute="trailing" id="R1f-MG-tgc"/>
+                                        <constraint firstItem="HCU-JY-Afh" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" id="R9f-9M-nyP"/>
+                                        <constraint firstItem="GbD-gl-OnQ" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="16" id="TNz-LH-tL6"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zfr-Q7-4KP" secondAttribute="bottom" constant="100" id="WwY-8O-keU"/>
+                                        <constraint firstItem="Hc4-Kz-et6" firstAttribute="leading" secondItem="v8V-ng-RD9" secondAttribute="trailing" constant="2" id="YTw-k8-F9C"/>
+                                        <constraint firstItem="UDG-yd-0Uv" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="16" id="cHL-lL-yHd"/>
+                                        <constraint firstItem="YG0-3A-Zmp" firstAttribute="top" secondItem="Ifg-ka-To4" secondAttribute="bottom" constant="8" id="eea-0o-rsf"/>
+                                        <constraint firstItem="HCU-JY-Afh" firstAttribute="centerX" secondItem="GbD-gl-OnQ" secondAttribute="centerX" id="esH-Th-btZ"/>
+                                        <constraint firstItem="Hc4-Kz-et6" firstAttribute="centerY" secondItem="v8V-ng-RD9" secondAttribute="centerY" id="gri-Uo-CGl"/>
+                                        <constraint firstItem="Ifg-ka-To4" firstAttribute="top" secondItem="J6E-q7-of3" secondAttribute="top" constant="16" id="iJo-wq-tMO"/>
+                                        <constraint firstItem="zfr-Q7-4KP" firstAttribute="leading" secondItem="irM-kq-hv6" secondAttribute="trailing" constant="8" id="jkQ-9O-V4f"/>
+                                        <constraint firstItem="GbD-gl-OnQ" firstAttribute="top" secondItem="UDG-yd-0Uv" secondAttribute="bottom" constant="50" id="lPI-dI-PVZ"/>
+                                        <constraint firstItem="irM-kq-hv6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J6E-q7-of3" secondAttribute="leading" constant="10" id="lbA-bB-pXv"/>
+                                        <constraint firstItem="Hc4-Kz-et6" firstAttribute="trailing" secondItem="UDG-yd-0Uv" secondAttribute="trailing" id="mGC-5c-LXC"/>
+                                        <constraint firstItem="DGr-Yo-Km2" firstAttribute="top" secondItem="YG0-3A-Zmp" secondAttribute="bottom" constant="12" id="oaD-su-VbC"/>
+                                        <constraint firstItem="O47-DX-ahO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GbD-gl-OnQ" secondAttribute="trailing" id="tin-ub-Xi2"/>
+                                        <constraint firstItem="Ifg-ka-To4" firstAttribute="centerX" secondItem="J6E-q7-of3" secondAttribute="centerX" id="ym9-DS-plq"/>
+                                        <constraint firstItem="zfr-Q7-4KP" firstAttribute="top" secondItem="HCU-JY-Afh" secondAttribute="bottom" constant="12" id="zJg-i4-Zuu"/>
                                     </constraints>
+                                    <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 </view>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UN4-gO-zQL" customClass="DesignableView" customModule="Naber" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="703" width="375" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" text="©2017 Melon LTD, Inc. 保留所有權利" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4b-VI-MCt">
-                                        <rect key="frame" x="0.0" y="27" width="375" height="17"/>
+                                        <rect key="frame" x="0.0" y="38" width="375" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邁倫資訊科技有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUF-Hq-Kh2">
-                                        <rect key="frame" x="0.0" y="8" width="375" height="17"/>
+                                        <rect key="frame" x="0.0" y="19" width="375" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -790,20 +804,17 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                 </subviews>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="hUF-Hq-Kh2" firstAttribute="leading" secondItem="UN4-gO-zQL" secondAttribute="leading" id="BMK-2o-1QR"/>
-                                    <constraint firstItem="R4b-VI-MCt" firstAttribute="leading" secondItem="UN4-gO-zQL" secondAttribute="leading" id="L65-WY-TOK"/>
-                                    <constraint firstAttribute="trailing" secondItem="hUF-Hq-Kh2" secondAttribute="trailing" id="OAL-qb-IMZ"/>
-                                    <constraint firstItem="R4b-VI-MCt" firstAttribute="top" secondItem="hUF-Hq-Kh2" secondAttribute="bottom" constant="2" id="exY-zl-1Lb"/>
-                                    <constraint firstAttribute="trailing" secondItem="R4b-VI-MCt" secondAttribute="trailing" id="hWD-fp-udg"/>
-                                    <constraint firstAttribute="height" constant="75" id="kxb-4S-PZM"/>
-                                    <constraint firstItem="hUF-Hq-Kh2" firstAttribute="top" secondItem="UN4-gO-zQL" secondAttribute="top" constant="8" id="qTo-Bw-fUg"/>
+                                    <constraint firstAttribute="bottom" secondItem="R4b-VI-MCt" secondAttribute="bottom" constant="20" id="645-gt-fqT"/>
+                                    <constraint firstItem="hUF-Hq-Kh2" firstAttribute="leading" secondItem="UN4-gO-zQL" secondAttribute="leading" id="N6g-G2-YoJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="hUF-Hq-Kh2" secondAttribute="trailing" id="PPp-RD-SUj"/>
+                                    <constraint firstAttribute="trailing" secondItem="R4b-VI-MCt" secondAttribute="trailing" id="WAb-AQ-tZP"/>
+                                    <constraint firstItem="hUF-Hq-Kh2" firstAttribute="top" secondItem="UN4-gO-zQL" secondAttribute="top" constant="19" id="YnB-3W-Gg8"/>
+                                    <constraint firstItem="R4b-VI-MCt" firstAttribute="top" secondItem="hUF-Hq-Kh2" secondAttribute="bottom" constant="2" id="dm3-42-t6t"/>
+                                    <constraint firstItem="R4b-VI-MCt" firstAttribute="leading" secondItem="UN4-gO-zQL" secondAttribute="leading" id="iEx-pl-FP0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                         <size key="value" width="0.0" height="0.0"/>
@@ -813,13 +824,13 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                         </subviews>
                         <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uqV-2n-QtD" firstAttribute="trailing" secondItem="ORo-m0-Rgh" secondAttribute="trailing" id="6nB-8h-vj3"/>
-                            <constraint firstItem="ORo-m0-Rgh" firstAttribute="leading" secondItem="uqV-2n-QtD" secondAttribute="leading" id="GUp-S2-dtu"/>
+                            <constraint firstItem="jNi-xW-yga" firstAttribute="top" secondItem="uqV-2n-QtD" secondAttribute="top" id="0XO-ox-O9h"/>
+                            <constraint firstItem="jNi-xW-yga" firstAttribute="leading" secondItem="uqV-2n-QtD" secondAttribute="leading" id="Au2-TL-3NR"/>
                             <constraint firstItem="UN4-gO-zQL" firstAttribute="trailing" secondItem="uqV-2n-QtD" secondAttribute="trailing" id="QNX-UM-fUR"/>
                             <constraint firstItem="UN4-gO-zQL" firstAttribute="leading" secondItem="uqV-2n-QtD" secondAttribute="leading" id="Sga-GQ-zlk"/>
-                            <constraint firstItem="ORo-m0-Rgh" firstAttribute="top" secondItem="uqV-2n-QtD" secondAttribute="top" id="WRv-6V-kXJ"/>
+                            <constraint firstItem="uqV-2n-QtD" firstAttribute="trailing" secondItem="jNi-xW-yga" secondAttribute="trailing" id="Vvp-2f-NAQ"/>
+                            <constraint firstItem="UN4-gO-zQL" firstAttribute="top" secondItem="jNi-xW-yga" secondAttribute="bottom" id="b2r-WK-rrR"/>
                             <constraint firstItem="uqV-2n-QtD" firstAttribute="bottom" secondItem="UN4-gO-zQL" secondAttribute="bottom" id="hiU-PB-NYJ"/>
-                            <constraint firstItem="UN4-gO-zQL" firstAttribute="top" secondItem="ORo-m0-Rgh" secondAttribute="bottom" id="yUT-IE-zmH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uqV-2n-QtD"/>
                     </view>
@@ -828,10 +839,9 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                         <outlet property="account_text" destination="UDG-yd-0Uv" id="bzG-qt-rAe"/>
                         <outlet property="password_text" destination="GbD-gl-OnQ" id="qQP-25-Haf"/>
                         <outlet property="register_button" destination="irM-kq-hv6" id="lW0-aP-tvb"/>
-                        <outlet property="rememberMeButton" destination="Hc4-Kz-et6" id="c54-Wk-hev"/>
                         <outlet property="rememberMeImage" destination="v8V-ng-RD9" id="9We-iR-ylh"/>
                         <outlet property="store_register_button" destination="zfr-Q7-4KP" id="gZH-In-qfg"/>
-                        <outlet property="table" destination="ORo-m0-Rgh" id="61M-d0-ggv"/>
+                        <outlet property="table" destination="jNi-xW-yga" id="2K6-WY-DRf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1952,55 +1962,27 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfF-9y-bC6">
-                                            <rect key="frame" x="16" y="232" width="343" height="60"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rp-hB-uee">
+                                            <rect key="frame" x="0.0" y="240" width="375" height="60"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="Zjj-Ni-ot2"/>
+                                                <constraint firstAttribute="height" constant="60" id="HBc-Wx-3bV"/>
                                             </constraints>
-                                            <attributedString key="attributedText">
-                                                <fragment content="1">
-                                                    <attributes>
-                                                        <font key="NSFont" metaFont="system" size="14"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="、">
-                                                    <attributes>
-                                                        <font key="NSFont" size="14" name=".PingFangTC-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="IOS">
-                                                    <attributes>
-                                                        <font key="NSFont" metaFont="system" size="14"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="即將上線">
-                                                    <attributes>
-                                                        <font key="NSFont" size="14" name=".PingFangTC-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="3Rp-hB-uee" firstAttribute="leading" secondItem="d3A-dY-j0Y" secondAttribute="leading" id="0Su-D7-YIV"/>
                                         <constraint firstAttribute="trailing" secondItem="Sk7-6Z-QKD" secondAttribute="trailing" id="26n-DF-OKZ"/>
                                         <constraint firstItem="U9k-Yq-ycM" firstAttribute="leading" secondItem="d3A-dY-j0Y" secondAttribute="leading" constant="8" id="6d5-Xb-3i5"/>
+                                        <constraint firstAttribute="trailing" secondItem="3Rp-hB-uee" secondAttribute="trailing" id="7b4-cU-64q"/>
                                         <constraint firstItem="Sk7-6Z-QKD" firstAttribute="bottom" secondItem="YcR-un-Zef" secondAttribute="bottom" id="CDc-Mc-oqD"/>
+                                        <constraint firstItem="3Rp-hB-uee" firstAttribute="top" secondItem="U9k-Yq-ycM" secondAttribute="bottom" constant="8" id="HCB-SV-uE6"/>
                                         <constraint firstAttribute="trailing" secondItem="U9k-Yq-ycM" secondAttribute="trailing" constant="8" id="IzH-Ci-CpZ"/>
-                                        <constraint firstItem="DfF-9y-bC6" firstAttribute="leading" secondItem="d3A-dY-j0Y" secondAttribute="leading" constant="16" id="Nbk-si-Jpu"/>
-                                        <constraint firstAttribute="bottom" secondItem="DfF-9y-bC6" secondAttribute="bottom" constant="8" id="Sni-0b-bg6"/>
-                                        <constraint firstItem="DfF-9y-bC6" firstAttribute="top" secondItem="U9k-Yq-ycM" secondAttribute="bottom" id="jHz-lW-jMD"/>
                                         <constraint firstItem="U9k-Yq-ycM" firstAttribute="top" secondItem="YcR-un-Zef" secondAttribute="bottom" constant="8" id="kzp-Q2-nNP"/>
                                         <constraint firstItem="Sk7-6Z-QKD" firstAttribute="leading" secondItem="d3A-dY-j0Y" secondAttribute="leading" id="ld3-1R-Qmd"/>
-                                        <constraint firstAttribute="trailing" secondItem="DfF-9y-bC6" secondAttribute="trailing" constant="16" id="nPw-jB-Tfm"/>
+                                        <constraint firstAttribute="bottom" secondItem="3Rp-hB-uee" secondAttribute="bottom" id="ppP-sh-cXu"/>
                                         <constraint firstItem="YcR-un-Zef" firstAttribute="top" secondItem="d3A-dY-j0Y" secondAttribute="top" id="sbE-ua-F3l"/>
                                         <constraint firstItem="YcR-un-Zef" firstAttribute="leading" secondItem="d3A-dY-j0Y" secondAttribute="leading" id="tei-nz-yVa"/>
-                                        <constraint firstItem="DfF-9y-bC6" firstAttribute="top" secondItem="U9k-Yq-ycM" secondAttribute="bottom" id="uRG-nM-QA6"/>
                                         <constraint firstAttribute="trailing" secondItem="YcR-un-Zef" secondAttribute="trailing" id="xjD-vG-TdW"/>
                                     </constraints>
                                 </view>
@@ -2137,6 +2119,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                     </view>
                     <navigationItem key="navigationItem" title="NABER首頁" id="wM4-xY-ntk"/>
                     <connections>
+                        <outlet property="bulletinView" destination="3Rp-hB-uee" id="JJb-vJ-MNn"/>
                         <outlet property="pageControl" destination="Sk7-6Z-QKD" id="YIe-dw-kJ7"/>
                         <outlet property="pagerView" destination="YcR-un-Zef" id="gb8-YI-I6e"/>
                         <outlet property="storeTableView" destination="pIy-Ko-cFW" id="hOR-XZ-O9q"/>
@@ -5050,20 +5033,20 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:XCE-8Y-2dy:image" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-8Y-2dy">
-                                                                        <rect key="frame" x="8" y="9" width="80" height="80"/>
+                                                                        <rect key="frame" x="8" y="8.3333333333333357" width="80" height="80"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="ArY-A4-1Rq"/>
                                                                             <constraint firstAttribute="height" constant="80" id="fIG-1K-dmK"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="珍珠奶茶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8e-5L-taW">
-                                                                        <rect key="frame" x="96" y="8.3333333333333357" width="270" height="17"/>
+                                                                        <rect key="frame" x="96" y="8.6666666666666679" width="270" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hem-PF-KeG">
-                                                                        <rect key="frame" x="96" y="25.333333333333332" width="262" height="9.9999999999999964"/>
+                                                                        <rect key="frame" x="96" y="25.666666666666664" width="262" height="10"/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="規格">
                                                                                 <attributes>
@@ -5076,13 +5059,13 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccb-Vu-ta7">
-                                                                        <rect key="frame" x="117" y="66" width="15" height="17"/>
+                                                                        <rect key="frame" x="117" y="65.333333333333329" width="15" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="gFo-sf-Caa">
-                                                                        <rect key="frame" x="204" y="60" width="94" height="29"/>
+                                                                        <rect key="frame" x="204" y="59.333333333333343" width="94" height="29"/>
                                                                         <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
@@ -5094,7 +5077,7 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                         </connections>
                                                                     </stepper>
                                                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VC8-FA-R2p">
-                                                                        <rect key="frame" x="334" y="61.666666666666671" width="24" height="24"/>
+                                                                        <rect key="frame" x="334" y="61" width="24" height="24"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="24" id="N3q-O9-gZy"/>
                                                                             <constraint firstAttribute="height" constant="24" id="tnG-kY-EM1"/>
@@ -5105,13 +5088,13 @@ NABER可能提供其他網站或程式的連結，您可以經由NABER所提供�
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7H-Ba-GVX">
-                                                                        <rect key="frame" x="96" y="66" width="17" height="17"/>
+                                                                        <rect key="frame" x="96" y="65.333333333333329" width="17" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="752" verticalHuggingPriority="251" text="20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-ge-vWw">
-                                                                        <rect key="frame" x="306" y="59.666666666666671" width="20" height="29"/>
+                                                                        <rect key="frame" x="306" y="59" width="20" height="29"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="NL6-jc-XZx"/>
                                                                         </constraints>

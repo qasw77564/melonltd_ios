@@ -10,29 +10,31 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController , UITextFieldDelegate {
     
     
     let USER_TYPES: [Identity] = Identity.getUserValues()
 
-    @IBOutlet weak var account_text: UITextField!
-    @IBOutlet weak var password_text: UITextField!
+    @IBOutlet weak var account_text: CustomSearchTextField! 
+    @IBOutlet weak var password_text: CustomSearchTextField!
     @IBOutlet weak var register_button: UIButton!
     @IBOutlet weak var store_register_button: UIButton!
 //    @IBOutlet weak var rememberMeButton: UIButton!
     @IBOutlet weak var rememberMeImage: UIButton!
  
-    @IBOutlet weak var table: UIScrollView! {
-        didSet {
-            let singleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
-            singleTapGesture.numberOfTapsRequired = 1;
-            singleTapGesture.cancelsTouchesInView = false
-            table.gestureRecognizers = [singleTapGesture]
-        }
-    }
-    @objc func closeKeyboard(){
-        self.view.endEditing(true)
-    }
+    @IBOutlet weak var table: UITableView!
+//    {
+//        didSet {
+//            let singleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+//            singleTapGesture.numberOfTapsRequired = 1;
+//            singleTapGesture.cancelsTouchesInView = false
+//
+//            table.gestureRecognizers = [singleTapGesture]
+//        }
+//    }
+//    @objc func closeKeyboard(){
+//        self.view.endEditing(true)
+//    }
 
     @IBAction func rememberMeSwithOnImage(_ sender: Any) {
         if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
@@ -46,7 +48,8 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.account_text.delegate = self
+        self.password_text.delegate = self
         let deviceID = UIDevice.current.identifierForVendor!.uuidString
         print("device token : " + deviceID)
         
@@ -155,10 +158,27 @@ class LoginVC: UIViewController {
         self.view.endEditing(true)
     }
     
-  
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        animateViewMoving(up: true, moveValue: 100)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        animateViewMoving(up: false, moveValue: 100)
+    }
+
+    func animateViewMoving (up : Bool, moveValue : CGFloat){
+        let movementDuration : TimeInterval = 0.3
+        let movement : CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        self.table.frame.insetBy(dx: 0.0, dy: movement)
+//        self.table.frame.offsetBy(dx: 0.0, dy: movement)
+        UIView.commitAnimations()
+    }
+    
+
 
 }
-
 //extension ViewController: UITextFieldDelegate {
 //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        textField.resignFirstResponder()

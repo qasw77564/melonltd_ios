@@ -18,6 +18,14 @@
 		20AF3731210082A600D73F79 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF3730210082A600D73F79 /* Advertisement.swift */; };
 		20AF37332100BC1500D73F79 /* UserSstorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF37322100BC1500D73F79 /* UserSstorage.swift */; };
 		20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4777A2101A7EE007F6EA8 /* Identity.swift */; };
+		20BD64852108BFE600023033 /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD647E2108BFE300023033 /* LLCycleScrollView.swift */; };
+		20BD64862108BFE600023033 /* LLImagePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD647F2108BFE300023033 /* LLImagePageControl.swift */; };
+		20BD64872108BFE600023033 /* LLViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64802108BFE400023033 /* LLViewExtensions.swift */; };
+		20BD64882108BFE600023033 /* LLSnakePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64812108BFE500023033 /* LLSnakePageControl.swift */; };
+		20BD64892108BFE600023033 /* LLFilledPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64822108BFE600023033 /* LLFilledPageControl.swift */; };
+		20BD648A2108BFE600023033 /* LLCycleScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64832108BFE600023033 /* LLCycleScrollViewCell.swift */; };
+		20BD648B2108BFE600023033 /* LLPillPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64842108BFE600023033 /* LLPillPageControl.swift */; };
+		20BD648D2108E84000023033 /* CustomSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD648C2108E84000023033 /* CustomSearchTextField.swift */; };
 		20D9DBD22102563E00D643FE /* HomeMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBD12102563D00D643FE /* HomeMainVC.swift */; };
 		20D9DBD621025AC700D643FE /* Pods_Naber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9DBD521025AC700D643FE /* Pods_Naber.framework */; };
 		20D9DC0421025F4700D643FE /* FSPagerViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DBFD21025F4600D643FE /* FSPagerViewLayoutAttributes.swift */; };
@@ -139,6 +147,14 @@
 		20AF3730210082A600D73F79 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		20AF37322100BC1500D73F79 /* UserSstorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSstorage.swift; sourceTree = "<group>"; };
 		20B4777A2101A7EE007F6EA8 /* Identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
+		20BD647E2108BFE300023033 /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
+		20BD647F2108BFE300023033 /* LLImagePageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLImagePageControl.swift; sourceTree = "<group>"; };
+		20BD64802108BFE400023033 /* LLViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLViewExtensions.swift; sourceTree = "<group>"; };
+		20BD64812108BFE500023033 /* LLSnakePageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLSnakePageControl.swift; sourceTree = "<group>"; };
+		20BD64822108BFE600023033 /* LLFilledPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLFilledPageControl.swift; sourceTree = "<group>"; };
+		20BD64832108BFE600023033 /* LLCycleScrollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollViewCell.swift; sourceTree = "<group>"; };
+		20BD64842108BFE600023033 /* LLPillPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLPillPageControl.swift; sourceTree = "<group>"; };
+		20BD648C2108E84000023033 /* CustomSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchTextField.swift; sourceTree = "<group>"; };
 		20D9DBD12102563D00D643FE /* HomeMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainVC.swift; sourceTree = "<group>"; };
 		20D9DBD3210259A300D643FE /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D9DBD521025AC700D643FE /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +331,13 @@
 		20D9DC1A210265D400D643FE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				20BD647E2108BFE300023033 /* LLCycleScrollView.swift */,
+				20BD64832108BFE600023033 /* LLCycleScrollViewCell.swift */,
+				20BD64822108BFE600023033 /* LLFilledPageControl.swift */,
+				20BD647F2108BFE300023033 /* LLImagePageControl.swift */,
+				20BD64842108BFE600023033 /* LLPillPageControl.swift */,
+				20BD64812108BFE500023033 /* LLSnakePageControl.swift */,
+				20BD64802108BFE400023033 /* LLViewExtensions.swift */,
 				20D9DBFE21025F4600D643FE /* FSPageControl.swift */,
 				20D9DC0321025F4700D643FE /* FSPagerCollectionView.swift */,
 				20D9DC0221025F4600D643FE /* FSPagerView.swift */,
@@ -322,6 +345,7 @@
 				20D9DC0021025F4600D643FE /* FSPageViewLayout.swift */,
 				20D9DBFF21025F4600D643FE /* FSPageViewTransformer.swift */,
 				20D9DBFD21025F4600D643FE /* FSPagerViewLayoutAttributes.swift */,
+				20BD648C2108E84000023033 /* CustomSearchTextField.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -837,11 +861,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				20E65E8220FF17F100F9A252 /* Loading.swift in Sources */,
+				20BD64882108BFE600023033 /* LLSnakePageControl.swift in Sources */,
 				DD51D1FA20C0B17B002C5940 /* RestaurantStoreInfoTVCell.swift in Sources */,
 				20D9DC0821025F4700D643FE /* FSPagerViewCell.swift in Sources */,
 				20AF372F21007E7600D73F79 /* SellerRegistered.swift in Sources */,
 				DD161D0220CAC8A90080CFE2 /* TutorialVC.swift in Sources */,
 				20D9DC0721025F4700D643FE /* FSPageViewLayout.swift in Sources */,
+				20BD64872108BFE600023033 /* LLViewExtensions.swift in Sources */,
 				DDCAE00720BB5BBD005E65C4 /* RecordMainPageVC.swift in Sources */,
 				DDF8C2B820B226E600BF8904 /* StorePageUITabBarController.swift in Sources */,
 				DDFECA0120BBEFFF00E253B6 /* ShoppingCarMainVC.swift in Sources */,
@@ -855,11 +881,13 @@
 				DD161D1320CB1DCD0080CFE2 /* FoodDetailTypeTVCell.swift in Sources */,
 				DDFEA7E620B8726600170222 /* RestaurantTVCell.swift in Sources */,
 				20D9DC232105813500D643FE /* RestaurantCategoryRel.swift in Sources */,
+				20BD648B2108BFE600023033 /* LLPillPageControl.swift in Sources */,
 				DD3FA0AF20C77193006BAA51 /* StoreSettingAboutUsTVC.swift in Sources */,
 				DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */,
 				DD3FA0B320C79292006BAA51 /* TrendMainVC.swift in Sources */,
 				20AF372D210059AD00D73F79 /* SMSCode.swift in Sources */,
 				DDF8C2BA20B3F18400BF8904 /* ForgotPasswordVC.swift in Sources */,
+				20BD64892108BFE600023033 /* LLFilledPageControl.swift in Sources */,
 				20D9DC0621025F4700D643FE /* FSPageViewTransformer.swift in Sources */,
 				DD51D20820C359A5002C5940 /* RestaurantStoreSelectTVCellFoot.swift in Sources */,
 				20D9DBD22102563E00D643FE /* HomeMainVC.swift in Sources */,
@@ -890,6 +918,7 @@
 				DDCAE00120B97266005E65C4 /* RestaurantSearchVC.swift in Sources */,
 				DDF8C2BC20B403FF00BF8904 /* RegisterUserVC.swift in Sources */,
 				DD3FA0AD20C77174006BAA51 /* StoreSettingMainPageTVC.swift in Sources */,
+				20BD648A2108BFE600023033 /* LLCycleScrollViewCell.swift in Sources */,
 				20D9DC0921025F4700D643FE /* FSPagerView.swift in Sources */,
 				DD51D20620C3598E002C5940 /* RestaurantStoreSelectTCCellHead.swift in Sources */,
 				DD51D20420C34204002C5940 /* RestaurantStoreSelectTVCell.swift in Sources */,
@@ -908,12 +937,14 @@
 				20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */,
 				DDFEA7DA20B74A6400170222 /* UserSettingHelpTVC.swift in Sources */,
 				DD161CFB20CA199A0080CFE2 /* LoginHomeRootUINC.swift in Sources */,
+				20BD64852108BFE600023033 /* LLCycleScrollView.swift in Sources */,
 				20D9DC0421025F4700D643FE /* FSPagerViewLayoutAttributes.swift in Sources */,
 				DD3FA0B520C7B065006BAA51 /* TrendCompleteOrderVC.swift in Sources */,
 				DD3FA0B720C7B648006BAA51 /* TrendCompleteOrderTVCell.swift in Sources */,
 				DD161D0D20CAEBF40080CFE2 /* FoodClassTVCell.swift in Sources */,
 				DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */,
 				20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */,
+				20BD648D2108E84000023033 /* CustomSearchTextField.swift in Sources */,
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
 				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
 				20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */,
@@ -923,6 +954,7 @@
 				20DEC9D72107891000476917 /* Model.swift in Sources */,
 				DDF8C2C020B59B0500BF8904 /* RegisterStoreVC.swift in Sources */,
 				DDFEA7CE20B661E500170222 /* UserSettingPageVC.swift in Sources */,
+				20BD64862108BFE600023033 /* LLImagePageControl.swift in Sources */,
 				77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */,
 				DDFEA7D020B6A60A00170222 /* UserSettingMainPageTVC.swift in Sources */,
 				DD3FA0BA20C7E025006BAA51 /* OrderMainVC.swift in Sources */,
