@@ -10,25 +10,25 @@ import UIKit
 
 class UserSettingHelpTVC: UITableViewController {
 
-    @IBOutlet weak var CommonQuestion: UIView!
-    @IBOutlet weak var CommonQuestionTwo: UIView!
-    @IBOutlet weak var CommonQuestionText: UITextView!
-    @IBOutlet weak var CommonQuestionTwoText: UITextView!
+//    @IBOutlet weak var CommonQuestion: UIView!
+//    @IBOutlet weak var CommonQuestionTwo: UIView!
+//    @IBOutlet weak var CommonQuestionText: UITextView!
+//    @IBOutlet weak var CommonQuestionTwoText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CommonQuestion.layer.borderWidth = 1.0
-        CommonQuestion.layer.borderColor = UIColor.lightGray.cgColor
-        
-        CommonQuestionTwo.layer.borderWidth = 1.0
-        CommonQuestionTwo.layer.borderColor = UIColor.lightGray.cgColor
-        
-        CommonQuestionText.layer.borderWidth = 1.0
-        CommonQuestionText.layer.borderColor = UIColor.lightGray.cgColor
-        
-        CommonQuestionTwoText.layer.borderWidth = 1.0
-        CommonQuestionTwoText.layer.borderColor = UIColor.lightGray.cgColor
+//        CommonQuestion.layer.borderWidth = 1.0
+//        CommonQuestion.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        CommonQuestionTwo.layer.borderWidth = 1.0
+//        CommonQuestionTwo.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        CommonQuestionText.layer.borderWidth = 1.0
+//        CommonQuestionText.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        CommonQuestionTwoText.layer.borderWidth = 1.0
+//        CommonQuestionTwoText.layer.borderColor = UIColor.lightGray.cgColor
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
