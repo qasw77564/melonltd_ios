@@ -20,7 +20,7 @@ class BaseVC: UIViewController {
         super.init(coder: aDecoder)
     }
     
-   override func loadView() {
+    override func loadView() {
         super.loadView()
     }
     

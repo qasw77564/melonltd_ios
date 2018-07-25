@@ -27,7 +27,8 @@ class LoginVC: UIViewController {
         
         let deviceID = UIDevice.current.identifierForVendor!.uuidString
         print("device token : " + deviceID)
-       
+        self.account_text.text = "0928297076"
+        self.password_text.text = "s123456"
         //        register_button.layer.borderWidth = 1
         //        register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
         //
@@ -46,7 +47,6 @@ class LoginVC: UIViewController {
         }
     }
     
-    
     @IBAction func rememberMeSwitch(_ sender: Any) {
         if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
             let image = UIImage(named: "cbNoSelect") as UIImage?
@@ -56,7 +56,6 @@ class LoginVC: UIViewController {
             rememberMeImage.setImage(image, for: .normal)
         }
     }
-    
     
     private func verifyInput () -> String {
         var msg: String = ""
@@ -140,16 +139,9 @@ class LoginVC: UIViewController {
                 alert.addAction(UIAlertAction(title: "取消", style: .default))
                 self.present(alert, animated: false)
             }
-//
         }
-
-
     }
-  
-    
-    
-    
-  
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

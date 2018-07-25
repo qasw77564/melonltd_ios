@@ -120,7 +120,10 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         print(distance)
         
         cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
-        cell.thumbnailImageView.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
+        if  Model.TOP_RESTAURANT_LIST[indexPath.row].photo != nil {
+                cell.thumbnailImageView.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
+        }
+        
         return cell
     }
     

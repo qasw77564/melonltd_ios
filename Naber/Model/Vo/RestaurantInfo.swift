@@ -43,7 +43,7 @@ class RestaurantInfoVo : Codable {
     var  latitude: String!
     var  longitude: String!
     var  bulletin: String!
-    var  photo: String!
+    var  photo: String! = ""
     var  background_photo: String!
     var  top: String!
     var  distance : Double!
