@@ -22,7 +22,7 @@ class UserSstorage {
     
     static func getLoginTime() -> Int {
         if let domain = getDomain() {
-            return domain[LONGIN_TIME] as! Int
+            return (domain as! [String: Int])[LONGIN_TIME]!
         }
         return 0
     }

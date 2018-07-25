@@ -115,9 +115,9 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
 
         cell.workStatus.isHidden = true
         
-        let locationManager = CLLocationManager()
-        let distance: Double = locationManager.location!.distance(from:  CLLocation (latitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].latitude)!, longitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].longitude)!))
-        print(distance)
+//        let locationManager = CLLocationManager()
+//        let distance: Double = locationManager.location!.distance(from:  CLLocation (latitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].latitude)!, longitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].longitude)!))
+//        print(distance)
         
         cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
         if  Model.TOP_RESTAURANT_LIST[indexPath.row].photo != nil {

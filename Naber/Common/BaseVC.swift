@@ -34,13 +34,16 @@ class BaseVC: UIViewController {
     
     // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
     override func viewDidAppear(_ animated: Bool) {
-        let now: Int = Int(Date().timeIntervalSince1970 * 1000)
-        if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
-            
-        } else {
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
-                self.present(vc, animated: false, completion: nil)
-            }
+//        let now: Int = Int(Date().timeIntervalSince1970 * 1000)
+//        if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
+//            
+//        } else {
+//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+//                self.present(vc, animated: false, completion: nil)
+//            }
+//        }
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+            self.present(vc, animated: false, completion: nil)
         }
        
     }
