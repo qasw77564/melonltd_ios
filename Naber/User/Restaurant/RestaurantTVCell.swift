@@ -15,7 +15,11 @@ class RestaurantTVCell: UITableViewCell {
     @IBOutlet var distance: UILabel!
     @IBOutlet var time: UILabel!
     @IBOutlet var address: UILabel!
-    @IBOutlet var thumbnailImageView: UIImageView!
+    @IBOutlet var thumbnailImageView: UIImageView! {
+        didSet {
+            thumbnailImageView.image = UIImage(named: "Logo")
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

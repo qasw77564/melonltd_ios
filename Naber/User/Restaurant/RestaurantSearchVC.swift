@@ -16,13 +16,6 @@ class RestaurantSearchVC: UIViewController{
     var secondTable = [StoreInfoClass]()
     var thirdTable = [StoreInfoClass]()
     
-    var typesArray = ["早餐", "早午餐", "午餐", "下午茶", "晚餐","宵夜"]
-    
-    var areasArray = ["台北", "桃園", "台中", "台南", "高雄"]
-    
-    var distancesArray = ["0~100M", "101~200M", "201~300M", "301~400M", "401~500M"]
-    
-    
     var oldSelectSubOptionValue = 0;
     
     @IBOutlet weak var selectSubOption: UILabel!
@@ -112,10 +105,10 @@ class RestaurantSearchVC: UIViewController{
     func bottomAlert(_ sender: AnyObject ) {
         switch (segmentedChoose.selectedSegmentIndex){
             case 0:
-                let sheet = addSheetClassForSwitchPopupAlert(dataArray: typesArray, sender: AnyObject.self as AnyObject )
+                let sheet = addSheetClassForSwitchPopupAlert(dataArray: NaberConstant.FILTER_CATEGORYS, sender: AnyObject.self as AnyObject )
                 present(sheet, animated: true, completion: nil)
             case 1:
-                let sheet = addSheetClassForSwitchPopupAlert(dataArray: areasArray, sender: AnyObject.self as AnyObject )
+                let sheet = addSheetClassForSwitchPopupAlert(dataArray: NaberConstant.FILTER_AREAS, sender: AnyObject.self as AnyObject )
                 present(sheet, animated: true, completion: nil)
             case 2:
                 self.oldSelectSubOptionValue = self.segmentedChoose.selectedSegmentIndex;

@@ -26,9 +26,11 @@ class StoreInfoClass {
 
 }
 
-class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,FSPagerViewDataSource, FSPagerViewDelegate{
+class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,FSPagerViewDataSource, FSPagerViewDelegate, CLLocationManagerDelegate{
     
-    fileprivate var adUIImages : [UIImageView] = []
+    var LM : CLLocationManager!; //座標管理元件
+    var location : CLLocation!
+    
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -37,7 +39,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
             self.pagerView.isInfinite = true
         }
     }
- 
+    
     @IBOutlet weak var pageControl: FSPageControl! {
         didSet {
             self.pageControl.numberOfPages = Model.ADVERTISEMENTS.count
@@ -62,70 +64,100 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     }
     
     @objc func refresh(sender: UIRefreshControl){
-//        startLoadDeviceStats()
-        Model.TOP_RESTAURANT_LIST.removeAll()
         sender.endRefreshing()
-        self.storeTableView.reloadData()
+        self.loadData(refresh: true)
+    }
+ 
+    
+    func loadData(refresh: Bool){
+        if refresh {
+            Model.TOP_RESTAURANT_LIST.removeAll()
+            self.storeTableView.reloadData()
+        }
+
+        // 重新取得定位
+        self.location = self.LM.location
+        let req : ReqData = ReqData()
+        req.search_type = "TOP"
+        ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurantInfos in
+            Model.TOP_RESTAURANT_LIST.append(contentsOf: restaurantInfos)
+            self.storeTableView.reloadData()
+        }) { err_msg in
+            print(err_msg)
+            self.storeTableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        // 確認 GPS 權限
+        enableBasicLocationServices()
+        
         // 加載輪播圖
         ApiManager.advertisement(ui: self, onSuccess: { advertisements in
             Model.ADVERTISEMENTS.removeAll()
             Model.ADVERTISEMENTS.append(contentsOf: advertisements)
             self.pageControl.numberOfPages = Model.ADVERTISEMENTS.count
-
-            // 處理網路圖像加載
-            Model.ADVERTISEMENTS.forEach({ ad in
-                let image :UIImageView = UIImageView.init();
-                image.setImage(with: URL(string: ad.photo), transformer: TransformerHelper.transformer(identifier: ad.photo!))
-                self.adUIImages.append(image)
-            })
             self.pagerView.reloadData()
         }) { err_msg in
             print(err_msg)
         }
         
-        Model.TOP_RESTAURANT_LIST.removeAll()
-        let req : ReqData = ReqData()
-        req.search_type = "TOP"
-        ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurantInfos in
-            Model.TOP_RESTAURANT_LIST = restaurantInfos
-            self.storeTableView.reloadData()
+        ApiManager.bulletin(ui: self, onSuccess: { bulletins in
+            Model.ALL_BULLETINS.removeAll()
+            Model.NABER_BULLETINS.removeAll()
+            bulletins.forEach({ b in
+                Model.ALL_BULLETINS[(b?.bulletin_category)!] = b?.content_text
+            })
+            let naberBulletins: [String] = Model.ALL_BULLETINS["HOME"]!.components(separatedBy: "$split")
+            Model.NABER_BULLETINS.append(contentsOf: naberBulletins)
+            
         }) { err_msg in
             print(err_msg)
         }
+        
+        self.loadData(refresh: true)
     }
-    
     
    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
+        
         cell.storeName.text = Model.TOP_RESTAURANT_LIST[indexPath.row].name
         cell.address.text = Model.TOP_RESTAURANT_LIST[indexPath.row].address
-//        cell.workStatus.text = storeInfos[indexPath.row].workStatus
-//        cell.distance.text = storeInfos[indexPath.row].distance
-
-        cell.workStatus.isHidden = true
-        
-//        let locationManager = CLLocationManager()
-//        let distance: Double = locationManager.location!.distance(from:  CLLocation (latitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].latitude)!, longitude: Double(Model.TOP_RESTAURANT_LIST[indexPath.row].longitude)!))
-//        print(distance)
-        
-        cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
-        if  Model.TOP_RESTAURANT_LIST[indexPath.row].photo != nil {
-                cell.thumbnailImageView.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
+        cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + " ~ " + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
+        if Model.TOP_RESTAURANT_LIST[indexPath.row].photo != nil {
+            cell.thumbnailImageView.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
+        }else {
+            cell.thumbnailImageView.image = UIImage(named: "Logo")
         }
         
+        cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
+        if Model.TOP_RESTAURANT_LIST[indexPath.row].not_business.count > 0 {
+            cell.workStatus.text = "今日不營業"
+        } else if Model.TOP_RESTAURANT_LIST[indexPath.row].is_store_now_open.uppercased() == "FALSE" {
+            cell.workStatus.text = "該商家尚未營業"
+        } else {
+            cell.workStatus.text = "接單中"
+            cell.workStatus.textColor = UIColor.init(red: 128/255, green: 228/255, blue: 56/255, alpha: 1.0)
+        }
+        
+        if self.location != nil {
+            let lant: Double = Double(Model.TOP_RESTAURANT_LIST[indexPath.row].latitude)!
+            let long: Double = Double(Model.TOP_RESTAURANT_LIST[indexPath.row].longitude)!
+            let distance: Double = self.location!.distance(from: CLLocation.init(latitude: lant, longitude: long))
+            cell.distance.text = String(format: "%.01f 公里", (distance / 1000) < 0.1 ? 0.1 : (distance / 1000))
+        } else {
+            cell.distance.text = ""
+        }
         return cell
     }
+    
+ 
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -144,36 +176,11 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
-        //self.present(newViewController, animated: true, completion: nil)
-
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
+        vc.dataIndex = indexPath.row
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-//    {
-//        return 112
-//    }
-    
-//    var tabBarIndex: Int?
-//    
-//    //function that will trigger the **MODAL** segue
-//    private func loadTabBarController(atIndex: Int){
-//        self.tabBarIndex = atIndex
-//        self.performSegue(withIdentifier: "HomeMainStore", sender: self)
-//       
-//    }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-//    {
-//        if segue.destination is RestaurantStoreInfoViewController
-//        {
-//            let vc = segue.destination as? RestaurantStoreInfoViewController
-//            vc?.username = "Arthur Dent"
-//            //self.loadTabBarController(atIndex: 1)
-//        }
-//    }
 
     // MARK:- FSPagerView DataSource
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
@@ -182,10 +189,10 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        if self.adUIImages[index].image == nil {
-            cell.imageView?.image = UIImage(named: "naber_default_image.png")
+        if let photo: String? = Model.ADVERTISEMENTS[index].photo {
+            cell.imageView?.setImage(with: URL(string: photo!), transformer: TransformerHelper.transformer(identifier: photo!))
         }else {
-            cell.imageView?.image = self.adUIImages[index].image
+           cell.imageView?.image = UIImage(named: "naber_default_image.png")
         }
         cell.imageView?.contentMode = .scaleAspectFill
         cell.imageView?.clipsToBounds = true
@@ -207,7 +214,40 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         // Or Use KVO with property "currentIndex"
         self.pageControl.currentPage = pagerView.currentIndex
     }
-
     
+    override func viewDidDisappear(_ animated: Bool) {
+        //因為ＧＰＳ功能很耗電,所以被敬執行時關閉定位功能
+        self.LM.stopUpdatingLocation();
+    }
+
+    func enableBasicLocationServices() {
+        self.LM = CLLocationManager()
+        self.LM.delegate = self
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            LM.requestWhenInUseAuthorization()
+            break
+        case .restricted, .denied:
+            break
+        case .authorizedWhenInUse, .authorizedAlways:
+            LM.startUpdatingLocation()
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus ) {
+        switch status {
+        case .restricted, .denied:
+            let alertController = UIAlertController( title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "確認", style: .default, handler:nil))
+            self.present(alertController, animated: true, completion: nil)
+            break
+        case .authorizedWhenInUse:
+            self.LM.startUpdatingLocation()
+            break
+        case .notDetermined, .authorizedAlways:
+            break
+        }
+    }
     
 }

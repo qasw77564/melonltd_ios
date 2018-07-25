@@ -36,7 +36,6 @@
 		20D9DC2F2105814300D643FE /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC282105814300D643FE /* FoodList.swift */; };
 		20D9DC302105814300D643FE /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9DC292105814300D643FE /* Order.swift */; };
 		20DEC9D72107891000476917 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEC9D62107891000476917 /* Model.swift */; };
-		20DEC9D92107903600476917 /* DistanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEC9D82107903600476917 /* DistanceHelper.swift */; };
 		20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E7C20FF0A4400F9A252 /* ApiManager.swift */; };
 		20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
@@ -159,7 +158,6 @@
 		20D9DC282105814300D643FE /* FoodList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
 		20D9DC292105814300D643FE /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		20DEC9D62107891000476917 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		20DEC9D82107903600476917 /* DistanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceHelper.swift; sourceTree = "<group>"; };
 		20E65E7C20FF0A4400F9A252 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -333,7 +331,6 @@
 			children = (
 				20D9DC1E2103674C00D643FE /* TransformerHelper.swift */,
 				2036B8462107621C0081FE92 /* DateTimeHelper.swift */,
-				20DEC9D82107903600476917 /* DistanceHelper.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -719,6 +716,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
 						};
 					};
 					DDF8C28520B1CA4600BF8904 = {
@@ -914,7 +914,6 @@
 				DD161D0D20CAEBF40080CFE2 /* FoodClassTVCell.swift in Sources */,
 				DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */,
 				20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */,
-				20DEC9D92107903600476917 /* DistanceHelper.swift in Sources */,
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
 				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
 				20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */,

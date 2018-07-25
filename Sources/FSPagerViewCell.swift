@@ -45,7 +45,11 @@ open class FSPagerViewCell: UICollectionViewCell {
     }
     
     fileprivate weak var _textLabel: UILabel?
-    fileprivate weak var _imageView: UIImageView?
+    fileprivate weak var _imageView: UIImageView? {
+        didSet{
+            _imageView?.backgroundColor = UIColor.init(red: 236/255, green: 227/255, blue: 104/255, alpha: 1.0)
+        }
+    }
     
     fileprivate let kvoContext = UnsafeMutableRawPointer(bitPattern: 0)
     fileprivate let selectionColor = UIColor(white: 0.2, alpha: 0.2)

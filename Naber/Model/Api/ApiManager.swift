@@ -503,10 +503,7 @@ class ApiManager {
     //傳header的POST,不要Data傳空字串
     //header的key=Authorization,Value=acount_uuid
     private static func postAutho(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
-        var autho: String = ""
-        if let account = UserSstorage.getAccount() {
-            autho = account.account_uuid
-        }
+        let autho: String = UserSstorage.getAutho()
         let parameter: Parameters =  ["data": base64Encoding(encod: data)]
         let header: HTTPHeaders = ["Authorization" : autho, "Content-Type": "application/x-www-form-urlencoded"]
 

@@ -9,12 +9,9 @@
 import Foundation
 
 
-class DateTimeHelper {
-    
+class DateTimeHelper {  
     static var formatter: DateFormatter = DateFormatter()
-    
-    
-    
+  
     static func getNowMilliseconds() -> Int {
         return Int(Date().timeIntervalSince1970 * 1000)
     }
@@ -23,24 +20,5 @@ class DateTimeHelper {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
         return  formatter.string(from: Date())
     }
-    
-    static func getNow2 () -> String {
-        formatter.dateFormat = "yyyy-MM-dd"
-        return  formatter.string(from: Date())
-    }
-    
-//    var getNowMilliseconds = { _ -> Int in
-//
-//    }(())
-//
-//    var getNow = { _ -> String in
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
-//        return  formatter.string(from: Date())
-//    }(())
-    
-//    var getNow2 = { _ -> String in
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        return  formatter.string(from: Date())
-//    }(())
     
 }

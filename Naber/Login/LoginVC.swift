@@ -11,32 +11,29 @@ import Firebase
 import FirebaseMessaging
 
 class LoginVC: UIViewController {
+    
+    
+    let USER_TYPES: [Identity] = Identity.getUserValues()
 
     @IBOutlet weak var account_text: UITextField!
     @IBOutlet weak var password_text: UITextField!
     @IBOutlet weak var register_button: UIButton!
     @IBOutlet weak var store_register_button: UIButton!
-    @IBOutlet weak var rememberMeButton: UIButton!
+//    @IBOutlet weak var rememberMeButton: UIButton!
     @IBOutlet weak var rememberMeImage: UIButton!
-    
-    let USER_TYPES: [Identity] = Identity.getUserValues()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        let deviceID = UIDevice.current.identifierForVendor!.uuidString
-        print("device token : " + deviceID)
-        self.account_text.text = "0928297076"
-        self.password_text.text = "s123456"
-        //        register_button.layer.borderWidth = 1
-        //        register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
-        //
-        //        store_register_button.layer.borderWidth = 1
-        //        store_register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
-        
+ 
+    @IBOutlet weak var table: UIScrollView! {
+        didSet {
+            let singleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+            singleTapGesture.numberOfTapsRequired = 1;
+            singleTapGesture.cancelsTouchesInView = false
+            table.gestureRecognizers = [singleTapGesture]
+        }
     }
-    
+    @objc func closeKeyboard(){
+        self.view.endEditing(true)
+    }
+
     @IBAction func rememberMeSwithOnImage(_ sender: Any) {
         if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
             let image = UIImage(named: "cbNoSelect") as UIImage?
@@ -46,16 +43,40 @@ class LoginVC: UIViewController {
             rememberMeImage.setImage(image, for: .normal)
         }
     }
-    
-    @IBAction func rememberMeSwitch(_ sender: Any) {
-        if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
-            let image = UIImage(named: "cbNoSelect") as UIImage?
-            rememberMeImage.setImage(image, for: .normal)
-        }else{
-            let image = UIImage(named: "cbSelect") as UIImage?
-            rememberMeImage.setImage(image, for: .normal)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let deviceID = UIDevice.current.identifierForVendor!.uuidString
+        print("device token : " + deviceID)
+        
+        if UserSstorage.getRememberMe() {
+            self.rememberMeImage.setImage(UIImage(named:"cbSelect"), for: .normal)
+            self.account_text.text = UserSstorage.getAccount()?.account
+        } else {
+            self.rememberMeImage.setImage(UIImage(named: "cbNoSelect"), for: .normal)
+            self.account_text.text = "0928297076"
         }
+        
+        if NaberConstant.IS_DEBUG {
+            self.account_text.text = "0928297076"
+            self.password_text.text = "s123456"
+        }
+        
+        
+//        let remember: Bool = UserSstorage.getRememberMe()
+//        let image = UIImage(named: remember ? "cbSelect" : "cbNoSelect" ) as UIImage?
+        
+//        self.rememberMeImage.setValue(true, forKey: "remember")
+        //        register_button.layer.borderWidth = 1
+        //        register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
+        //
+        //        store_register_button.layer.borderWidth = 1
+        //        store_register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
+        
     }
+    
+    
     
     private func verifyInput () -> String {
         var msg: String = ""
@@ -72,48 +93,29 @@ class LoginVC: UIViewController {
         }
         return msg
     }
-    
+
     
     @IBAction func goToNextPage(_ sender: Any) {
 
-//                switch account_text.text {
-//                case "1":
-//                    // Safe Present
-//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController
-//                    {
-//                        present(vc, animated: false, completion: nil)
-//                    }
-//                case "2":
-//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController
-//                    {
-//                        present(vc, animated: false, completion: nil)
-//                    }
-//                case "3":
-//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Tutorial") as? TutorialVC
-//                    {
-//                        present(vc, animated: false, completion: nil)
-//                    }
-//                default:
-//                    print("Stop running")
-//                }
-        
-        
+//        self.rememberMeImage.getValue(forKey: "remember")
+//        let remember : Bool = self.rememberMeImage.value(forKey: "remember") as? Bool ?? false
+//        print(remember)
         if self.verifyInput() == "" {
-            UserSstorage.clearUserData()
             let reqData: AccountInfoVo = AccountInfoVo()
             reqData.phone = self.account_text.text
             reqData.password = self.password_text.text
             reqData.device_category = "IOS"
             reqData.device_token = Messaging.messaging().fcmToken
-            
             ApiManager.login(structs: reqData, ui: self, onSuccess: { account in
                 if account != nil {
                     let now: Int = DateTimeHelper.getNowMilliseconds()
                     UserSstorage.setLoginTime(now)
                     UserSstorage.setAccount(account!)
+                    let remember: Bool = (self.rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))!
+                    UserSstorage.setRememberMe(remember)
+                    print(remember)
+                    
                     UserSstorage.printRepresentation()
-                    let rrr: AccountInfoVo = UserSstorage.getAccount()!
-                    print(rrr)
                     if self.USER_TYPES.contains(Identity.init(rawValue: (account?.identity.uppercased())!)!) {
                         // 使用者
                         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
@@ -152,6 +154,8 @@ class LoginVC: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+  
 
 }
 
