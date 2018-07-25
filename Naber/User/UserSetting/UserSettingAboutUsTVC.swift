@@ -10,25 +10,25 @@ import UIKit
 
 class UserSettingAboutUsTVC: UITableViewController {
 
-    @IBOutlet weak var AboutUsTitleView: UIView!
-    @IBOutlet weak var BecomeStoreTitleView: UIView!
-    @IBOutlet weak var AboutUsText: UITextView!
-    @IBOutlet weak var BecomeStoreText: UITextView!
+//    @IBOutlet weak var AboutUsTitleView: UIView!
+//    @IBOutlet weak var BecomeStoreTitleView: UIView!
+//    @IBOutlet weak var AboutUsText: UITextView!
+//    @IBOutlet weak var BecomeStoreText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        AboutUsTitleView.layer.borderWidth = 1.0
-        AboutUsTitleView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        BecomeStoreTitleView.layer.borderWidth = 1.0
-        BecomeStoreTitleView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        AboutUsText.layer.borderWidth = 1.0
-        AboutUsText.layer.borderColor = UIColor.lightGray.cgColor
-        
-        BecomeStoreText.layer.borderWidth = 1.0
-        BecomeStoreText.layer.borderColor = UIColor.lightGray.cgColor
+//        AboutUsTitleView.layer.borderWidth = 1.0
+//        AboutUsTitleView.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        BecomeStoreTitleView.layer.borderWidth = 1.0
+//        BecomeStoreTitleView.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        AboutUsText.layer.borderWidth = 1.0
+//        AboutUsText.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        BecomeStoreText.layer.borderWidth = 1.0
+//        BecomeStoreText.layer.borderColor = UIColor.lightGray.cgColor
         
     }
     
