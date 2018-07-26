@@ -10,7 +10,7 @@ import UIKit
 
 class RestaurantStoreInfoTVCell: UITableViewCell {
     
-    @IBOutlet weak var itemClass: UILabel!
+    @IBOutlet weak var name: UILabel!
     
     
     override func awakeFromNib() {

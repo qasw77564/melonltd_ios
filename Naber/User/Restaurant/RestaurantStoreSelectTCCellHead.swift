@@ -18,7 +18,7 @@ class RestaurantStoreSelectTCCellHead: UITableViewCell {
             var newFrame = frame
             newFrame.origin.x += 8
             newFrame.size.width -= 16
-            newFrame.size.height = 36
+//            newFrame.size.height = 36
             super.frame = newFrame
         }
     }
@@ -34,5 +34,6 @@ class RestaurantStoreSelectTCCellHead: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
 
 }

@@ -19,20 +19,16 @@ class RestaurantSearchVC: UIViewController{
     var oldSelectSubOptionValue = 0;
     
     @IBOutlet weak var selectSubOption: UILabel!
-    
     @IBOutlet weak var segmentedChoose: UISegmentedControl!
-    
     @IBOutlet weak var areaBtn: UIButton!
     @IBOutlet weak var categoryBtn: UIButton!
     @IBOutlet weak var distanceBtn: UIButton!
-    
-    
-    @IBOutlet weak var restaurantTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.restaurantTableView.dataSource = self
-        self.restaurantTableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         initialFirstTable()
         initialSecondTable()
@@ -113,7 +109,7 @@ class RestaurantSearchVC: UIViewController{
             case 2:
                 self.oldSelectSubOptionValue = self.segmentedChoose.selectedSegmentIndex;
                 self.selectSubOption.text = "距離"
-                self.restaurantTableView.reloadData()
+                self.tableView.reloadData()
             default:
                 break;
         }
@@ -162,7 +158,7 @@ class RestaurantSearchVC: UIViewController{
             let action = UIAlertAction(title: data, style: .default) { (action) in
                 self.oldSelectSubOptionValue = self.segmentedChoose.selectedSegmentIndex;
                 self.selectSubOption.text = data
-                self.restaurantTableView.reloadData()
+                self.tableView.reloadData()
             }
             sheet.addAction(action)
         }
@@ -246,26 +242,26 @@ extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
         switch (segmentedChoose.selectedSegmentIndex){
         case 0:
-            cell.storeName.text = firstTable[indexPath.row].storeName
+            cell.name.text = firstTable[indexPath.row].storeName
             cell.address.text = firstTable[indexPath.row].address
             cell.workStatus.text = firstTable[indexPath.row].workStatus
             cell.distance.text = firstTable[indexPath.row].distance
             cell.time.text = firstTable[indexPath.row].time
-            cell.thumbnailImageView.image = UIImage(named: firstTable[indexPath.row].storeImage)
+            cell.photo.image = UIImage(named: firstTable[indexPath.row].storeImage)
         case 1:
-            cell.storeName.text = secondTable[indexPath.row].storeName
+            cell.name.text = secondTable[indexPath.row].storeName
             cell.address.text = secondTable[indexPath.row].address
             cell.workStatus.text = secondTable[indexPath.row].workStatus
             cell.distance.text = secondTable[indexPath.row].distance
             cell.time.text = secondTable[indexPath.row].time
-            cell.thumbnailImageView.image = UIImage(named: secondTable[indexPath.row].storeImage)
+            cell.photo.image = UIImage(named: secondTable[indexPath.row].storeImage)
         case 2:
-            cell.storeName.text = thirdTable[indexPath.row].storeName
+            cell.name.text = thirdTable[indexPath.row].storeName
             cell.address.text = thirdTable[indexPath.row].address
             cell.workStatus.text = thirdTable[indexPath.row].workStatus
             cell.distance.text = thirdTable[indexPath.row].distance
             cell.time.text = thirdTable[indexPath.row].time
-            cell.thumbnailImageView.image = UIImage(named: thirdTable[indexPath.row].storeImage)
+            cell.photo.image = UIImage(named: thirdTable[indexPath.row].storeImage)
         default:
             break;
         }

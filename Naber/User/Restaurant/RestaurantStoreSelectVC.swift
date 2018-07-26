@@ -48,12 +48,12 @@ import UIKit
 
 class RestaurantStoreSelectVC: UIViewController {
     
-    @IBOutlet weak var selectMenuTable: UITableView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
 //            selectMenuTable.sectionHeaderHeight = 36
 //            selectMenuTable.rowHeight = 36
-            selectMenuTable.delegate = self
-            selectMenuTable.dataSource = self
+            tableView.delegate = self
+            tableView.dataSource = self
         }
     }
     
@@ -64,9 +64,7 @@ class RestaurantStoreSelectVC: UIViewController {
 //    var selectMenu = SelectMenuClass()
     
     @IBOutlet weak var orderTotal: UILabel!
-    
     @IBOutlet weak var orderNumber: UILabel!
-    
     @IBOutlet weak var numberStepper: UIStepper!
     
     @IBAction func numberStepperAction(_ sender: UIStepper) {
@@ -155,7 +153,7 @@ class RestaurantStoreSelectVC: UIViewController {
 //            food?.food_data.food_photo = food?.photo
 //            print(food)
             self.foodItemVo = food?.food_data
-            self.selectMenuTable.reloadData()
+            self.tableView.reloadData()
             
         }) { err_msg in
             print(err_msg)
@@ -192,9 +190,9 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 36
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "Header") as! RestaurantStoreSelectTCCellHead
@@ -226,17 +224,21 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
         switch (indexPath.section) {
         case 0:
             cell.name?.text = self.foodItemVo.scopes[indexPath.row].name
-            cell.money?.text = self.foodItemVo.scopes[indexPath.row].price
+            cell.price?.text = self.foodItemVo.scopes[indexPath.row].price
             cell.tag = indexPath.row
+            print(cell.isSelected)
 //            if selectMenu.scopes[indexPath.row].isSelected {
 //                cell.radioButton.setImage(UIImage(named: "radioSelect"), for: .normal)
 //            }else{
 //                cell.radioButton.setImage(UIImage(named: "radioNoSelect"), for: .normal)
 //            }
+//            cell.selectedRadio(cell.radioButton)
         case 1:
             cell.name?.text = self.foodItemVo.opts[indexPath.row].name
-            cell.money?.text = self.foodItemVo.opts[indexPath.row].price
+            cell.price?.text = self.foodItemVo.opts[indexPath.row].price
             cell.tag = indexPath.row
+            print(cell.isSelected)
+//            cell.selectedRadio(cell.radioButton)
 //            if selectMenu.options[indexPath.row].isSelected {
 //                cell.radioButton.setImage(UIImage(named: "radioSelect"), for: .normal)
 //            }else{
@@ -245,14 +247,15 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
 
         case 2...:
             cell.name?.text = self.foodItemVo.demands[indexPath.section - 2].datas[indexPath.row]?.name
-            cell.money?.text = ""
+            cell.price?.text = ""
             cell.tag = indexPath.row
+            print(cell.isSelected)
 //            if selectMenu.demands[indexPath.section-2].subs[indexPath.row].isSelected {
 //                cell.radioButton.setImage(UIImage(named: "radioSelect"), for: .normal)
 //            }else{
 //                cell.radioButton.setImage(UIImage(named: "radioNoSelect"), for: .normal)
 //            }
-
+//            cell.selectedRadio(cell.radioButton)
         default:
             break
         }
@@ -262,33 +265,16 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
- 
+        let cell : RestaurantStoreSelectTVCell = (tableView.cellForRow(at: indexPath) as? RestaurantStoreSelectTVCell)!
         switch (indexPath.section) {
         case 0: // 必選 單選 規格
             print(tableView.cellForRow(at: indexPath)?.tag ?? "tab nil")
-//            if let cell: RestaurantStoreSelectTVCell = tableView.cellForRow(at: indexPath) as RestaurantStoreSelectTVCell {
-//                print("get cell ")
-//                print(cell)
-//            }
             self.tmpFoodItemVo.scopes.removeAll()
             self.tmpFoodItemVo.scopes.append(self.foodItemVo.scopes[indexPath.row])
-//
-//            for tempRow in selectMenu.scopes {
-//                tempRow.isSelected = false
-//            }
-//            selectMenu.scopes[indexPath.row].isSelected = true
-//            tableView.reloadData()
         case 1: // 多選 追加項目
              print(tableView.cellForRow(at: indexPath)?.tag ?? "tab nil")
             self.tmpFoodItemVo.opts.append(self.foodItemVo.opts[indexPath.row])
-//
-//            if selectMenu.options[indexPath.row].isSelected {
-//                selectMenu.options[indexPath.row].isSelected = false
-//            }else{
-//                selectMenu.options[indexPath.row].isSelected = true
-//            }
-//            tableView.reloadData()
-
+            cell.triggerRadioStatus()
         case 2...: // 必選多需求
             print(indexPath.section - 2)
             print(tableView.cellForRow(at: indexPath)?.tag ?? "tab nil")
@@ -311,7 +297,14 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
 
         default:
             break
+        
         }
+        
+//        if let cell: RestaurantStoreSelectTVCell = tableView.cellForRow(at: indexPath) as? RestaurantStoreSelectTVCell {
+//            cell.triggerRadioStatus()
+//            print("get cell ")
+//            print(cell)
+//        }
 //          tableView.reloadData()
         calculatMoney()
         

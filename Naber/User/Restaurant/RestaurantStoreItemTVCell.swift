@@ -10,11 +10,9 @@ import UIKit
 
 class RestaurantStoreItemTVCell: UITableViewCell {
 
-    @IBOutlet weak var itemImage: UIImageView!
-    
-    @IBOutlet weak var itemName: UILabel!
-    
-    @IBOutlet weak var itemMoney: UILabel!
+    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var price: UILabel!
     
     
     override func awakeFromNib() {

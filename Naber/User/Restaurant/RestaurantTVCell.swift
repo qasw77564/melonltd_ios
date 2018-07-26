@@ -10,14 +10,14 @@ import UIKit
 
 class RestaurantTVCell: UITableViewCell {
 
-    @IBOutlet var storeName: UILabel!
+    @IBOutlet var name: UILabel!
     @IBOutlet var workStatus: UILabel!
     @IBOutlet var distance: UILabel!
     @IBOutlet var time: UILabel!
     @IBOutlet var address: UILabel!
-    @IBOutlet var thumbnailImageView: UIImageView! {
+    @IBOutlet var photo: UIImageView! {
         didSet {
-            thumbnailImageView.image = UIImage(named: "Logo")
+            photo.image = UIImage(named: "Logo")
         }
     }
 

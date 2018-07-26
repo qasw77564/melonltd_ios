@@ -21,15 +21,16 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
     var categoryRel : RestaurantCategoryRelVo!
     var foodList: [FoodVo?] = []
     
-    @IBOutlet weak var itemTable: UITableView! {
+    @IBOutlet weak var categoryName: UILabel!
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            self.itemTable.dataSource = self
-            self.itemTable.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
             let refreshControl: UIRefreshControl = UIRefreshControl()
             refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
             refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
             refreshControl.tintColor = UIColor.clear
-            self.itemTable.addSubview(refreshControl)
+            self.tableView.addSubview(refreshControl)
         }
     }
     
@@ -42,14 +43,14 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
     func loadData(refresh: Bool) {
         if refresh {
             self.foodList.removeAll()
-            self.itemTable.reloadData()
+            self.tableView.reloadData()
         }
         
         if self.categoryRel != nil {
             let uuid : String = self.categoryRel.category_uuid
             ApiManager.restaurantFoodList(uuid: uuid, ui: self, onSuccess: { foods in
                 self.foodList.append(contentsOf: foods)
-                self.itemTable.reloadData()
+                self.tableView.reloadData()
             }) { err_msg in
                 print(err_msg)
             }
@@ -75,13 +76,13 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantStoreItemTVCell
         
-        cell.itemName.text = self.foodList[indexPath.row]?.food_name
-        cell.itemMoney.text = "$ " + (self.foodList[indexPath.row]?.default_price)!
-        cell.itemImage.image = UIImage(named: "Logo")
+        cell.name.text = self.foodList[indexPath.row]?.food_name
+        cell.price.text = "$ " + (self.foodList[indexPath.row]?.default_price)!
+        cell.photo.image = UIImage(named: "Logo")
         if self.foodList[indexPath.row]?.photo != nil {
-            cell.itemImage.setImage(with: URL(string: (self.foodList[indexPath.row]?.photo)!), transformer: TransformerHelper.transformer(identifier: (self.foodList[indexPath.row]?.photo)!))
+            cell.photo.setImage(with: URL(string: (self.foodList[indexPath.row]?.photo)!), transformer: TransformerHelper.transformer(identifier: (self.foodList[indexPath.row]?.photo)!))
         }else {
-            cell.itemImage.image = UIImage(named: "Logo")
+            cell.photo.image = UIImage(named: "Logo")
         }
         return cell
     }

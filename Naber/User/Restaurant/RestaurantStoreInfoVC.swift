@@ -16,9 +16,10 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     var username:String = ""
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var workTime: UILabel!
+    @IBOutlet weak var time: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var workStatus: UILabel!
+    @IBOutlet weak var backgroundPhoto: UIImageView!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var bulletin: UILabel!
@@ -74,7 +75,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantStoreInfoTVCell
-        cell.itemClass.text = self.categoryList[indexPath.row]?.category_name
+        cell.name.text = self.categoryList[indexPath.row]?.category_name
         return cell
     }
     

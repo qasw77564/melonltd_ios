@@ -27,37 +27,37 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     var cycleBulletinView : LLCycleScrollView!
     
     
-    @IBOutlet weak var pagerView: FSPagerView! {
+    @IBOutlet weak var adPagerView: FSPagerView! {
         didSet {
-            self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
-            self.pagerView.itemSize = .zero
-            self.pagerView.automaticSlidingInterval = 3.0
-            self.pagerView.isInfinite = true
+            self.adPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            self.adPagerView.itemSize = .zero
+            self.adPagerView.automaticSlidingInterval = 3.0
+            self.adPagerView.isInfinite = true
         }
     }
     
-    @IBOutlet weak var pageControl: FSPageControl! {
+    @IBOutlet weak var adPageControl: FSPageControl! {
         didSet {
-            self.pageControl.numberOfPages = Model.ADVERTISEMENTS.count
-            self.pageControl.contentHorizontalAlignment = .center
-            self.pageControl.setPath(UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 10, height: 10)), for: .normal)
-            self.pageControl.setPath(UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 10, height: 10)), for: .selected)
-            self.pageControl.interitemSpacing = 12
-            self.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 30, bottom: 10, right: 30)
+            self.adPageControl.numberOfPages = Model.ADVERTISEMENTS.count
+            self.adPageControl.contentHorizontalAlignment = .center
+            self.adPageControl.setPath(UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 10, height: 10)), for: .normal)
+            self.adPageControl.setPath(UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 10, height: 10)), for: .selected)
+            self.adPageControl.interitemSpacing = 12
+            self.adPageControl.contentInsets = UIEdgeInsets(top: 0, left: 30, bottom: 10, right: 30)
         }
     }
 
-    @IBOutlet weak var bulletinView: UIView!
+    @IBOutlet weak var naberBulletinView: UIView!
     
-    @IBOutlet weak var storeTableView: UITableView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            self.storeTableView.dataSource = self
-            self.storeTableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
             let refreshControl: UIRefreshControl = UIRefreshControl()
             refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
             refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
             refreshControl.tintColor = UIColor.clear
-            self.storeTableView.addSubview(refreshControl)
+            self.tableView.addSubview(refreshControl)
         }
     }
     
@@ -70,7 +70,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     func loadData(refresh: Bool){
         if refresh {
             Model.TOP_RESTAURANT_LIST.removeAll()
-            self.storeTableView.reloadData()
+            self.tableView.reloadData()
         }
 
         // 重新取得定位
@@ -79,10 +79,10 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         req.search_type = "TOP"
         ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurantInfos in
             Model.TOP_RESTAURANT_LIST.append(contentsOf: restaurantInfos)
-            self.storeTableView.reloadData()
+            self.tableView.reloadData()
         }) { err_msg in
             print(err_msg)
-            self.storeTableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -96,8 +96,8 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         ApiManager.advertisement(ui: self, onSuccess: { advertisements in
             Model.ADVERTISEMENTS.removeAll()
             Model.ADVERTISEMENTS.append(contentsOf: advertisements)
-            self.pageControl.numberOfPages = Model.ADVERTISEMENTS.count
-            self.pagerView.reloadData()
+            self.adPageControl.numberOfPages = Model.ADVERTISEMENTS.count
+            self.adPagerView.reloadData()
         }) { err_msg in
             print(err_msg)
         }
@@ -137,7 +137,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         cycleBulletinView.titles = Model.NABER_BULLETINS
         // 文本　Leading约束
         cycleBulletinView.titleLeading = 16
-        self.bulletinView.addSubview(cycleBulletinView)
+        self.naberBulletinView.addSubview(cycleBulletinView)
     }
     
    override func viewDidAppear(_ animated: Bool) {
@@ -148,13 +148,13 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
         
-        cell.storeName.text = Model.TOP_RESTAURANT_LIST[indexPath.row].name
+        cell.name.text = Model.TOP_RESTAURANT_LIST[indexPath.row].name
         cell.address.text = Model.TOP_RESTAURANT_LIST[indexPath.row].address
         cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + " ~ " + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
         if Model.TOP_RESTAURANT_LIST[indexPath.row].photo != nil {
-            cell.thumbnailImageView.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
+            cell.photo.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo))
         }else {
-            cell.thumbnailImageView.image = UIImage(named: "Logo")
+            cell.photo.image = UIImage(named: "Logo")
         }
         
         cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
@@ -223,15 +223,15 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
-        self.pageControl.currentPage = index
+        self.adPageControl.currentPage = index
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
-        guard self.pageControl.currentPage != pagerView.currentIndex else {
+        guard self.adPageControl.currentPage != pagerView.currentIndex else {
             return
         }
         // Or Use KVO with property "currentIndex"
-        self.pageControl.currentPage = pagerView.currentIndex
+        self.adPageControl.currentPage = pagerView.currentIndex
     }
     
     override func viewDidDisappear(_ animated: Bool) {
