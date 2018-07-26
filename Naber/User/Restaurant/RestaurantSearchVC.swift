@@ -200,33 +200,43 @@ extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (segmentedChoose.selectedSegmentIndex){
-        case 0:
-            print("You selected cell #\(firstTable[indexPath.row].storeName)!")
-            //            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            //            let destination = storyboard.instantiateViewController(withIdentifier: "YourViewController") as! YourViewController
-        //            navigationController?.pushViewController(destination, animated: true)
-        case 1:
-            print("You selected cell #\(secondTable[indexPath.row].storeName)!")
-            //            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            //            let destination = storyboard.instantiateViewController(withIdentifier: "YourViewController") as! YourViewController
-        //            navigationController?.pushViewController(destination, animated: true)
-        case 2:
-            print("You selected cell #\(thirdTable[indexPath.row].storeName)!")
-            //            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            //            let destination = storyboard.instantiateViewController(withIdentifier: "YourViewController") as! YourViewController
-        //            navigationController?.pushViewController(destination, animated: true)
-        default:
-            break;
-        }
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreItem") as! RestaurantStoreItemVC
         
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let nextController = storyboard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoViewController
-//        nextController.storeName.text = "Taylor Swift"
-//        self.navigationController?.pushViewController(nextController, animated: true)
-
-        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        switch (segmentedChoose.selectedSegmentIndex){
+//
+//
+//
+//        case 0:
+//            print("You selected cell #\(firstTable[indexPath.row].storeName)!")
+//            //            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            //            let destination = storyboard.instantiateViewController(withIdentifier: "YourViewController") as! YourViewController
+//        //            navigationController?.pushViewController(destination, animated: true)
+//        case 1:
+//            print("You selected cell #\(secondTable[indexPath.row].storeName)!")
+//            //            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            //            let destination = storyboard.instantiateViewController(withIdentifier: "YourViewController") as! YourViewController
+//        //            navigationController?.pushViewController(destination, animated: true)
+//        case 2:
+//            print("You selected cell #\(thirdTable[indexPath.row].storeName)!")
+//            //            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            //            let destination = storyboard.instantiateViewController(withIdentifier: "YourViewController") as! YourViewController
+//        //            navigationController?.pushViewController(destination, animated: true)
+//        default:
+//            break;
+//        }
+//
+////        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+////        let nextController = storyboard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoViewController
+////        nextController.storeName.text = "Taylor Swift"
+////        self.navigationController?.pushViewController(nextController, animated: true)
+//
+//
+//    }
     
     
     

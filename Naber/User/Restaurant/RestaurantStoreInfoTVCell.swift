@@ -9,7 +9,7 @@
 import UIKit
 
 class RestaurantStoreInfoTVCell: UITableViewCell {
-
+    
     @IBOutlet weak var itemClass: UILabel!
     
     
@@ -23,5 +23,7 @@ class RestaurantStoreInfoTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
 
 }

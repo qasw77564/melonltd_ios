@@ -152,7 +152,7 @@ class ApiManager {
     }
 
     // 餐館細節，系列列表(測試OK)
-    public static func restaurantDetail (uuid: String, ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
+    public static func restaurantCategoryList (uuid: String, ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
         let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in

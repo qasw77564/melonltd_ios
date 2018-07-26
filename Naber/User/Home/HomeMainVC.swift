@@ -18,12 +18,6 @@ class StoreInfoClass {
     var time:String = ""
     var address:String = ""
     var storeImage:String = ""
-
-    //一個Class的宣告，在有效的Scope內預設就會有 init
-    //init(){
-    //
-    //}
-
 }
 
 class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,FSPagerViewDataSource, FSPagerViewDelegate, CLLocationManagerDelegate{
@@ -128,8 +122,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     
     func configLLCycleScrollView() {
-        cycleBulletinView = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 60 )) { (index) in
-            print("当前点击文本的位置为:\(index)")
+        cycleBulletinView = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 60 )) { index in
         }
         cycleBulletinView.customPageControlStyle = .none
         cycleBulletinView.scrollDirection = .vertical
@@ -185,8 +178,6 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         return cell
     }
     
- 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -205,7 +196,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
-        vc.dataIndex = indexPath.row
+        vc.restaurantIndex = indexPath.row
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
