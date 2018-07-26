@@ -15,11 +15,12 @@ class CustomSearchTextField: UITextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(8, 16, 8, 16))
+        // 左，上，右，下
+        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(0, 16, 0, 16))
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(8, 16, 8, 16))
+        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(0, 16, 0, 16))
     }
     
     
