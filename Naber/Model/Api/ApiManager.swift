@@ -27,7 +27,7 @@ class ApiManager {
     public static func getSMSCode (structs: SMSCodeVo?, ui: UIViewController, onSuccess: @escaping (SMSCodeVo) -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.GET_SMS_CODE, data: SMSCodeVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: SMSCodeResp = SMSCodeResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -39,7 +39,7 @@ class ApiManager {
     public static func verifySMSCode (structs: SMSCodeVo?, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.SMS_VERIFY_CODE, data: SMSCodeVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -51,7 +51,7 @@ class ApiManager {
     public static func userRegistered (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.USER_REGISTERED, data: AccountInfoVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -64,7 +64,7 @@ class ApiManager {
     public static func sellerRegistered (structs: SellerRegisteredVo?, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.SELLER_REGISTERED, data: SellerRegisteredVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: SellerRegisteredResp = SellerRegisteredResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -76,7 +76,7 @@ class ApiManager {
     public static func login (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postData(url: ApiUrl.LOGIN, data: AccountInfoVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -88,7 +88,7 @@ class ApiManager {
     public static func logout (structs: AccountInfoVo?, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.LOGOUT, data: AccountInfoVo.toJson(structs: structs!), ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -105,7 +105,7 @@ class ApiManager {
     public static func advertisement (ui: UIViewController, onSuccess: @escaping ([AdvertisementVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ADVERTISEMENT, data: "", ui:ui, complete: { response in
             let resp: AdvertisementResp = AdvertisementResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -117,7 +117,7 @@ class ApiManager {
     public static func bulletin (ui: UIViewController, onSuccess: @escaping ([BulletinVo?]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.BULLETIN, data: "", ui:ui, complete: { response in
             let resp: BulletinResp = BulletinResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -129,7 +129,7 @@ class ApiManager {
     public static func restaurantTemplate (ui: UIViewController, onSuccess: @escaping ([RestaurantTemplateVo?]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.BULLETIN, data: "", ui:ui, complete: { response in
             let resp: RestaurantTemplateResp = RestaurantTemplateResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -143,7 +143,9 @@ class ApiManager {
     public static func restaurantList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([RestaurantInfoVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.RESTAURANT_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RestaurantListResp = RestaurantListResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            print(resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue))
+            
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -157,7 +159,7 @@ class ApiManager {
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RestaurantCategoryRelResp = RestaurantCategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -171,7 +173,7 @@ class ApiManager {
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -185,7 +187,7 @@ class ApiManager {
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_FOOD_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: FoodResp = FoodResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -197,7 +199,7 @@ class ApiManager {
     public static func userOrderHistory (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.USER_ORDER_HISTORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -209,7 +211,7 @@ class ApiManager {
     public static func userFindAccountInfo (req: ReqData,ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.FIND_ACCOUNT_INFO, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -220,7 +222,7 @@ class ApiManager {
     public static func uploadPhoto (req: ReqData, ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.IMAGE_UPLOAD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -232,7 +234,7 @@ class ApiManager {
     public static func reseatPassword (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.RESEAT_PSW, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -243,7 +245,7 @@ class ApiManager {
     public static func forgetPassword (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.FORGET_PSW, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -255,7 +257,7 @@ class ApiManager {
     public static func userOrderSubmit (req: OrderDetail, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ORDER_SUBMIT, data: OrderDetail.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -275,7 +277,7 @@ class ApiManager {
     public static func sellerBusinessTime (req: ReqData, ui: UIViewController, onSuccess: @escaping (DateRangeVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.BUSINESS_TIME, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  DateRangeResp = DateRangeResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -286,7 +288,7 @@ class ApiManager {
     public static func sellerChangeBusinessTime (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.CHANGE_BUSINESS_TIME, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -299,7 +301,7 @@ class ApiManager {
     public static func sellerQuickSearch (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.QUICK_SEARCH, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -310,7 +312,7 @@ class ApiManager {
     public static func sellerChangeOrder (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.CHANGE_ORDER, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -321,7 +323,7 @@ class ApiManager {
     public static func sellerOrderList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ORDER_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -333,7 +335,7 @@ class ApiManager {
     public static func sellerOrderLive (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ORDER_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -344,7 +346,7 @@ class ApiManager {
     public static func sellerStat (ui: UIViewController, onSuccess: @escaping (SellerStatVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_STAT, data: "" , ui:ui, complete: { response in
             let resp:  SellerStatResp = SellerStatResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -355,7 +357,7 @@ class ApiManager {
     public static func sellerStatLog (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_STAT_LOG, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -366,7 +368,7 @@ class ApiManager {
     public static func sellerCategoryList (req: ReqData, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CATEGORY_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -377,7 +379,7 @@ class ApiManager {
     public static func sellerAddCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_ADD_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -388,7 +390,7 @@ class ApiManager {
     public static func sellerChangeCategoryStatus (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CHANGE_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -399,7 +401,7 @@ class ApiManager {
     public static func sellerDeleteCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_DELETE_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -410,7 +412,7 @@ class ApiManager {
     public static func sellerFoodList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([FoodVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -422,7 +424,7 @@ class ApiManager {
     public static func sellerFoodUpdate (req: FoodVo, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CHANGE_FOOD, data: FoodVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -434,7 +436,7 @@ class ApiManager {
     public static func sellerFoodDelete (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_DELETE_FOOD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)
@@ -446,7 +448,7 @@ class ApiManager {
     public static func sellerFoodAdd (req: FoodVo, ui: UIViewController, onSuccess: @escaping (FoodVo) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_ADD_FOOD, data: FoodVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp: FoodResp = FoodResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -457,7 +459,7 @@ class ApiManager {
     public static func sellerRestaurantInfo (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_RESTAURANT_INFO, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -468,7 +470,7 @@ class ApiManager {
     public static func sellerRestaurantSetting (req: RestaurantInfoVo ,ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_RESTAURANT_SETTING, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
                 onFail(resp.err_msg)
@@ -479,7 +481,7 @@ class ApiManager {
     public static func sellerRestaurantSettingBusiness (req: ReqData,ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_RESTAURANT_SETTING_BUSINESS, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
-            if resp.status == "true" {
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()
             }else {
                 onFail(resp.err_msg)

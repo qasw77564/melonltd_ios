@@ -60,7 +60,7 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.categoryRel.category_name)
+//        print(self.categoryRel.category_name)
         self.loadData(refresh: true)
     }
 

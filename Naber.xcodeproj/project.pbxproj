@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2036B845210760190081FE92 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B844210760190081FE92 /* BaseVC.swift */; };
 		2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B8462107621C0081FE92 /* DateTimeHelper.swift */; };
+		204C2560210A33830000D3EE /* PageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C255F210A33830000D3EE /* PageType.swift */; };
+		20603EEA210A260E00F2BCAB /* RespStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20603EE9210A260E00F2BCAB /* RespStatus.swift */; };
 		20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfo.swift */; };
 		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
 		20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20AF37262100447400D73F79 /* GoogleService-Info.plist */; };
@@ -138,6 +140,8 @@
 /* Begin PBXFileReference section */
 		2036B844210760190081FE92 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		2036B8462107621C0081FE92 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
+		204C255F210A33830000D3EE /* PageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageType.swift; sourceTree = "<group>"; };
+		20603EE9210A260E00F2BCAB /* RespStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespStatus.swift; sourceTree = "<group>"; };
 		20AF372120FF8BD000D73F79 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
 		20AF37262100447400D73F79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				20B4777A2101A7EE007F6EA8 /* Identity.swift */,
+				20603EE9210A260E00F2BCAB /* RespStatus.swift */,
+				204C255F210A33830000D3EE /* PageType.swift */,
 			);
 			path = Typ;
 			sourceTree = "<group>";
@@ -865,6 +871,7 @@
 				DD51D1FA20C0B17B002C5940 /* RestaurantStoreInfoTVCell.swift in Sources */,
 				20D9DC0821025F4700D643FE /* FSPagerViewCell.swift in Sources */,
 				20AF372F21007E7600D73F79 /* SellerRegistered.swift in Sources */,
+				20603EEA210A260E00F2BCAB /* RespStatus.swift in Sources */,
 				DD161D0220CAC8A90080CFE2 /* TutorialVC.swift in Sources */,
 				20D9DC0721025F4700D643FE /* FSPageViewLayout.swift in Sources */,
 				20BD64872108BFE600023033 /* LLViewExtensions.swift in Sources */,
@@ -942,6 +949,7 @@
 				DD3FA0B520C7B065006BAA51 /* TrendCompleteOrderVC.swift in Sources */,
 				DD3FA0B720C7B648006BAA51 /* TrendCompleteOrderTVCell.swift in Sources */,
 				DD161D0D20CAEBF40080CFE2 /* FoodClassTVCell.swift in Sources */,
+				204C2560210A33830000D3EE /* PageType.swift in Sources */,
 				DDFECA0320BBF98A00E253B6 /* ShoppingCarMainTVCell.swift in Sources */,
 				20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */,
 				20BD648D2108E84000023033 /* CustomSearchTextField.swift in Sources */,
