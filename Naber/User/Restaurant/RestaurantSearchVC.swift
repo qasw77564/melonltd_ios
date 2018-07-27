@@ -12,19 +12,12 @@ import CoreLocation
 
 class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate , CLLocationManagerDelegate {
 
-    
     var LM : CLLocationManager!; //座標管理元件
     var location : CLLocation!
-    
     var reqData: ReqData! = Optional.none
-    
     var templates: [[String]] = []
     
-    @IBOutlet weak var selectSubOption: UILabel!
-    @IBOutlet weak var segmentedChoose: UISegmentedControl!
-    @IBOutlet weak var areaBtn: UIButton!
-    @IBOutlet weak var categoryBtn: UIButton!
-    @IBOutlet weak var distanceBtn: UIButton!
+    @IBOutlet weak var filterName: UILabel!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             self.tableView.dataSource = self
@@ -53,9 +46,11 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         self.reqData.loadingMore = false
         if self.reqData != nil {
             self.reqData.page = self.reqData.page + 1
-            self.location = self.LM.location
+            if self.reqData.search_type.elementsEqual("DISTANCE") {
+                self.reqData.uuids = []
+                self.reqData.uuids.append(contentsOf: self.templates[self.reqData.page - 1])
+            }
             ApiManager.restaurantList(req: self.reqData, ui: self, onSuccess: { restaurantInfos in
-                
                 if self.reqData.search_type.elementsEqual("DISTANCE") {
                     restaurantInfos.forEach{ tmp in
                         let lant: Double = Double(tmp.latitude)!
@@ -70,12 +65,10 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
                     Model.TMPE_RESTAURANT_LIST.append(contentsOf: list)
                     // 計算距離模板有幾頁
                     self.reqData.loadingMore = self.templates.count > self.reqData.page;
-//                    self.reqData.loadingMore = restaurantInfos.count % NaberConstant.PAGE == 0 && restaurantInfos.count != 0
                 }else {
                     Model.TMPE_RESTAURANT_LIST.append(contentsOf: restaurantInfos)
                     self.reqData.loadingMore = restaurantInfos.count % NaberConstant.PAGE == 0 && restaurantInfos.count != 0
                 }
-
                 self.tableView.reloadData()
             }) { err_msg in
                 print(err_msg)
@@ -86,27 +79,27 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.reqData = ReqData()
         self.enableBasicLocationServices()
+        self.searchForDistance(UIButton.init())
     }
     
     @IBAction func searchForDistance (_ sender: UIButton){
-        self.selectSubOption.text = "離我最近"
+        self.filterName.text = "離我最近"
         self.reqData.search_type = "DISTANCE";
         self.reqData.category = ""
         self.reqData.area = ""
         self.reqData.loadingMore = false
         self.reqData.uuids = []
         self.templates = []
-        enableBasicLocationServices()
+        self.enableBasicLocationServices()
         if self.LM.location != nil {
-            let location: CLLocation = self.LM.location!
+            self.location = self.LM.location!
             ApiManager.restaurantTemplate(ui: self, onSuccess: { tmps in
                 tmps.forEach{ tmp in
                     let lant: Double = Double(tmp!.latitude)!
                     let long: Double = Double(tmp!.longitude)!
-                    let distance: Double = location.distance(from: CLLocation.init(latitude: lant, longitude: long))
+                    let distance: Double = self.location.distance(from: CLLocation.init(latitude: lant, longitude: long))
                     tmp?.distance = distance
                 }
                 var list = tmps
@@ -135,21 +128,6 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    
-    
-//    for (int i= 0; i < temps.size(); i++) {
-//    if (i % page != 0 || i == 0) {
-//    uuids.add(temps.get(i).restaurant_uuid);
-//    }else if (i % 10 == 0  && i != 0){
-//    pages.add(uuids);
-//    uuids = Lists.newArrayList();
-//    uuids.add(temps.get(i).restaurant_uuid);
-//    }
-//    if (i == temps.size() -1) {
-//    pages.add(uuids);
-//    }
-//    }
-    
     @IBAction func searchForArea (_ sender: UIButton){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "請選擇區域", style: .destructive))
@@ -159,7 +137,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
                 self.reqData.area = name
                 self.reqData.category = ""
                 self.reqData.uuids = []
-                self.selectSubOption.text = name
+                self.filterName.text = name
                 self.loadData(refresh: true)
             }
             alert.addAction(itemAction)
@@ -175,7 +153,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
             let itemAction = UIAlertAction(title: name, style: .default) { itemAction in
                 self.reqData.search_type = "CATEGORY";
                 self.reqData.category = name
-                self.selectSubOption.text = name
+                self.filterName.text = name
                 self.reqData.area = ""
                 self.reqData.uuids = []
                 self.loadData(refresh: true)
@@ -238,7 +216,6 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             cell.distance.text = ""
         }
-
         
         if Model.TMPE_RESTAURANT_LIST.count - 1 == indexPath.row  && self.reqData.loadingMore {
             print("load mode")

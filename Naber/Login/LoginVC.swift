@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 
-class LoginVC: UIViewController , UITextFieldDelegate {
+class LoginVC: UIViewController {
     
     
     let USER_TYPES: [Identity] = Identity.getUserValues()
@@ -23,18 +23,6 @@ class LoginVC: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var rememberMeImage: UIButton!
  
     @IBOutlet weak var table: UITableView!
-//    {
-//        didSet {
-//            let singleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
-//            singleTapGesture.numberOfTapsRequired = 1;
-//            singleTapGesture.cancelsTouchesInView = false
-//
-//            table.gestureRecognizers = [singleTapGesture]
-//        }
-//    }
-//    @objc func closeKeyboard(){
-//        self.view.endEditing(true)
-//    }
 
     @IBAction func rememberMeSwithOnImage(_ sender: Any) {
         if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
@@ -48,8 +36,7 @@ class LoginVC: UIViewController , UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.account_text.delegate = self
-        self.password_text.delegate = self
+
         let deviceID = UIDevice.current.identifierForVendor!.uuidString
         print("device token : " + deviceID)
         
@@ -100,9 +87,6 @@ class LoginVC: UIViewController , UITextFieldDelegate {
     
     @IBAction func goToNextPage(_ sender: Any) {
 
-//        self.rememberMeImage.getValue(forKey: "remember")
-//        let remember : Bool = self.rememberMeImage.value(forKey: "remember") as? Bool ?? false
-//        print(remember)
         if self.verifyInput() == "" {
             let reqData: AccountInfoVo = AccountInfoVo()
             reqData.phone = self.account_text.text
@@ -158,23 +142,7 @@ class LoginVC: UIViewController , UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        animateViewMoving(up: true, moveValue: 100)
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        animateViewMoving(up: false, moveValue: 100)
-    }
-
-    func animateViewMoving (up : Bool, moveValue : CGFloat){
-        let movementDuration : TimeInterval = 0.3
-        let movement : CGFloat = ( up ? -moveValue : moveValue)
-        UIView.beginAnimations( "animateView", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-        self.table.frame.insetBy(dx: 0.0, dy: movement)
-//        self.table.frame.offsetBy(dx: 0.0, dy: movement)
-        UIView.commitAnimations()
-    }
+  
     
 
 

@@ -21,7 +21,8 @@ extension Date {
 }
 
 class RegisterUserDetailVC: UIViewController {
-    
+    var phone: String! = Optional.none
+
     var datePicker: UIDatePicker {
         get {
             let datePicker = UIDatePicker()

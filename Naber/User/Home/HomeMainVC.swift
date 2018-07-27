@@ -10,16 +10,6 @@ import UIKit
 //import MapleBacon
 import CoreLocation
 
-//class StoreInfoClass {
-//    //等於Objective-C的 @property (strong) NSString *city;
-//    var storeName:String = ""
-//    var workStatus:String = ""
-//    var distance:String = ""
-//    var time:String = ""
-//    var address:String = ""
-//    var storeImage:String = ""
-//}
-
 class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,FSPagerViewDataSource, FSPagerViewDelegate, CLLocationManagerDelegate{
     
     var LM : CLLocationManager!; //座標管理元件
@@ -194,11 +184,16 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
-        vc.restaurantIndex = indexPath.row
-        vc.pageType = .HOME
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
+            vc.restaurantIndex = indexPath.row
+            vc.pageType = .HOME
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
+//        vc.restaurantIndex = indexPath.row
+//        vc.pageType = .HOME
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 

@@ -33,7 +33,7 @@ class SMSCodeResp: Codable {
 }
 
 
-class SMSCodeVo: Codable{
+class SMSCodeVo: Codable {
     var batch_id: String!
     var phone: String!
     var code: String!

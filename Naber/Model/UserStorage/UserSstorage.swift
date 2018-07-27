@@ -90,7 +90,7 @@ class UserSstorage {
     
     static func printRepresentation() {
         let map : [String : Any] = UserDefaults.standard.dictionaryWithValues(forKeys: [LONGIN_TIME, ACCOUNT_INFO])
-        print(map)
+//        print(map)
     }
    
 }

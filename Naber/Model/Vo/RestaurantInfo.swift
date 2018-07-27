@@ -44,11 +44,12 @@ class RestaurantInfoVo : Codable {
     var latitude: String!
     var longitude: String!
     var bulletin: String!
-    var photo: String! = ""
+    var photo: String!
     var background_photo: String!
     var top: String!
     var distance : Double!
     var status: String!
+    var can_discount: String!
     var date: String!
     
     var isShowOne: Bool! = true

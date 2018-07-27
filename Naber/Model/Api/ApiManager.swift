@@ -143,8 +143,6 @@ class ApiManager {
     public static func restaurantList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([RestaurantInfoVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.RESTAURANT_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RestaurantListResp = RestaurantListResp.parse(src: base64Decoding(decode: response.result.value!))!
-            print(resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue))
-            
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
@@ -490,11 +488,6 @@ class ApiManager {
     }
     
     
-    
-    
-    
-    
-    
     //要 Data的,但是沒有header
     private static func postData(url: URLConvertible, data: String, ui: UIViewController, complete: @escaping (DataResponse<String>) -> ()) {
         let parameter: Parameters =  ["data": base64Encoding(encod: data)]
@@ -521,7 +514,7 @@ class ApiManager {
             if response.result.isSuccess {
                 complete(response)
             }else if (response.result.error != nil) {
-                print(response.result.error?.localizedDescription ?? "")
+//                print(response.result.error?.localizedDescription ?? "")
                 let alert = UIAlertController(title: "系統提示", message: "請確認裝置有連結網路！", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "確認", style: .default))
                 ui.present(alert, animated: false)
