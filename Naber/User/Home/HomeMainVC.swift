@@ -10,15 +10,15 @@ import UIKit
 //import MapleBacon
 import CoreLocation
 
-class StoreInfoClass {
-    //等於Objective-C的 @property (strong) NSString *city;
-    var storeName:String = ""
-    var workStatus:String = ""
-    var distance:String = ""
-    var time:String = ""
-    var address:String = ""
-    var storeImage:String = ""
-}
+//class StoreInfoClass {
+//    //等於Objective-C的 @property (strong) NSString *city;
+//    var storeName:String = ""
+//    var workStatus:String = ""
+//    var distance:String = ""
+//    var time:String = ""
+//    var address:String = ""
+//    var storeImage:String = ""
+//}
 
 class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,FSPagerViewDataSource, FSPagerViewDelegate, CLLocationManagerDelegate{
     
@@ -160,7 +160,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
         if Model.TOP_RESTAURANT_LIST[indexPath.row].not_business.count > 0 {
             cell.workStatus.text = "今日不營業"
-        } else if Model.TOP_RESTAURANT_LIST[indexPath.row].is_store_now_open.uppercased() == "FALSE" {
+        } else if Model.TOP_RESTAURANT_LIST[indexPath.row].is_store_now_open.uppercased().elementsEqual("FALSE") {
             cell.workStatus.text = "該商家尚未營業"
         } else {
             cell.workStatus.text = "接單中"
@@ -197,6 +197,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
         vc.restaurantIndex = indexPath.row
+        vc.pageType = .HOME
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

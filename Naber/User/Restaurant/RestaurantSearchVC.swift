@@ -7,74 +7,125 @@
 //
 
 import UIKit
+import CoreLocation
 
 
-
-class RestaurantSearchVC: UIViewController{
-
-    var firstTable = [StoreInfoClass]()
-    var secondTable = [StoreInfoClass]()
-    var thirdTable = [StoreInfoClass]()
+class RestaurantSearchVC: UIViewController {
+//
+//    var firstTable = [StoreInfoClass]()
+//    var secondTable = [StoreInfoClass]()
+//    var thirdTable = [StoreInfoClass]()
     
     var oldSelectSubOptionValue = 0;
+    
+    var LM : CLLocationManager!; //座標管理元件
+    var location : CLLocation!
     
     @IBOutlet weak var selectSubOption: UILabel!
     @IBOutlet weak var segmentedChoose: UISegmentedControl!
     @IBOutlet weak var areaBtn: UIButton!
     @IBOutlet weak var categoryBtn: UIButton!
     @IBOutlet weak var distanceBtn: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+            refreshControl.tintColor = UIColor.clear
+            self.tableView.addSubview(refreshControl)
+        }
+    }
+    
+    @objc func refresh(sender: UIRefreshControl){
+        sender.endRefreshing()
+        self.loadData(refresh: true)
+    }
+    
+    func loadData(refresh: Bool){
+        if refresh {
+            Model.TOP_RESTAURANT_LIST.removeAll()
+            self.tableView.reloadData()
+        }
+        
+        // 重新取得定位
+        self.location = self.LM.location
+        let req : ReqData = ReqData()
+        req.search_type = "TOP"
+        ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurantInfos in
+            Model.TOP_RESTAURANT_LIST.append(contentsOf: restaurantInfos)
+            self.tableView.reloadData()
+        }) { err_msg in
+            print(err_msg)
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
-        initialFirstTable()
-        initialSecondTable()
-        initialThridTable()
+        self.enableBasicLocationServices()
+
+//        initialFirstTable()
+//        initialSecondTable()
+//        initialThridTable()
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func searchForDistance (_ sender: UIButton){
+        
+    }
+    
+    @IBAction func searchForArea (_ sender: UIButton){
+        
+    }
+    
+    @IBAction func searchForCategory (_ sender: UIButton){
+        
+    }
+    
+    
     @IBAction func switchTheTableViewBySegmentControl(_ sender: AnyObject) {
         bottomAlert( sender )
     }
     
-    func initialFirstTable(){
-        let storeInfo = StoreInfoClass()
-        storeInfo.storeName="Berkeley Cafe"
-        storeInfo.workStatus="該商家尚未營業"
-        storeInfo.distance="1.7公里";
-        storeInfo.time="AM08:00~PM10:00";
-        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
-        storeInfo.storeImage="berkeleyCafe";
-        firstTable.append(storeInfo)
-        firstTable.append(storeInfo)
-        firstTable.append(storeInfo)
-
-    }
-    func initialSecondTable(){
-        let storeInfo = StoreInfoClass()
-        storeInfo.storeName="Berkeley Cafe"
-        storeInfo.workStatus="Cosy"
-        storeInfo.distance="100M";
-        storeInfo.time="AM08:00~PM10:00";
-        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
-        storeInfo.storeImage="berkeleyCafe";
-        secondTable.append(storeInfo)
-
-    }
-    func initialThridTable(){
-        let storeInfo = StoreInfoClass()
-        storeInfo.storeName="Berkeley Cafe"
-        storeInfo.workStatus="Cosy"
-        storeInfo.distance="100M";
-        storeInfo.time="AM08:00~PM10:00";
-        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
-        storeInfo.storeImage="berkeleyCafe";
-        thirdTable.append(storeInfo)
-        thirdTable.append(storeInfo)
-        thirdTable.append(storeInfo)
-    }
+//    func initialFirstTable(){
+//        let storeInfo = StoreInfoClass()
+//        storeInfo.storeName="Berkeley Cafe"
+//        storeInfo.workStatus="該商家尚未營業"
+//        storeInfo.distance="1.7公里";
+//        storeInfo.time="AM08:00~PM10:00";
+//        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
+//        storeInfo.storeImage="berkeleyCafe";
+//        firstTable.append(storeInfo)
+//        firstTable.append(storeInfo)
+//        firstTable.append(storeInfo)
+//    }
+    
+//    func initialSecondTable(){
+//        let storeInfo = StoreInfoClass()
+//        storeInfo.storeName="Berkeley Cafe"
+//        storeInfo.workStatus="Cosy"
+//        storeInfo.distance="100M";
+//        storeInfo.time="AM08:00~PM10:00";
+//        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
+//        storeInfo.storeImage="berkeleyCafe";
+//        secondTable.append(storeInfo)
+//
+//    }
+    
+//    func initialThridTable(){
+//        let storeInfo = StoreInfoClass()
+//        storeInfo.storeName="Berkeley Cafe"
+//        storeInfo.workStatus="Cosy"
+//        storeInfo.distance="100M";
+//        storeInfo.time="AM08:00~PM10:00";
+//        storeInfo.address="桃園市桃園區中山路100號桃園市桃園區中山路100號桃園市桃園區中山路100號"
+//        storeInfo.storeImage="berkeleyCafe";
+//        thirdTable.append(storeInfo)
+//        thirdTable.append(storeInfo)
+//        thirdTable.append(storeInfo)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,19 +133,19 @@ class RestaurantSearchVC: UIViewController{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var returnValue = 0
-        switch (segmentedChoose.selectedSegmentIndex){
-        case 0:
-            returnValue = firstTable.count
-        case 1:
-            returnValue = secondTable.count
-        case 2:
-            returnValue = thirdTable.count
-        default:
-            break;
-        }
-        return returnValue
-
+//        var returnValue = 0
+//        switch (segmentedChoose.selectedSegmentIndex){
+//        case 0:
+//            returnValue = firstTable.count
+//        case 1:
+//            returnValue = secondTable.count
+//        case 2:
+//            returnValue = thirdTable.count
+//        default:
+//            break;
+//        }
+//        return returnValue
+        return 1
     }
     
     
@@ -102,10 +153,10 @@ class RestaurantSearchVC: UIViewController{
         switch (segmentedChoose.selectedSegmentIndex){
             case 0:
                 let sheet = addSheetClassForSwitchPopupAlert(dataArray: NaberConstant.FILTER_CATEGORYS, sender: AnyObject.self as AnyObject )
-                present(sheet, animated: true, completion: nil)
+                self.present(sheet, animated: true, completion: nil)
             case 1:
                 let sheet = addSheetClassForSwitchPopupAlert(dataArray: NaberConstant.FILTER_AREAS, sender: AnyObject.self as AnyObject )
-                present(sheet, animated: true, completion: nil)
+                self.present(sheet, animated: true, completion: nil)
             case 2:
                 self.oldSelectSubOptionValue = self.segmentedChoose.selectedSegmentIndex;
                 self.selectSubOption.text = "距離"
@@ -116,7 +167,7 @@ class RestaurantSearchVC: UIViewController{
         
     }
     
-    func addSheetClassForSwitchPopupAlert (dataArray : Array<String> , sender: AnyObject ) -> UIAlertController{
+    func addSheetClassForSwitchPopupAlert (dataArray : Array<String> , sender: AnyObject ) -> UIAlertController {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let announceTitle = UIAlertAction(title: "請選擇", style: .destructive) { (_) in
@@ -175,19 +226,17 @@ class RestaurantSearchVC: UIViewController{
     
 
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if segue.destination is RestaurantStoreInfoVC
-        {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is RestaurantStoreInfoVC {
             let vc = segue.destination as? RestaurantStoreInfoVC
-            vc?.username = "Arthur Dent"
+//            vc?.username = "Arthur Dent"
         }
     }
     
 
 }
 
-extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
+extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate , CLLocationManagerDelegate{
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 //    {
@@ -197,8 +246,9 @@ extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreItem") as! RestaurantStoreItemVC
-        
+        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
+        vc.restaurantIndex = 0
+        vc.pageType = .RESTAURANT
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -230,8 +280,6 @@ extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
 ////        let nextController = storyboard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoViewController
 ////        nextController.storeName.text = "Taylor Swift"
 ////        self.navigationController?.pushViewController(nextController, animated: true)
-//
-//
 //    }
     
     
@@ -240,32 +288,69 @@ extension RestaurantSearchVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
-        switch (segmentedChoose.selectedSegmentIndex){
-        case 0:
-            cell.name.text = firstTable[indexPath.row].storeName
-            cell.address.text = firstTable[indexPath.row].address
-            cell.workStatus.text = firstTable[indexPath.row].workStatus
-            cell.distance.text = firstTable[indexPath.row].distance
-            cell.time.text = firstTable[indexPath.row].time
-            cell.photo.image = UIImage(named: firstTable[indexPath.row].storeImage)
-        case 1:
-            cell.name.text = secondTable[indexPath.row].storeName
-            cell.address.text = secondTable[indexPath.row].address
-            cell.workStatus.text = secondTable[indexPath.row].workStatus
-            cell.distance.text = secondTable[indexPath.row].distance
-            cell.time.text = secondTable[indexPath.row].time
-            cell.photo.image = UIImage(named: secondTable[indexPath.row].storeImage)
-        case 2:
-            cell.name.text = thirdTable[indexPath.row].storeName
-            cell.address.text = thirdTable[indexPath.row].address
-            cell.workStatus.text = thirdTable[indexPath.row].workStatus
-            cell.distance.text = thirdTable[indexPath.row].distance
-            cell.time.text = thirdTable[indexPath.row].time
-            cell.photo.image = UIImage(named: thirdTable[indexPath.row].storeImage)
-        default:
-            break;
-        }
+//        switch (segmentedChoose.selectedSegmentIndex){
+//        case 0:
+//            cell.name.text = firstTable[indexPath.row].storeName
+//            cell.address.text = firstTable[indexPath.row].address
+//            cell.workStatus.text = firstTable[indexPath.row].workStatus
+//            cell.distance.text = firstTable[indexPath.row].distance
+//            cell.time.text = firstTable[indexPath.row].time
+//            cell.photo.image = UIImage(named: firstTable[indexPath.row].storeImage)
+//        case 1:
+//            cell.name.text = secondTable[indexPath.row].storeName
+//            cell.address.text = secondTable[indexPath.row].address
+//            cell.workStatus.text = secondTable[indexPath.row].workStatus
+//            cell.distance.text = secondTable[indexPath.row].distance
+//            cell.time.text = secondTable[indexPath.row].time
+//            cell.photo.image = UIImage(named: secondTable[indexPath.row].storeImage)
+//        case 2:
+//            cell.name.text = thirdTable[indexPath.row].storeName
+//            cell.address.text = thirdTable[indexPath.row].address
+//            cell.workStatus.text = thirdTable[indexPath.row].workStatus
+//            cell.distance.text = thirdTable[indexPath.row].distance
+//            cell.time.text = thirdTable[indexPath.row].time
+//            cell.photo.image = UIImage(named: thirdTable[indexPath.row].storeImage)
+//        default:
+//            break;
+//        }
         return cell
         
     }
+    
+    
+    func enableBasicLocationServices() {
+        self.LM = CLLocationManager()
+        self.LM.delegate = self
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            LM.requestWhenInUseAuthorization()
+            break
+        case .restricted, .denied:
+            break
+        case .authorizedWhenInUse, .authorizedAlways:
+            LM.startUpdatingLocation()
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus ) {
+        switch status {
+        case .restricted, .denied:
+            let alertController = UIAlertController( title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "確認", style: .default, handler:nil))
+            self.present(alertController, animated: true, completion: nil)
+            break
+        case .authorizedWhenInUse:
+            self.LM.startUpdatingLocation()
+            break
+        case .notDetermined, .authorizedAlways:
+            break
+        }
+    }
+    
+    
+    
+    
+    
+    
 }

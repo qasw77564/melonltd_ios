@@ -33,23 +33,25 @@ class RestaurantInfoResp : Codable {
     
 }
 class RestaurantInfoVo : Codable {
-    var  restaurant_uuid: String!
-    var  name: String!
-    var  address: String!
-    var  store_start: String!
-    var  store_end: String!
-    var  is_store_now_open: String!
+    var restaurant_uuid: String!
+    var name: String!
+    var address: String!
+    var store_start: String!
+    var store_end: String!
+    var is_store_now_open: String!
     var not_business: [String]! = []
-    var  restaurant_category: String!
-    var  latitude: String!
-    var  longitude: String!
-    var  bulletin: String!
-    var  photo: String! = ""
-    var  background_photo: String!
-    var  top: String!
-    var  distance : Double!
-    var  status: String!
-    var  date: String!
+    var restaurant_category: String!
+    var latitude: String!
+    var longitude: String!
+    var bulletin: String!
+    var photo: String! = ""
+    var background_photo: String!
+    var top: String!
+    var distance : Double!
+    var status: String!
+    var date: String!
+    
+    var isShowOne: Bool! = true
     
     public static func toJson(structs : RestaurantInfoVo) -> String {
         do {
