@@ -127,7 +127,7 @@ class ApiManager {
     //Login成功就要去加載User位置
     // 取得餐館地理位置模板(測試OK)
     public static func restaurantTemplate (ui: UIViewController, onSuccess: @escaping ([RestaurantTemplateVo?]) -> (), onFail: @escaping (String) -> ()) {
-        self.postAutho(url: ApiUrl.BULLETIN, data: "", ui:ui, complete: { response in
+        self.postAutho(url: ApiUrl.RESTAURANT_TEMPLATE, data: "", ui:ui, complete: { response in
             let resp: RestaurantTemplateResp = RestaurantTemplateResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)

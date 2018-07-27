@@ -35,7 +35,7 @@ class RestaurantTemplateVo : Codable {
     var restaurant_uuid : String!
     var latitude : String!
     var longitude : String!
-    var distance : String!
+    var distance : Double!
     
     public static func toJson(structs : RestaurantTemplateVo) -> String {
         do {

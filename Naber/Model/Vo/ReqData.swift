@@ -23,7 +23,8 @@ class ReqData : Codable {
     var uuids: [String]! = []
     var category: String!
     var area: String!
-   
+    var loadingMore: Bool! = true;
+    
     public static func toJson(structs : ReqData) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
