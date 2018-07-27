@@ -73,22 +73,22 @@ class RestaurantSearchVC: UIViewController {
     }
     
     @IBAction func searchForDistance (_ sender: UIButton){
-        
+        print("sadad")
     }
     
     @IBAction func searchForArea (_ sender: UIButton){
-        
+        print("sadad")
     }
     
     @IBAction func searchForCategory (_ sender: UIButton){
-        
+                print("sadad")
     }
     
-    
-    @IBAction func switchTheTableViewBySegmentControl(_ sender: AnyObject) {
-        bottomAlert( sender )
-    }
-    
+//    
+//    @IBAction func switchTheTableViewBySegmentControl(_ sender: AnyObject) {
+//        bottomAlert( sender )
+//    }
+//    
 //    func initialFirstTable(){
 //        let storeInfo = StoreInfoClass()
 //        storeInfo.storeName="Berkeley Cafe"
