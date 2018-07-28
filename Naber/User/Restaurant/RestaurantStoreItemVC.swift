@@ -8,14 +8,6 @@
 
 import UIKit
 
-class RestaurantStoreItemClass {
-
-    var itemName:String = ""
-    var itemMoney:String = ""
-    var itemImage:String = ""
-}
-
-
 class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var categoryRel : RestaurantCategoryRelVo!
@@ -47,6 +39,7 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         if self.categoryRel != nil {
+            self.categoryName.text = self.categoryRel.category_name
             let uuid : String = self.categoryRel.category_uuid
             ApiManager.restaurantFoodList(uuid: uuid, ui: self, onSuccess: { foods in
                 self.foodList.append(contentsOf: foods)
@@ -55,12 +48,10 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
                 print(err_msg)
             }
         }
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(self.categoryRel.category_name)
         self.loadData(refresh: true)
     }
 
@@ -92,11 +83,6 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
         let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreSelect") as! RestaurantStoreSelectVC
         vc.food = self.foodList[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
-        
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreSelect") as! RestaurantStoreSelectVC
-////        vc.restaurantIndex = indexPath.row
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

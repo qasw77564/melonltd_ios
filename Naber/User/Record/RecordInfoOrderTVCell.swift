@@ -1,20 +1,20 @@
 //
-//  RecordInfoTableCellTableViewCell.swift
+//  RecordInfoOrderTVCell.swift
 //  Naber
 //
-//  Created by LianYong-Jun on 2018/5/28.
+//  Created by 王淳彦 on 2018/7/29.
 //  Copyright © 2018年 Melone.L.T.D. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class RecordInfoDetailTVCell: UITableViewCell {
+
+class RecordInfoOrderTVCell : UITableViewCell {
     
+    @IBOutlet var orderDatas: UILabel!
     @IBOutlet var name: UILabel!
-//    @IBOutlet var time: UILabel!
-    @IBOutlet var recordTime: UILabel!
-    @IBOutlet var totalPayment: UILabel!
-    @IBOutlet var status: UILabel!
+    @IBOutlet var count: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +24,6 @@ class RecordInfoDetailTVCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }
+

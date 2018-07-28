@@ -11,39 +11,51 @@ import UIKit
 
 class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDelegate{
 
-
+    var reqData: ReqData!
+    var orders : [OrderVo] = []
 
     @IBOutlet weak var tableView: UITableView! {
         didSet{
-            
             tableView.delegate = self
             tableView.dataSource = self
+            let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged )
+            refreshControl.tintColor = UIColor.clear
+            self.tableView.addSubview(refreshControl)
         }
     }
 
+    @objc func refresh(sender: UIRefreshControl){
+        sender.endRefreshing()
+        self.loadData(refresh: true)
+    }
+
+    func loadData(refresh: Bool){
+        if (refresh){
+            self.orders.removeAll()
+            self.tableView.reloadData()
+            self.reqData.page = 0
+            self.reqData.loadingMore = true
+        }
+        
+        self.reqData.page = self.reqData.page + 1
+        ApiManager.userOrderHistory(req: self.reqData, ui: self, onSuccess: { orders in
+            orders.forEach { o in
+                o.order_detail = OrderDetail.parse(src: o.order_data)
+            }
+            self.orders.append(contentsOf: orders)
+            self.reqData.loadingMore = orders.count % NaberConstant.PAGE == 0 && orders.count != 0
+            self.tableView.reloadData()
+        }) { err_msg in
+            print(err_msg)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-//
-//
-//
-//        recordInfos.append(recordInfo)
-//        recordInfos.append(recordInfo)
-//        recordInfos.append(recordInfo)
-//        recordInfos.append(recordInfo)
-//        recordInfos.append(recordInfo)
-//        recordInfos.append(recordInfo)
-//
-//
-//        for record in recordInfos {
-//            print(record.storeName)
-//            print(record.time)
-//            print(record.recordTime)
-//            print(record.totalPayment)
-//        }
-        
-        
-        // Do any additional setup after loading the view.
+        self.reqData = ReqData()
+        self.loadData(refresh: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,24 +63,34 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RecordInfoDetailTVCell
-//        cell.storeName.text = recordInfos[indexPath.row].storeName
-////        cell.time.text = recordInfos[indexPath.row].time
-//        cell.recordTime.text = recordInfos[indexPath.row].recordTime
-//        cell.totalPayment.text = recordInfos[indexPath.row].totalPayment
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RecordInfoDetailTVCell
+        cell.status.text = self.orders[indexPath.row].status
+        cell.recordTime.text = self.orders[indexPath.row].fetch_date
+        cell.recordTime.text = DateTimeHelper.formToString(date: self.orders[indexPath.row].fetch_date , from: "dd日 HH時 mm分")
+        cell.name.text = self.orders[indexPath.row].order_detail.restaurant_name
+        cell.totalPayment.text = "$" + self.orders[indexPath.row].order_price
+        let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status!)
+        cell.status.textColor = status.get().color
+        cell.status.text = status.get().value
+        if self.orders.count - 1 == indexPath.row  && self.reqData.loadingMore {
+            self.loadData(refresh: false)
+        }
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.destination is RecordInfoDetailVC {
-            let vc = segue.destination as? RecordInfoDetailVC
-           // TODO DATA
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RecordInfoDetail") as? RecordInfoDetailVC {
+            vc.order = self.orders[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
+    override func show(_ vc: UIViewController, sender: Any?) {
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -76,11 +98,7 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //return storeName.count
-        return 10
-        
+        return self.orders.count
     }
     
-
 }

@@ -27,4 +27,14 @@ class NaberConstant {
     static let STORAGE_PATH_USER : String = "/user/"
     static let STORAGE_PATH_FOOD : String = "/restaurant/food/"
     
+    
+    
+    static let COLOR_BASIS = UIColor(red:0.93, green:0.89, blue:0.41, alpha:1.0)
+    static let COLOR_BASIS_BRIGHT_YELLOW = UIColor(red:1.00, green:0.94, blue:0.21, alpha:1.0)
+    static let COLOR_BASIS_RED = UIColor(red:0.92, green:0.13, blue:0.02, alpha:1.0)
+    static let COLOR_BASIS_BLUE = UIColor(red:0.11, green:0.64, blue:0.90, alpha:1.0)
+    static let COLOR_BASIS_BRIGHT_GREEN = UIColor(red:0.16, green:0.99, blue:0.18, alpha:1.0)
+    static let COLOR_BASIS_GREEN = UIColor(red:0.50, green:0.89, blue:0.22, alpha:1.0)
+    static let COLOR_BASIS_ORANGE = UIColor(red:0.94, green:0.44, blue:0.29, alpha:1.0)
+    static let COLOR_BASIS_PURPLE = UIColor(red:0.52, green:0.49, blue:0.76, alpha:1.0)
 }

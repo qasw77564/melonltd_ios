@@ -153,7 +153,7 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
 //            }
 
         case 2...:
-            cell.name?.text = self.foodItemVo.demands[indexPath.section - 2].datas[indexPath.row]?.name
+            cell.name?.text = self.foodItemVo.demands[indexPath.section - 2].datas[indexPath.row].name
             cell.price?.text = ""
             cell.tag = indexPath.row
             print(cell.isSelected)

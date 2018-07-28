@@ -33,11 +33,13 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             self.tableView.delegate = self
             let refreshControl: UIRefreshControl = UIRefreshControl()
             refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+//            refreshControl.addTarget(self, action:, for: .valueChanged)
             refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
             refreshControl.tintColor = UIColor.clear
             self.tableView.addSubview(refreshControl)
         }
     }
+
     
     @objc func refresh(sender: UIRefreshControl){
         sender.endRefreshing()

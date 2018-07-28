@@ -117,7 +117,7 @@ struct ItemVo : Codable {
 
 struct DemandsItemVo : Codable {
     var name : String!
-    var datas : [ItemVo?]! = []
+    var datas : [ItemVo]! = []
 
     public static func toJson(structs : DemandsItemVo) -> String {
         do {

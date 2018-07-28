@@ -33,18 +33,18 @@ class OrderResp : Codable {
 }
 
 class OrderVo : Codable {
-
-    var  order_uuid: String!
-    var  account_uuid: String!
-    var  user_message: String!
-    var  create_date: String!
-    var  update_date: String!
-    var  order_price: String!
-    var  order_bonus: String!
-    var  fetch_date: String!
+    var order_uuid: String!
+    var account_uuid: String!
+    var user_message: String!
+    var create_date: String!
+    var update_date: String!
+    var order_price: String!
+    var order_bonus: String!
+    var fetch_date: String!
     var order_data : String!
     var status : String!
     
+    var order_detail: OrderDetail!
 
     
     public static func toJson(structs : OrderVo) -> String {
@@ -68,7 +68,7 @@ class OrderVo : Codable {
 class OrderDetail : Codable {
     
     var restaurant_uuid : String!
-    var restaurant_name : String! = ""
+    var restaurant_name : String!
     var restaurant_address : String!
     var user_name : String!
     var user_phone : String!
@@ -76,7 +76,6 @@ class OrderDetail : Codable {
     var user_message : String!
     var orders : [OrderData]! = []
 
-    
     public static func toJson(structs : OrderDetail) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
@@ -96,9 +95,9 @@ class OrderDetail : Codable {
 
 
 class OrderData: Codable {
-    
-    var count: Int! = 0
+    var count: String!
     var category_uuid: String!
+
     var item: FoodItemVo!
     
     public static func toJson(structs : OrderData) -> String {
