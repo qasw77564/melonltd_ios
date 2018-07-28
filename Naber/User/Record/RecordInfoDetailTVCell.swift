@@ -10,11 +10,11 @@ import UIKit
 
 class RecordInfoDetailTVCell: UITableViewCell {
     
-    @IBOutlet var storeName: UILabel!
+    @IBOutlet var name: UILabel!
 //    @IBOutlet var time: UILabel!
     @IBOutlet var recordTime: UILabel!
     @IBOutlet var totalPayment: UILabel!
-    
+    @IBOutlet var status: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
