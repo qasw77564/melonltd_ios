@@ -41,7 +41,7 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.name.text = self.order.order_detail.restaurant_name
-        self.totalPayment.text = self.order.order_price
+        self.totalPayment.text = "$" + self.order.order_price
         self.orderTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "yyyy-MM-dd HH:mm")
         self.recordTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "yyyy-MM-dd HH:mm")
         self.address.text = self.order.order_detail.restaurant_address
@@ -49,13 +49,7 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
         self.bonus.text = self.order.order_bonus
         
     }
-    
-    
-//    override func viewDidLayoutSubviews() {
-//        print("")
-//        self.tableView.reloadData()
-//    }
-//
+
     // MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -64,7 +58,6 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RecordInfoOrderTVCell
-//        cell.orderDatas.text = FoodItemVo.toJson(structs: )
         let item: FoodItemVo = order.order_detail.orders[indexPath.row].item
         var datas: String = ""
         cell.name.text = item.food_name
@@ -77,7 +70,7 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
             }
             datas += "\n"
         } else {
-            datas += "預設, "
+            datas += "統一規格, "
             datas += "\n"
         }
 
@@ -99,7 +92,7 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 datas += "\n"
             }
-        }        
+        }
     
         cell.orderDatas.text = datas
         return cell
@@ -116,6 +109,4 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }

@@ -61,7 +61,7 @@ class FoodVo : Codable {
 }
 
 
-struct FoodItemVo: Codable {
+class FoodItemVo: Codable {
     var food_uuid: String!
     var category_name: String!
     var food_name: String!
@@ -92,10 +92,39 @@ struct FoodItemVo: Codable {
 }
 
 
-struct ItemVo : Codable {
+class ItemVo : Codable {
     var name : String!
     var price : String!
-
+    var tag: Int!
+    
+    init(name : String!, price : String!, tag: Int!) {
+        self.name = name
+        self.price = price
+        self.tag = tag
+    }
+    
+    public func equal (item: ItemVo) -> Bool {
+        var result: Bool = true
+        if item.name != self.name || item.price != self.price {
+            result = false
+        }
+        if item.tag != self.tag {
+            result = false
+        }
+        return result
+    }
+    
+//
+//    public func contains(array: [ItemVo], item: ItemVo){
+//        var index: Int!
+//        for i in 0..<array.count {
+//            if array[i].equal(item: item) {
+//                index = i
+//            }
+//        }
+//        array.remove(at: index)
+//    }
+    
     public static func toJson(structs : ItemVo) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
@@ -115,10 +144,13 @@ struct ItemVo : Codable {
 
 
 
-struct DemandsItemVo : Codable {
+class DemandsItemVo : Codable {
     var name : String!
     var datas : [ItemVo]! = []
 
+    init(name : String!) {
+        self.name = name
+    }
     public static func toJson(structs : DemandsItemVo) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!

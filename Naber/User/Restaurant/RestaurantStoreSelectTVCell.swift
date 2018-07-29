@@ -13,6 +13,8 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var radioButton: UIButton!
+    var item: ItemVo!
+    
     
     override var frame: CGRect {
         didSet {
@@ -23,32 +25,34 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
         }
     }
     
+    
+    func cellWillAppear() {
+        self.name.text = self.item.name
+        self.price.text = self.item.price
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         let color: UIColor = UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1)
         self.contentView.layer.addBorder(edge: UIRectEdge.left, color: color, thickness: 0.5)
         self.contentView.layer.addBorder(edge: UIRectEdge.right, color: color, thickness: 0.5)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func triggerRadioStatus (){
-        if (radioButton.currentImage?.isEqual(UIImage(named: "radioSelect")))! {
-            radioButton.setImage( UIImage(named: "radioNoSelect"), for: .normal)
-        }else{
-            radioButton.setImage(UIImage(named: "radioSelect") , for: .normal)
-        }
+
+    func triggerRadioStatus (_ selected: Bool){
+        self.radioButton.isSelected = selected
+        self.radioButton.setImage(UIImage(named: self.radioButton.isSelected ? "radioSelect" : "radioNoSelect"), for: .normal)
     }
     
     @IBAction func selectedRadio(_ sender: UIButton) {
-        if (sender.currentImage?.isEqual(UIImage(named: "radioSelect")))! {
-            sender.setImage(UIImage(named: "radioNoSelect"), for: .normal)
-        }else{
-            sender.setImage(UIImage(named: "radioSelect"), for: .normal)
-        }
+        
+        print(self.superview)
+        self.triggerRadioStatus(sender.isSelected)
     }
 
 }
