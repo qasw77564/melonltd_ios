@@ -180,6 +180,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreItem") as! RestaurantStoreItemVC
         vc.categoryRel = self.categoryList[indexPath.row]
+        vc.restaurantInfo = self.restaurantInfo
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

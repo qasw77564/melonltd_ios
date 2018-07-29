@@ -14,6 +14,7 @@ class UserSstorage {
     static let LONGIN_TIME: String = "LONGIN_TIME"
     static let ACCOUNT_INFO: String = "ACCOUNT_INFO"
     static let REMEMBER_ME: String = "REMEMBER_ME"
+    static let SHOPPING_CART: String = "SHOPPING_CART"
 
     
     // 登入成功記錄登入時間
@@ -22,10 +23,11 @@ class UserSstorage {
     }
     
     static func getLoginTime() -> Int {
-        if let time = getValue(forKey: LONGIN_TIME) {
-            return time as? Int ?? 0
+        if let time = getValue(forKey: LONGIN_TIME) as? Int {
+            return time
+        } else {
+            return 0
         }
-        return 0
     }
     
     // 登入成功記錄登入者資訊
@@ -34,18 +36,20 @@ class UserSstorage {
     }
     
     static func getAccount() -> AccountInfoVo? {
-        if let account = getValue(forKey: ACCOUNT_INFO) {
-            return AccountInfoVo.parse(src: account as! String)
+        if let account = getValue(forKey: ACCOUNT_INFO) as? String  {
+            return AccountInfoVo.parse(src: account)
+        }else {
+            return nil
         }
-        return nil
-//        return AccountInfoVo.parse(src: getValue(forKey: ACCOUNT_INFO) as! String) ?? nil
     }
     
+    // 取得使用者認證
     static func getAutho() -> String {
         if let account = getAccount() {
-            return account.account_uuid
+            return account.account_uuid ?? ""
+        }else {
+            return ""
         }
-        return ""
     }
     
     // 記住帳號
@@ -54,45 +58,51 @@ class UserSstorage {
     }
     
     static func getRememberMe() -> Bool {
-        if let remember = getValue(forKey: REMEMBER_ME) {
-            return remember as? Bool ?? false
+        if let remember = getValue(forKey: REMEMBER_ME) as? Bool {
+            return remember
+        } else {
+            return false
         }
-        return false
     }
 
     // 使用者夠處車清單
+    public static var setShoppingCartDatas = { (datas : [OrderDetail]) in
+        let json: String = OrderDetail.toJsonArray(structs: datas)
+        UserDefaults.standard.setValue(json, forKey: SHOPPING_CART)
+    }
     
-    
-    
+    public static func getShoppingCartDatas() -> [OrderDetail] {
+        if let remember = getValue(forKey: SHOPPING_CART) as? String {
+            let datas: [OrderDetail] = OrderDetail.parseArray(src: remember)!
+            return datas
+        } else {
+            return []
+        }
+    }
     
     private static func getValue(forKey: String)-> Any? {
         printRepresentation()
         if let any : Any = UserDefaults.standard.value(forKey: forKey) {
             return any
+        } else {
+            return nil
         }
-        return nil
-//        let any : Any? = UserDefaults.standard.value(forKey: forKey)
-//        print(any)
-//
-//        return UserDefaults.standard.value(forKey: forKey) as? Any
     }
 
 
     // 清除
     static func clearUserData() {
-        let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO]
+        let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART]
         let remember: Bool = getRememberMe()
-        
         keys.forEach { key in
             UserDefaults.standard.removeObject(forKey: key)
         }
-        
         setRememberMe(remember)
     }
     
     
     static func printRepresentation() {
-        let map : [String : Any] = UserDefaults.standard.dictionaryWithValues(forKeys: [LONGIN_TIME, ACCOUNT_INFO])
+        let map : [String : Any] = UserDefaults.standard.dictionaryWithValues(forKeys: [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART])
 //        print(map)
     }
    

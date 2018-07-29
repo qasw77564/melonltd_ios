@@ -11,6 +11,7 @@ import UIKit
 class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var categoryRel : RestaurantCategoryRelVo!
+    var restaurantInfo : RestaurantInfoVo!
     var foodList: [FoodVo?] = []
     
     @IBOutlet weak var categoryName: UILabel!
@@ -88,6 +89,8 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.foodList[indexPath.row] = food
             vc.food = self.foodList[indexPath.row]
+            vc.restaurantInfo = self.restaurantInfo
+            vc.categoryRel = self.categoryRel
             self.navigationController?.pushViewController(vc, animated: true)            
         }) { err_msg in
             print(err_msg)

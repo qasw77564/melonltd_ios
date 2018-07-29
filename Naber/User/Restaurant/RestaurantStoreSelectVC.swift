@@ -19,6 +19,8 @@ class RestaurantStoreSelectVC: UIViewController {
 
     var food: FoodVo!
     var itemVo: FoodItemVo!
+    var restaurantInfo: RestaurantInfoVo!
+    var categoryRel: RestaurantCategoryRelVo!
     
     @IBOutlet weak var orderTotal: UILabel!
     @IBOutlet weak var orderNumber: UILabel!
@@ -54,6 +56,47 @@ class RestaurantStoreSelectVC: UIViewController {
         let message: UILabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel
         message.textAlignment = .left
         
+        // 取出儲存購物車資料
+        var shoppingCartDatas = UserSstorage.getShoppingCartDatas()
+
+        let order: OrderData = OrderData()
+        order.item = self.itemVo
+        order.count = self.orderNumber.text
+        order.category_uuid = self.food.category_uuid
+        
+        order.item.category_name = self.categoryRel.category_name
+        order.item.food_uuid = self.food.food_uuid
+        order.item.food_name = self.food.food_name
+        order.item.price = self.orderTotal.text
+        order.item.food_photo = self.food.photo
+        
+        let account = UserSstorage.getAccount()
+        var has: Bool = false;
+        
+        for o in shoppingCartDatas {
+            if self.restaurantInfo.restaurant_uuid == o.restaurant_uuid {
+                o.restaurant_name = self.restaurantInfo.name
+                o.restaurant_address = self.restaurantInfo.address
+                o.user_name = account?.name
+                o.user_phone = account?.phone
+                o.orders.insert(order, at: 0)
+                has = true
+            }
+        }
+        
+        if !has {
+            let detail: OrderDetail = OrderDetail()
+            detail.restaurant_uuid = self.restaurantInfo.restaurant_uuid
+            detail.restaurant_name = self.restaurantInfo.name
+            detail.restaurant_address = self.restaurantInfo.address
+            detail.user_name = account?.name
+            detail.user_phone = account?.phone
+            detail.orders.insert(order, at: 0)
+            shoppingCartDatas.insert(detail, at: 0)
+        }
+        
+        UserSstorage.setShoppingCartDatas(shoppingCartDatas)
+ 
         alert.addAction(UIAlertAction(title: "前往購物車", style: .default){ _ in
             print("前往購物車")
             // 使用 tabbar 控制到 購物車頁面

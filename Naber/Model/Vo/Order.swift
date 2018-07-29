@@ -84,9 +84,25 @@ class OrderDetail : Codable {
         }
     }
     
+    public static func toJsonArray(structs : [OrderDetail]) -> String {
+        do {
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+        } catch {
+            return ""
+        }
+    }
+    
     public static func parse(src : String) -> OrderDetail? {
         do {
             return try JSONDecoder().decode(OrderDetail.self, from: src.data(using:.utf8)!)
+        }catch {
+            return nil
+        }
+    }
+    
+    public static func parseArray(src : String) -> [OrderDetail]? {
+        do {
+            return try JSONDecoder().decode([OrderDetail].self, from: src.data(using:.utf8)!)
         }catch {
             return nil
         }
