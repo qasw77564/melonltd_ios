@@ -36,35 +36,37 @@ class BaseVC: UIViewController{
     
     // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
     override func viewDidAppear(_ animated: Bool) {
-        
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
-//            self.present(vc, animated: false, completion: nil)
-//        }
-        let now: Int = Int(Date().timeIntervalSince1970 * 1000)
-        if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
-            let account: AccountInfoVo? = UserSstorage.getAccount()
-            if USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
-//                BaseVC.getBulletin(ui: self)
-                // 已登入使用者
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
-                    present(vc, animated: false, completion: nil)
-                }
-            } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
-                // 已登入過商家
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
-                    self.present(vc, animated: false, completion: nil)
+
+        let alert = UIAlertController(title: "每次開啟APP廣告", message: "公告內容！！！", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "開始使用", style: .default){ _ in
+            let now: Int = Int(Date().timeIntervalSince1970 * 1000)
+            if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
+                let account: AccountInfoVo? = UserSstorage.getAccount()
+                if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
+                    //                BaseVC.getBulletin(ui: self)
+                    // 已登入使用者
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+                        self.present(vc, animated: false, completion: nil)
+                    }
+                } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
+                    // 已登入過商家
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
+                        self.present(vc, animated: false, completion: nil)
+                    }
+                } else {
+                    UserSstorage.clearUserData()
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                        self.present(vc, animated: false, completion: nil)
+                    }
                 }
             } else {
-                UserSstorage.clearUserData()
                 if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                     self.present(vc, animated: false, completion: nil)
                 }
             }
-        } else {
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
-                self.present(vc, animated: false, completion: nil)
-            }
-        }
+        })
+        self.present(alert, animated: false)
+        
     }
 
     

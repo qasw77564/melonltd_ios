@@ -29,6 +29,52 @@ class RestaurantStoreSelectVC: UIViewController {
         calculatMoney()
     }
     
+    @IBAction func addToShoppingCart(_ sender: UIButton) {
+        var msg: String  = "規格："
+        msg += self.itemVo.scopes[0].name + "\n"
+        
+        self.itemVo.demands.forEach{ demand in
+            msg += demand.name + ": "
+            msg += demand.datas[0].name + "\n"
+        }
+        
+        if !self.itemVo.opts.isEmpty {
+            msg += "追加項目："
+            self.itemVo.opts.forEach{ opt in
+                msg += opt.name + ","
+            }
+            msg += "\n"
+        }
+
+        msg += "數量：" + self.orderNumber.text! + "\n"
+        msg += "金額：" + self.orderTotal.text! + "\n"
+        msg += "品項內容以規格為主！";
+        
+        let alert = UIAlertController(title: "已成功加入購物車", message: msg , preferredStyle: .alert)
+        let message: UILabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel
+        message.textAlignment = .left
+        
+        alert.addAction(UIAlertAction(title: "前往購物車", style: .default){ _ in
+            print("前往購物車")
+            // 使用 tabbar 控制到 購物車頁面
+            // 並把當前頁面返回
+            self.tabBarController?.selectedIndex = 2
+            self.navigationController?.popToRootViewController(animated: false)
+        })
+        
+        alert.addAction(UIAlertAction(title: "繼續購物", style: .default){ _ in
+            print("繼續購物")
+            // 反回上兩層定義
+            // vcs = Main餐館列表 or Main首頁 >> 餐館細節（種類列表）>> 品項列表 >> 品項細節
+            // vcs.count == 4
+            // back to index 2 餐館細節（種類列表）
+            // pop to vcs.count[ vcs.count - 3 ]
+            self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 3])!, animated: true)
+        })
+        self.present(alert, animated: false)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.orderTotal.text = "0"
@@ -207,10 +253,6 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         selectMoney = selectMoney * number
-        
-        self.itemVo.opts.forEach { opt in
-            print(opt.name + "::" + opt.price)
-        }
         self.orderTotal.text = String(selectMoney)
     }
 }

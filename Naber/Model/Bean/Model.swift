@@ -22,6 +22,8 @@ class Model {
     public static var ALL_BULLETINS : [String: String] = [:]
     public static var NABER_BULLETINS : [String] = []
     
+    public static var USER_CACHE_SHOPPING_CART : [OrderDetail] = []
+    
 //    public static var HONE_ADIMAGES : [UIImageView] = []
     
 }

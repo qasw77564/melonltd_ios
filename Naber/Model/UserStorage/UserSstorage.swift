@@ -48,6 +48,7 @@ class UserSstorage {
         return ""
     }
     
+    // 記住帳號
     public static var setRememberMe = { (isRemember: Bool)  in
         UserDefaults.standard.setValue(isRemember, forKey: REMEMBER_ME)
     }
@@ -59,6 +60,8 @@ class UserSstorage {
         return false
     }
 
+    // 使用者夠處車清單
+    
     
     
     

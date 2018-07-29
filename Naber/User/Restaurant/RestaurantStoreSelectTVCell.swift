@@ -50,8 +50,6 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
     }
     
     @IBAction func selectedRadio(_ sender: UIButton) {
-        
-        print(self.superview)
         self.triggerRadioStatus(sender.isSelected)
     }
 
