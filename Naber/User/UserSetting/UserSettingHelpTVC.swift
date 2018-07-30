@@ -10,31 +10,21 @@ import UIKit
 
 class UserSettingHelpTVC: UITableViewController {
 
-//    @IBOutlet weak var CommonQuestion: UIView!
-//    @IBOutlet weak var CommonQuestionTwo: UIView!
-//    @IBOutlet weak var CommonQuestionText: UITextView!
-//    @IBOutlet weak var CommonQuestionTwoText: UITextView!
+    @IBOutlet weak var contactUsText: UILabel!
+    @IBOutlet weak var faqText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        CommonQuestion.layer.borderWidth = 1.0
-//        CommonQuestion.layer.borderColor = UIColor.lightGray.cgColor
+//        let s1: String = Model.ALL_BULLETINS["FAQ"]!
+//        let text1: String = StringsHelper.replace(str: s1, of: "/n", with: "$split")
+//        self.text1.text = text1
 //
-//        CommonQuestionTwo.layer.borderWidth = 1.0
-//        CommonQuestionTwo.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        CommonQuestionText.layer.borderWidth = 1.0
-//        CommonQuestionText.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        CommonQuestionTwoText.layer.borderWidth = 1.0
-//        CommonQuestionTwoText.layer.borderColor = UIColor.lightGray.cgColor
+//        let s2: String = Model.ALL_BULLETINS["FAQ"]!
+//        let text2: String = StringsHelper.replace(str: s2, of: "/n", with: "$split")
+//        self.text2.text = text2
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    
-
 }

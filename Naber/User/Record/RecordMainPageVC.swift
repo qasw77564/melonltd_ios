@@ -80,17 +80,19 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RecordInfoDetail") as? RecordInfoDetailVC {
+        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(3: "RecordInfoDetail") as? RecordInfoDetailVC {
             vc.order = self.orders[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    override func show(_ vc: UIViewController, sender: Any?) {
-    }
+//    override func show(_ vc: UIViewController, sender: Any?) {
+//        super.show(vc, sender: sender)
+//    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+//        super.prepare(for: segue, sender: sender)
+//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

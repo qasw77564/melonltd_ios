@@ -10,10 +10,8 @@ import UIKit
 
 class UserSettingAboutUsTVC: UITableViewController {
 
-//    @IBOutlet weak var AboutUsTitleView: UIView!
-//    @IBOutlet weak var BecomeStoreTitleView: UIView!
-//    @IBOutlet weak var AboutUsText: UITextView!
-//    @IBOutlet weak var BecomeStoreText: UITextView!
+    @IBOutlet weak var AboutUsText: UILabel!
+    @IBOutlet weak var ApplyOfSellerText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
