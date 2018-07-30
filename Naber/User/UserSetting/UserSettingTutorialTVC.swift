@@ -9,18 +9,12 @@
 import UIKit
 
 class UserSettingTutorialTVC: UITableViewController {
-//    @IBOutlet weak var OrderStepTitleView: UIView!
-//    @IBOutlet weak var OrderStepText: UITextView!
+
+    @IBOutlet weak var teachingText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        OrderStepTitleView.layer.borderWidth = 1.0
-//        OrderStepTitleView.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        OrderStepText.layer.borderWidth = 1.0
-//        OrderStepText.layer.borderColor = UIColor.lightGray.cgColor
-       
     }
 
     override func didReceiveMemoryWarning() {

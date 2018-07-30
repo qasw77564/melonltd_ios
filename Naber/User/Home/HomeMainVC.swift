@@ -135,8 +135,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RestaurantTVCell
         
         cell.name.text = Model.TOP_RESTAURANT_LIST[indexPath.row].name
         cell.address.text = Model.TOP_RESTAURANT_LIST[indexPath.row].address
@@ -189,11 +188,6 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
             vc.pageType = .HOME
             self.navigationController?.pushViewController(vc, animated: true)
         }
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
-//        vc.restaurantIndex = indexPath.row
-//        vc.pageType = .HOME
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 

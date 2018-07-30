@@ -50,7 +50,11 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
     }
     
     @IBAction func selectedRadio(_ sender: UIButton) {
-        self.triggerRadioStatus(sender.isSelected)
+        let indexPath = IndexPath(row: self.item.tag, section: sender.tag);
+        if let tableView = self.superview as? UITableView {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
+//        self.triggerRadioStatus(sender.isSelected)
     }
 
 }

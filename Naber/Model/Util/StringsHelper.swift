@@ -18,7 +18,7 @@ class StringsHelper {
     }
     
     // 分割文字產出陣列
-    static func splitToArray(str: String, of: String) -> [String]{
+    static func splitToArray(str: String, of: String) -> [String] {
         return str.components(separatedBy: of)
     }
     

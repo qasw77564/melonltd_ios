@@ -13,9 +13,9 @@ import Foundation
 class ApiUrl{   
     
 //    public static var DOMAIN : String = "http://192.168.2.100/"
-    public static var DOMAIN : String = "http://192.168.31.14:8080/melonltd-ap"
+//    public static var DOMAIN : String = "http://192.168.31.14:8080/melonltd-ap"
 //    public static var DOMAIN : String = "https://ap.melonltd.com.tw"
-//    public static var DOMAIN : String = "http://naber.ddns.net/ap"
+    public static var DOMAIN : String = "http://naber.ddns.net"
     public static var LOGIN : String = DOMAIN + "/login";
     public static var LOGOUT : String = DOMAIN + "/logout";
     public static var GET_SMS_CODE : String = DOMAIN + "/sms/get/code";
