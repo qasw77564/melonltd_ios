@@ -61,8 +61,8 @@ class RegisterUserDetailVC: UIViewController {
     
 //    @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var pickerViewTextField : UITextField!
-    @IBOutlet weak var PasswordField: UITextField!
-    @IBOutlet weak var PasswordCKField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var passwordCKField: UITextField!
     @IBOutlet weak var register_name : UITextField!
     private var customerIdentifyDataPicker: UIPickerView!{
         didSet {
@@ -104,15 +104,7 @@ class RegisterUserDetailVC: UIViewController {
             return accessoryToolbar
         }
     }
-//    {
-//    "password": "a123456",
-//    "name": "seller test",
-//    "email": "evan.wang@melonltd.com.tw",
-//    "phone": "0928297071",
-//    "address": "桃園市平鎮區文化街217號",
-//    "birth_day": "1988/04/06",
-//    "identity": ""
-//    }
+
     var toolbar: UIToolbar!
 
     override func viewDidLoad() {
@@ -124,89 +116,6 @@ class RegisterUserDetailVC: UIViewController {
         
         setupUI()
     }
-//    private func verifyInput() -> String{
-//        if(register_name.text != nil){
-//
-//        }else {
-//
-//        }
-//    }
-    
-    
-//    private func verifyInput () -> String {
-//        var msg: String = ""
-//        if self.account_text.text == "" {
-//            msg = "請輸入帳號"
-//        }
-//        if self.password_text.text == "" {
-//            msg = "請輸入密碼"
-//        }
-//        if msg != "" {
-//            let alert = UIAlertController(title: "系統提示", message: msg, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "取消", style: .default))
-//            self.present(alert, animated: false)
-//        }
-//        return msg
-//    }
-
-//    private boolean verifyInput() {
-//    boolean result = true;
-//    String message = "";
-//    // 驗證身份不為空
-//    if (Strings.isNullOrEmpty(identityText.getText().toString())) {
-//    message = "驗證身份不為空";
-//    result = false;
-//    }
-//    // 驗證姓名不為空
-//    if (Strings.isNullOrEmpty(nameEditText.getText().toString())) {
-//    message = "姓名不為空";
-//    result = false;
-//    }
-//    // 驗證姓名長度大於二
-//    if (nameEditText.getText().toString().length() <= 1 || nameEditText.getText().toString().length() >= 5) {
-//    message = "姓名格式不正確";
-//    result = false;
-//    }
-//    // 驗證Email不為空
-//    //        if (Strings.isNullOrEmpty(emailEditText.getText().toString())) {
-//    //            message = "Email不為空";
-//    //            result = false;
-//    //        }
-//    // 驗證Email錯誤格式
-//    //        if (!VerifyUtil.email(emailEditText.getText().toString())) {
-//    //            message = "Email錯誤格式";
-//    //            result = false;
-//    //        }
-//    // 驗證密碼不為空 並需要英文大小寫數字 6 ~ 20
-//    if (!VerifyUtil.password(passwordEditText.getText().toString())) {
-//    message = "密碼不為空 並需要英文大小寫數字 6 ~ 20";
-//    result = false;
-//    }
-//    // 驗證密碼與確認密碼一致
-//    if (!passwordEditText.getText().toString().equals(confirmPasswordEditText.getText().toString())) {
-//    message = "密碼與確認密碼一致";
-//    result = false;
-//    }
-//    // 驗證生日不為空
-//    //        if (Strings.isNullOrEmpty(birthdayText.getText().toString())) {
-//    //            message = "生日不為空";
-//    //            result = false;
-//    //        }
-//    if (!result) {
-//    new AlertView.Builder()
-//    .setTitle("")
-//    .setMessage(message)
-//    .setContext(getContext())
-//    .setStyle(AlertView.Style.Alert)
-//    .setCancelText("取消")
-//    .build()
-//    .setCancelable(true)
-//    .show();
-//    }
-//
-//    return result;
-//    }
-    
     func setupUI(){
 //        datePickerTextField.inputView = datePicker
 //        datePickerTextField.inputAccessoryView = accessoryToolbar
@@ -264,16 +173,45 @@ class RegisterUserDetailVC: UIViewController {
     
     @IBAction func sendToSeverForRegisterUser(_ sender: Any) {
         //TODO:ASK SERVER
-        let alert = UIAlertController(title: "", message: "確定要送出嗎？",   preferredStyle: .alert)
-        let actionTaken = UIAlertAction(title: "確認", style: .default) { (hand) in
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationVC = storyBoard.instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC
-            self.present(destinationVC!, animated: false, completion: nil)
+   
+        if verifyInput() {
+
+            let account: AccountInfoVo = AccountInfoVo()
+            account.name = self.register_name.text
+            account.password = self.passwordField.text
+            
+            if NaberConstant.IS_DEBUG{
+                account.phone = "091234567"
+            } else {
+                account.phone = self.phone
+            }
+            account.level = "USER"
+            account.identity = Identity.toEnum(name: self.key).rawValue
+            account.school_name = self.value
+            
+            ApiManager.userRegistered(structs: account, ui: self, onSuccess: {
+                print("OK")
+                let alert = UIAlertController(title: "", message: "完成註冊，\n歡迎加入NABER！" , preferredStyle: .alert)
+                alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in
+                    // to login page
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                        self.present(vc, animated: false, completion: nil)
+                    }
+                }))
+                self.present(alert, animated: false)
+                
+                
+            }) { err_msg in
+                let alert = UIAlertController(title: "", message: err_msg , preferredStyle: .alert)
+                alert.addAction(UIAlertAction.init(title: "cancel", style: .cancel, handler: { _ in
+                    print("error")
+                }))
+                self.present(alert, animated: false)
+            }
+            
+            
         }
-        alert.addAction(actionTaken)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        self.present(alert, animated: false) {}
-        
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -282,8 +220,47 @@ class RegisterUserDetailVC: UIViewController {
     }
     
     
-    
+    func verifyInput() -> Bool {
+        
+        var msg: String = ""
+
+        if self.pickerViewTextField.text == "" {
+            msg = "驗證身份不可為空"
+        }
+        //name no nil
+        if self.register_name.text == "" {
+            msg = "姓名不可為空"
+        }
+        //name == 2~5 count
+        if !ValidateHelper.validateName(withChinese: self.register_name.text!) {
+            msg = "姓名格式不正確長度為2~5"
+        }
+        //password
+        if !ValidateHelper.validatePass(withPass: self.passwordField.text!){
+            msg = "密碼介於6~20個之間"
+        }
+
+        //password check
+        if self.passwordCKField.text == self.passwordField.text{
+            msg = "請確定密碼與確認密碼一致"
+        }
+
+
+
+        if msg != "" {
+            msg = "請輸入資料"
+            let alert = UIAlertController(title: "", message: msg,   preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "關閉", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+        }
+
+
+        return msg == ""
+    }
+
 }
+
+
 //身份選擇
 // MARK: - UIPickerView Methods
 extension RegisterUserDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -335,5 +312,9 @@ extension RegisterUserDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
         self.pickerViewTextField.text =  self.key + ", " + self.value
     }
     
+    // 鍵盤點擊背景縮放
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
 }

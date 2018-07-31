@@ -68,6 +68,29 @@ class ValidateHelper {
         return !number.isEmpty && number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
+//    func isChinese(withChinese chinese: String) -> Bool {
+//        let registerChineseExpression = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,50}"
+//        let registerChineseNSPredicate = NSPredicate(format: "", registerChineseExpression)
+//        return registerChineseNSPredicate.evaluate(with: chinese)
+//    }
+    
+    
+    static func validateName(withChinese chinese: String) -> Bool {
+        
+        if chinese == nil || chinese == "" {
+            return false
+        }
+        let expression = "{2,5}$"
+        let cellNamePredicate = NSPredicate(format:"SELF MATCHES %@", expression)
+        return cellNamePredicate.evaluate(with: chinese)
+    }
+    
+    static func validatePass(withPass pass: String) -> Bool {
+        let passExpression = "^(?=.*[a-zA-Z]+)(?=.*\\d+)[a-zA-Z0-9]{6,20}$"
+        let passPredicate = NSPredicate(format:"SELF MATCHES %@", passExpression)
+        return passPredicate.evaluate(with: pass)
+    }
+    
     /// 依傳入的日期格式驗證是否合法的日期格式
     ///
     /// - Parameter strFormat: 日期格式

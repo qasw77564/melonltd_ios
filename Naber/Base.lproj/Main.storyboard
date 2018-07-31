@@ -521,7 +521,10 @@
                         <viewLayoutGuide key="safeArea" id="EtH-ND-Kgg"/>
                     </view>
                     <connections>
+                        <outlet property="passwordCKField" destination="hf4-ZJ-gCH" id="kpy-BU-0ke"/>
+                        <outlet property="passwordField" destination="gUF-UX-nhy" id="Bof-I7-xCt"/>
                         <outlet property="pickerViewTextField" destination="ZGw-DW-wxJ" id="NIB-Pc-l2b"/>
+                        <outlet property="register_name" destination="mLm-Ij-zMr" id="PGU-as-drj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OxF-BT-Xpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
