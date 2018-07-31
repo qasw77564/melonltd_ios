@@ -14,7 +14,7 @@ class UserSettingTutorialTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.teachingText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["TEACHING"]!, of: "$split", with: "\n" )
     }
 
     override func didReceiveMemoryWarning() {

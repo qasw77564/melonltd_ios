@@ -15,7 +15,14 @@ class UserSettingAboutUsTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.AboutUsText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["ABOUT_US"]!, of: "$split", with: "\n" )
+        
+        self.ApplyOfSellerText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["APPLY_OF_SELLER"]!,of: "$split", with: "\n" )
+        
+//        let Version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
+//        print(" 当前版本号为：\(Version)")
+    }
+        
 //        AboutUsTitleView.layer.borderWidth = 1.0
 //        AboutUsTitleView.layer.borderColor = UIColor.lightGray.cgColor
 //
@@ -31,10 +38,10 @@ class UserSettingAboutUsTVC: UITableViewController {
     }
     
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+//    }
 
 
-}
+

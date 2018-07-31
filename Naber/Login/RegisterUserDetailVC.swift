@@ -22,7 +22,10 @@ extension Date {
 
 class RegisterUserDetailVC: UIViewController {
     var phone: String! = Optional.none
-
+    var key: String = ""
+    var value: String = ""
+    
+    
     var datePicker: UIDatePicker {
         get {
             let datePicker = UIDatePicker()
@@ -58,9 +61,16 @@ class RegisterUserDetailVC: UIViewController {
     
 //    @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var pickerViewTextField : UITextField!
-    private var customerIdentifyDataPicker: UIPickerView!
+    @IBOutlet weak var PasswordField: UITextField!
+    @IBOutlet weak var PasswordCKField: UITextField!
+    @IBOutlet weak var register_name : UITextField!
+    private var customerIdentifyDataPicker: UIPickerView!{
+        didSet {
+        
+        }
+    }
     
-    var oldIdentityText : String?
+//    var oldIdentityText : String?
     var oldBirthDateText : String?
     var pickerView: UIPickerView {
         get {
@@ -94,23 +104,108 @@ class RegisterUserDetailVC: UIViewController {
             return accessoryToolbar
         }
     }
-    
+//    {
+//    "password": "a123456",
+//    "name": "seller test",
+//    "email": "evan.wang@melonltd.com.tw",
+//    "phone": "0928297071",
+//    "address": "桃園市平鎮區文化街217號",
+//    "birth_day": "1988/04/06",
+//    "identity": ""
+//    }
     var toolbar: UIToolbar!
-    
-    let cubesToWorkWith = ["小學生", "國中生","高中生","大學/大專院校生","社會人士"]
-    let juniorHighSchool = ["國中一","國中二","國中三","國中四","國中五"]
-    let seniorHighSchool = ["高中一","高中二","高中三","高中四"]
-    let colloge = ["大學一","大學二","大學三","大學四"]
-    var lastSelectedCube = 0
-    
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
+        self.key = Array(NaberConstant.IDENTITY_OPTS_TEMP)[0].key
+        self.value = NaberConstant.IDENTITY_OPTS_TEMP[key]![0]
+        self.pickerViewTextField.text =  self.key + ", " + self.value
+        
         setupUI()
-        
-        
     }
+//    private func verifyInput() -> String{
+//        if(register_name.text != nil){
+//
+//        }else {
+//
+//        }
+//    }
+    
+    
+//    private func verifyInput () -> String {
+//        var msg: String = ""
+//        if self.account_text.text == "" {
+//            msg = "請輸入帳號"
+//        }
+//        if self.password_text.text == "" {
+//            msg = "請輸入密碼"
+//        }
+//        if msg != "" {
+//            let alert = UIAlertController(title: "系統提示", message: msg, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "取消", style: .default))
+//            self.present(alert, animated: false)
+//        }
+//        return msg
+//    }
+
+//    private boolean verifyInput() {
+//    boolean result = true;
+//    String message = "";
+//    // 驗證身份不為空
+//    if (Strings.isNullOrEmpty(identityText.getText().toString())) {
+//    message = "驗證身份不為空";
+//    result = false;
+//    }
+//    // 驗證姓名不為空
+//    if (Strings.isNullOrEmpty(nameEditText.getText().toString())) {
+//    message = "姓名不為空";
+//    result = false;
+//    }
+//    // 驗證姓名長度大於二
+//    if (nameEditText.getText().toString().length() <= 1 || nameEditText.getText().toString().length() >= 5) {
+//    message = "姓名格式不正確";
+//    result = false;
+//    }
+//    // 驗證Email不為空
+//    //        if (Strings.isNullOrEmpty(emailEditText.getText().toString())) {
+//    //            message = "Email不為空";
+//    //            result = false;
+//    //        }
+//    // 驗證Email錯誤格式
+//    //        if (!VerifyUtil.email(emailEditText.getText().toString())) {
+//    //            message = "Email錯誤格式";
+//    //            result = false;
+//    //        }
+//    // 驗證密碼不為空 並需要英文大小寫數字 6 ~ 20
+//    if (!VerifyUtil.password(passwordEditText.getText().toString())) {
+//    message = "密碼不為空 並需要英文大小寫數字 6 ~ 20";
+//    result = false;
+//    }
+//    // 驗證密碼與確認密碼一致
+//    if (!passwordEditText.getText().toString().equals(confirmPasswordEditText.getText().toString())) {
+//    message = "密碼與確認密碼一致";
+//    result = false;
+//    }
+//    // 驗證生日不為空
+//    //        if (Strings.isNullOrEmpty(birthdayText.getText().toString())) {
+//    //            message = "生日不為空";
+//    //            result = false;
+//    //        }
+//    if (!result) {
+//    new AlertView.Builder()
+//    .setTitle("")
+//    .setMessage(message)
+//    .setContext(getContext())
+//    .setStyle(AlertView.Style.Alert)
+//    .setCancelText("取消")
+//    .build()
+//    .setCancelable(true)
+//    .show();
+//    }
+//
+//    return result;
+//    }
     
     func setupUI(){
 //        datePickerTextField.inputView = datePicker
@@ -134,10 +229,10 @@ class RegisterUserDetailVC: UIViewController {
 //            datePickerTextField.resignFirstResponder()
 //        }
         
-        if pickerViewTextField.isFirstResponder {
-            oldIdentityText = pickerViewTextField.text
-            pickerViewTextField.resignFirstResponder()
-        }
+//        if pickerViewTextField.isFirstResponder {
+//            oldIdentityText = pickerViewTextField.text
+//            pickerViewTextField.resignFirstResponder()
+//        }
     }
     
     @objc func onCancelButtonTapped(sender: UIBarButtonItem) {
@@ -146,10 +241,10 @@ class RegisterUserDetailVC: UIViewController {
 //            datePickerTextField.text = oldBirthDateText
 //        }
         
-        if pickerViewTextField.isFirstResponder {
-            pickerViewTextField.text = oldIdentityText
-            pickerViewTextField.resignFirstResponder()
-        }
+//        if pickerViewTextField.isFirstResponder {
+//            pickerViewTextField.text = oldIdentityText
+//            pickerViewTextField.resignFirstResponder()
+//        }
         
     }
     
@@ -189,7 +284,7 @@ class RegisterUserDetailVC: UIViewController {
     
     
 }
-
+//身份選擇
 // MARK: - UIPickerView Methods
 extension RegisterUserDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -197,61 +292,47 @@ extension RegisterUserDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return 2
     }
     
-    
+    // 身份類型
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         if component == 0 {
-            return cubesToWorkWith.count
+            return NaberConstant.IDENTITY_OPTS_TEMP.count
         } else {
-            
-            if cubesToWorkWith[lastSelectedCube] == "國中生" {
-                return juniorHighSchool.count
-            } else if cubesToWorkWith[lastSelectedCube] == "高中生" {
-                return seniorHighSchool.count
-            } else if cubesToWorkWith[lastSelectedCube] == "大學/大專院校生" {
-                return colloge.count
-            } else /* You did not mention what to show for other selections, that would be handled here */ {
-                return 0
+            let array: [String] = Array(NaberConstant.IDENTITY_OPTS_TEMP)[pickerView.selectedRow(inComponent: 0)].value
+            return array.count
+        }
+    }
+    
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       //
+        if component == 0 {
+            pickerView.reloadComponent(1)
+            return Array(NaberConstant.IDENTITY_OPTS_TEMP)[row].key
+        } else {
+            let array: [String] =  Array(NaberConstant.IDENTITY_OPTS_TEMP)[pickerView.selectedRow(inComponent: 0)].value
+            if row > array.count {
+                return ""
+            } else {
+                return array[row]
             }
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if component == 0 {
-            return cubesToWorkWith[row]
-        } else {
-            if cubesToWorkWith[lastSelectedCube] == "國中生" {
-                return juniorHighSchool[row]
-            } else if cubesToWorkWith[lastSelectedCube] == "高中生" {
-                return seniorHighSchool[row]
-            } else if cubesToWorkWith[lastSelectedCube] == "大學/大專院校生" {
-                return colloge[row]
-            } else /* You did not mention what to show for other selections, that would be handled here */ {
-                return "undefined"
-            }
-        }
-    }
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //滑動左邊pick的時候
         if component == 0 {
-            lastSelectedCube = row
+            self.key = Array(NaberConstant.IDENTITY_OPTS_TEMP)[row].key
+            self.value = NaberConstant.IDENTITY_OPTS_TEMP[self.key]![0]
             pickerView.reloadComponent(1)
+        } else {
+            let array: [String] =  Array(NaberConstant.IDENTITY_OPTS_TEMP)[pickerView.selectedRow(inComponent: 0)].value
+            if row < array.count {
+               self.value = array[row]
+            }
         }
-        let idendityIndex = pickerView.selectedRow(inComponent: 0)
-        let schoolIndex = pickerView.selectedRow(inComponent: 1)
-        
-        if cubesToWorkWith[lastSelectedCube] == "國中生" {
-            pickerViewTextField.text = cubesToWorkWith[idendityIndex]+","+juniorHighSchool[schoolIndex]
-        } else if cubesToWorkWith[lastSelectedCube] == "高中生" {
-            pickerViewTextField.text = cubesToWorkWith[idendityIndex]+","+seniorHighSchool[schoolIndex]
-        } else if cubesToWorkWith[lastSelectedCube] == "大學/大專院校生" {
-            pickerViewTextField.text = cubesToWorkWith[idendityIndex]+","+colloge[schoolIndex]
-            
-        } else /* You did not mention what to show for other selections, that would be handled here */ {
-            pickerViewTextField.text = cubesToWorkWith[idendityIndex]
-        }
-        
+        self.pickerViewTextField.text =  self.key + ", " + self.value
     }
     
     
