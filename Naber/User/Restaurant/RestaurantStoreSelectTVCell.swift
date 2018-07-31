@@ -13,8 +13,8 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var radioButton: UIButton!
-    var item: ItemVo!
     
+    var item: ItemVo!
     
     override var frame: CGRect {
         didSet {
@@ -50,7 +50,9 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
     }
     
     @IBAction func selectedRadio(_ sender: UIButton) {
+
         let indexPath = IndexPath(row: self.item.tag, section: sender.tag);
+        (self.superview as? UITableView)?.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         if let tableView = self.superview as? UITableView {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }

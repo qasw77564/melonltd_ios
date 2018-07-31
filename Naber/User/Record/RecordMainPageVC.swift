@@ -80,7 +80,7 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(3: "RecordInfoDetail") as? RecordInfoDetailVC {
+        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RecordInfoDetail") as? RecordInfoDetailVC {
             vc.order = self.orders[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
