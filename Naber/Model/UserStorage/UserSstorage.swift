@@ -66,13 +66,14 @@ class UserSstorage {
     }
 
     // 使用者夠處車清單
-    public static var setShoppingCartDatas = { (datas : [OrderDetail]) in
+    static func setShoppingCartDatas (datas : [OrderDetail]) {
         let json: String = OrderDetail.toJsonArray(structs: datas)
         UserDefaults.standard.setValue(json, forKey: SHOPPING_CART)
     }
     
     public static func getShoppingCartDatas() -> [OrderDetail] {
         if let remember = getValue(forKey: SHOPPING_CART) as? String {
+            print("json : ", remember)
             let datas: [OrderDetail] = OrderDetail.parseArray(src: remember)!
             return datas
         } else {

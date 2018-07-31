@@ -24,6 +24,8 @@ class Model {
     
     public static var USER_CACHE_SHOPPING_CART : [OrderDetail] = []
     
+//    var shoppingCartDatas: [OrderDetail] = []
+    
 //    public static var HONE_ADIMAGES : [UIImageView] = []
     
 }

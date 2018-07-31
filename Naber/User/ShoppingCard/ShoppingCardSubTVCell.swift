@@ -8,61 +8,40 @@
 
 import UIKit
 
-protocol SubCellDelegate: class {
-    func contentDidChange(cell: ShoppingCardSubTVCell)
-}
 
 class ShoppingCardSubTVCell: UITableViewCell {
     
-    var oldDateIndex = 0;
-    
-    
-    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var foodPhoto: UIImageView!
+    @IBOutlet weak var foodName: UILabel!
+    @IBOutlet weak var foodPrice: UILabel!
+    @IBOutlet weak var foodCount: UILabel!
+    @IBOutlet weak var foodDatas: UILabel!
+    @IBOutlet weak var countStepper: UIStepper!
+    @IBOutlet weak var deleteFoodBtn: UIButton!
 
-    @IBOutlet weak var itemName: UILabel!
-
-//    @IBOutlet weak var itemType: UILabel!
-    
-    @IBOutlet weak var itemMoney: UILabel!
-
-    @IBOutlet weak var numberLabel: UILabel!
-
-    @IBOutlet weak var numberPicker: UIStepper!
-
-    @IBOutlet weak var trashCanImageView: UIButton!
-    
-
-    @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        numberLabel.text = Int(sender.value).description
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        numberPicker.maximumValue = 50
-        numberPicker.minimumValue = 1
-        // Initialization code
+        self.countStepper.maximumValue = 50
+        self.countStepper.minimumValue = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
-    weak var delegate: SubCellDelegate?
-    
-    @IBAction func buttonMoreTouched(_ sender: UIButton) {
-        //labelDescription.text = longText
-        delegate?.contentDidChange(cell: self)
-    }
-    
-    @IBAction func buttonLessTouched(_ sender: UIButton) {
-        //labelDescription.text = shortText
-        print("buttonLessTouched")
-        delegate?.contentDidChange(cell: self)
-    }
-    
-    
+//    @IBAction func buttonMoreTouched(_ sender: UIButton) {
+//        //labelDescription.text = longText
+//        delegate?.contentDidChange(cell: self)
+//    }
+//    
+//    @IBAction func buttonLessTouched(_ sender: UIButton) {
+//        //labelDescription.text = shortText
+//        print("buttonLessTouched")
+//        delegate?.contentDidChange(cell: self)
+//    }
+//    
+//    
 
 
 }

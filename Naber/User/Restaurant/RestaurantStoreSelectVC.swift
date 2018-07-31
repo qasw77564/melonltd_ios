@@ -95,7 +95,7 @@ class RestaurantStoreSelectVC: UIViewController {
             shoppingCartDatas.insert(detail, at: 0)
         }
         
-        UserSstorage.setShoppingCartDatas(shoppingCartDatas)
+        UserSstorage.setShoppingCartDatas(datas: shoppingCartDatas)
  
         alert.addAction(UIAlertAction(title: "前往購物車", style: .default){ _ in
             print("前往購物車")
@@ -210,6 +210,7 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
     // 改寫初始資料給每個cell
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let c = cell as? RestaurantStoreSelectTVCell {
+            c.radioButton.tag = indexPath.section
             switch (indexPath.section) {
             case 0:
                 c.item = self.food.food_data.scopes[indexPath.row]
@@ -233,15 +234,15 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
         switch (indexPath.section) {
         case 0:
             cell.radioButton.isSelected = self.itemVo.scopes[0].equal(item: self.food.food_data.scopes[indexPath.row])
-            cell.tag = indexPath.row
+//            cell.tag = indexPath.row
         case 1:
-            cell.tag = indexPath.row
+//            cell.tag = indexPath.row
             cell.radioButton.isSelected = self.itemVo.opts.contains { opt -> Bool in
                 return opt.equal(item: self.food.food_data.opts[indexPath.row])
             }
         case 2...:
             cell.radioButton.isSelected = self.itemVo.demands[indexPath.section - 2].datas[0].equal(item: self.food.food_data.demands[indexPath.section - 2].datas[indexPath.row])
-            cell.tag = indexPath.row
+//            cell.tag = indexPath.row
         default:
             break
         }
@@ -252,7 +253,7 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
     
     // 點擊事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
         
         let cell : RestaurantStoreSelectTVCell = (tableView.cellForRow(at: indexPath) as? RestaurantStoreSelectTVCell)!
         switch (indexPath.section) {
