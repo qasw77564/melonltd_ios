@@ -146,10 +146,10 @@ class TrendCompleteOrderVC: UIViewController {
     
     @objc func onDateChanged(sender: UIDatePicker) {
         if startDateTextField.isFirstResponder {
-            startDateTextField.text = sender.date.mediumDateString
+//            startDateTextField.text = sender.date.mediumDateString
         }
         if endDateTextField.isFirstResponder {
-            endDateTextField.text = sender.date.mediumDateString
+//            endDateTextField.text = sender.date.mediumDateString
         }
     }
     

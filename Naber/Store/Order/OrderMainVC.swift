@@ -117,7 +117,7 @@ class OrderMainVC: UIViewController {
     var toolbar: UIToolbar!
 
     @objc func onDateChanged(sender: UIDatePicker) {
-            dateTextField.text = sender.date.mediumDateString
+//            dateTextField.text = sender.date.mediumDateString
     }
     
     @objc func onDoneButtonTapped(sender: UIBarButtonItem) {

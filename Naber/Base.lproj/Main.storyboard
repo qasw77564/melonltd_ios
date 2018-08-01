@@ -521,7 +521,10 @@
                         <viewLayoutGuide key="safeArea" id="EtH-ND-Kgg"/>
                     </view>
                     <connections>
-                        <outlet property="pickerViewTextField" destination="ZGw-DW-wxJ" id="NIB-Pc-l2b"/>
+                        <outlet property="identityText" destination="ZGw-DW-wxJ" id="Gjf-Zc-PDo"/>
+                        <outlet property="name" destination="mLm-Ij-zMr" id="6cf-cS-5GY"/>
+                        <outlet property="password" destination="gUF-UX-nhy" id="663-YA-jBh"/>
+                        <outlet property="passwordCheck" destination="hf4-ZJ-gCH" id="xSJ-8h-xxi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OxF-BT-Xpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -8107,7 +8110,7 @@
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選項" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ3-F4-AjI">
-                                                                                        <rect key="frame" x="8" y="5.3333333333333321" width="40" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="8" y="5.6666666666666643" width="40" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8dP-dg-Pwg"/>
                                                                                             <constraint firstAttribute="width" constant="40" id="w7F-Iz-cOm"/>
@@ -8117,7 +8120,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-H3-iOL" customClass="DesignableTextField" customModule="Naber" customModuleProvider="target">
-                                                                                        <rect key="frame" x="48" y="5.3333333333333321" width="202" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="48" y="5.6666666666666643" width="202" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="2f9-gD-P6r"/>
                                                                                         </constraints>
@@ -8134,7 +8137,7 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sew-Qr-yk8">
-                                                                                        <rect key="frame" x="264" y="5.3333333333333321" width="40" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="264" y="5.6666666666666643" width="40" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="40" id="PJr-6s-cM1"/>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tuC-fO-4L7"/>

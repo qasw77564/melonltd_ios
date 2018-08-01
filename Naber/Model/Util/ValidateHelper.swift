@@ -14,7 +14,6 @@ class ValidateHelper {
     static let shared = ValidateHelper()
     
     /// // 十六進位色碼轉 RGB
-    ///
     /// - Parameter hex: 十六進位色碼
     /// - Returns: UIColor
     func hexStringToUIColor(hex: String) -> UIColor {
@@ -41,7 +40,6 @@ class ValidateHelper {
     }
     
     /// 是否為合法的email
-    ///
     /// - Parameter email: _
     /// - Returns: _
     func isValidEmail(withEmail email: String) -> Bool {
@@ -51,7 +49,6 @@ class ValidateHelper {
     }
     
     /// 是否為合法的行動電話
-    ///
     /// - Parameter cellPhone: _
     /// - Returns: _
     func isVaildTelPhone(withCellPhone cellPhone: String) -> Bool {
@@ -61,38 +58,19 @@ class ValidateHelper {
     }
     
     /// 是否為數字
-    ///
     /// - Parameter number: _
     /// - Returns: _
     func isNUmber(withNumber number: String) -> Bool {
         return !number.isEmpty && number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
-//    func isChinese(withChinese chinese: String) -> Bool {
-//        let registerChineseExpression = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,50}"
-//        let registerChineseNSPredicate = NSPredicate(format: "", registerChineseExpression)
-//        return registerChineseNSPredicate.evaluate(with: chinese)
-//    }
-    
-    
-    static func validateName(withChinese chinese: String) -> Bool {
-        
-        if chinese == nil || chinese == "" {
-            return false
-        }
-        let expression = "{2,5}$"
-        let cellNamePredicate = NSPredicate(format:"SELF MATCHES %@", expression)
-        return cellNamePredicate.evaluate(with: chinese)
-    }
-    
-    static func validatePass(withPass pass: String) -> Bool {
+    static func validatePass(withPassword password: String) -> Bool {
         let passExpression = "^(?=.*[a-zA-Z]+)(?=.*\\d+)[a-zA-Z0-9]{6,20}$"
         let passPredicate = NSPredicate(format:"SELF MATCHES %@", passExpression)
-        return passPredicate.evaluate(with: pass)
+        return passPredicate.evaluate(with: password)
     }
     
     /// 依傳入的日期格式驗證是否合法的日期格式
-    ///
     /// - Parameter strFormat: 日期格式
     /// - Returns: _
     func isValidDate(withFormat strFormat: String, strDate date: String) -> Bool {
