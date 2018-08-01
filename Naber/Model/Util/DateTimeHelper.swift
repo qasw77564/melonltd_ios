@@ -14,7 +14,7 @@ class DateTimeHelper {
 
     static func getFormatter() -> DateFormatter {
         let form: DateFormatter = DateFormatter()
-        form.timeZone = TimeZone.init(identifier: "UTC")
+        form.timeZone = TimeZone.init(identifier: "Asia/Taipei")
         form.locale = Locale.init(identifier: "zh_TW")
         form.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
         return form

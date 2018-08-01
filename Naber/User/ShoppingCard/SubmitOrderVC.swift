@@ -9,37 +9,23 @@
 import UIKit
 class SubmitOrderVC : UIViewController {
 
-    
+    var orderIndex: Int!
     var datePicker: UIDatePicker {
         get {
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .dateAndTime
-//            // 設置 NSDate 的格式
-//            let formatter = DateFormatter()
-//            // 設置時間顯示的格式
-//            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            // 設置顯示的語言環境
             datePicker.locale = Locale.init(identifier: "zh_TW")
-//            let currentDate: Date = Date()
-//            var calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-//            calendar.timeZone = TimeZone(identifier: "UTC")!
-//            var components: DateComponents = DateComponents()
-//            components.calendar = calendar
-//            components.day = 3
-//            let maxDate: Date = calendar.date(byAdding: components, to: currentDate)!
-//            components.day = 0
-//            let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
-//            datePicker.minimumDate = minDate
-//            datePicker.maximumDate = maxDate
+            datePicker.timeZone = TimeZone.init(identifier: "Asia/Taipei")
             self.reTimeRange(picker: datePicker)
             datePicker.addTarget(self, action: #selector(onDateChanged), for: .valueChanged)
             datePicker.backgroundColor = UIColor.white
             return datePicker
         }
     }
+    
     @IBOutlet weak var dateSelect: UITextField! {
         didSet {
-           dateSelect.inputView = self.datePicker
+           self.dateSelect.inputView = self.datePicker
         }
     }
     
@@ -52,8 +38,6 @@ class SubmitOrderVC : UIViewController {
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var bonus: UILabel!
-    
-    var orderIndex: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +45,7 @@ class SubmitOrderVC : UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.reTimeRange(picker: self.datePicker)
+        self.dateSelect.text = ""
         let list: [OrderDetail] = UserSstorage.getShoppingCartDatas()
         let orderDates: [OrderData] = list[self.orderIndex].orders
         self.name.text = list[self.orderIndex].user_name
@@ -73,10 +58,40 @@ class SubmitOrderVC : UIViewController {
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
-        let dateString: String = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
-        print(dateString)
+        
+        if self.dateSelect.text == "" {
+            let alert = UIAlertController(title: "", message: "請選擇取餐時間", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
+                
+            })
+            self.present(alert, animated: false)
+        }else {
+            let detail: OrderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
+            detail.fetch_date = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
+            detail.user_message = self.userMssage.text
+            
+            print(detail)
+            ApiManager.userOrderSubmit(req: detail, ui: self, onSuccess: {
+                var shoppingCartData: [OrderDetail] = UserSstorage.getShoppingCartDatas()
+                shoppingCartData.remove(at: self.orderIndex)
+                UserSstorage.setShoppingCartDatas(datas: shoppingCartData)
+                let msg: String = "商家已看到您的訂單囉！\n" +
+                                "你可前往訂單頁面查看商品狀態，\n" +
+                                "提醒您，商品只保留至取餐時間後20分鐘。"
+                let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "我知道了", style: .default, handler: { _ in
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RecordMainPage") as? RecordMainPageVC {
+                        self.present(vc, animated: false, completion: nil)
+                    }
+                }))
+                self.present(alert, animated: false)
+            }) { err_msg in
+                let alert = UIAlertController(title: "", message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+                self.present(alert, animated: false)
+            }
+        }
     }
-    
     
     @IBAction func selectTimePicker(_ sender: UITextField) {
         
@@ -85,13 +100,15 @@ class SubmitOrderVC : UIViewController {
     func reTimeRange (picker: UIDatePicker){
         let currentDate: Date = Date()
         var calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        calendar.timeZone = TimeZone(identifier: "UTC")!
+        calendar.timeZone = TimeZone.init(identifier: "Asia/Taipei")!
+        calendar.locale = Locale.init(identifier: "zh_TW")
         var components: DateComponents = DateComponents()
         components.calendar = calendar
         components.day = 3
         let maxDate: Date = calendar.date(byAdding: components, to: currentDate)!
         picker.maximumDate = maxDate
         components.day = 0
+        components.minute = 20
         let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
         picker.minimumDate = minDate
     }
