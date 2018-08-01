@@ -85,6 +85,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h4R-bK-raK"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="fjW-BZ-zfM" id="Jng-dX-cMH"/>
+                        <outlet property="phone" destination="KVG-cN-7th" id="DRB-5s-NrZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XzH-33-5PE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -8209,7 +8213,7 @@
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選項" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ3-F4-AjI">
-                                                                                        <rect key="frame" x="8" y="6" width="40" height="30"/>
+                                                                                        <rect key="frame" x="8" y="5.3333333333333321" width="40" height="29.999999999999996"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8dP-dg-Pwg"/>
                                                                                             <constraint firstAttribute="width" constant="40" id="w7F-Iz-cOm"/>
@@ -8219,7 +8223,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-H3-iOL" customClass="DesignableTextField" customModule="Naber" customModuleProvider="target">
-                                                                                        <rect key="frame" x="48" y="6" width="202" height="30"/>
+                                                                                        <rect key="frame" x="48" y="5.3333333333333321" width="202" height="29.999999999999996"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="2f9-gD-P6r"/>
                                                                                         </constraints>
@@ -8236,7 +8240,7 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sew-Qr-yk8">
-                                                                                        <rect key="frame" x="264" y="6" width="40" height="30"/>
+                                                                                        <rect key="frame" x="264" y="5.3333333333333321" width="40" height="29.999999999999996"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="40" id="PJr-6s-cM1"/>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tuC-fO-4L7"/>
