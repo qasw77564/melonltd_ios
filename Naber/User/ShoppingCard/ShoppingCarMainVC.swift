@@ -27,11 +27,13 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @objc func refresh(sender: UIRefreshControl){
+        Loading.show()
         sender.endRefreshing()
         UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
         Model.USER_CACHE_SHOPPING_CART.removeAll()
         Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
         self.tableView.reloadData()
+        Loading.hide()
     }
 
     override func viewDidLoad() {
@@ -51,7 +53,7 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
 
     // Main tableView 先計算高度 給 main cell ， sun tableView 才能正常顯示出來
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (CGFloat(Model.USER_CACHE_SHOPPING_CART[indexPath.row].orders.count * 96 + 109))
+        return (CGFloat(Model.USER_CACHE_SHOPPING_CART[indexPath.row].orders.count * 100 + 109))
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,31 +67,67 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "OrderCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ShoppingCarMainTVCell
-        cell.cellWillAppear()
         cell.tag = indexPath.row
         cell.storeName.text = Model.USER_CACHE_SHOPPING_CART[indexPath.row].restaurant_name
-        cell.cancelOrder.tag = indexPath.row
-        cell.cancelOrder.addTarget(self, action: #selector(cancelOrder), for: .touchUpInside)
-        cell.itemTable.reloadData()
+        cell.cancelBtn.tag = indexPath.row
+        cell.cancelBtn.addTarget(self, action: #selector(cancelOrder), for: .touchUpInside)
+        cell.submitBtn.tag = indexPath.row
+        cell.submitBtn.addTarget(self, action: #selector(submitOrder), for: .touchUpInside)
+        cell.cellWillAppear()
         return cell
     }
-
-    @IBAction func changedShoppingCartDatas(_ sender: Any) {
+    
+    @IBAction func deleteFoodReload(_ sender: UIButton) {
         UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
-        Model.USER_CACHE_SHOPPING_CART.removeAll()
-        Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
-        print(Model.USER_CACHE_SHOPPING_CART)
-        self.tableView.reloadData()
+        if sender.tag == 0 {
+            let alert = UIAlertController(title: "", message: "剩下最後一筆菜單，無法刪除。\n若要刪除，請直接點選 \"取消訂單\"", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+            self.present(alert, animated: false)
+        } else {
+            Model.USER_CACHE_SHOPPING_CART.removeAll()
+            Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
+            print(Model.USER_CACHE_SHOPPING_CART)
+            self.tableView.reloadData()
+        }
     }
     
-    
-    @objc func cancelOrder(_ sender: UIButton){
-        Model.USER_CACHE_SHOPPING_CART.remove(at: sender.tag)
-        UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
+    @IBAction func countFoodReload(_ sender: UIStepper) {
         Model.USER_CACHE_SHOPPING_CART.removeAll()
         Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
-        print(Model.USER_CACHE_SHOPPING_CART)
         self.tableView.reloadData()
+    }
+
+    @objc func submitOrder(_ sender: UIButton){
+        let price: Int =  Model.USER_CACHE_SHOPPING_CART[0].orders.reduce(0, { (sum, num) -> Int in
+            return sum + Int(num.item.price)!
+        })
+        // 訂單種額大於 5000 不給提交
+        if price > 5000 {
+            let alert = UIAlertController(title: "", message:"單筆訂單不可超過 5000，\n請從重新調整您的訂單內容！", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .cancel))
+            self.present(alert, animated: false)
+        }else {
+            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "SubmitOrder") as? SubmitOrderVC {
+                vc.orderIndex = sender.tag
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+
+    @objc func cancelOrder(_ sender: UIButton){
+        let alert = UIAlertController(title: "", message: "確定是否刪除此訂單!!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "返回", style: .cancel))
+        alert.addAction(UIAlertAction(title: "刪除", style: .default){_ in
+            print("cancelOrder : ", sender.tag)
+            Model.USER_CACHE_SHOPPING_CART.remove(at: sender.tag)
+            UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
+            self.tableView.reloadData()
+        })
+        self.present(alert, animated: false)
+    }
+    
+    // 攔截 submitOrder
+    override func show(_ vc: UIViewController, sender: Any?) {
     }
 }
 

@@ -29,19 +29,4 @@ class ShoppingCardSubTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
-//    @IBAction func buttonMoreTouched(_ sender: UIButton) {
-//        //labelDescription.text = longText
-//        delegate?.contentDidChange(cell: self)
-//    }
-//    
-//    @IBAction func buttonLessTouched(_ sender: UIButton) {
-//        //labelDescription.text = shortText
-//        print("buttonLessTouched")
-//        delegate?.contentDidChange(cell: self)
-//    }
-//    
-//    
-
-
 }
