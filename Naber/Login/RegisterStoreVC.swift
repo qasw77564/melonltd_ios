@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseMessaging
 
 class RegisterStoreVC: UIViewController {
     @IBOutlet weak var restaurantName: UITextField!
@@ -16,7 +18,6 @@ class RegisterStoreVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -27,16 +28,15 @@ class RegisterStoreVC: UIViewController {
 
     
     @IBAction func sendToSeverForRegisterStore(_ sender: Any) {
-        //TODO:ASK SERVER
         if judgmentInput() {
         let account : SellerRegisteredVo = SellerRegisteredVo()
         account.seller_name = self.restaurantName.text
         account.address = self.restaurantAddress.text
         account.name = self.contactPersonName.text
         account.phone = self.contactPhone.text
-        account.device_id = ""
+        account.device_id = Messaging.messaging().fcmToken
         ApiManager.sellerRegistered(structs: account, ui: self, onSuccess:  {
-            let alert = UIAlertController(title: "註冊成功", message: "歡迎加入NABER！" , preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "感謝你註冊成為商家你，\n您的信息已經提交成功，\n請待客服與您聯繫!!" , preferredStyle: .alert)
             alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in
                 if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                     self.present(vc, animated: false, completion: nil)
@@ -51,17 +51,8 @@ class RegisterStoreVC: UIViewController {
             self.present(alert, animated: false)
             }
         }
-//        let alert = UIAlertController(title: "", message: "確定要送出嗎？",   preferredStyle: .alert)
-//        let actionTaken = UIAlertAction(title: "確認", style: .default) { (hand) in
-//            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//            let destinationVC = storyBoard.instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC
-//            self.present(destinationVC!, animated: false, completion: nil)
-//        }
-//        alert.addAction(actionTaken)
-//        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-//        self.present(alert, animated: false) {}
-        
     }
+    //商家註冊判斷
     func judgmentInput() -> Bool {
         var msg: String = ""
         if  !ValidateHelper.shared.isVaildTelPhone(withCellPhone: self.contactPhone.text!){
@@ -87,5 +78,4 @@ class RegisterStoreVC: UIViewController {
         }
         return msg == ""
     }
-
 }
