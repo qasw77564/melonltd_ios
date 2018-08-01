@@ -10,34 +10,18 @@ import UIKit
 
 class UserSettingAcountRPTVC: UITableViewController {
 
-//    @IBOutlet weak var resetPasswordTitleView: UIView!
-//
-//    @IBOutlet weak var inputPasswordView: UIView!
-//
-//    @IBOutlet weak var newPasswordView: UIView!
-//    
-//    @IBOutlet weak var newPasswordViewSecond: UIView!
-    
+    @IBOutlet weak var oldPassword: UITextField!
+    @IBOutlet weak var newPassword: UITextField!
+    @IBOutlet weak var checkPassword: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        resetPasswordTitleView.layer.borderWidth = 1.0
-//        resetPasswordTitleView.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        inputPasswordView.layer.borderWidth = 1.0
-//        inputPasswordView.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        newPasswordView.layer.borderWidth = 1.0
-//        newPasswordView.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        newPasswordViewSecond.layer.borderWidth = 1.0
-//        newPasswordViewSecond.layer.borderColor = UIColor.lightGray.cgColor
-        
-        
-        
     }
 
+    @IBAction func submitAction(_ sender: UIButton) {
+        // TODO 做驗證輸入，並呼叫API
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
