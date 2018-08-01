@@ -36,6 +36,7 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func refresh(sender: UIRefreshControl){
         sender.endRefreshing()
         self.tableView.reloadData()
+        print(Identity.toEnum(name: "小學生").rawValue)
     }
     
     override func viewDidLoad() {

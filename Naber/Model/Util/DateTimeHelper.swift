@@ -35,8 +35,20 @@ class DateTimeHelper {
         return date!
     }
     
+    static func stringToDate(data: String, from: String ) -> Date {
+        formatter.dateFormat = from
+        let date = formatter.date(from: data)
+        return date!
+    }
+    
     static func dateToString(date: Date) -> String {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+        let date = formatter.string(from: date)
+        return date
+    }
+    
+    static func dateToString(date: Date, form: String) -> String {
+        formatter.dateFormat = form
         let date = formatter.string(from: date)
         return date
     }
@@ -50,6 +62,11 @@ class DateTimeHelper {
     static func formToString(date: String, from: String) -> String {
         let d: Date = stringToDate(data: date)
         return dateToStringForm(date: d, form: from)
+    }
+    
+    static func formToString(date: String, fromDate: String) -> String {
+        let d: Date = stringToDate(data: date, from: fromDate)
+        return dateToString(date: d)
     }
     
     static func startOfDate() -> String {

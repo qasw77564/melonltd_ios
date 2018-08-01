@@ -13,8 +13,6 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
     // 依照商家所加入的品項列表
     // Model.USER_CACHE_SHOPPING_CART[self.tag].orders
 
-    
-
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var itemTable: UITableView! {
         didSet {
@@ -26,32 +24,32 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var bonus: UILabel!
     @IBOutlet weak var submitBtn: UIButton!
-    @IBOutlet weak var cancelOrder: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.price.text = "0"
         self.bonus.text = "0"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        var price: Int = 0
+        var price: Double = 0.0
         for i in 0..<Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count {
-            price += Int(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[i].item.price)!
+            price += Double(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[i].item.price)!
         }
-        self.price.text = price.description
-        self.bonus.text = (price / 10).description
+        self.price.text = Int(price).description
+        self.bonus.text = Int(floor(price / 10.0)).description
     }
     
     func cellWillAppear (){
-        var price: Int = 0
-        for i in 0..<Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count {
-            price += Int(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[i].item.price)!
-        }
-        self.price.text = price.description
-        self.bonus.text = (price / 10).description
+//        var price: Double = 0.0
+        let price: Double = Model.USER_CACHE_SHOPPING_CART[self.tag].orders.reduce(0.0, { (sum, num) -> Double in
+            return sum + Double(num.item.price)!
+        })
+        self.price.text = Int(price).description
+        self.bonus.text = Int(floor(price / 10.0)).description
+        self.itemTable.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,25 +58,51 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print(totalSubItem.count)
         return Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "ItemCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ShoppingCardSubTVCell
-        
         cell.foodName.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_name
-        
         cell.foodPhoto.image = UIImage(named: "Logo")
         cell.foodCount.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].count
         cell.foodPrice.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.price
+        cell.countStepper.autorepeat = false
         cell.countStepper.tag = indexPath.row
         cell.countStepper.value = Double(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].count)!
         cell.countStepper.addTarget(self, action: #selector(changedCount), for: .touchUpInside)
-
         cell.deleteFoodBtn.tag = indexPath.row
         cell.deleteFoodBtn.addTarget(self, action: #selector(deleteFoodByIndex), for: .touchUpInside)
+        var foodDatas: String = ""
+        foodDatas += "規格: "
+        if !Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.scopes.isEmpty {
+            Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.scopes.forEach { s in
+                foodDatas += s.name + ", "
+            }
+            foodDatas += "\n"
+        }else {
+            foodDatas += "預設, "
+            foodDatas += "\n"
+        }
+        
+        if !Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.opts.isEmpty {
+            foodDatas += "追加: "
+            Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.opts.forEach{ o in
+                foodDatas +=  o.name + ","
+            }
+            foodDatas += "\n"
+        }
+        
+        Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.demands.forEach { md in
+            foodDatas += md.name + ": "
+            md.datas.forEach{ sd in
+                foodDatas += sd.name
+            }
+            foodDatas += "  "
+        }
+        
+        cell.foodDatas.text = foodDatas
         return cell
     }
     
@@ -87,17 +111,15 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
         Int(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].count)!)
         Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].count = Int(sender.value).description
         Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].item.price = Int(price * Int(sender.value)).description
+        UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
     }
     
     @objc func deleteFoodByIndex(sender : UIButton!) {
-        print(sender.tag)
-       Model.USER_CACHE_SHOPPING_CART[self.tag].orders.remove(at: sender.tag)
+        if Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count > 1 {
+            Model.USER_CACHE_SHOPPING_CART[self.tag].orders.remove(at: sender.tag)
+            UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
+        }
     }
-    
-    func calculate (){
-
-    }
-
 }
 
 
