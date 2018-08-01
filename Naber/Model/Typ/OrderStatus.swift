@@ -19,7 +19,6 @@ enum OrderStatus : String {
     case FINISH = "FINISH"
     case UNKNOWN = "UNKNOWN"
     
-    
     func get() -> Status {
         switch self {
         case .LIVE:
@@ -61,10 +60,7 @@ enum OrderStatus : String {
             return .UNKNOWN
         }
     }
-    
 }
-
-
 
 class Status {
     var name: String!

@@ -28,9 +28,7 @@ class SearchMainVC: UIViewController {
     
     @IBAction func searchOrder(_ sender: Any) {
         setupData()
-        searchTable.reloadData()
-        
-        
+        self.searchTable.reloadData()
     }
     
     override func viewDidLoad() {
