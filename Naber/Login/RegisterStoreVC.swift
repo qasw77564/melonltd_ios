@@ -9,6 +9,10 @@
 import UIKit
 
 class RegisterStoreVC: UIViewController {
+    @IBOutlet weak var restroomName: UITextField!
+    @IBOutlet weak var restroomAddress: UITextField!
+    @IBOutlet weak var contactPersonName: UITextField!
+    @IBOutlet weak var contactPhone: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()

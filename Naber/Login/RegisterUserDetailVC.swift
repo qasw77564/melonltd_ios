@@ -71,18 +71,18 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
             let account: AccountInfoVo = AccountInfoVo()
             account.name = self.name.text
             account.password = self.password.text
-            
-            if NaberConstant.IS_DEBUG{
-                account.phone = "0987878787"
-            } else {
-                account.phone = self.phone
-            }
+            account.phone = self.phone
+//            if NaberConstant.IS_DEBUG{
+//                account.phone = "0987878787"
+//            } else {
+//                account.phone = self.phone
+//            }
             account.level = "USER"
             account.identity = Identity.toEnum(name: self.identity).rawValue
             account.school_name = self.schoolName
             
             ApiManager.userRegistered(structs: account, ui: self, onSuccess: {
-                let alert = UIAlertController(title: "", message: "完成註冊，\n歡迎加入NABER！" , preferredStyle: .alert)
+                let alert = UIAlertController(title: "註冊成功", message: "歡迎加入NABER！" , preferredStyle: .alert)
                 alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in
                     if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                         self.present(vc, animated: false, completion: nil)
