@@ -234,26 +234,22 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
         switch (indexPath.section) {
         case 0:
             cell.radioButton.isSelected = self.itemVo.scopes[0].equal(item: self.food.food_data.scopes[indexPath.row])
-//            cell.tag = indexPath.row
         case 1:
-//            cell.tag = indexPath.row
             cell.radioButton.isSelected = self.itemVo.opts.contains { opt -> Bool in
                 return opt.equal(item: self.food.food_data.opts[indexPath.row])
             }
         case 2...:
             cell.radioButton.isSelected = self.itemVo.demands[indexPath.section - 2].datas[0].equal(item: self.food.food_data.demands[indexPath.section - 2].datas[indexPath.row])
-//            cell.tag = indexPath.row
         default:
             break
         }
+        
         cell.triggerRadioStatus(cell.radioButton.isSelected)
-       
         return cell
     }
     
     // 點擊事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         
         let cell : RestaurantStoreSelectTVCell = (tableView.cellForRow(at: indexPath) as? RestaurantStoreSelectTVCell)!
         switch (indexPath.section) {

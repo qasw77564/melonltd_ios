@@ -43,8 +43,8 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         self.name.text = self.order.order_detail.restaurant_name
         self.totalPayment.text = "$" + self.order.order_price
-        self.orderTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "yyyy-MM-dd HH:mm")
-        self.recordTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "yyyy-MM-dd HH:mm")
+        self.orderTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "yyyy-MM-dd HH:mm")
+        self.recordTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "yyyy-MM-dd HH:mm")
         self.address.text = self.order.order_detail.restaurant_address
         self.memoInfo.text = self.order.order_detail.user_message
         self.bonus.text = self.order.order_bonus

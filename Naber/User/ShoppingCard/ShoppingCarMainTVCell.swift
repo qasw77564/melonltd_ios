@@ -43,7 +43,6 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
     }
     
     func cellWillAppear (){
-//        var price: Double = 0.0
         let price: Double = Model.USER_CACHE_SHOPPING_CART[self.tag].orders.reduce(0.0, { (sum, num) -> Double in
             return sum + Double(num.item.price)!
         })
@@ -74,6 +73,7 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
         cell.countStepper.addTarget(self, action: #selector(changedCount), for: .touchUpInside)
         cell.deleteFoodBtn.tag = indexPath.row
         cell.deleteFoodBtn.addTarget(self, action: #selector(deleteFoodByIndex), for: .touchUpInside)
+        
         var foodDatas: String = ""
         foodDatas += "規格: "
         if !Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.scopes.isEmpty {

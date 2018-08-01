@@ -43,7 +43,6 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewWillAppear(_ animated: Bool) {
         Model.USER_CACHE_SHOPPING_CART.removeAll()
         Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
-        print(Model.USER_CACHE_SHOPPING_CART)
         self.tableView.reloadData()
     }
     
@@ -86,7 +85,6 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
         } else {
             Model.USER_CACHE_SHOPPING_CART.removeAll()
             Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
-            print(Model.USER_CACHE_SHOPPING_CART)
             self.tableView.reloadData()
         }
     }
@@ -118,7 +116,6 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
         let alert = UIAlertController(title: "", message: "確定是否刪除此訂單!!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "返回", style: .cancel))
         alert.addAction(UIAlertAction(title: "刪除", style: .default){_ in
-            print("cancelOrder : ", sender.tag)
             Model.USER_CACHE_SHOPPING_CART.remove(at: sender.tag)
             UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
             self.tableView.reloadData()
