@@ -332,6 +332,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     // MARK: 纯文本
     open class func llCycleScrollViewWithTitles(frame: CGRect, backImage: UIImage? = nil, titles: Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
+//        UIScrollView
         // Nil
         llcycleScrollView.titles = []
         
@@ -629,6 +630,8 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: UIScrollViewDelegate
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 禁止手勢拖曳
+        scrollView.isScrollEnabled = false
         if imagePaths.count == 0 { return }
         let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
         if customPageControlStyle == .none || customPageControlStyle == .system || customPageControlStyle == .image {
@@ -693,10 +696,10 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if imagePaths.count == 0 { return }
         let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
-        
+
         // 滚动后的回调协议
         delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
-        
+
         if autoScroll! {
             setupTimer()
         }

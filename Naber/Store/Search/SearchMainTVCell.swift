@@ -11,25 +11,15 @@ import UIKit
 class SearchMainTVCell: UITableViewCell {
 
     @IBOutlet weak var orderStatus: UILabel!
-
     @IBOutlet weak var itemNumberAndStatus: UILabel!
-    
     @IBOutlet weak var itemList: UILabel!
-    
     @IBOutlet weak var memoList: UILabel!
-
     @IBOutlet weak var time: UILabel!
-    
     @IBOutlet weak var phone: UILabel!
-    
     @IBOutlet weak var name: UILabel!
-    
     @IBOutlet weak var money: UILabel!
-    
     @IBOutlet weak var button1: UIButton!
-    
     @IBOutlet weak var button2: UIButton!
-    
     @IBOutlet weak var button3: UIButton!
 
     override func awakeFromNib() {
