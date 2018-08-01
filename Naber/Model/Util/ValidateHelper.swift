@@ -63,7 +63,20 @@ class ValidateHelper {
     func isNUmber(withNumber number: String) -> Bool {
         return !number.isEmpty && number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
-    
+//    public static boolean phoneNumber(String number) {
+//    if (Strings.isNullOrEmpty(number)) {
+//    return false;
+//    }
+//    return  number.matches("(09)+[\\d]{8}");
+//    }
+//    static func isCellPhone(withCellPhone phone: String ) -> Bool {
+//        let cellPhoneRegularExpression = ("(09)+[\\d]{8}")
+//        let cellPhoneNSPredicate = NSPredicate(format:"SELF MATCHES %@", cellPhoneRegularExpression)
+//        return cellPhoneNSPredicate.evaluate(with: phone)
+//    }
+    /// 密碼是否為6~20長度＆英數組合,不可特殊符號
+    /// - Parameter password: _
+    /// - Returns: _
     static func validatePass(withPassword password: String) -> Bool {
         let passExpression = "^(?=.*[a-zA-Z]+)(?=.*\\d+)[a-zA-Z0-9]{6,20}$"
         let passPredicate = NSPredicate(format:"SELF MATCHES %@", passExpression)

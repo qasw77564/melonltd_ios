@@ -838,7 +838,7 @@
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YnS-0G-p4f" userLabel="restroomName">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YnS-0G-p4f" userLabel="restaurantName">
                                 <rect key="frame" x="109" y="104" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="XVr-oy-X91"/>
@@ -866,7 +866,7 @@
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yq7-Ay-2Z5" userLabel="restroomAddress">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yq7-Ay-2Z5" userLabel="restaurantAddress">
                                 <rect key="frame" x="109" y="151" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Fj9-8V-Kjj"/>
@@ -1007,8 +1007,8 @@
                     <connections>
                         <outlet property="contactPersonName" destination="WWD-Hh-Lsa" id="izm-eG-0gN"/>
                         <outlet property="contactPhone" destination="nok-fZ-ksW" id="4ZI-9R-MKX"/>
-                        <outlet property="restroomAddress" destination="yq7-Ay-2Z5" id="9r9-bN-74Y"/>
-                        <outlet property="restroomName" destination="YnS-0G-p4f" id="6bS-Br-bPj"/>
+                        <outlet property="restaurantAddress" destination="yq7-Ay-2Z5" id="9r9-bN-74Y"/>
+                        <outlet property="restaurantName" destination="YnS-0G-p4f" id="6bS-Br-bPj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFy-of-WKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
