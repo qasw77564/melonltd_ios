@@ -22,4 +22,18 @@ class StringsHelper {
         return str.components(separatedBy: of)
     }
     
+    
+    static func padEnd(str: String, minLength: Int, of: String) -> String {
+        if str.count >= minLength {
+            return str
+        } else {
+            var newStr = str
+            for _ in newStr.count..<minLength {
+               newStr += of
+            }
+            return newStr
+        }
+    }
+    
+    
 }

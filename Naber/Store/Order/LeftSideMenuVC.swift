@@ -40,10 +40,7 @@ class LeftSideMenuVC: UIViewController {
             orderTime.timeSwitch=false
             ordertimes.append(orderTime)
         }
-      
     }
-    
-
 }
 
 extension LeftSideMenuVC : UITableViewDelegate, UITableViewDataSource {

@@ -24,6 +24,8 @@ class ReqData : Codable {
     var category: String!
     var area: String!
     var loadingMore: Bool! = true;
+    var type: String!
+    var message: String!
     
     public static func toJson(structs : ReqData) -> String {
         do {
