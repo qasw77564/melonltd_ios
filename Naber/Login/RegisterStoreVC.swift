@@ -78,4 +78,8 @@ class RegisterStoreVC: UIViewController {
         }
         return msg == ""
     }
+    // 鍵盤點擊背景縮放
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

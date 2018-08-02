@@ -100,6 +100,14 @@ class UserSstorage {
         }
         setRememberMe(remember)
     }
+    static func clearUserLoginTime(){
+        let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO]
+        let remember: Bool = getRememberMe()
+        keys.forEach { key in
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+        setRememberMe(remember)
+    }
     
     
     static func printRepresentation() {
