@@ -10,19 +10,38 @@ import UIKit
 
 class UserSettingMainPageTVC: UITableViewController {
 
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var accunt: UILabel!
+    @IBOutlet weak var bonus: UILabel!
+    @IBOutlet weak var version: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        image.layer.borderWidth = 0
-//        image.layer.masksToBounds = false
-//        image.layer.borderColor = UIColor.black.cgColor
-//        image.layer.cornerRadius = image.frame.height/2
-//        image.clipsToBounds = true
+  
         
+        
+
+
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        let photo: String! = ""
+        
+        
+        if photo == nil || photo == "" {
+            self.photo.image = UIImage(named: "Logo")
+        }else {
+            //            self.photo.setImage(with: URL(string: "http://sdsdsdsdsd.png"), transformer: TransformerHelper.transformer(identifier: "http://sdsdsdsdsd.png"))
+            self.photo.setImage(with: URL(string: photo), transformer: TransformerHelper.transformer(identifier: photo))
+        }
+    }
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
