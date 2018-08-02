@@ -151,7 +151,7 @@ class ApiManager {
         })
     }
 
-    // 餐館細節，系列列表(測試OK)
+    // 餐館細節，系列列表
     public static func restaurantCategoryList (uuid: String, ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
         let req: ReqData = ReqData()
         req.uuid = uuid
@@ -165,7 +165,7 @@ class ApiManager {
         })
     }
     
-    // 系列下品項列表(測試OK)
+    // 系列下品項列表
     public static func restaurantFoodList (uuid: String, ui: UIViewController, onSuccess: @escaping ([FoodVo?]) -> (), onFail: @escaping (String) -> ()) {
         let req: ReqData = ReqData()
         req.uuid = uuid
@@ -193,7 +193,7 @@ class ApiManager {
         })
     }
     
-    // 使用者訂單記錄(未測試）
+    // 使用者訂單記錄
     public static func userOrderHistory (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.USER_ORDER_HISTORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -251,7 +251,7 @@ class ApiManager {
         })
     }
     
-    // 提交訂單(未測試）
+    // 提交訂單
     public static func userOrderSubmit (req: OrderDetail, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ORDER_SUBMIT, data: OrderDetail.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
@@ -271,7 +271,7 @@ class ApiManager {
     
     /////// SELLSE API /////
     
-    // 取得每日營業時段(未測試）
+    // 取得每日營業時段
     public static func sellerBusinessTime (ui: UIViewController, onSuccess: @escaping ([DateRangeVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.BUSINESS_TIME, data: "" , ui:ui, complete: { response in
             let resp:  DateRangeResp = DateRangeResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -283,7 +283,7 @@ class ApiManager {
         })
     }
     
-    // 更新每日營業時段(未測試）
+    // 更新每日營業時段
     public static func sellerChangeBusinessTime (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping ([DateRangeVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.CHANGE_BUSINESS_TIME, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  DateRangeResp = DateRangeResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -296,7 +296,7 @@ class ApiManager {
     }
     
     
-    // 快速查詢訂單(未測試）
+    // 快速查詢訂單
     public static func sellerQuickSearch (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.QUICK_SEARCH, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -307,7 +307,7 @@ class ApiManager {
             }
         })
     }
-    // 更改訂單狀況(未測試)
+    // 更改訂單狀況
     public static func sellerChangeOrder (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.CHANGE_ORDER, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
@@ -318,7 +318,7 @@ class ApiManager {
             }
         })
     }
-    // 取得訂單列表(未測試)
+    // 取得訂單列表
     public static func sellerOrderList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ORDER_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -330,9 +330,9 @@ class ApiManager {
         })
     }
 
-    // 取得即時訂單列表(未測試)
-    public static func sellerOrderLive (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
-        self.postAutho(url: ApiUrl.ORDER_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+    // 取得即時訂單列表
+    public static func sellerOrderLive (ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.ORDER_LIVE, data: "" , ui:ui, complete: { response in
             let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
@@ -341,6 +341,7 @@ class ApiManager {
             }
         })
     }
+    
     // 取得營運概況(未測試)
     public static func sellerStat (ui: UIViewController, onSuccess: @escaping (SellerStatVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_STAT, data: "" , ui:ui, complete: { response in

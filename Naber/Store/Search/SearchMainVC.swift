@@ -86,8 +86,8 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchMainTVCell
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! SearchMainTVCell
 
         cell.cancelBtn.tag = indexPath.row
         cell.failureBtn.tag = indexPath.row

@@ -41,10 +41,14 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
         
         self.reqData.page = self.reqData.page + 1
         ApiManager.userOrderHistory(req: self.reqData, ui: self, onSuccess: { orders in
-            orders.forEach { o in
-                o.order_detail = OrderDetail.parse(src: o.order_data)
-            }
-            self.orders.append(contentsOf: orders)
+//            orders.forEach { o in
+//                o.order_detail = OrderDetail.parse(src: o.order_data)
+//            }
+            self.orders.append(contentsOf: orders.map({ o -> OrderVo in
+                o.order_detail = OrderDetail.parse(src: o.order_data)!
+                return o
+            }))
+//            self.orders.append(contentsOf: orders)
             self.reqData.loadingMore = orders.count % NaberConstant.PAGE == 0 && orders.count != 0
             self.tableView.reloadData()
         }) { err_msg in
