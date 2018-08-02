@@ -72,11 +72,6 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
             account.name = self.name.text
             account.password = self.password.text
             account.phone = self.phone
-//            if NaberConstant.IS_DEBUG{
-//                account.phone = "0987878787"
-//            } else {
-//                account.phone = self.phone
-//            }
             account.level = "USER"
             account.identity = Identity.toEnum(name: self.identity).rawValue
             account.school_name = self.schoolName
@@ -112,7 +107,7 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         
         if !ValidateHelper.validatePass(withPassword: self.password.text!){
-            msg = "密碼長度需6~20碼，\n並英數組合！"
+            msg = "密碼長度需6~20碼，\n並英數組合，\n不可有特殊符號！"
         }
         
         if self.password.text == "" {

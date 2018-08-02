@@ -19,13 +19,55 @@ class UserSettingAcountRPTVC: UITableViewController {
     }
 
     @IBAction func submitAction(_ sender: UIButton) {
-        // TODO 做驗證輸入，並呼叫API
+        if(judgmentInput()){
+            let resetpassword: ReqData = ReqData()
+            resetpassword.old_password = self.oldPassword.text
+            resetpassword.password = self.newPassword.text
+            resetpassword.phone = UserSstorage.getAccount()?.phone
+            ApiManager.reseatPassword(req: resetpassword, ui: self, onSuccess: {
+                let alert = UIAlertController(title: "", message: "重設成功！" , preferredStyle: .alert)
+                alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                        UserSstorage.clearUserLoginTime()
+                        self.present(vc, animated: false, completion: nil)
+                    }
+                }))
+                self.present(alert, animated: false)
+            }) { err_msg in
+                let alert = UIAlertController(title: "", message: err_msg , preferredStyle: .alert)
+                alert.addAction(UIAlertAction.init(title: "cancel", style: .cancel, handler: { _ in
+                    
+                }))
+                self.present(alert, animated: false)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func judgmentInput() -> Bool {
+        var msg: String = ""
+        if(self.newPassword.text!) != (self.checkPassword.text!){
+            msg = "請確定新的密碼與確認密碼一致"
+        }
+        if(!ValidateHelper.validatePass(withPassword: self.newPassword.text!) ){
+            msg = "密碼長度需6~20碼，\n並英數組合，\n不可為特殊符號！"
+        }
+        if(self.newPassword.text == ""){
+            msg = "請輸入新的密碼"
+        }
+        if(self.oldPassword.text == "" ){
+            msg =  "請輸入舊密碼"
+        }
+        if msg != "" {
+            let alert = UIAlertController(title: "", message: msg,   preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "關閉", style: .cancel, handler: { _ in
+            }))
+            self.present(alert, animated: false)
+        }
+        return msg == ""
+    }
 }
