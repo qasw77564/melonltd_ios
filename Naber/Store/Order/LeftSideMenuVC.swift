@@ -7,67 +7,82 @@
 //
 
 import UIKit
-class OrderTimeSwitch {
-    var timePeriod:String = ""
-    var timeSwitch:Bool = false
-    
-}
+
 class LeftSideMenuVC: UIViewController {
 
-    var ordertimes = [OrderTimeSwitch]()
+    var dateRanges: [DateRangeVo] = []
     
-    var timePeriod:Array = ["PM12:00~PM12:30","PM12:30~AM01:00","AM01:00~AM01:30","AM01:30~AM02:00","AM02:00~AM02:30","AM02:30~AM03:00","AM03:00~AM03:30","AM03:30~AM04:00","AM04:00~AM04:30","AM04:30~AM05:00","AM05:00~AM05:30","AM05:30~AM06:00","AM06:00~AM06:30","AM06:30~AM07:00","AM07:00~AM07:30","AM07:30~AM08:00","AM08:00~AM08:30","AM08:30~AM09:00","AM09:00~AM09:30","AM09:30~AM10:00","AM10:00~AM10:30","AM10:30~AM11:00","AM11:00~AM11:30","AM11:30~AM12:00","AM12:00~AM12:30","AM12:30~PM01:00","PM01:00~PM01:30","PM01:30~PM02:00","PM02:00~PM02:30","PM02:30~PM03:00","PM03:00~PM03:30","PM03:30~PM04:00","PM04:00~PM04:30","PM04:30~PM05:00","PM05:00~PM05:30","PM05:30~PM06:00","PM06:00~PM06:30","PM06:30~PM07:00","PM07:00~PM07:30","PM07:30~PM08:00","PM08:00~PM08:30","PM08:30~PM09:00","PM09:00~PM09:30","PM09:30~PM10:00","PM10:00~PM10:30","PM10:30~PM11:00","PM11:00~PM11:30","PM11:30~PM12:00"]
+    @IBOutlet weak var leftSideMenu: UITableView! {
+        didSet {
+            self.leftSideMenu.dataSource = self
+            self.leftSideMenu.delegate = self
+            let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+            refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+            refreshControl.tintColor = UIColor.clear
+            self.leftSideMenu.addSubview(refreshControl)
+        }
+    }
     
-    @IBOutlet weak var leftSideMenu: UITableView!
+    @objc func refresh(sender: UIRefreshControl){
+        self.loadData(refresh: true)
+        sender.endRefreshing()
+    }
+    
+    func loadData(refresh: Bool){
+        self.dateRanges.removeAll()
+        ApiManager.sellerBusinessTime(ui: self, onSuccess: { dateRanges in
+            self.dateRanges.append(contentsOf: dateRanges)
+            self.leftSideMenu.reloadData()
+        }) { err_msg in
+            print(err_msg)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        leftSideMenu.delegate = self
-        leftSideMenu.dataSource = self
-        setupData ()
-        // Do any additional setup after loading the view.
+        self.loadData(refresh: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func setupData (){
-        
-        for timeWord in timePeriod {
-            let orderTime = OrderTimeSwitch()
-            orderTime.timePeriod=timeWord
-            orderTime.timeSwitch=false
-            ordertimes.append(orderTime)
-        }
-    }
 }
 
 extension LeftSideMenuVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ordertimes.count
+        return self.dateRanges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! LeftSideMenuTVCell
-        cell.time.text = ordertimes[indexPath.row].timePeriod
-        cell.timeSwitch.setOn( ordertimes[indexPath.row].timeSwitch , animated: false)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! LeftSideMenuTVCell
         cell.timeSwitch.tag = indexPath.row
-        cell.timeSwitch.addTarget(self, action: #selector(timeSwitchMethod(sender:)), for: .touchUpInside)
-
+        cell.time.text = self.dateRanges[indexPath.row].date
+        cell.timeSwitch.setOn(DateRangeStatus.of(name: self.dateRanges[indexPath.row].status).status(), animated: true)
+        cell.timeSwitch.addTarget(self, action: #selector(changeBusinessTime), for: .valueChanged)
         return cell
     }
     
-    @objc func timeSwitchMethod(sender : UISwitch!) {
-        ordertimes[sender.tag].timeSwitch = sender.isOn
-        leftSideMenu.reloadData()
+    @objc func changeBusinessTime(sender : UISwitch!) {
+        if sender.isOn != DateRangeStatus.of(name: self.dateRanges[sender.tag].status).status() {
+            self.dateRanges[sender.tag].status = DateRangeStatus.of(bool: sender.isOn)
+            let reqData: RestaurantInfoVo = RestaurantInfoVo()
+            reqData.can_store_range.append(contentsOf: self.dateRanges)
+            ApiManager.sellerChangeBusinessTime(req: reqData, ui: self, onSuccess: { dateRanges in
+                self.dateRanges.removeAll()
+                self.dateRanges.append(contentsOf: dateRanges)
+                self.leftSideMenu.reloadData()
+            }) { err_msg in
+                self.dateRanges[sender.tag].status = DateRangeStatus.of(bool: !sender.isOn)
+                self.leftSideMenu.reloadData()
+            }
+        }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 40
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 50
+//    }
     
 }

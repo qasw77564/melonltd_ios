@@ -272,8 +272,8 @@ class ApiManager {
     /////// SELLSE API /////
     
     // 取得每日營業時段(未測試）
-    public static func sellerBusinessTime (req: ReqData, ui: UIViewController, onSuccess: @escaping (DateRangeVo?) -> (), onFail: @escaping (String) -> ()) {
-        self.postAutho(url: ApiUrl.BUSINESS_TIME, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+    public static func sellerBusinessTime (ui: UIViewController, onSuccess: @escaping ([DateRangeVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.BUSINESS_TIME, data: "" , ui:ui, complete: { response in
             let resp:  DateRangeResp = DateRangeResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
@@ -282,10 +282,11 @@ class ApiManager {
             }
         })
     }
+    
     // 更新每日營業時段(未測試）
-    public static func sellerChangeBusinessTime (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+    public static func sellerChangeBusinessTime (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping ([DateRangeVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.CHANGE_BUSINESS_TIME, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
-            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            let resp:  DateRangeResp = DateRangeResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {

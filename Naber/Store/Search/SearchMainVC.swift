@@ -38,6 +38,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
     }
     
     func loadData(refresh: Bool){
+        self.view.endEditing(true)
         self.orders.removeAll()
         if self.phone.text?.count != 4 {
             let alert = UIAlertController(title: "系統提示", message: "請正確輸入手機後四碼", preferredStyle: .alert)
@@ -105,17 +106,17 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         var content: String = ""
         for o in self.orders[indexPath.row].order_detail.orders {
             content +=  o.item.category_name + ": " +
-            StringsHelper.padEnd(str: o.item.food_name, minLength: 10, of: "_") +
-            StringsHelper.padEnd(str: "x" + o.count, minLength: 15, of: "_") +
+            StringsHelper.padEnd(str: o.item.food_name, minLength: 10, of: " ") +
+            StringsHelper.padEnd(str: "x" + o.count, minLength: 15, of: " ") +
             "$ " + o.item.price +
             "\n" +
             "規格: " +
-            StringsHelper.padEnd(str: o.item.scopes[0].name, minLength: 20 , of: "_") +
+            StringsHelper.padEnd(str: o.item.scopes[0].name, minLength: 20 , of: " ") +
             "\n" +
             "附加: " +
             o.item.opts.reduce("", { (s: String, i: ItemVo) -> String in
-                return s + "\n" + StringsHelper.padEnd(str:"- " + i.name, minLength: 20 , of: "_") +
-                        StringsHelper.padEnd(str: "  ", minLength: 10 , of: "_") +
+                return s + "\n" + StringsHelper.padEnd(str:"- " + i.name, minLength: 20 , of: " ") +
+                        StringsHelper.padEnd(str: "  ", minLength: 10 , of: " ") +
                         "$ " + i.price
             }) +
             (o.item.opts.count == 0 ? "- 無\n" : "\n") +
@@ -222,6 +223,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
             self.loadData(refresh: true)
         }, onFail: { err_msg in
             print(err_msg)
+            self.loadData(refresh: true)
         })
     }
     
@@ -253,6 +255,11 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
             })
         }))
         self.present(alert, animated: false)
+    }
+    
+    // 鍵盤點擊背景縮放
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }

@@ -13,7 +13,7 @@ class DateRangeResp : Codable {
         var status : String!
         var err_code : String!
         var err_msg : String!
-        var data : DateRangeVo!
+        var data : [DateRangeVo]! = []
         
         public static func toJson(structs : DateRangeResp) -> String {
             do {
@@ -37,6 +37,14 @@ class DateRangeVo : Codable {
         var date : String!
     
         public static func toJson(structs : DateRangeVo) -> String {
+            do {
+                return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+            } catch {
+                return ""
+            }
+        }
+    
+        public static func toJsonArray(structs : [DateRangeVo]) -> String {
             do {
                 return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
             } catch {
