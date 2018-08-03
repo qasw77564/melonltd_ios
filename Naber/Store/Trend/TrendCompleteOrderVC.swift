@@ -12,6 +12,9 @@ import UIKit
 class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    var reqData: ReqData!
+    var orders: [OrderVo] = []
+    
     @IBOutlet weak var startSelect: UITextField!
     @IBOutlet weak var endSelect: UITextField!
     
@@ -86,14 +89,19 @@ class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.startSelect.inputView = self.startDatePicker
+        self.startSelect.text = DateTimeHelper.getNow(from: "yyyy年 MM月 dd日")
+        self.startSelect.tag = DateTimeHelper.startOfDateMiliseconds()
         self.startSelect.inputAccessoryView = self.startToolbar
         self.endSelect.inputView = self.endDatePicker
+        self.endSelect.text = DateTimeHelper.getNow(from: "yyyy年 MM月 dd日")
+        self.endSelect.tag = DateTimeHelper.endOfDateMiliseconds()
         self.endSelect.inputAccessoryView = self.endToolbar
+        self.reqData = ReqData()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
+        self.loadData(refresh: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,26 +114,56 @@ class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func loadData(refresh: Bool){
+        if refresh {
+            self.reqData.page = 0
+            self.reqData.loadingMore = false
+            self.orders.removeAll()
+            self.tabelView.reloadData()
+        }
         
+        self.reqData.page = self.reqData.page + 1
+        self.reqData.start_date = DateTimeHelper.formToString(date: self.startSelect.text!, fromDate: "yyyy年 MM月 dd日")
+        self.reqData.end_date = DateTimeHelper.formToString(date: self.endSelect.text!, fromDate: "yyyy年 MM月 dd日")
+        ApiManager.sellerStatLog(req: self.reqData, ui: self, onSuccess: { orders in
+            self.orders.append(contentsOf: orders.map({ o -> OrderVo in
+                o.order_detail = OrderDetail.parse(src: o.order_data)!
+                return o
+            }))
+            
+            print(self.orders.count)
+            self.reqData.loadingMore = orders.count % NaberConstant.PAGE == 0 && orders.count != 0
+            self.tabelView.reloadData()
+            
+        }) { err_msg in
+            print(err_msg)
+        }
     }
     
     @objc func onDateChanged(sender: UIDatePicker) {
         if sender.tag == 0 {
-            self.startSelect.tag = self.getMiliseconds(data: sender.date)
+            self.startSelect.tag = DateTimeHelper.startOfDateMiliseconds(date: sender.date)
             self.startSelect.text = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy年 MM月 dd日")
         } else {
-            self.endSelect.tag = self.getMiliseconds(data: sender.date)
+            self.endSelect.tag = DateTimeHelper.endOfDateMiliseconds(date: sender.date)
             self.endSelect.text = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy年 MM月 dd日")
         }
     }
     
+    // tag 0 == start time
+    // tag 1 == end time
     @objc func onToolbarDone(sender: UIBarButtonItem) {
         if sender.tag == 0 {
-            print(self.startSelect.tag)
             self.startSelect.endEditing(true)
         } else {
-            print(self.endSelect.tag)
             self.endSelect.endEditing(true)
+        }
+
+        if self.startSelect.tag > self.endSelect.tag {
+            let alert = UIAlertController(title: "系統提示", message: "開始時間不可大於結束時間", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+            self.present(alert, animated: false)
+        } else {
+            self.loadData(refresh: true)
         }
     }
     
@@ -138,13 +176,37 @@ class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! TrendCompleteOrderTVCell
+        cell.tag = indexPath.row
+        
+        cell.name.text = self.orders[indexPath.row].order_detail.user_name
+        cell.phone.text = self.orders[indexPath.row].order_detail.user_phone
+        cell.price.text = "$ " + self.orders[indexPath.row].order_price
+        
+        let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status)
+        cell.orderStatus.backgroundColor = status.get().color
+        cell.orderStatus.setTitle(status.get().value, for: .normal)
+        
+        if self.orders.count - 1 == indexPath.row && self.reqData.loadingMore {
+            self.loadData(refresh: false)
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "TrendOrderLogDetail") as? TrendOrderLogDetailVC {
+            vc.order = self.orders[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    override func show(_ vc: UIViewController, sender: Any?) {
+
     }
     
     func reTimeRange (picker: UIDatePicker){
@@ -162,11 +224,7 @@ class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDa
         picker.minimumDate = minDate
     }
     
-    
-    func getMiliseconds(data: Date) -> Int {
-        let nowDouble = data.timeIntervalSince1970
-        return Int(nowDouble * 1000)
-    }
+   
 
 }
 

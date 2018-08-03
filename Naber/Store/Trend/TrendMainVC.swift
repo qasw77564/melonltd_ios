@@ -114,6 +114,7 @@ class TrendMainVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // 攔截 事件
     override func show(_ vc: UIViewController, sender: Any?) {
     
     }

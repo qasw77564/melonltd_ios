@@ -26,6 +26,8 @@ class ReqData : Codable {
     var loadingMore: Bool! = true;
     var type: String!
     var message: String!
+    var start_date: String!
+    var end_date: String!
     
     public static func toJson(structs : ReqData) -> String {
         do {
