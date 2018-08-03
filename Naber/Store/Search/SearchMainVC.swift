@@ -109,23 +109,18 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
             StringsHelper.padEnd(str: o.item.food_name, minLength: 10, of: " ") +
             StringsHelper.padEnd(str: "x" + o.count, minLength: 15, of: " ") +
             "$ " + o.item.price +
-            "\n" +
-            "規格: " +
+            "\n規格: " +
             StringsHelper.padEnd(str: o.item.scopes[0].name, minLength: 20 , of: " ") +
-            "\n" +
-            "附加: " +
+            "\n附加: " +
             o.item.opts.reduce("", { (s: String, i: ItemVo) -> String in
                 return s + "\n" + StringsHelper.padEnd(str:"- " + i.name, minLength: 20 , of: " ") +
-                        StringsHelper.padEnd(str: "  ", minLength: 10 , of: " ") +
-                        "$ " + i.price
+                        StringsHelper.padEnd(str: "  ", minLength: 10 , of: " ") + "$ " + i.price
             }) +
             (o.item.opts.count == 0 ? "- 無\n" : "\n") +
             "需求: "
-            
             for d in o.item.demands {
                 content += d.name + ": " + d.datas[0].name + ", "
             }
-            
             content += "\n------------------------------------------\n\n"
         }
       

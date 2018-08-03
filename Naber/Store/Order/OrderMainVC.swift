@@ -43,12 +43,18 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     @IBOutlet weak var timeRangeLayout: NSLayoutConstraint!
-    @IBOutlet weak var dateSelect: UITextField!
+    @IBOutlet weak var dateSelect: UITextField! {
+        didSet {
+            self.dateSelect.text = DateTimeHelper.getNow(from: "yyyy年 MM月 dd日")
+        }
+    }
     @IBOutlet weak var liveBtn: UIButton!
     @IBOutlet weak var unfinishBtn: UIButton!
     @IBOutlet weak var processingBtn: UIButton!
     @IBOutlet weak var canFetchBtn: UIButton!
     
+    
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var table: UITableView! {
         didSet {
             self.table.dataSource = self
@@ -72,7 +78,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     // 確定選取時間事件
     @objc func doneTimePick(sender: UIBarButtonItem){
-        // TODO 
+        // TODO
         if self.dateSelect.text == "" {
             self.dateSelect.text = DateTimeHelper.dateToStringForm(date: self.datePicker.date, form: "yyyy年 MM月 dd日")
         }
@@ -134,6 +140,10 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     // 離開該畫面停止 Timer
     override func viewDidDisappear(_ animated: Bool) {
+        self.stackView.isUserInteractionEnabled = true
+        self.table.isUserInteractionEnabled = true
+        self.timeRangeLayout.constant = -200
+        self.view.layoutIfNeeded()
         self.stopTimer()
     }
     
@@ -260,9 +270,8 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
  
     // 即時 Tab
     @IBAction func liveSelect(_ sender: UIButton) {
-        self.setButtonsDefaultColor()
+        self.setButtonsDefaultColor(sender: sender)
         self.dateSelect.isHidden = true
-        sender.backgroundColor = NaberConstant.COLOR_BASIS
         self.queryStatus = OrderStatus.LIVE
         self.loadData(refresh: true)
     }
@@ -270,8 +279,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     // 未處理 Tab
     @IBAction func unfinishSelect(_ sender: UIButton) {
         self.queryStatus = OrderStatus.UNFINISH
-        self.setButtonsDefaultColor()
-        sender.backgroundColor = NaberConstant.COLOR_BASIS
+        self.setButtonsDefaultColor(sender: sender)
         self.reTimeRange(picker: self.datePicker)
         self.reqData.search_type = OrderStatus.UNFINISH.rawValue
         if self.dateSelect.text != "" {
@@ -286,8 +294,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     // 處理中 Tab
     @IBAction func processingSelect(_ sender: UIButton) {
         self.queryStatus = OrderStatus.PROCESSING
-        self.setButtonsDefaultColor()
-        sender.backgroundColor = NaberConstant.COLOR_BASIS
+        self.setButtonsDefaultColor(sender: sender)
         self.reTimeRange(picker: self.datePicker)
         self.reqData.search_type = OrderStatus.PROCESSING.rawValue
         if self.dateSelect.text != "" {
@@ -302,8 +309,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     // 可領取 Tab
     @IBAction func canFetchSelect(_ sender: UIButton) {
         self.queryStatus = OrderStatus.FAIL
-        self.setButtonsDefaultColor()
-        sender.backgroundColor = NaberConstant.COLOR_BASIS
+        self.setButtonsDefaultColor(sender: sender)
         self.reTimeRange(picker: self.datePicker)
         self.reqData.search_type = OrderStatus.CAN_FETCH.rawValue
         if self.dateSelect.text != "" {
@@ -317,22 +323,29 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     // 收合左側抽屜Layout
     @IBAction func organizeBtnPressed(_ sender: UIBarButtonItem) {
+        // TODO
+        self.stackView.isUserInteractionEnabled = self.timeRangeLayout.constant >= 0 ? true : false
+        self.table.isUserInteractionEnabled = self.timeRangeLayout.constant >= 0 ? true : false
         self.timeRangeLayout.constant = self.timeRangeLayout.constant >= 0 ? -200 : 0
+       
         UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
         })
     }
     
     // 點擊 Button Tab 改變 Tab 焦點顏色
-    func setButtonsDefaultColor(){
+    func setButtonsDefaultColor(sender: UIButton){
         if self.queryStatus != OrderStatus.LIVE {
             self.stopTimer()
         }
         self.dateSelect.isHidden = false
         self.view.endEditing(true)
         self.uiButtons.forEach { b in
-             b.backgroundColor = NaberConstant.COLOR_BASIS_GRAY
+            b.backgroundColor = NaberConstant.COLOR_BASIS_GRAY
+            b.setTitleColor(UIColor.darkGray, for: .normal)
         }
+        sender.setTitleColor(UIColor.white, for: .normal)
+        sender.backgroundColor = NaberConstant.COLOR_BASIS
     }
     
     // 更改訂單狀態取消

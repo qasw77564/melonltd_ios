@@ -77,8 +77,11 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
         cell.countStepper.tag = indexPath.row
         cell.countStepper.value = Double(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].count)!
         cell.countStepper.addTarget(self, action: #selector(changedCount), for: .touchUpInside)
+        // sudIndex
         cell.deleteFoodBtn.tag = indexPath.row
-        cell.deleteFoodBtn.addTarget(self, action: #selector(deleteFoodByIndex), for: .touchUpInside)
+        // rootIndex
+        cell.deleteFoodBtn.titleLabel?.text = self.tag.description
+//        cell.deleteFoodBtn.addTarget(self, action: #selector(deleteFoodByIndex), for: .touchUpInside)
         
         var foodDatas: String = ""
         foodDatas += "規格: "
@@ -120,12 +123,13 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
         UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
     }
     
-    @objc func deleteFoodByIndex(sender : UIButton!) {
-        if Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count > 1 {
-            Model.USER_CACHE_SHOPPING_CART[self.tag].orders.remove(at: sender.tag)
-            UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
-        }
-    }
+//    @objc func deleteFoodByIndex(sender : UIButton!) {
+//        print(sender.titleLabel?.text ,":", sender.tag)
+//        if Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count > 1 {
+//            Model.USER_CACHE_SHOPPING_CART[self.tag].orders.remove(at: sender.tag)
+//            UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
+//        }
+//    }
 }
 
 

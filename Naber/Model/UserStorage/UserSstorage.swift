@@ -89,8 +89,7 @@ class UserSstorage {
             return nil
         }
     }
-
-
+    
     // 清除
     static func clearUserData() {
         let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART]
@@ -112,7 +111,7 @@ class UserSstorage {
     
     static func printRepresentation() {
         let map : [String : Any] = UserDefaults.standard.dictionaryWithValues(forKeys: [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART])
-//        print(map)
+        print(map)
     }
    
 }

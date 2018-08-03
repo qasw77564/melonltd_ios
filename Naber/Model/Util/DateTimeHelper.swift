@@ -29,6 +29,11 @@ class DateTimeHelper {
         return  formatter.string(from: Date())
     }
     
+    static func getNow(from: String) -> String  {
+        formatter.dateFormat = from
+        return  formatter.string(from: Date())
+    }
+    
     static func stringToDate(data: String) -> Date {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
         let date = formatter.date(from: data)
