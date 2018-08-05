@@ -97,11 +97,11 @@ class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDa
         self.endSelect.tag = DateTimeHelper.endOfDateMiliseconds()
         self.endSelect.inputAccessoryView = self.endToolbar
         self.reqData = ReqData()
+        self.loadData(refresh: true)
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.loadData(refresh: true)
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -80,6 +80,7 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
         // sudIndex
         cell.deleteFoodBtn.tag = indexPath.row
         // rootIndex
+        cell.deleteFoodBtn.imageView?.tag = self.tag
         cell.deleteFoodBtn.titleLabel?.text = self.tag.description
 //        cell.deleteFoodBtn.addTarget(self, action: #selector(deleteFoodByIndex), for: .touchUpInside)
         

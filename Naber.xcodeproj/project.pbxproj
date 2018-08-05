@@ -27,6 +27,7 @@
 		20AF3731210082A600D73F79 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF3730210082A600D73F79 /* Advertisement.swift */; };
 		20AF37332100BC1500D73F79 /* UserSstorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF37322100BC1500D73F79 /* UserSstorage.swift */; };
 		20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4777A2101A7EE007F6EA8 /* Identity.swift */; };
+		20BB18E221154825005B7E83 /* TrendOrderLogDetailTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB18E121154825005B7E83 /* TrendOrderLogDetailTVCell.swift */; };
 		20BD64852108BFE600023033 /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD647E2108BFE300023033 /* LLCycleScrollView.swift */; };
 		20BD64862108BFE600023033 /* LLImagePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD647F2108BFE300023033 /* LLImagePageControl.swift */; };
 		20BD64872108BFE600023033 /* LLViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64802108BFE400023033 /* LLViewExtensions.swift */; };
@@ -168,6 +169,7 @@
 		20AF3730210082A600D73F79 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		20AF37322100BC1500D73F79 /* UserSstorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSstorage.swift; sourceTree = "<group>"; };
 		20B4777A2101A7EE007F6EA8 /* Identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
+		20BB18E121154825005B7E83 /* TrendOrderLogDetailTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailTVCell.swift; sourceTree = "<group>"; };
 		20BD647E2108BFE300023033 /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
 		20BD647F2108BFE300023033 /* LLImagePageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLImagePageControl.swift; sourceTree = "<group>"; };
 		20BD64802108BFE400023033 /* LLViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLViewExtensions.swift; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				DD3FA0B420C7B065006BAA51 /* TrendCompleteOrderVC.swift */,
 				20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */,
 				DD3FA0B620C7B648006BAA51 /* TrendCompleteOrderTVCell.swift */,
+				20BB18E121154825005B7E83 /* TrendOrderLogDetailTVCell.swift */,
 			);
 			path = Trend;
 			sourceTree = "<group>";
@@ -914,6 +917,7 @@
 				DD161D0420CAD01E0080CFE2 /* Tutorial4VC.swift in Sources */,
 				DDFEA7D620B6D47300170222 /* UserSettingAboutUsTVC.swift in Sources */,
 				DD161CFF20CA2E320080CFE2 /* SearchMainTVCell.swift in Sources */,
+				20BB18E221154825005B7E83 /* TrendOrderLogDetailTVCell.swift in Sources */,
 				DD161D0920CAD70B0080CFE2 /* FoodTVCell.swift in Sources */,
 				DDFEA7D220B6BC4800170222 /* UserSettingAccountDetailTVC.swift in Sources */,
 				DD161D1920CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift in Sources */,
