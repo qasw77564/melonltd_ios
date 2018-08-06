@@ -99,6 +99,7 @@ class UserSstorage {
         }
         setRememberMe(remember)
     }
+    // 清除使用者login，account
     static func clearUserLoginTime(){
         let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO]
         let remember: Bool = getRememberMe()
