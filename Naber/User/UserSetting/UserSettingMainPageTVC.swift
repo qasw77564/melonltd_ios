@@ -36,6 +36,7 @@ class UserSettingMainPageTVC: UITableViewController {
             self.photo.image = UIImage(named: "Logo")
         }else {
             //            self.photo.setImage(with: URL(string: "http://sdsdsdsdsd.png"), transformer: TransformerHelper.transformer(identifier: "http://sdsdsdsdsd.png"))
+            
             self.photo.setImage(with: URL(string: photo), transformer: TransformerHelper.transformer(identifier: photo))
         }
     }
