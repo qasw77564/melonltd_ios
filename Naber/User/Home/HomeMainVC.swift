@@ -183,7 +183,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
+        if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
             vc.restaurantIndex = indexPath.row
             vc.pageType = .HOME
             self.navigationController?.pushViewController(vc, animated: true)

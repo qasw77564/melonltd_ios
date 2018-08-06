@@ -168,8 +168,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantStoreInfoTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RestaurantStoreInfoTVCell
         cell.name.text = self.categoryList[indexPath.row]?.category_name
         return cell
     }
@@ -177,7 +176,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreItem") as! RestaurantStoreItemVC
         vc.categoryRel = self.categoryList[indexPath.row]
         vc.restaurantInfo = self.restaurantInfo

@@ -177,17 +177,17 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreInfo") as! RestaurantStoreInfoVC
-        vc.restaurantIndex = indexPath.row
-        vc.pageType = .RESTAURANT
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
+            vc.restaurantIndex = indexPath.row
+            vc.pageType = .RESTAURANT
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTVCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RestaurantTVCell
         
         cell.name.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].name
         cell.address.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].address

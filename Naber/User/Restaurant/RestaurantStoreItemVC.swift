@@ -65,8 +65,7 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantStoreItemTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RestaurantStoreItemTVCell
         
         cell.name.text = self.foodList[indexPath.row]?.food_name
         cell.price.text = "$ " + (self.foodList[indexPath.row]?.default_price)!
@@ -80,7 +79,7 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "RestaurantStoreSelect") as! RestaurantStoreSelectVC
         
         ApiManager.restaurantFoodDetail(uuid: (self.foodList[indexPath.row]?.food_uuid)!, ui: self, onSuccess: { food in

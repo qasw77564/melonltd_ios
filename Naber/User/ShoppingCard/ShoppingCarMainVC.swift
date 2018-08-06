@@ -111,7 +111,7 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
             alert.addAction(UIAlertAction(title: "我知道了", style: .cancel))
             self.present(alert, animated: false)
         }else {
-            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "SubmitOrder") as? SubmitOrderVC {
+            if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "SubmitOrder") as? SubmitOrderVC {
                 vc.orderIndex = sender.tag
                 self.navigationController?.pushViewController(vc, animated: true)
             }

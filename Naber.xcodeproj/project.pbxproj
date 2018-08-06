@@ -19,6 +19,7 @@
 		20603EEA210A260E00F2BCAB /* RespStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20603EE9210A260E00F2BCAB /* RespStatus.swift */; };
 		206AECDE211028C2005E64E6 /* SubmitOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AECDD211028C2005E64E6 /* SubmitOrderVC.swift */; };
 		20758A1921188D1F007A3ABC /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1821188D1F007A3ABC /* Store.storyboard */; };
+		20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1A2118A1FC007A3ABC /* User.storyboard */; };
 		20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */; };
 		20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfo.swift */; };
 		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
@@ -163,6 +164,7 @@
 		20603EE9210A260E00F2BCAB /* RespStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespStatus.swift; sourceTree = "<group>"; };
 		206AECDD211028C2005E64E6 /* SubmitOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitOrderVC.swift; sourceTree = "<group>"; };
 		20758A1821188D1F007A3ABC /* Store.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
+		20758A1A2118A1FC007A3ABC /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailVC.swift; sourceTree = "<group>"; };
 		20AF372120FF8BD000D73F79 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 				20AF37262100447400D73F79 /* GoogleService-Info.plist */,
 				DDF8C2B720B226E600BF8904 /* StorePageUITabBarController.swift */,
 				20758A1821188D1F007A3ABC /* Store.storyboard */,
+				20758A1A2118A1FC007A3ABC /* User.storyboard */,
 			);
 			path = Naber;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */,
 				DDF8C27D20B1CA4600BF8904 /* Assets.xcassets in Resources */,
 				DDF8C27B20B1CA4400BF8904 /* Main.storyboard in Resources */,
+				20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */,
 				20D9DC2121038E2000D643FE /* naber_default_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
