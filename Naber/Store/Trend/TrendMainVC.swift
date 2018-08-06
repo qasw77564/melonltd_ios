@@ -46,7 +46,7 @@ class TrendMainVC: UIViewController {
     }
 
     @IBAction func toFinishOredrLog (_ sender: UIButton) {
-        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "TrendCompleteOrder") as? TrendCompleteOrderVC {
+        if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "TrendCompleteOrder") as? TrendCompleteOrderVC {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

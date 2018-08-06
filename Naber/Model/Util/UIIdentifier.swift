@@ -12,4 +12,6 @@ import Foundation
 enum UIIdentifier : String {
     case CELL = "Cell"
     case MAIN = "Main"
+    case STORE = "Store"
+    case USER = "User"
 }

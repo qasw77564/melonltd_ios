@@ -199,7 +199,7 @@ class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "TrendOrderLogDetail") as? TrendOrderLogDetailVC {
+        if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "TrendOrderLogDetail") as? TrendOrderLogDetailVC {
             vc.order = self.orders[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }

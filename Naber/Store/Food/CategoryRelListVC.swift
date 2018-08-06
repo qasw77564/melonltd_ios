@@ -94,7 +94,7 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
             let reqData: ReqData = ReqData()
             reqData.name = self.categoryName.text
             ApiManager.sellerAddCategory(req: reqData, ui: self, onSuccess: { categoryRel in
-                if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
+                if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
                     vc.categoryRel = categoryRel
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -121,7 +121,7 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func editCategoryAction(_ sender: UIButton) {
-        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
+        if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
             vc.categoryRel = self.categorys[sender.tag]
             self.navigationController?.pushViewController(vc, animated: true)
         }

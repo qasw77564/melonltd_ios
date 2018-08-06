@@ -67,7 +67,7 @@ class BaseVC: UIViewController{
                     }
                 } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
                     // 已登入過商家
-                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
+                    if let vc = UIStoryboard(name: "Store", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
                         self.present(vc, animated: false, completion: nil)
                     }
                 } else {
