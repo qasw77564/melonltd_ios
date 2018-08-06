@@ -35,9 +35,9 @@ class TrendOrderLogDetailVC : UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         self.count.text = "(" + self.order.order_detail.orders.count.description + ")"
-        self.price.text = "$" + self.order.order_price
+        self.price.text = "$ " + self.order.order_price
         self.name.text = self.order.order_detail.user_name
-        self.fetchTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "dd日 HH時 mm分")
+        self.fetchTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "dd日 HH時 mm分")
         self.userMessage.text = self.order.user_message
         
         if OrderStatus.CANCEL == OrderStatus.of(name: self.order.status) {
@@ -69,11 +69,13 @@ class TrendOrderLogDetailVC : UIViewController, UITableViewDelegate, UITableView
             "$ " + o.item.price +
             "\n規格: " +
             StringsHelper.padEnd(str: o.item.scopes[0].name, minLength: 20 , of: " ") +
+            "$ " +
+            StringsHelper.padEnd(str: o.item.scopes[0].price, minLength: 10 , of: " ") +
             "\n附加: " +
             o.item.opts.reduce("", { (s: String, i: ItemVo) -> String in
                 return s + "\n" + StringsHelper.padEnd(str:"- " + i.name, minLength: 20 , of: " ") +
                     StringsHelper.padEnd(str: "  ", minLength: 10 , of: " ") + "$ " + i.price
-            }) + (o.item.opts.count == 0 ? "- 無\n" : "\n") +
+            }) + (o.item.opts.count == 0 ? " - 無\n" : "\n") +
         "需求: "
         for d in o.item.demands {
             content += d.name + ": " + d.datas[0].name + ", "

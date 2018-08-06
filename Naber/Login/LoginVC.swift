@@ -49,8 +49,8 @@ class LoginVC: UIViewController {
         }
         
         if NaberConstant.IS_DEBUG {
-            self.account_text.text = "demo"
-            self.password_text.text = "d654321"
+            self.account_text.text = "NER-18X1X14"
+            self.password_text.text = "a123456"
         }
         
         

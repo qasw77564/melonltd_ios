@@ -60,14 +60,14 @@ extension LeftSideMenuVC : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! LeftSideMenuTVCell
         cell.timeSwitch.tag = indexPath.row
         cell.time.text = self.dateRanges[indexPath.row].date
-        cell.timeSwitch.setOn(DateRangeStatus.of(name: self.dateRanges[indexPath.row].status).status(), animated: true)
+        cell.timeSwitch.setOn(SwitchStatus.of(name: self.dateRanges[indexPath.row].status).status(), animated: true)
         cell.timeSwitch.addTarget(self, action: #selector(changeBusinessTime), for: .valueChanged)
         return cell
     }
     
     @objc func changeBusinessTime(sender : UISwitch!) {
-        if sender.isOn != DateRangeStatus.of(name: self.dateRanges[sender.tag].status).status() {
-            self.dateRanges[sender.tag].status = DateRangeStatus.of(bool: sender.isOn)
+        if sender.isOn != SwitchStatus.of(name: self.dateRanges[sender.tag].status).status() {
+            self.dateRanges[sender.tag].status = SwitchStatus.of(bool: sender.isOn)
             let reqData: RestaurantInfoVo = RestaurantInfoVo()
             reqData.can_store_range.append(contentsOf: self.dateRanges)
             ApiManager.sellerChangeBusinessTime(req: reqData, ui: self, onSuccess: { dateRanges in
@@ -75,7 +75,7 @@ extension LeftSideMenuVC : UITableViewDelegate, UITableViewDataSource {
                 self.dateRanges.append(contentsOf: dateRanges)
                 self.leftSideMenu.reloadData()
             }) { err_msg in
-                self.dateRanges[sender.tag].status = DateRangeStatus.of(bool: !sender.isOn)
+                self.dateRanges[sender.tag].status = SwitchStatus.of(bool: !sender.isOn)
                 self.leftSideMenu.reloadData()
             }
         }

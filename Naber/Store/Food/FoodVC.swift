@@ -8,111 +8,126 @@
 
 import UIKit
 
-class Food {
-    var name:String = ""
-    var switchButton:Bool = false
-    var delete:Bool = false
-    var editor:Bool = false
-    
-}
 
-class FoodVC: UIViewController {
+class FoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var foods = [Food]()
-    
-    @IBOutlet weak var foodTable: UITableView!
-    
-    @IBOutlet weak var foodClassName: DesignableTextField!
-    
-    @IBOutlet weak var addFoodClass: DesignableButton!
-    
-    
-    @IBAction func addFoodAction(_ sender: Any) {
-        
-        let food1 = Food()
-        food1.name = foodClassName.text!
-        food1.switchButton = false
-        food1.delete = false //預留
-        food1.editor = false //預留
-        foods.append(food1)
-        foodTable.reloadData()
-        foodClassName.text = ""
+    var categorys: [RestaurantCategoryRelVo] = []
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+            refreshControl.tintColor = UIColor.clear
+            self.tableView.addSubview(refreshControl)
+        }
     }
     
-    func setupData(){
-        
-        let food1 = Food()
-        food1.name="種類一"
-        food1.switchButton = false
-        food1.delete = false //預留
-        food1.editor = false //預留
-        
-        let food2 = Food()
-        food2.name="種類二"
-        food2.switchButton = true
-        food2.delete = false //預留
-        food2.editor = false //預留
-        
-        let food3 = Food()
-        food3.name="種類三"
-        food3.switchButton = true
-        food3.delete = false //預留
-        food3.editor = false //預留
-        
-        foods.append(food1)
-        foods.append(food2)
-        foods.append(food3)
-        
+    @objc func refresh(sender: UIRefreshControl){
+        sender.endRefreshing()
+        self.loadData(refresh: true)
     }
+    
+    
+    func loadData(refresh: Bool){
+        self.categorys.removeAll()
+        self.tableView.reloadData()
+        ApiManager.sellerCategoryList(ui: self, onSuccess: { categorys in
+            self.categorys.append(contentsOf: categorys)
+            self.tableView.reloadData()
+        }) { err_msg in
+            print(err_msg)
+        }
+    }
+    
+    @IBOutlet weak var categoryName: UITextField! {
+        didSet {
+            self.categoryName.leftViewMode = .always
+            self.categoryName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        }
+    }
+    
+    @IBOutlet weak var addCategoryBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupData()
-        
-        foodTable.delegate = self
-        foodTable.dataSource = self
+
+    }
+    
+   override func viewWillAppear(_ animated: Bool) {
+        self.loadData(refresh: true)
+        self.categoryName.text = ""
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-}
-
-extension FoodVC : UITableViewDelegate ,UITableViewDataSource {
     
+    override func show(_ vc: UIViewController, sender: Any?) {
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foods.count
+        return self.categorys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FoodTVCell
+    
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! FoodTVCell
         
-        cell.name.text = foods[indexPath.row].name
-        cell.switchButton.setOn(foods[indexPath.row].switchButton, animated: false)
+        let status: SwitchStatus = SwitchStatus.of(name: self.categorys[indexPath.row].status)
+        cell.switchBtn.isOn = status.status()
+        cell.deleteBtn.tag = indexPath.row
+        cell.editBtn.tag = indexPath.row
+        cell.switchBtn.tag = indexPath.row
         
-        cell.delete.tag = indexPath.row
-        cell.delete.addTarget(self, action: #selector(delete(sender:)), for: .touchUpInside)
+        cell.name.text = self.categorys[indexPath.row].category_name
 
-        cell.editor.addTarget(self, action: #selector(editor(sender:)), for: .touchUpInside)
-        
         return cell
     }
     
-    @objc func delete(sender : UIButton!) {
-        foods.remove(at: sender.tag )
-        foodTable.reloadData()
+    @IBAction func addCategoryAction(_ sender: UIButton) {
+        if self.categoryName.text == "" {
+            
+        }else {
+            
+        }
     }
     
-    @objc func editor(sender : UIButton!) {
+    @IBAction func deleteCategoryAction(_ sender: UIButton) {
+        let reqData: ReqData = ReqData()
+        reqData.uuid = self.categorys[sender.tag].category_uuid
+        ApiManager.sellerDeleteCategory(req: reqData, ui: self, onSuccess: {
+            self.categorys.remove(at: sender.tag)
+            self.tableView.reloadData()
+        }) { err_msg in
+            print(err_msg)
+        }
+    }
+    
+    @IBAction func editCategoryAction(_ sender: UIButton) {
+        print(sender.tag)
+    }
 
-        //TODO
+    @IBAction func changeCategoryAction(_ sender: UISwitch) {
+        let status: SwitchStatus = SwitchStatus.of(name: self.categorys[sender.tag].status)
+        
+        if status.status() != sender.isOn {
+            let reqData: ReqData = ReqData()
+            reqData.uuid = self.categorys[sender.tag].category_uuid
+            reqData.status = SwitchStatus.of(bool: sender.isOn)
+            ApiManager.sellerChangeCategoryStatus(req: reqData, ui: self, onSuccess: {
+                self.categorys[sender.tag].status = reqData.status
+                self.tableView.reloadData()
+            }) { err_msg in
+                sender.isOn = status.status()
+                self.tableView.reloadData()
+            }
+        }
     }
-    
     
 }
+
+
 

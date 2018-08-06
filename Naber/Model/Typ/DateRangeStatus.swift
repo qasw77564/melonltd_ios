@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum DateRangeStatus: String {
+enum SwitchStatus: String {
     case OPEN = "OPEN"
     case CLOSE = "CLOSE"
     case UNKNOWN = "UNKNOWN"
@@ -25,7 +25,7 @@ enum DateRangeStatus: String {
         }
     }
     
-    static func of(name: String) -> DateRangeStatus{
+    static func of(name: String) -> SwitchStatus{
         switch name.uppercased() {
         case "OPEN":
             return .OPEN

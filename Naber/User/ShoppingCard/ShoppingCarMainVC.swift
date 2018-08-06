@@ -76,9 +76,10 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
         return cell
     }
     
+    
+    // 利用 UIButton內的多個View元素來分別儲存 root index & sub index
     @IBAction func deleteFoodReload(_ sender: UIButton) {
         let rootIndex: Int = (sender.imageView?.tag)!
-//        let rootIndex: Int = Int((sender.titleLabel?.text?.description)!)!
         let subIndex: Int = sender.tag
         if Model.USER_CACHE_SHOPPING_CART[rootIndex].orders.count > 1 {
             Model.USER_CACHE_SHOPPING_CART[rootIndex].orders.remove(at: subIndex)
