@@ -25,19 +25,37 @@ class UserSettingMainPageTVC: UITableViewController {
 
 
     }
-
     override func viewWillAppear(_ animated: Bool) {
         
+        let Version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
+        self.version.text = (" V：\(Version)")
         
-        let photo: String! = ""
+//        let account: AccountInfoVo = AccountInfoVo()
         
         
-        if photo == nil || photo == "" {
-            self.photo.image = UIImage(named: "Logo")
-        }else {
-            //            self.photo.setImage(with: URL(string: "http://sdsdsdsdsd.png"), transformer: TransformerHelper.transformer(identifier: "http://sdsdsdsdsd.png"))
-            self.photo.setImage(with: URL(string: photo), transformer: TransformerHelper.transformer(identifier: photo))
+        ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
+            // TODO
+            self.accunt.text = account?.account
+            self.bonus.text = account?.bonus
+            
+            
+            print(account?.photo)
+
+            let photo: String! = ""
+            if photo != nil || photo != "" {
+                self.photo.image = UIImage(named: "Logo")
+            }else {
+                self.photo?.setImage(with: URL(string: (account?.photo!)!), transformer: TransformerHelper.transformer(identifier: (account?.photo!)!))
+            }
+
+            self.photo?.clipsToBounds = true
+            
+           
+            
+        }) { err_msg in
+            // TODO
         }
+        
     }
     
 

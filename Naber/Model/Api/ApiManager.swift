@@ -206,8 +206,8 @@ class ApiManager {
     }
     
     // 使用者資訊(未測試）
-    public static func userFindAccountInfo (req: ReqData,ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
-        self.postAutho(url: ApiUrl.FIND_ACCOUNT_INFO, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
+    public static func userFindAccountInfo ( ui: UIViewController, onSuccess: @escaping (AccountInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.FIND_ACCOUNT_INFO, data: "" , ui:ui, complete: { response in
             let resp: AccountInfoResp = AccountInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
