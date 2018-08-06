@@ -102,7 +102,7 @@ class LoginVC: UIViewController {
                     UserSstorage.setRememberMe(remember)
                     print(remember)
                     
-                    UserSstorage.printRepresentation()
+//                    UserSstorage.printRepresentation()
                     if self.USER_TYPES.contains(Identity.init(rawValue: (account?.identity.uppercased())!)!) {
                         // 使用者
                         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {

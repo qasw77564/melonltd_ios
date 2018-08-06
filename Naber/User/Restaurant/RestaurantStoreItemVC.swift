@@ -10,7 +10,7 @@ import UIKit
 
 class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var categoryRel : RestaurantCategoryRelVo!
+    var categoryRel : CategoryRelVo!
     var restaurantInfo : RestaurantInfoVo!
     var foodList: [FoodVo?] = []
     

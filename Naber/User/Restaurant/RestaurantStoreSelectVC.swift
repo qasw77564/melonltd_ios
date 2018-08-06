@@ -20,7 +20,7 @@ class RestaurantStoreSelectVC: UIViewController {
     var food: FoodVo!
     var itemVo: FoodItemVo!
     var restaurantInfo: RestaurantInfoVo!
-    var categoryRel: RestaurantCategoryRelVo!
+    var categoryRel: CategoryRelVo!
     
     @IBOutlet weak var orderTotal: UILabel!
     @IBOutlet weak var orderNumber: UILabel!

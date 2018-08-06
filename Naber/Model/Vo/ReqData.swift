@@ -17,6 +17,7 @@ class ReqData : Codable {
     var old_password: String!
     var password: String!
     var email: String!
+    var name: String!
     var date: String!
     var status: String!
     var search_type: String!

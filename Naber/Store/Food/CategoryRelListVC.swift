@@ -9,9 +9,9 @@
 import UIKit
 
 
-class FoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var categorys: [RestaurantCategoryRelVo] = []
+    var categorys: [CategoryRelVo] = []
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             self.tableView.dataSource = self
@@ -28,7 +28,6 @@ class FoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         sender.endRefreshing()
         self.loadData(refresh: true)
     }
-    
     
     func loadData(refresh: Bool){
         self.categorys.removeAll()
@@ -52,7 +51,6 @@ class FoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
    override func viewWillAppear(_ animated: Bool) {
@@ -74,9 +72,9 @@ class FoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! FoodTVCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! CategoryRelCell
         let status: SwitchStatus = SwitchStatus.of(name: self.categorys[indexPath.row].status)
+        
         cell.switchBtn.isOn = status.status()
         cell.deleteBtn.tag = indexPath.row
         cell.editBtn.tag = indexPath.row
@@ -89,25 +87,44 @@ class FoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func addCategoryAction(_ sender: UIButton) {
         if self.categoryName.text == "" {
-            
+            let alert = UIAlertController(title: "", message: "請輸入種類名稱", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+            self.present(alert, animated: false)
         }else {
-            
+            let reqData: ReqData = ReqData()
+            reqData.name = self.categoryName.text
+            ApiManager.sellerAddCategory(req: reqData, ui: self, onSuccess: { categoryRel in
+                if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
+                    vc.categoryRel = categoryRel
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }) { err_msg in
+                print(err_msg)
+            }
         }
     }
     
     @IBAction func deleteCategoryAction(_ sender: UIButton) {
-        let reqData: ReqData = ReqData()
-        reqData.uuid = self.categorys[sender.tag].category_uuid
-        ApiManager.sellerDeleteCategory(req: reqData, ui: self, onSuccess: {
-            self.categorys.remove(at: sender.tag)
-            self.tableView.reloadData()
-        }) { err_msg in
-            print(err_msg)
-        }
+        let alert = UIAlertController(title: "", message: "請注意刪除種類\n，將會影響種類下的產品!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .destructive))
+        alert.addAction(UIAlertAction(title: "確定刪除", style: .default, handler: { _ in
+            let reqData: ReqData = ReqData()
+            reqData.uuid = self.categorys[sender.tag].category_uuid
+            ApiManager.sellerDeleteCategory(req: reqData, ui: self, onSuccess: {
+                self.categorys.remove(at: sender.tag)
+                self.tableView.reloadData()
+            }) { err_msg in
+                print(err_msg)
+            }
+        }))
+        self.present(alert, animated: false)
     }
     
     @IBAction func editCategoryAction(_ sender: UIButton) {
-        print(sender.tag)
+        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
+            vc.categoryRel = self.categorys[sender.tag]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @IBAction func changeCategoryAction(_ sender: UISwitch) {

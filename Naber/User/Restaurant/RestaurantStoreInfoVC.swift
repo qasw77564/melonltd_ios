@@ -11,7 +11,7 @@ import CoreLocation
 
 class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate , CLLocationManagerDelegate{
     
-    var categoryList: [RestaurantCategoryRelVo?] = []
+    var categoryList: [CategoryRelVo?] = []
     var LM : CLLocationManager!; //座標管理元件
     var restaurantIndex : Int! = Optional.none
     var pageType: PageType = .NONE

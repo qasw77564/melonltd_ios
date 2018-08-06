@@ -1,28 +1,20 @@
 //
-//  FoodClassTVCell.swift
+//  FoodTVCell.swift
 //  Naber
 //
-//  Created by LianYong-Jun on 2018/6/9.
+//  Created by LianYong-Jun on 2018/6/8.
 //  Copyright © 2018年 Melone.L.T.D. All rights reserved.
 //
 
 import UIKit
 
-class FoodClassTVCell: UITableViewCell {
+class CategoryRelCell: UITableViewCell {
 
-    
+
     @IBOutlet weak var name: UILabel!
-    
-    @IBOutlet weak var money: UILabel!
-    
-    @IBOutlet weak var picture: UIImageView!
-    
-    @IBOutlet weak var switchButton: UISwitch!
-    
-    @IBOutlet weak var delete: UIButton!
-    
-    @IBOutlet weak var editor: UIButton!
-    
+    @IBOutlet weak var switchBtn: UISwitch!
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

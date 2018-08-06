@@ -73,7 +73,7 @@ class UserSstorage {
     
     public static func getShoppingCartDatas() -> [OrderDetail] {
         if let remember = getValue(forKey: SHOPPING_CART) as? String {
-            print("json : ", remember)
+//            print("json : ", remember)
             let datas: [OrderDetail] = OrderDetail.parseArray(src: remember)!
             return datas
         } else {
@@ -81,8 +81,8 @@ class UserSstorage {
         }
     }
     
+    
     private static func getValue(forKey: String)-> Any? {
-        printRepresentation()
         if let any : Any = UserDefaults.standard.value(forKey: forKey) {
             return any
         } else {
@@ -99,6 +99,8 @@ class UserSstorage {
         }
         setRememberMe(remember)
     }
+    
+    // 使用於，使用者重新密碼後返回登入頁面重新登入清除 account & login time
     static func clearUserLoginTime(){
         let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO]
         let remember: Bool = getRememberMe()
@@ -109,9 +111,9 @@ class UserSstorage {
     }
     
     
-    static func printRepresentation() {
-        let map : [String : Any] = UserDefaults.standard.dictionaryWithValues(forKeys: [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART])
-        print(map)
-    }
+//    static func printRepresentation() {
+//        let map : [String : Any] = UserDefaults.standard.dictionaryWithValues(forKeys: [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART])
+//        print(map)
+//    }
    
 }

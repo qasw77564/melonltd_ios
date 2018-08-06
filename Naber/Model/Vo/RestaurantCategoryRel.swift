@@ -9,13 +9,13 @@
 import Foundation
 
 
-class RestaurantCategoryRelResp : Codable {
+class CategoryRelListResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : [RestaurantCategoryRelVo]! = []
+    var data : [CategoryRelVo]! = []
     
-    public static func toJson(structs : RestaurantCategoryRelResp) -> String {
+    public static func toJson(structs : CategoryRelListResp) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {
@@ -23,9 +23,33 @@ class RestaurantCategoryRelResp : Codable {
         }
     }
     
-    public static func parse(src : String) -> RestaurantCategoryRelResp? {
+    public static func parse(src : String) -> CategoryRelListResp? {
         do {
-            return try JSONDecoder().decode(RestaurantCategoryRelResp.self, from: src.data(using:.utf8)!)
+            return try JSONDecoder().decode(CategoryRelListResp.self, from: src.data(using:.utf8)!)
+        }catch {
+            return nil
+        }
+    }
+    
+}
+
+class CategoryRelResp : Codable {
+    var status : String!
+    var err_code : String!
+    var err_msg : String!
+    var data : CategoryRelVo!
+    
+    public static func toJson(structs : CategoryRelResp) -> String {
+        do {
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+        } catch {
+            return ""
+        }
+    }
+    
+    public static func parse(src : String) -> CategoryRelResp? {
+        do {
+            return try JSONDecoder().decode(CategoryRelResp.self, from: src.data(using:.utf8)!)
         }catch {
             return nil
         }
@@ -34,14 +58,15 @@ class RestaurantCategoryRelResp : Codable {
 }
 
 
-class RestaurantCategoryRelVo : Codable {
+
+class CategoryRelVo : Codable {
     
     var category_uuid: String!
     var restaurant_uuid: String!
     var category_name: String!
     var status : String!
     
-    public static func toJson(structs : RestaurantCategoryRelVo) -> String {
+    public static func toJson(structs : CategoryRelVo) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {
@@ -49,9 +74,9 @@ class RestaurantCategoryRelVo : Codable {
         }
     }
     
-    public static func parse(src : String) -> RestaurantCategoryRelVo? {
+    public static func parse(src : String) -> CategoryRelVo? {
         do {
-            return try JSONDecoder().decode(RestaurantCategoryRelVo.self, from: src.data(using:.utf8)!)
+            return try JSONDecoder().decode(CategoryRelVo.self, from: src.data(using:.utf8)!)
         }catch {
             return nil
         }

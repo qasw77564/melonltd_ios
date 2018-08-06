@@ -152,11 +152,11 @@ class ApiManager {
     }
 
     // 餐館細節，系列列表
-    public static func restaurantCategoryList (uuid: String, ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
+    public static func restaurantCategoryList (uuid: String, ui: UIViewController, onSuccess: @escaping ([CategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
         let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
-            let resp: RestaurantCategoryRelResp = RestaurantCategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
+            let resp: CategoryRelListResp = CategoryRelListResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
@@ -365,9 +365,9 @@ class ApiManager {
         })
     }
     // 取得種類列表(未測試)
-    public static func sellerCategoryList (ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo]) -> (), onFail: @escaping (String) -> ()) {
+    public static func sellerCategoryList (ui: UIViewController, onSuccess: @escaping ([CategoryRelVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CATEGORY_LIST, data: "", ui:ui, complete: { response in
-            let resp: RestaurantCategoryRelResp = RestaurantCategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
+            let resp: CategoryRelListResp = CategoryRelListResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
@@ -376,9 +376,9 @@ class ApiManager {
         })
     }
     // 新增種類(未測試)
-    public static func sellerAddCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
+    public static func sellerAddCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping (CategoryRelVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_ADD_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
-            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+            let resp: CategoryRelResp = CategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
@@ -516,7 +516,6 @@ class ApiManager {
             if response.result.isSuccess {
                 complete(response)
             }else if (response.result.error != nil) {
-//                print(response.result.error?.localizedDescription ?? "")
                 let alert = UIAlertController(title: "系統提示", message: "請確認裝置有連結網路！", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "確認", style: .default))
                 ui.present(alert, animated: false)

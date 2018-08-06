@@ -159,6 +159,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         
         alert.addTextField{ textField in
             textField.placeholder = "自行輸入"
+            textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
             textField.addConstraint(textField.heightAnchor.constraint(equalToConstant: 36))
             textField.font?.withSize(30)
             text = textField
