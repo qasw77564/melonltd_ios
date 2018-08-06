@@ -529,7 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OxF-BT-Xpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-544.79999999999995" y="-2056.4039408866997"/>
+            <point key="canvasLocation" x="-542" y="-2070"/>
         </scene>
         <!--首頁-登入-->
         <scene sceneID="tne-QT-ifu">
@@ -1013,7 +1013,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFy-of-WKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1541.5999999999999" y="-460.34482758620692"/>
+            <point key="canvasLocation" x="-1434" y="-558"/>
         </scene>
         <!--店家-TC-->
         <scene sceneID="FtM-Lw-yCi">
@@ -2617,10 +2617,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -2668,10 +2668,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -2722,10 +2722,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -2765,10 +2765,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -2866,7 +2866,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="quickSearch:" destination="Igy-bc-mai" eventType="touchUpInside" id="2LU-Fn-D8S"/>
+                                            <action selector="quickSearch:" destination="Igy-bc-mai" eventType="touchUpInside" id="chb-i3-Yw6"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="快速查單" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6V-7A-Rnw">
@@ -3062,6 +3062,9 @@
                                                                             <real key="value" value="2"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="changeToCancel:" destination="Igy-bc-mai" eventType="touchUpInside" id="Ouo-by-vZA"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBf-Jm-CLl" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                                     <rect key="frame" x="69.333333333333343" y="0.0" width="65.333333333333343" height="30"/>
@@ -3075,6 +3078,9 @@
                                                                             <real key="value" value="2"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="changeToFailure:" destination="Igy-bc-mai" eventType="touchUpInside" id="rJA-3g-S7s"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhk-OY-05F" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                                     <rect key="frame" x="138.66666666666666" y="0.0" width="65.666666666666657" height="30"/>
@@ -3089,7 +3095,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToProcessing:" destination="Igy-bc-mai" eventType="touchUpInside" id="t63-ZD-sWO"/>
+                                                                        <action selector="changeToProcessing:" destination="Igy-bc-mai" eventType="touchUpInside" id="W7w-GK-jOj"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwm-sF-aV4" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
@@ -3105,7 +3111,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToCanFetch:" destination="Igy-bc-mai" eventType="touchUpInside" id="CEP-9s-7XS"/>
+                                                                        <action selector="changeToCanFetch:" destination="Igy-bc-mai" eventType="touchUpInside" id="6NL-7I-nL1"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6j-a1-Cfc" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
@@ -3121,7 +3127,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToFinish:" destination="Igy-bc-mai" eventType="touchUpInside" id="mXr-T4-WLM"/>
+                                                                        <action selector="changeToFinish:" destination="Igy-bc-mai" eventType="touchUpInside" id="swW-Jm-YxI"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -4104,7 +4110,7 @@
                                                 <constraint firstAttribute="height" constant="0.5" id="YFb-mQ-aRy"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="領餐時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJ2-Id-WWy">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="下單時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJ2-Id-WWy">
                                             <rect key="frame" x="8.0000000000000036" y="121.66666666666669" width="57.333333333333343" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
@@ -4197,8 +4203,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDW-rb-Gaw">
-                                            <rect key="frame" x="8.0000000000000018" y="189.33333333333334" width="28.666666666666671" height="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總總額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDW-rb-Gaw">
+                                            <rect key="frame" x="8" y="189.33333333333334" width="43" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="Egp-TE-jyz"/>
                                             </constraints>
@@ -4212,7 +4218,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9U-Yv-SyY">
-                                            <rect key="frame" x="52.666666666666664" y="189.33333333333334" width="17.666666666666664" height="25"/>
+                                            <rect key="frame" x="67" y="189.33333333333334" width="17.666666666666671" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="vNv-Hf-YFa"/>
                                             </constraints>
@@ -4252,10 +4258,6 @@
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="changeToCancel:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="4Kd-Q1-yNJ"/>
-                                                        <action selector="changeToCancel:" destination="Igy-bc-mai" eventType="touchUpInside" id="yAX-ef-YI5"/>
-                                                    </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-gD-oe6" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                     <rect key="frame" x="179.66666666666666" y="0.0" width="0.0" height="30"/>
@@ -4269,10 +4271,6 @@
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="changeToFailure:" destination="Igy-bc-mai" eventType="touchUpInside" id="KUq-ZG-AIf"/>
-                                                        <action selector="changeToFailure:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="krV-mx-0px"/>
-                                                    </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnB-qR-x3V" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                     <rect key="frame" x="179.66666666666666" y="0.0" width="0.0" height="30"/>
@@ -4286,9 +4284,6 @@
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="changeToProcessing:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="2ae-lz-UrS"/>
-                                                    </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-eT-h6b" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                     <rect key="frame" x="179.66666666666666" y="0.0" width="0.0" height="30"/>
@@ -4302,9 +4297,6 @@
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="changeToCanFetch:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="W6g-iG-M89"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XT3-he-IGL" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
                                                     <rect key="frame" x="181.66666666666663" y="0.0" width="177.33333333333337" height="30"/>
@@ -4318,9 +4310,6 @@
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="changeToFinish:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="rhs-jA-lTt"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4488,26 +4477,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="種類" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrK-Et-7O0">
-                                <rect key="frame" x="16" y="96" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="irm-zY-tsg"/>
-                                </constraints>
+                                <rect key="frame" x="8" y="96" width="359" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7s-qO-T0b">
-                                <rect key="frame" x="16" y="134" width="343" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7s-qO-T0b" userLabel="line">
+                                <rect key="frame" x="8" y="123.33333333333333" width="359" height="1"/>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="IqM-iK-hUG"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="aFH-ha-AVQ"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="請輸入種類名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQg-f4-Ipx" customClass="DesignableTextField" customModule="Naber" customModuleProvider="target">
-                                <rect key="frame" x="16" y="143" width="273" height="40"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="請輸入種類名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQg-f4-Ipx">
+                                <rect key="frame" x="8" y="132.33333333333334" width="271" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="270" id="0Mx-bk-lBx"/>
-                                    <constraint firstAttribute="height" constant="40" id="ChN-Ye-K8s"/>
+                                    <constraint firstAttribute="height" constant="40" id="xGf-Pz-jEL"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -4519,13 +4504,16 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-L2-K8o" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
-                                <rect key="frame" x="289" y="143" width="70" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-L2-K8o">
+                                <rect key="frame" x="287" y="132" width="80" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="LLZ-ds-PNS"/>
-                                    <constraint firstAttribute="height" constant="40" id="kE2-2j-dFO"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Di1-MR-M0M"/>
+                                    <constraint firstAttribute="height" constant="40" id="xda-Ii-66F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="新增種類">
@@ -4538,88 +4526,113 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="addFoodAction:" destination="bSy-Wv-c6Y" eventType="touchUpInside" id="dfX-bl-Jlr"/>
+                                    <action selector="addCategoryAction:" destination="bSy-Wv-c6Y" eventType="touchUpInside" id="3xw-Vg-SVR"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Udh-8U-P0s">
-                                <rect key="frame" x="0.0" y="191" width="375" height="538"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Udh-8U-P0s">
+                                <rect key="frame" x="0.0" y="180.33333333333331" width="375" height="548.66666666666674"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="52" id="irE-h1-1Xp" userLabel="Cell" customClass="FoodTVCell" customModule="Naber" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="52"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="46" id="irE-h1-1Xp" userLabel="Cell" customClass="FoodTVCell" customModule="Naber" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="irE-h1-1Xp" id="s3C-bC-f9S">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.666666666666664"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="irE-h1-1Xp" id="s3C-bC-f9S">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="test data:0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbD-7X-qTL">
-                                                    <rect key="frame" x="8" y="9.3333333333333357" width="190" height="30"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfG-D6-EwL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="46"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test data:0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbD-7X-qTL">
+                                                            <rect key="frame" x="8" y="7" width="70" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="vVI-Og-Enq"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyG-xG-v7r">
+                                                            <rect key="frame" x="174" y="8" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="changeCategoryAction:" destination="bSy-Wv-c6Y" eventType="valueChanged" id="w4C-Fd-9hM"/>
+                                                            </connections>
+                                                        </switch>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeW-EI-vAd">
+                                                            <rect key="frame" x="231" y="8" width="60" height="30"/>
+                                                            <color key="backgroundColor" red="0.91764705879999997" green="0.098039215690000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="YbN-9E-RHp"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="dlk-6a-Jfq"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <state key="normal" title="刪除">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="2"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="deleteCategoryAction:" destination="bSy-Wv-c6Y" eventType="touchUpInside" id="Mm2-Xw-lwa"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xN2-Xr-piH">
+                                                            <rect key="frame" x="299" y="8" width="60" height="30"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.59607843140000005" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="sj2-j6-n17"/>
+                                                                <constraint firstAttribute="height" constant="30" id="zsz-Jr-zTK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <state key="normal" title="編輯">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="2"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="editCategoryAction:" destination="bSy-Wv-c6Y" eventType="touchUpInside" id="iOm-mB-jP3"/>
+                                                                <segue destination="nVM-la-bt5" kind="show" id="GFM-Re-kra"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="EdN-1W-PS1"/>
-                                                        <constraint firstAttribute="height" constant="30" id="Fgk-vc-dXf"/>
+                                                        <constraint firstItem="TbD-7X-qTL" firstAttribute="leading" secondItem="AfG-D6-EwL" secondAttribute="leading" constant="8" id="0B1-dg-VBZ"/>
+                                                        <constraint firstItem="fyG-xG-v7r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TbD-7X-qTL" secondAttribute="trailing" constant="8" id="19y-Yt-IoH"/>
+                                                        <constraint firstItem="fyG-xG-v7r" firstAttribute="centerY" secondItem="TbD-7X-qTL" secondAttribute="centerY" id="4CA-Pl-Bh3"/>
+                                                        <constraint firstItem="xN2-Xr-piH" firstAttribute="leading" secondItem="TeW-EI-vAd" secondAttribute="trailing" constant="8" id="B6F-fv-siv"/>
+                                                        <constraint firstItem="xN2-Xr-piH" firstAttribute="top" secondItem="AfG-D6-EwL" secondAttribute="top" constant="8" id="WuX-dY-ONk"/>
+                                                        <constraint firstItem="TeW-EI-vAd" firstAttribute="centerY" secondItem="TbD-7X-qTL" secondAttribute="centerY" id="bFk-yw-VEI"/>
+                                                        <constraint firstItem="xN2-Xr-piH" firstAttribute="centerY" secondItem="TbD-7X-qTL" secondAttribute="centerY" id="dL5-Y8-fVs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="xN2-Xr-piH" secondAttribute="bottom" constant="8" id="ijm-La-tVv"/>
+                                                        <constraint firstItem="TeW-EI-vAd" firstAttribute="leading" secondItem="fyG-xG-v7r" secondAttribute="trailing" constant="8" id="kAT-i5-vgX"/>
+                                                        <constraint firstAttribute="trailing" secondItem="xN2-Xr-piH" secondAttribute="trailing" constant="8" id="v2M-2Z-ucU"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeW-EI-vAd">
-                                                    <rect key="frame" x="263" y="8.3333333333333357" width="50" height="32"/>
-                                                    <color key="backgroundColor" red="0.91764705879999997" green="0.098039215690000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="TS9-ES-05I"/>
-                                                        <constraint firstAttribute="width" constant="50" id="m5x-8i-jRJ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="刪除">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xN2-Xr-piH">
-                                                    <rect key="frame" x="317" y="8.3333333333333357" width="50" height="32"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.59607843140000005" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="V2p-oP-4oA"/>
-                                                        <constraint firstAttribute="width" constant="50" id="lwl-Jd-2CH"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="編輯">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="nVM-la-bt5" kind="show" id="GFM-Re-kra"/>
-                                                    </connections>
-                                                </button>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyG-xG-v7r">
-                                                    <rect key="frame" x="206" y="7.6666666666666679" width="51" height="31.000000000000004"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="RnV-w1-60E"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="hj1-ru-ELS"/>
-                                                        <constraint firstAttribute="width" constant="49" id="tvz-DG-Xb1"/>
-                                                    </constraints>
-                                                </switch>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xN2-Xr-piH" firstAttribute="top" secondItem="s3C-bC-f9S" secondAttribute="top" constant="8" id="60b-m8-CNf"/>
-                                                <constraint firstItem="xN2-Xr-piH" firstAttribute="centerY" secondItem="TeW-EI-vAd" secondAttribute="centerY" id="7Ge-Mg-G5k"/>
-                                                <constraint firstItem="xN2-Xr-piH" firstAttribute="centerY" secondItem="TbD-7X-qTL" secondAttribute="centerY" id="HJ3-tt-4Tq"/>
-                                                <constraint firstItem="xN2-Xr-piH" firstAttribute="centerY" secondItem="fyG-xG-v7r" secondAttribute="centerY" id="KeQ-gx-5o9"/>
-                                                <constraint firstItem="TeW-EI-vAd" firstAttribute="leading" secondItem="fyG-xG-v7r" secondAttribute="trailing" constant="8" id="NjX-RY-VHn"/>
-                                                <constraint firstItem="TbD-7X-qTL" firstAttribute="leading" secondItem="s3C-bC-f9S" secondAttribute="leading" constant="8" id="Q7c-PJ-oz0"/>
-                                                <constraint firstItem="fyG-xG-v7r" firstAttribute="leading" secondItem="TbD-7X-qTL" secondAttribute="trailing" constant="8" id="RAp-FI-JBM"/>
-                                                <constraint firstAttribute="bottom" secondItem="xN2-Xr-piH" secondAttribute="bottom" constant="8" id="SKK-w0-0xE"/>
-                                                <constraint firstItem="xN2-Xr-piH" firstAttribute="leading" secondItem="TeW-EI-vAd" secondAttribute="trailing" constant="4" id="ZsL-Tx-bGd"/>
-                                                <constraint firstItem="xN2-Xr-piH" firstAttribute="centerY" secondItem="s3C-bC-f9S" secondAttribute="centerY" id="i9w-lV-fSr"/>
-                                                <constraint firstAttribute="trailing" secondItem="xN2-Xr-piH" secondAttribute="trailing" constant="8" id="yHx-le-FhI"/>
+                                                <constraint firstItem="AfG-D6-EwL" firstAttribute="leading" secondItem="s3C-bC-f9S" secondAttribute="leading" id="0d0-Qs-Tvf"/>
+                                                <constraint firstAttribute="trailing" secondItem="AfG-D6-EwL" secondAttribute="trailing" constant="8" id="S0X-2Y-hUE"/>
+                                                <constraint firstItem="AfG-D6-EwL" firstAttribute="top" secondItem="s3C-bC-f9S" secondAttribute="top" id="iZw-LA-IqS"/>
+                                                <constraint firstAttribute="bottom" secondItem="AfG-D6-EwL" secondAttribute="bottom" id="pCl-mc-yGW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="delete" destination="TeW-EI-vAd" id="KqK-ZX-1Xf"/>
-                                            <outlet property="editor" destination="xN2-Xr-piH" id="QVe-C2-JBk"/>
+                                            <outlet property="deleteBtn" destination="TeW-EI-vAd" id="iNK-2e-t0Y"/>
+                                            <outlet property="editBtn" destination="xN2-Xr-piH" id="tRv-bL-84y"/>
                                             <outlet property="name" destination="TbD-7X-qTL" id="HB7-aV-fkB"/>
-                                            <outlet property="switchButton" destination="fyG-xG-v7r" id="JCH-Rt-lqh"/>
+                                            <outlet property="switchBtn" destination="fyG-xG-v7r" id="pxq-Vm-yFa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -4627,29 +4640,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Udh-8U-P0s" firstAttribute="bottom" secondItem="P2f-w8-XXk" secondAttribute="bottom" id="0kv-G3-Vbd"/>
-                            <constraint firstItem="KQg-f4-Ipx" firstAttribute="top" secondItem="D7s-qO-T0b" secondAttribute="bottom" constant="8" id="0zx-FV-3hg"/>
-                            <constraint firstItem="KQg-f4-Ipx" firstAttribute="leading" secondItem="P2f-w8-XXk" secondAttribute="leading" constant="16" id="Fhp-Ga-gKb"/>
-                            <constraint firstItem="ng5-L2-K8o" firstAttribute="leading" secondItem="KQg-f4-Ipx" secondAttribute="trailing" id="WkQ-17-oMT"/>
-                            <constraint firstItem="Udh-8U-P0s" firstAttribute="trailing" secondItem="P2f-w8-XXk" secondAttribute="trailing" id="aBE-sD-8EX"/>
-                            <constraint firstItem="D7s-qO-T0b" firstAttribute="leading" secondItem="Q6E-SG-nP6" secondAttribute="leadingMargin" id="aQt-eR-PqS"/>
-                            <constraint firstItem="XrK-Et-7O0" firstAttribute="top" secondItem="P2f-w8-XXk" secondAttribute="top" constant="8" id="bKY-P0-N36"/>
-                            <constraint firstItem="ng5-L2-K8o" firstAttribute="top" secondItem="D7s-qO-T0b" secondAttribute="bottom" constant="8" id="cnv-ui-ehZ"/>
-                            <constraint firstItem="XrK-Et-7O0" firstAttribute="leading" secondItem="P2f-w8-XXk" secondAttribute="leading" constant="16" id="fXs-bZ-FKR"/>
-                            <constraint firstItem="Udh-8U-P0s" firstAttribute="top" secondItem="KQg-f4-Ipx" secondAttribute="bottom" constant="8" id="hbT-UE-7BI"/>
-                            <constraint firstItem="P2f-w8-XXk" firstAttribute="trailing" secondItem="ng5-L2-K8o" secondAttribute="trailing" constant="16" id="lyD-ds-tY4"/>
-                            <constraint firstItem="Udh-8U-P0s" firstAttribute="leading" secondItem="P2f-w8-XXk" secondAttribute="leading" id="pKo-SX-7rb"/>
-                            <constraint firstItem="D7s-qO-T0b" firstAttribute="top" secondItem="XrK-Et-7O0" secondAttribute="bottom" constant="8" id="rEF-fL-cfh"/>
-                            <constraint firstItem="D7s-qO-T0b" firstAttribute="trailing" secondItem="Q6E-SG-nP6" secondAttribute="trailingMargin" id="u18-Ws-Hze"/>
-                            <constraint firstItem="P2f-w8-XXk" firstAttribute="trailing" secondItem="XrK-Et-7O0" secondAttribute="trailing" constant="16" id="yTe-EX-6W5"/>
+                            <constraint firstItem="Udh-8U-P0s" firstAttribute="trailing" secondItem="P2f-w8-XXk" secondAttribute="trailing" id="0m1-1N-GBb"/>
+                            <constraint firstItem="D7s-qO-T0b" firstAttribute="trailing" secondItem="XrK-Et-7O0" secondAttribute="trailing" id="8r3-Bp-8QV"/>
+                            <constraint firstItem="Udh-8U-P0s" firstAttribute="leading" secondItem="P2f-w8-XXk" secondAttribute="leading" id="8y4-bb-i4m"/>
+                            <constraint firstItem="ng5-L2-K8o" firstAttribute="leading" secondItem="KQg-f4-Ipx" secondAttribute="trailing" constant="8" id="B8g-g7-tS5"/>
+                            <constraint firstItem="KQg-f4-Ipx" firstAttribute="top" secondItem="D7s-qO-T0b" secondAttribute="bottom" constant="8" id="BcW-yP-EUL"/>
+                            <constraint firstItem="KQg-f4-Ipx" firstAttribute="leading" secondItem="XrK-Et-7O0" secondAttribute="leading" id="Btc-uo-EkQ"/>
+                            <constraint firstItem="XrK-Et-7O0" firstAttribute="top" secondItem="P2f-w8-XXk" secondAttribute="top" constant="8" id="Lnz-eN-933"/>
+                            <constraint firstItem="D7s-qO-T0b" firstAttribute="leading" secondItem="XrK-Et-7O0" secondAttribute="leading" id="QSt-sL-A9l"/>
+                            <constraint firstItem="ng5-L2-K8o" firstAttribute="trailing" secondItem="XrK-Et-7O0" secondAttribute="trailing" id="ScW-nG-P29"/>
+                            <constraint firstItem="Udh-8U-P0s" firstAttribute="top" secondItem="KQg-f4-Ipx" secondAttribute="bottom" constant="8" id="Tdm-Zy-TBF"/>
+                            <constraint firstItem="Udh-8U-P0s" firstAttribute="bottom" secondItem="P2f-w8-XXk" secondAttribute="bottom" id="WPD-vI-fYf"/>
+                            <constraint firstItem="D7s-qO-T0b" firstAttribute="top" secondItem="XrK-Et-7O0" secondAttribute="bottom" constant="8" id="c5Q-cH-O6z"/>
+                            <constraint firstItem="ng5-L2-K8o" firstAttribute="centerY" secondItem="KQg-f4-Ipx" secondAttribute="centerY" id="jLY-rq-0sg"/>
+                            <constraint firstItem="XrK-Et-7O0" firstAttribute="leading" secondItem="P2f-w8-XXk" secondAttribute="leading" constant="8" id="mOZ-Dv-duk"/>
+                            <constraint firstItem="P2f-w8-XXk" firstAttribute="trailing" secondItem="XrK-Et-7O0" secondAttribute="trailing" constant="8" id="u2H-1V-37i"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P2f-w8-XXk"/>
                     </view>
                     <navigationItem key="navigationItem" title="菜單" id="DdI-Pd-40N"/>
                     <connections>
-                        <outlet property="addFoodClass" destination="ng5-L2-K8o" id="LMa-vQ-lAo"/>
-                        <outlet property="foodClassName" destination="KQg-f4-Ipx" id="OOP-dw-ci8"/>
-                        <outlet property="foodTable" destination="Udh-8U-P0s" id="f2v-qb-iiJ"/>
+                        <outlet property="addCategoryBtn" destination="ng5-L2-K8o" id="WjD-sQ-UV9"/>
+                        <outlet property="categoryName" destination="KQg-f4-Ipx" id="CCX-sv-cEl"/>
+                        <outlet property="tableView" destination="Udh-8U-P0s" id="X5l-ac-vok"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VEV-5a-JWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5759,10 +5772,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -5802,10 +5815,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -5852,10 +5865,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -5895,10 +5908,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -6107,10 +6120,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -6151,10 +6164,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -7476,8 +7489,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToCancel:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="bAm-hZ-k2F"/>
-                                                                        <action selector="changeToCancel:" destination="Igy-bc-mai" eventType="touchUpInside" id="qPO-8P-pQd"/>
+                                                                        <action selector="changeToCancel:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="HyM-I2-bwv"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCr-Gl-tFH" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
@@ -7493,8 +7505,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToFailure:" destination="Igy-bc-mai" eventType="touchUpInside" id="7Um-pK-uqY"/>
-                                                                        <action selector="changeToFailure:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="9M7-Ob-3Fr"/>
+                                                                        <action selector="changeToFailure:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="AOH-dZ-DFa"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1y-jn-A8D" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
@@ -7510,7 +7521,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToProcessing:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="7XH-td-b8E"/>
+                                                                        <action selector="changeToProcessing:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="alr-aS-fhI"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQH-Ew-7Gd" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
@@ -7526,7 +7537,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToCanFetch:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="SuY-CK-wyG"/>
+                                                                        <action selector="changeToCanFetch:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="yxI-BM-Ny1"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEj-Gw-vwh" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
@@ -7542,7 +7553,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="changeToFinish:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="2bW-ab-NcX"/>
+                                                                        <action selector="changeToFinish:" destination="Qh2-tX-Dh5" eventType="touchUpInside" id="d7Y-rD-qPn"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -8703,7 +8714,7 @@
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選項" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ3-F4-AjI">
-                                                                                        <rect key="frame" x="8" y="5.3333333333333321" width="40" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="8" y="5.6666666666666643" width="40" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8dP-dg-Pwg"/>
                                                                                             <constraint firstAttribute="width" constant="40" id="w7F-Iz-cOm"/>
@@ -8713,7 +8724,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-H3-iOL" customClass="DesignableTextField" customModule="Naber" customModuleProvider="target">
-                                                                                        <rect key="frame" x="48" y="5.3333333333333321" width="202" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="48" y="5.6666666666666643" width="202" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="2f9-gD-P6r"/>
                                                                                         </constraints>
@@ -8730,7 +8741,7 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sew-Qr-yk8">
-                                                                                        <rect key="frame" x="264" y="5.3333333333333321" width="40" height="29.999999999999996"/>
+                                                                                        <rect key="frame" x="264" y="5.6666666666666643" width="40" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="40" id="PJr-6s-cM1"/>
                                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tuC-fO-4L7"/>
@@ -8896,7 +8907,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="02M-OD-kbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="h0O-4r-Sq2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="982.5" y="5712.5"/>
+            <point key="canvasLocation" x="1184" y="5067"/>
         </scene>
     </scenes>
     <resources>

@@ -132,6 +132,4 @@ class SubmitOrderVC : UIViewController {
         self.view.endEditing(true)
     }
     
-    
-    
 }

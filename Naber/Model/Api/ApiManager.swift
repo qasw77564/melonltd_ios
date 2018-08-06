@@ -356,7 +356,7 @@ class ApiManager {
     // 取得營運概況已完成訂單列表(未測試)
     public static func sellerStatLog (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_STAT_LOG, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
-            let resp:  OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
+            let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
@@ -365,9 +365,9 @@ class ApiManager {
         })
     }
     // 取得種類列表(未測試)
-    public static func sellerCategoryList (req: ReqData, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo?) -> (), onFail: @escaping (String) -> ()) {
-        self.postAutho(url: ApiUrl.SELLER_CATEGORY_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
-            let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
+    public static func sellerCategoryList (ui: UIViewController, onSuccess: @escaping ([RestaurantCategoryRelVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_CATEGORY_LIST, data: "", ui:ui, complete: { response in
+            let resp: RestaurantCategoryRelResp = RestaurantCategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)
             }else {
