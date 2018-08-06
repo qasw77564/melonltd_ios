@@ -17,6 +17,7 @@
 		205015F8210CB7B300FDE2E8 /* UIIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205015F7210CB7B300FDE2E8 /* UIIdentifier.swift */; };
 		20603EEA210A260E00F2BCAB /* RespStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20603EE9210A260E00F2BCAB /* RespStatus.swift */; };
 		206AECDE211028C2005E64E6 /* SubmitOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AECDD211028C2005E64E6 /* SubmitOrderVC.swift */; };
+		20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */; };
 		20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfo.swift */; };
 		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
 		20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20AF37262100447400D73F79 /* GoogleService-Info.plist */; };
@@ -26,6 +27,7 @@
 		20AF3731210082A600D73F79 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF3730210082A600D73F79 /* Advertisement.swift */; };
 		20AF37332100BC1500D73F79 /* UserSstorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF37322100BC1500D73F79 /* UserSstorage.swift */; };
 		20B4777B2101A7EE007F6EA8 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4777A2101A7EE007F6EA8 /* Identity.swift */; };
+		20BB18E221154825005B7E83 /* TrendOrderLogDetailTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB18E121154825005B7E83 /* TrendOrderLogDetailTVCell.swift */; };
 		20BD64852108BFE600023033 /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD647E2108BFE300023033 /* LLCycleScrollView.swift */; };
 		20BD64862108BFE600023033 /* LLImagePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD647F2108BFE300023033 /* LLImagePageControl.swift */; };
 		20BD64872108BFE600023033 /* LLViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD64802108BFE400023033 /* LLViewExtensions.swift */; };
@@ -157,6 +159,7 @@
 		205015F7210CB7B300FDE2E8 /* UIIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIdentifier.swift; sourceTree = "<group>"; };
 		20603EE9210A260E00F2BCAB /* RespStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespStatus.swift; sourceTree = "<group>"; };
 		206AECDD211028C2005E64E6 /* SubmitOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitOrderVC.swift; sourceTree = "<group>"; };
+		20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailVC.swift; sourceTree = "<group>"; };
 		20AF372120FF8BD000D73F79 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
 		20AF37262100447400D73F79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 		20AF3730210082A600D73F79 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		20AF37322100BC1500D73F79 /* UserSstorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSstorage.swift; sourceTree = "<group>"; };
 		20B4777A2101A7EE007F6EA8 /* Identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
+		20BB18E121154825005B7E83 /* TrendOrderLogDetailTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailTVCell.swift; sourceTree = "<group>"; };
 		20BD647E2108BFE300023033 /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
 		20BD647F2108BFE300023033 /* LLImagePageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLImagePageControl.swift; sourceTree = "<group>"; };
 		20BD64802108BFE400023033 /* LLViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLViewExtensions.swift; sourceTree = "<group>"; };
@@ -558,7 +562,9 @@
 			children = (
 				DD3FA0B220C79292006BAA51 /* TrendMainVC.swift */,
 				DD3FA0B420C7B065006BAA51 /* TrendCompleteOrderVC.swift */,
+				20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */,
 				DD3FA0B620C7B648006BAA51 /* TrendCompleteOrderTVCell.swift */,
+				20BB18E121154825005B7E83 /* TrendOrderLogDetailTVCell.swift */,
 			);
 			path = Trend;
 			sourceTree = "<group>";
@@ -911,6 +917,7 @@
 				DD161D0420CAD01E0080CFE2 /* Tutorial4VC.swift in Sources */,
 				DDFEA7D620B6D47300170222 /* UserSettingAboutUsTVC.swift in Sources */,
 				DD161CFF20CA2E320080CFE2 /* SearchMainTVCell.swift in Sources */,
+				20BB18E221154825005B7E83 /* TrendOrderLogDetailTVCell.swift in Sources */,
 				DD161D0920CAD70B0080CFE2 /* FoodTVCell.swift in Sources */,
 				DDFEA7D220B6BC4800170222 /* UserSettingAccountDetailTVC.swift in Sources */,
 				DD161D1920CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift in Sources */,
@@ -925,6 +932,7 @@
 				20AF372D210059AD00D73F79 /* SMSCode.swift in Sources */,
 				DDF8C2BA20B3F18400BF8904 /* ForgotPasswordVC.swift in Sources */,
 				20BD64892108BFE600023033 /* LLFilledPageControl.swift in Sources */,
+				20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */,
 				20E181DA2112AC74000ADD37 /* BonusExchangeVC.swift in Sources */,
 				20D9DC0621025F4700D643FE /* FSPageViewTransformer.swift in Sources */,
 				DD51D20820C359A5002C5940 /* RestaurantStoreSelectTVCellFoot.swift in Sources */,

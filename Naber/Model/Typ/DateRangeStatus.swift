@@ -42,8 +42,6 @@ enum DateRangeStatus: String {
             return self.OPEN.rawValue
         case false:
             return self.CLOSE.rawValue
-        default:
-            return self.CLOSE.rawValue
         }
     }
     

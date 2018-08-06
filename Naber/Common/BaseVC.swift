@@ -36,6 +36,7 @@ class BaseVC: UIViewController{
     
     // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
     override func viewDidAppear(_ animated: Bool) {
+        
         let msg: String = "\n" +
         "    10點 -> 下次消費折抵3元 (無上限)\n" +
         "  667點 -> 中壢威尼斯 (電影票)\n" +

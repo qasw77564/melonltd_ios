@@ -66,35 +66,42 @@ class SubmitOrderVC : UIViewController {
             })
             self.present(alert, animated: false)
         }else {
-            let detail: OrderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
-            detail.fetch_date = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
-            detail.user_message = self.userMssage.text
-
-            ApiManager.userOrderSubmit(req: detail, ui: self, onSuccess: {
-                // 提交訂單成功 把該筆訂單從手機記憶中移除
-                var shoppingCartData: [OrderDetail] = UserSstorage.getShoppingCartDatas()
-                shoppingCartData.remove(at: self.orderIndex)
-                UserSstorage.setShoppingCartDatas(datas: shoppingCartData)
+            let alert = UIAlertController(title: "確認訂單", message: "取餐時間: " + self.dateSelect.text!, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .destructive))
+            alert.addAction(UIAlertAction(title: "確認", style: .default){ _ in
                 
-                let msg: String = "商家已看到您的訂單囉！\n" +
-                                "你可前往訂單頁面查看商品狀態，\n" +
-                                "提醒您，商品只保留至取餐時間後20分鐘。"
-                let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "我知道了", style: .default, handler: { _ in
-                    // 跳制訂記錄頁面
-                    self.tabBarController?.selectedIndex = 3
-                    // 把當前畫面返回到購物車列表
-                    self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2])!, animated: true)
-                }))
-
-                self.present(alert, animated: false)
-            }) { err_msg in
-                let alert = UIAlertController(title: "", message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "我知道了", style: .default))
-                self.present(alert, animated: false)
-            }
+                let detail: OrderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
+                detail.fetch_date = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
+                detail.user_message = self.userMssage.text
+                
+                ApiManager.userOrderSubmit(req: detail, ui: self, onSuccess: {
+                    // 提交訂單成功 把該筆訂單從手機記憶中移除
+                    var shoppingCartData: [OrderDetail] = UserSstorage.getShoppingCartDatas()
+                    shoppingCartData.remove(at: self.orderIndex)
+                    UserSstorage.setShoppingCartDatas(datas: shoppingCartData)
+                    
+                    let msg: String = "商家已看到您的訂單囉！\n" +
+                        "你可前往訂單頁面查看商品狀態，\n" +
+                    "提醒您，商品只保留至取餐時間後20分鐘。"
+                    let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "我知道了", style: .default, handler: { _ in
+                        // 跳制訂記錄頁面
+                        self.tabBarController?.selectedIndex = 3
+                        // 把當前畫面返回到購物車列表
+                        self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2])!, animated: true)
+                    }))
+                    
+                    self.present(alert, animated: false)
+                }) { err_msg in
+                    let alert = UIAlertController(title: "", message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+                    self.present(alert, animated: false)
+                }
+            })
+            self.present(alert, animated: false)
         }
     }
+    
     
     @IBAction func selectTimePicker(_ sender: UITextField) {
         

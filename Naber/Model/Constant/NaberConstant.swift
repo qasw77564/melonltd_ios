@@ -44,4 +44,5 @@ class NaberConstant {
     static let COLOR_BASIS_GREEN = UIColor(red:0.50, green:0.89, blue:0.22, alpha:1.0)
     static let COLOR_BASIS_ORANGE = UIColor(red:0.94, green:0.44, blue:0.29, alpha:1.0)
     static let COLOR_BASIS_PURPLE = UIColor(red:0.52, green:0.49, blue:0.76, alpha:1.0)
+    static let COLOR_BASIS_GRAY = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
 }

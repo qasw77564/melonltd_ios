@@ -77,16 +77,21 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func deleteFoodReload(_ sender: UIButton) {
-        UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
-        if sender.tag == 0 {
+        let rootIndex: Int = (sender.imageView?.tag)!
+//        let rootIndex: Int = Int((sender.titleLabel?.text?.description)!)!
+        let subIndex: Int = sender.tag
+        if Model.USER_CACHE_SHOPPING_CART[rootIndex].orders.count > 1 {
+            Model.USER_CACHE_SHOPPING_CART[rootIndex].orders.remove(at: subIndex)
+        }else {
             let alert = UIAlertController(title: "", message: "剩下最後一筆菜單，無法刪除。\n若要刪除，請直接點選 \"取消訂單\"", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default))
             self.present(alert, animated: false)
-        } else {
-            Model.USER_CACHE_SHOPPING_CART.removeAll()
-            Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
-            self.tableView.reloadData()
         }
+        
+        UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
+        Model.USER_CACHE_SHOPPING_CART.removeAll()
+        Model.USER_CACHE_SHOPPING_CART.append(contentsOf: UserSstorage.getShoppingCartDatas())
+        self.tableView.reloadData()
     }
     
     @IBAction func countFoodReload(_ sender: UIStepper) {
@@ -96,7 +101,7 @@ class ShoppingCarMainVC: UIViewController, UITableViewDataSource, UITableViewDel
     }
 
     @objc func submitOrder(_ sender: UIButton){
-        let price: Int =  Model.USER_CACHE_SHOPPING_CART[0].orders.reduce(0, { (sum, num) -> Int in
+        let price: Int =  Model.USER_CACHE_SHOPPING_CART[sender.tag].orders.reduce(0, { (sum, num) -> Int in
             return sum + Int(num.item.price)!
         })
         // 訂單種額大於 5000 不給提交
