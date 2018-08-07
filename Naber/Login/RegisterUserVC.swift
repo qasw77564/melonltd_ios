@@ -21,12 +21,10 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.smsCode = SMSCodeVo()
-        print("dsadsa")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("dsadsa")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -167,7 +165,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
         }
 
         ApiManager.verifySMSCode(structs: self.smsCode, ui: self, onSuccess: {
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterUserDetail") as? RegisterUserDetailVC {
+            if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RegisterUserDetail") as? RegisterUserDetailVC {
                 vc.phone = self.smsCode.phone
                 self.navigationController?.pushViewController(vc, animated: true)
             }

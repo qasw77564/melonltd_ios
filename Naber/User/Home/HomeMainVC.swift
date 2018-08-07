@@ -228,6 +228,9 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         //因為ＧＰＳ功能很耗電,所以被敬執行時關閉定位功能
         self.LM.stopUpdatingLocation();
     }
+    
+    override func show(_ vc: UIViewController, sender: Any?) {
+    }
 
     func enableBasicLocationServices() {
         self.LM = CLLocationManager()

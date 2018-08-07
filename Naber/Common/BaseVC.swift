@@ -62,12 +62,12 @@ class BaseVC: UIViewController{
                 if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
                     //                BaseVC.getBulletin(ui: self)
                     // 已登入使用者
-                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+                    if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
                         self.present(vc, animated: false, completion: nil)
                     }
                 } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
                     // 已登入過商家
-                    if let vc = UIStoryboard(name: "Store", bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
+                    if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
                         self.present(vc, animated: false, completion: nil)
                     }
                 } else {

@@ -169,7 +169,8 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    
+    override func show(_ vc: UIViewController, sender: Any?) {
+    }
     
     // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
