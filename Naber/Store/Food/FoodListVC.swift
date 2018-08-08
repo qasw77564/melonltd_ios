@@ -52,7 +52,6 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(self.navigationController?.navigationBar.tag)
         self.loadData(refresh: true)
         self.name.text = self.categoryRel.category_name
     }
@@ -81,7 +80,7 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let status: SwitchStatus = SwitchStatus.of(name: self.foods[indexPath.row].status)
         cell.switchBtn.isOn = status.status()
         
-        cell.photo.image = UIImage(named: "Logo")
+//        cell.photo.image = UIImage(named: "Logo")
         if self.foods[indexPath.row].photo != nil {
             cell.photo.setImage(with: URL(string: self.foods[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: self.foods[indexPath.row].photo))
         }else{
