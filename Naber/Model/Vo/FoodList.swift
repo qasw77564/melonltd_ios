@@ -151,6 +151,7 @@ class DemandsItemVo : Codable {
     init(name : String!) {
         self.name = name
     }
+    
     public static func toJson(structs : DemandsItemVo) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!

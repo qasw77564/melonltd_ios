@@ -64,6 +64,9 @@
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
 		20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8620FF2F7200F9A252 /* Bulletin.swift */; };
 		20E65E8920FF316600F9A252 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8820FF316600F9A252 /* ApiUrl.swift */; };
+		20EF6E2F2119474700787F4C /* FoodEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EF6E2E2119474700787F4C /* FoodEditVC.swift */; };
+		20EF6E312119582800787F4C /* FoodMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EF6E302119582800787F4C /* FoodMainCell.swift */; };
+		20EF6E33211958B300787F4C /* FoodSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EF6E32211958B300787F4C /* FoodSubCell.swift */; };
 		77376C58210587510087F08E /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C57210587510087F08E /* DateRange.swift */; };
 		77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C5921058F110087F08E /* RestaurantInfo.swift */; };
 		77376C5C2105A2930087F08E /* SellerStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77376C5B2105A2930087F08E /* SellerStat.swift */; };
@@ -210,6 +213,9 @@
 		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		20E65E8620FF2F7200F9A252 /* Bulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulletin.swift; sourceTree = "<group>"; };
 		20E65E8820FF316600F9A252 /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
+		20EF6E2E2119474700787F4C /* FoodEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEditVC.swift; sourceTree = "<group>"; };
+		20EF6E302119582800787F4C /* FoodMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMainCell.swift; sourceTree = "<group>"; };
+		20EF6E32211958B300787F4C /* FoodSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSubCell.swift; sourceTree = "<group>"; };
 		710650FF7A33596557DF4B8D /* Pods-Naber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Naber.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Naber/Pods-Naber.debug.xcconfig"; sourceTree = "<group>"; };
 		77376C57210587510087F08E /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
 		77376C5921058F110087F08E /* RestaurantInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfo.swift; sourceTree = "<group>"; };
@@ -475,6 +481,9 @@
 				DD161D1620CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift */,
 				DD161D1820CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift */,
 				DD161D1420CB1DDF0080CFE2 /* FoodDetailExtraTVCell.swift */,
+				20EF6E2E2119474700787F4C /* FoodEditVC.swift */,
+				20EF6E302119582800787F4C /* FoodMainCell.swift */,
+				20EF6E32211958B300787F4C /* FoodSubCell.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -920,6 +929,7 @@
 				20E181DC2112BC03000ADD37 /* DateRangeStatus.swift in Sources */,
 				DD161D0220CAC8A90080CFE2 /* TutorialVC.swift in Sources */,
 				20D9DC0721025F4700D643FE /* FSPageViewLayout.swift in Sources */,
+				20EF6E33211958B300787F4C /* FoodSubCell.swift in Sources */,
 				20BD64872108BFE600023033 /* LLViewExtensions.swift in Sources */,
 				DDCAE00720BB5BBD005E65C4 /* RecordMainPageVC.swift in Sources */,
 				DDF8C2B820B226E600BF8904 /* StorePageUITabBarController.swift in Sources */,
@@ -940,6 +950,7 @@
 				DD3FA0AF20C77193006BAA51 /* StoreSettingAboutUsTVC.swift in Sources */,
 				DD161CF920CA194B0080CFE2 /* UserPageUITabBarController.swift in Sources */,
 				DD3FA0B320C79292006BAA51 /* TrendMainVC.swift in Sources */,
+				20EF6E2F2119474700787F4C /* FoodEditVC.swift in Sources */,
 				20AF372D210059AD00D73F79 /* SMSCode.swift in Sources */,
 				DDF8C2BA20B3F18400BF8904 /* ForgotPasswordVC.swift in Sources */,
 				20BD64892108BFE600023033 /* LLFilledPageControl.swift in Sources */,
@@ -958,6 +969,7 @@
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,
 				DDCAE00920BB5F10005E65C4 /* RecordInfoDetailTVCell.swift in Sources */,
 				DD3FA0C420C8A23F006BAA51 /* LeftSideMenuVC.swift in Sources */,
+				20EF6E312119582800787F4C /* FoodMainCell.swift in Sources */,
 				2036B845210760190081FE92 /* BaseVC.swift in Sources */,
 				77376C5C2105A2930087F08E /* SellerStat.swift in Sources */,
 				DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */,

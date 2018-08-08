@@ -99,7 +99,8 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
                 Model.ALL_BULLETINS[(b?.bulletin_category)!] = b?.content_text
             })
             let naberBulletins: [String] = Model.ALL_BULLETINS["HOME"]!.components(separatedBy: "$split")
-            Model.NABER_BULLETINS.append(contentsOf: naberBulletins)
+//            Model.NABER_BULLETINS.append(contentsOf: naberBulletins)
+            Model.NABER_BULLETINS.append(contentsOf: ["1、TEXT ONE "])
             self.cycleBulletinView.titles = Model.NABER_BULLETINS
             self.cycleBulletinView.reloadInputViews()
         }) { err_msg in
@@ -120,7 +121,8 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         cycleBulletinView.textColor = UIColor.black
         cycleBulletinView.titleBackgroundColor = UIColor.white
         cycleBulletinView.numberOfLines = 2
-        cycleBulletinView.autoScroll = true
+        cycleBulletinView.autoScroll = false
+        cycleBulletinView.infiniteLoop = true
         cycleBulletinView.autoScrollTimeInterval = 5.0
         cycleBulletinView.customPageControlIndicatorPadding = 0.0
         cycleBulletinView.pageControlPosition = .left
