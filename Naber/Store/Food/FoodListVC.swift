@@ -52,12 +52,17 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print(self.navigationController?.navigationBar.tag)
         self.loadData(refresh: true)
         self.name.text = self.categoryRel.category_name
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func show(_ vc: UIViewController, sender: Any?) {
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,17 +132,21 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             food.food_data.scopes.append(item)
             ApiManager.sellerFoodAdd(req: food, ui: self, onSuccess: { food in
                 print(food)
-                // TODO to food detail edit
+                if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodEdit") as? FoodEditVC {
+                    vc.food = food
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }) { err_msg in
                 print(err_msg)
             }
         }
-        
     }
     
     @IBAction func editFoodAction(_ sender: UIButton) {
-        //TODO to food detail edit
-//        self.foods[sender.tag]
+        if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodEdit") as? FoodEditVC {
+            vc.food = self.foods[sender.tag]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func deleteFoodAction(_ sender: UIButton) {
