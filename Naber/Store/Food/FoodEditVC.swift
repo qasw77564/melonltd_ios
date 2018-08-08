@@ -73,7 +73,7 @@ import UIKit
 //}
 
 
-class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var food: FoodVo!
     
@@ -273,17 +273,60 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.present(alert, animated: false)
     }
     
-    @IBAction  func uploadPhoto(_ sender: UIButton) {
+    @IBAction func uploadPhoto(_ sender: UIButton) {
+        let picker: UIImagePickerController = UIImagePickerController()
+        picker.delegate = self
         
-        let alert = UIAlertController(title: Optional.none, message: Optional.none, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "相機", style: .default, handler : { _ in
-            
-        }))
-        alert.addAction(UIAlertAction(title: "相簿", style: .default, handler : { _ in
-            
-        }))
+        let alert = UIAlertController.init(title: Optional.none , message: Optional.none , preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            alert.addAction(UIAlertAction(title: "相機", style: .default, handler: { _ in
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    picker.sourceType = UIImagePickerControllerSourceType.camera
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true, completion: nil)
+                } else {
+                    let alerts = UIAlertController( title: "相機權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟", preferredStyle: .alert)
+                    alerts.addAction(UIAlertAction(title: "我知道了", style: .default))
+                    self.present(alerts, animated: true, completion: nil)
+                }
+            }))
+        }
+
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            alert.addAction(UIAlertAction(title: "相簿", style: .default, handler: { _ in
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: true, completion: nil)
+            }))
+        }
+        
         alert.addAction(UIAlertAction(title: "取消", style: .destructive))
-        self.present(alert, animated: false)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // 接到相機 ＆ 相簿回傳的data
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        UserSstorage.getAccount()?.account_uuid
+        let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let resizedImage: UIImage = ImageHelper.resizeImage(originalImage: originalImage, minLenDP: 100)
+        ImageHelper.upLoadImage(data: UIImageJPEGRepresentation(resizedImage, 1.0)!, sourcePath: NaberConstant.STORAGE_PATH_FOOD, fileName: self.food.food_uuid + ".jpg", onGetUrl: { url in
+            let reqData: ReqData = ReqData()
+            reqData.uuid = self.food.food_uuid
+            reqData.date = url.absoluteString
+            reqData.type = "FOOD"
+            ApiManager.uploadPhoto(req: reqData, ui: self, onSuccess: { urlString in
+                // TODO
+                // 改變 UIImage
+                print(urlString)
+                print(urlString)
+            }, onFail: { err_msg in
+                print(err_msg)
+            })
+        }) { err_msg in
+            print(err_msg)
+        }
+
+        self.dismiss(animated: true, completion: nil)
     }
     
     func verifyData() -> String {

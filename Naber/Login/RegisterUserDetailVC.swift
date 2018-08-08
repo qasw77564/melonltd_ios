@@ -7,25 +7,6 @@
 //
 
 import UIKit
-//    var toolbar: UIToolbar!
-//    var accessoryToolbar: UIToolbar {
-//        get {
-//            let toolbarFrame = CGRect(x: 0, y: 0,
-//                                      width: view.frame.width, height: 44)
-//            let accessoryToolbar = UIToolbar(frame: toolbarFrame)
-//            let doneButton = UIBarButtonItem(title: "完成" , style: .done, target: self,action: #selector(onDoneButtonTapped(sender:)))
-//            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,target: nil, action: nil)
-//
-//            let cancelButton = UIBarButtonItem(title:"取消" , style: .plain,target: self, action: #selector(onCancelButtonTapped(sender:)))
-//            let titleBarButton = UIBarButtonItem(title: "請選擇" , style: .done, target: nil, action: nil)
-//            titleBarButton.isEnabled = false
-//
-//            accessoryToolbar.items = [cancelButton, flexibleSpace,titleBarButton, flexibleSpace, doneButton]
-//            accessoryToolbar.barTintColor = UIColor.white
-//            return accessoryToolbar
-//        }
-//    }
-
 
 class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
@@ -182,7 +163,7 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+
 }
 
 
