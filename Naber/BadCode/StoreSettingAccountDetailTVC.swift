@@ -10,10 +10,11 @@ import UIKit
 
 class StoreSettingAccountDetailTVC: UITableViewController {
     
-    var hourArray = ["00","01","02","03","04","05","06","07","08", "09", "10", "11", "12",
-                     "13","14","15","16","17","18","19","20","21", "22", "23"]
+    var hourArray = ["00","01","02","03","04","05","06","07","08", "09", "10", "11", "12","13","14","15","16","17","18","19","20","21", "22", "23"]
     var minuteArray = ["00","30"]
     var lastSelectedCube = 0
+    
+   
     
     var pickerView: UIPickerView {
         get {
@@ -102,11 +103,18 @@ class StoreSettingAccountDetailTVC: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func goBackHomePage(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC
-        {
-            present(vc, animated: false, completion: nil)
-        }
+    @IBAction func sbmiEdit(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func sbmitEdit(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func logoutAction(_ sender: UIButton) {
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+//            present(vc, animated: false, completion: nil)
+//        }
     }
 }
 
