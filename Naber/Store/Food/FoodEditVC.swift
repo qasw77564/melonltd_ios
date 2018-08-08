@@ -8,9 +8,7 @@
 
 import UIKit
 import AVFoundation
-//import AssetsLibrary
 import Photos
-//PHPhotoLibrary
 
 //public protocol ShouldPopDelegate {
 //    func currentViewControllerShouldPop() -> Bool
