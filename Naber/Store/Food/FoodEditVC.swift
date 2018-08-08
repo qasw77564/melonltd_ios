@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
+//import AssetsLibrary
+import Photos
+//PHPhotoLibrary
 
 //public protocol ShouldPopDelegate {
 //    func currentViewControllerShouldPop() -> Bool
@@ -90,6 +94,12 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         super.viewDidLoad()
         self.foodName.text = self.food.food_name
         // TODO
+        
+        if let photo: String? = self.food.photo {
+            self.photo.setImage(with: URL(string: photo!), transformer: TransformerHelper.transformer(identifier: photo!))
+        }else {
+            self.photo.image = UIImage(named: "Logo")
+        }
 //        self.navigationController?.delegate = self
 //        self.navigationController?.navigationBar.tag = -99
     }
@@ -279,34 +289,47 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         let alert = UIAlertController.init(title: Optional.none , message: Optional.none , preferredStyle: .actionSheet)
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            alert.addAction(UIAlertAction(title: "相機", style: .default, handler: { _ in
-                if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    picker.sourceType = UIImagePickerControllerSourceType.camera
+        alert.addAction(UIAlertAction(title: "相機", style: .default, handler: { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+                if status != .denied || status != .restricted {
+                    self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟")
+                }else {
+                    picker.sourceType = .camera
                     picker.allowsEditing = true
                     self.present(picker, animated: true, completion: nil)
-                } else {
-                    let alerts = UIAlertController( title: "相機權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟", preferredStyle: .alert)
-                    alerts.addAction(UIAlertAction(title: "我知道了", style: .default))
-                    self.present(alerts, animated: true, completion: nil)
                 }
-            }))
-        }
-
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            alert.addAction(UIAlertAction(title: "相簿", style: .default, handler: { _ in
-                picker.sourceType = .photoLibrary
-                self.present(picker, animated: true, completion: nil)
-            }))
-        }
+            } else {
+                self.showAlert(withTitle: "沒有相機設備", andMessage: "You can't take photo, there is no camera.")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "相簿", style: .default, handler: { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+                if status != .denied || status != .restricted {
+                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相簿服務 開啟")
+                }else {
+                    picker.sourceType = .photoLibrary
+                    self.present(picker, animated: true, completion: nil)
+                }
+            }else {
+                self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no camera.")
+            }
+        }))
         
         alert.addAction(UIAlertAction(title: "取消", style: .destructive))
         self.present(alert, animated: true, completion: nil)
     }
     
+    func showAlert(withTitle title: String, andMessage message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+        self.present(alert, animated: true)
+    }
+   
     // 接到相機 ＆ 相簿回傳的data
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        UserSstorage.getAccount()?.account_uuid
         let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let resizedImage: UIImage = ImageHelper.resizeImage(originalImage: originalImage, minLenDP: 100)
         ImageHelper.upLoadImage(data: UIImageJPEGRepresentation(resizedImage, 1.0)!, sourcePath: NaberConstant.STORAGE_PATH_FOOD, fileName: self.food.food_uuid + ".jpg", onGetUrl: { url in
@@ -315,10 +338,7 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
             reqData.date = url.absoluteString
             reqData.type = "FOOD"
             ApiManager.uploadPhoto(req: reqData, ui: self, onSuccess: { urlString in
-                // TODO
-                // 改變 UIImage
-                print(urlString)
-                print(urlString)
+                self.photo.setImage(with: URL(string: url.absoluteString), transformer: TransformerHelper.transformer(identifier: url.absoluteString))
             }, onFail: { err_msg in
                 print(err_msg)
             })

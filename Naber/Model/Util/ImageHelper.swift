@@ -77,8 +77,6 @@ class ImageHelper {
             onFail("upload failure")
             Loading.hide()
         }
-      
-
     }
 
 }
