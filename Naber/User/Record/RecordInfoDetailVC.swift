@@ -36,15 +36,14 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func refresh(sender: UIRefreshControl){
         sender.endRefreshing()
         self.tableView.reloadData()
-        print(Identity.toEnum(name: "小學生").rawValue)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.name.text = self.order.order_detail.restaurant_name
         self.totalPayment.text = "$" + self.order.order_price
-        self.orderTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "yyyy-MM-dd HH:mm")
-        self.recordTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "yyyy-MM-dd HH:mm")
+        self.orderTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "yyyy年 MM月 dd日 HH:mm")
+        self.recordTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "yyyy年 MM月 dd日 HH:mm")
         self.address.text = self.order.order_detail.restaurant_address
         self.memoInfo.text = self.order.order_detail.user_message
         self.bonus.text = self.order.order_bonus

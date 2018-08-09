@@ -32,7 +32,7 @@ class UserSettingMainPageTVC: UITableViewController {
             self.accunt.text = account?.account
             self.bonus.text = account?.bonus
             
-            if account?.phone == nil || account?.phone == "" {
+            if account?.photo == nil || account?.photo == "" {
                 self.photo.image = UIImage(named: "白底黃閃電")
             } else {
                 self.photo?.setImage(with: URL(string: (account?.photo)!), transformer: TransformerHelper.transformer(identifier: (account?.photo)!))

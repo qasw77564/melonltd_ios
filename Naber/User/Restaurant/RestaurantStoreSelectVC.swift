@@ -70,7 +70,7 @@ class RestaurantStoreSelectVC: UIViewController {
         order.item.price = self.orderTotal.text
         order.item.food_photo = self.food.photo
         
-        let account = UserSstorage.getAccount()
+        let account = UserSstorage.getAccountInfo()
         var has: Bool = false;
         
         for o in shoppingCartDatas {

@@ -58,7 +58,7 @@ class BaseVC: UIViewController{
         alert.addAction(UIAlertAction(title: "開始使用", style: .default){ _ in
             let now: Int = Int(Date().timeIntervalSince1970 * 1000)
             if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
-                let account: AccountInfoVo? = UserSstorage.getAccount()
+                let account: AccountInfoVo? = UserSstorage.getAccountInfo()
                 if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
                     // 已登入使用者
                     if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {

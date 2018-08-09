@@ -32,7 +32,7 @@ class StoreSettingMainPageTVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.account.text = UserSstorage.getAccount()?.account
+        self.account.text = UserSstorage.getAccountInfo()?.account
     }
 
     override func didReceiveMemoryWarning() {

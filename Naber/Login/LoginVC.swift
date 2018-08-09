@@ -42,16 +42,17 @@ class LoginVC: UIViewController {
         
         if UserSstorage.getRememberMe() {
             self.rememberMeImage.setImage(UIImage(named:"cbSelect"), for: .normal)
-            self.account_text.text = UserSstorage.getAccount()?.account
+            self.account_text.text = UserSstorage.getAccount()
         } else {
             self.rememberMeImage.setImage(UIImage(named: "cbNoSelect"), for: .normal)
-            self.account_text.text = "0928297076"
+            UserSstorage.clearAccount()
+            self.account_text.text = ""
         }
         
-        if NaberConstant.IS_DEBUG {
-            self.account_text.text = "NER-18X1X14"
-            self.password_text.text = "a123456"
-        }
+//        if NaberConstant.IS_DEBUG {
+//            self.account_text.text = "NER-18X1X14"
+//            self.password_text.text = "a123456"
+//        }
         
     }
   
@@ -83,10 +84,14 @@ class LoginVC: UIViewController {
                 if account != nil {
                     let now: Int = DateTimeHelper.getNowMilliseconds()
                     UserSstorage.setLoginTime(now)
-                    UserSstorage.setAccount(account!)
+                    UserSstorage.setAccountInfo(account!)
                     let remember: Bool = (self.rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))!
                     UserSstorage.setRememberMe(remember)
-
+                    if remember {
+                        UserSstorage.setAccount((account?.account)!)
+                    }else {
+                        UserSstorage.clearAccount()
+                    }
                     
                     if self.USER_TYPES.contains(Identity.init(rawValue: (account?.identity.uppercased())!)!) {
                         // 使用者

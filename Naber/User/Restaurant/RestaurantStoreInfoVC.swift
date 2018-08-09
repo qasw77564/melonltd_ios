@@ -99,6 +99,9 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
                 let long: Double = Double(self.restaurantInfo.longitude)!
                 let distance: Double = self.LM.location!.distance(from: CLLocation.init(latitude: lant, longitude: long))
                 self.distance.text = String(format: "%.01f 公里", (distance / 1000) < 0.1 ? 0.1 : (distance / 1000))
+                if distance / 1000 >= 1000 {
+                    self.distance.text = String(format: "%.01f Mm", (distance / 1000 / 1000) < 0.1 ? 0.1 : (distance / 1000 / 1000))
+                }
             } else {
                 self.distance.text = ""
             }

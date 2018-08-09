@@ -119,7 +119,7 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
     
     @IBAction func logout(_ sender: Any) {
         
-        ApiManager.logout(structs: UserSstorage.getAccount(), ui: self, onSuccess: {
+        ApiManager.logout(structs: UserSstorage.getAccountInfo(), ui: self, onSuccess: {
             UserSstorage.clearUserData()
             if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                 self.present(vc, animated: false, completion: nil)

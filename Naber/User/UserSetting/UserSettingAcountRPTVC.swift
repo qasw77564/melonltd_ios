@@ -23,7 +23,7 @@ class UserSettingAcountRPTVC: UITableViewController {
             let resetpassword: ReqData = ReqData()
             resetpassword.old_password = self.oldPassword.text
             resetpassword.password = self.newPassword.text
-            resetpassword.phone = UserSstorage.getAccount()?.phone
+            resetpassword.phone = UserSstorage.getAccountInfo()?.phone
             ApiManager.reseatPassword(req: resetpassword, ui: self, onSuccess: {
                 let alert = UIAlertController(title: "", message: "重設成功！" , preferredStyle: .alert)
                 alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in

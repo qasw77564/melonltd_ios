@@ -12,7 +12,7 @@ import UIKit
 class StoreDetailSettingVC : UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
  
     var restaurant: RestaurantInfoVo! = RestaurantInfoVo()
-    var threeBusinessDate: [String] = ["2018-07-10T00:00:00.0000Z","2018-07-11T00:00:00.0000Z"]
+    var threeBusinessDate: [String] = []
     
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
@@ -131,7 +131,7 @@ class StoreDetailSettingVC : UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @IBAction func logout(_ sender: UIButton) {
-        ApiManager.logout(structs: UserSstorage.getAccount(), ui: self, onSuccess: {
+        ApiManager.logout(structs: UserSstorage.getAccountInfo(), ui: self, onSuccess: {
             UserSstorage.clearUserData()
             if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                 self.present(vc, animated: false, completion: nil)

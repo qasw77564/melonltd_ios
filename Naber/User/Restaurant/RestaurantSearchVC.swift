@@ -219,6 +219,10 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
             let long: Double = Double(Model.TMPE_RESTAURANT_LIST[indexPath.row].longitude)!
             let distance: Double = self.location!.distance(from: CLLocation.init(latitude: lant, longitude: long))
             cell.distance.text = String(format: "%.01f 公里", (distance / 1000) < 0.1 ? 0.1 : (distance / 1000))
+            
+            if distance / 1000 >= 1000 {
+                cell.distance.text = String(format: "%.01f Mm", (distance / 1000 / 1000) < 0.1 ? 0.1 : (distance / 1000 / 1000))
+            }
         } else {
             cell.distance.text = ""
         }
