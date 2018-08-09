@@ -60,7 +60,6 @@ class BaseVC: UIViewController{
             if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
                 let account: AccountInfoVo? = UserSstorage.getAccount()
                 if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
-                    //                BaseVC.getBulletin(ui: self)
                     // 已登入使用者
                     if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
                         self.present(vc, animated: false, completion: nil)
@@ -83,9 +82,6 @@ class BaseVC: UIViewController{
             }
         })
         
-        
-        
-        
         let subView1: UIView = alert.view.subviews[0]
         let subView2: UIView = subView1.subviews[0]
         let subView3: UIView = subView2.subviews[0]
@@ -98,29 +94,6 @@ class BaseVC: UIViewController{
         
     }
 
-    
-    
-    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        // 印出目前所在位置座標
-//        let currentLocation :CLLocation = locations[0] as CLLocation
-//        print("\(currentLocation.coordinate.latitude)")
-//        print(", \(currentLocation.coordinate.longitude)")
-//    }
-    
-//    public static func getBulletin (ui: UIViewController){
-//        ApiManager.bulletin(ui: ui, onSuccess: { bulletins in
-//            Model.ALL_BULLETINS.removeAll()
-//            bulletins.forEach({ b in
-//                Model.ALL_BULLETINS[(b?.bulletin_category)!] = b?.content_text
-//            })
-//            print(Model.ALL_BULLETINS)
-//        }) { err_msg in
-//            print(err_msg)
-//        }
-//    }
-//
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

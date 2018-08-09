@@ -53,21 +53,8 @@ class LoginVC: UIViewController {
             self.password_text.text = "a123456"
         }
         
-        
-//        let remember: Bool = UserSstorage.getRememberMe()
-//        let image = UIImage(named: remember ? "cbSelect" : "cbNoSelect" ) as UIImage?
-        
-//        self.rememberMeImage.setValue(true, forKey: "remember")
-        //        register_button.layer.borderWidth = 1
-        //        register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
-        //
-        //        store_register_button.layer.borderWidth = 1
-        //        store_register_button.layer.borderColor = (UIColor( red: 243/255, green: 228/255, blue:79/255, alpha: 1.0 )).cgColor
-        
     }
-    
-    
-    
+  
     private func verifyInput () -> String {
         var msg: String = ""
         if self.account_text.text == "" {
@@ -83,7 +70,6 @@ class LoginVC: UIViewController {
         }
         return msg
     }
-
     
     @IBAction func goToNextPage(_ sender: Any) {
 
@@ -100,9 +86,8 @@ class LoginVC: UIViewController {
                     UserSstorage.setAccount(account!)
                     let remember: Bool = (self.rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))!
                     UserSstorage.setRememberMe(remember)
-                    print(remember)
+
                     
-//                    UserSstorage.printRepresentation()
                     if self.USER_TYPES.contains(Identity.init(rawValue: (account?.identity.uppercased())!)!) {
                         // 使用者
                         if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
@@ -141,20 +126,6 @@ class LoginVC: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-  
-    
-
-
 }
-//extension ViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
 
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.view.endEditing(true)
-//    }
-//}
 

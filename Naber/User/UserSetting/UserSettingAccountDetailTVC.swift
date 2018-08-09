@@ -32,7 +32,7 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         self.email.text = self.account.email
         self.birthday.text = self.account.birth_day
         self.bonus.text = self.account.bonus
-        self.identity.text = self.account.identity
+        self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
 
         if self.account.photo == nil || self.account.photo == "" {
             self.photo.image = UIImage(named: "白底黃閃電")

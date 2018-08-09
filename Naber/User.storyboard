@@ -181,7 +181,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="公里" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7G-E1-rv2">
-                                                    <rect key="frame" x="100" y="16" width="256" height="15"/>
+                                                    <rect key="frame" x="100" y="16" width="258" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="NbD-gO-bg2"/>
                                                     </constraints>
@@ -215,14 +215,15 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwW-CO-Okf">
-                                                    <rect key="frame" x="120" y="38" width="229" height="0.0"/>
+                                                    <rect key="frame" x="120" y="38" width="231" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efL-Vm-HLT" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
-                                                    <rect key="frame" x="120" y="80" width="30" height="16"/>
+                                                    <rect key="frame" x="120" y="80" width="32" height="16"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="Kl1-aH-tDe"/>
                                                         <constraint firstAttribute="height" constant="16" id="uxN-bY-TRm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -242,7 +243,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nat-pN-0nL">
-                                                    <rect key="frame" x="152" y="96" width="204" height="0.0"/>
+                                                    <rect key="frame" x="154" y="96" width="204" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="204" id="nFc-7s-GNX"/>
                                                     </constraints>
@@ -339,6 +340,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <color key="backgroundColor" red="0.92519015069999999" green="0.89053690429999999" blue="0.40278208259999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" secondItem="ljq-Nl-f5X" secondAttribute="height" multiplier="15:8" id="1Kp-DZ-Dno"/>
                                                 <constraint firstAttribute="height" constant="200" id="yUN-sj-a5K"/>
                                             </constraints>
                                         </imageView>
@@ -1059,7 +1061,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5t0-wK-LXG">
-                                                    <rect key="frame" x="8" y="16" width="80" height="80"/>
+                                                    <rect key="frame" x="8" y="16" width="80" height="80.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="VdY-l6-pR2"/>
                                                         <constraint firstAttribute="height" constant="80" id="hbv-oM-9jn"/>
@@ -1092,22 +1094,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="NIt-Ee-fGr">
-                                                    <rect key="frame" x="96" y="40" width="24" height="24"/>
+                                                    <rect key="frame" x="96" y="40.333333333333336" width="24" height="24.000000000000007"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="b71-Ag-WGa"/>
                                                         <constraint firstAttribute="width" constant="24" id="uD7-vQ-hZa"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT4-ma-PdB">
-                                                    <rect key="frame" x="120" y="61" width="232" height="17"/>
+                                                    <rect key="frame" x="120" y="61.333333333333343" width="232" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6A-4q-gO9" customClass="DesignableButton" customModule="Naber" customModuleProvider="target">
-                                                    <rect key="frame" x="120" y="80" width="32" height="16"/>
+                                                    <rect key="frame" x="120" y="80.333333333333329" width="32" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="Uee-ai-8bC"/>
+                                                        <constraint firstAttribute="width" constant="32" id="Uee-ai-8bC"/>
                                                         <constraint firstAttribute="height" constant="16" id="mMx-HX-QHy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -1127,19 +1129,19 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vh-w4-nTE">
-                                                    <rect key="frame" x="356" y="96" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="356" y="96.333333333333329" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <color key="textColor" red="1" green="0.1120687638" blue="0.1964298025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="接單時間:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y02-ZC-oUT">
-                                                    <rect key="frame" x="120" y="44" width="61" height="17"/>
+                                                    <rect key="frame" x="120" y="44.333333333333336" width="61" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRa-D6-fbj">
-                                                    <rect key="frame" x="185" y="52.666666666666664" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="185" y="53" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -2449,7 +2451,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="A7L-cc-OEz">
-                                                                        <rect key="frame" x="8" y="10.666666666666671" width="80" height="80"/>
+                                                                        <rect key="frame" x="8" y="11" width="80" height="80"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="DDK-hq-ztZ"/>
                                                                             <constraint firstAttribute="height" constant="80" id="r2X-ZQ-9hl"/>
@@ -2465,14 +2467,14 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="珍珠奶茶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-vr-36m">
-                                                                        <rect key="frame" x="96" y="7.6666666666666643" width="279" height="17"/>
+                                                                        <rect key="frame" x="96" y="8" width="279" height="17"/>
                                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="8" bottom="0.0" trailing="8"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="規格:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYc-Fe-ySm">
-                                                                        <rect key="frame" x="96" y="24.666666666666664" width="263" height="36"/>
+                                                                        <rect key="frame" x="96" y="25" width="263" height="36"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="9kH-2M-giH"/>
                                                                         </constraints>
@@ -2481,10 +2483,10 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEw-0O-uXK">
-                                                                        <rect key="frame" x="96" y="60.666666666666671" width="271" height="30"/>
+                                                                        <rect key="frame" x="96" y="61" width="271" height="30"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jl2-YA-YRk">
-                                                                                <rect key="frame" x="18" y="5.9999999999999929" width="15" height="17"/>
+                                                                                <rect key="frame" x="18" y="6.0000000000000071" width="15" height="17"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -2503,7 +2505,7 @@
                                                                                 </connections>
                                                                             </stepper>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahv-RQ-sfx">
-                                                                                <rect key="frame" x="0.0" y="6.9999999999999929" width="18" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="7.0000000000000071" width="18" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="8Vo-Eo-BFd"/>
                                                                                 </constraints>
@@ -2523,7 +2525,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="752" verticalHuggingPriority="251" text="100000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXm-bG-VBK">
-                                                                                <rect key="frame" x="181" y="5.9999999999999929" width="56" height="17"/>
+                                                                                <rect key="frame" x="181" y="6.0000000000000071" width="56" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="56" id="3lW-QC-qQt"/>
                                                                                 </constraints>
@@ -3666,6 +3668,6 @@
         <image name="黃底NABER白字" width="674" height="477"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VUG-v7-N3B"/>
+        <segue reference="xMS-ZR-voG"/>
     </inferredMetricsTieBreakers>
 </document>
