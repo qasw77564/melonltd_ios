@@ -10,6 +10,7 @@
 		2012D76F2118460A00E7068D /* TableViewHeadControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2012D76E2118460A00E7068D /* TableViewHeadControl.swift */; };
 		2017D8E6210CC52B00E2376D /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E5210CC52B00E2376D /* OrderStatus.swift */; };
 		2017D8E8210CF09100E2376D /* RecordInfoOrderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */; };
+		202E4FA4211BB31F00D176DF /* BadCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202E4FA3211BB31F00D176DF /* BadCode.storyboard */; };
 		2036B845210760190081FE92 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B844210760190081FE92 /* BaseVC.swift */; };
 		2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B8462107621C0081FE92 /* DateTimeHelper.swift */; };
 		204C2560210A33830000D3EE /* PageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C255F210A33830000D3EE /* PageType.swift */; };
@@ -162,6 +163,7 @@
 		2012D76E2118460A00E7068D /* TableViewHeadControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeadControl.swift; sourceTree = "<group>"; };
 		2017D8E5210CC52B00E2376D /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
 		2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInfoOrderTVCell.swift; sourceTree = "<group>"; };
+		202E4FA3211BB31F00D176DF /* BadCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BadCode.storyboard; sourceTree = "<group>"; };
 		2036B844210760190081FE92 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		2036B8462107621C0081FE92 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		204C255F210A33830000D3EE /* PageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageType.swift; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 				DDF8C2B720B226E600BF8904 /* StorePageUITabBarController.swift */,
 				20758A1821188D1F007A3ABC /* Store.storyboard */,
 				20758A1A2118A1FC007A3ABC /* User.storyboard */,
+				202E4FA3211BB31F00D176DF /* BadCode.storyboard */,
 			);
 			path = Naber;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				20758A1921188D1F007A3ABC /* Store.storyboard in Resources */,
 				DDF8C28020B1CA4600BF8904 /* LaunchScreen.storyboard in Resources */,
 				20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */,
+				202E4FA4211BB31F00D176DF /* BadCode.storyboard in Resources */,
 				DDF8C27D20B1CA4600BF8904 /* Assets.xcassets in Resources */,
 				DDF8C27B20B1CA4400BF8904 /* Main.storyboard in Resources */,
 				20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */,
