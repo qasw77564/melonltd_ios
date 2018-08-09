@@ -10,6 +10,8 @@ import UIKit
 class SubmitOrderVC : UIViewController {
 
     var orderIndex: Int!
+    
+    var selectDate: String = ""
     var datePicker: UIDatePicker {
         get {
             let datePicker = UIDatePicker()
@@ -23,15 +25,20 @@ class SubmitOrderVC : UIViewController {
         }
     }
     
-    @IBOutlet weak var dateSelect: UITextField! {
-        didSet {
-           self.dateSelect.inputView = self.datePicker
+    var toolbar: UIToolbar {
+        get {
+            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let doneBtn = UIBarButtonItem(title: "完成", style: .done, target: self, action: #selector(doneTimePick))
+            let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let cancelBtn = UIBarButtonItem(title:"取消", style: .plain,target: self,action: #selector(cancelTimePick))
+            toolbar.items = [cancelBtn, flexible, doneBtn]
+            toolbar.barTintColor = UIColor.white
+            return toolbar
         }
     }
     
-    @objc func onDateChanged(sender: UIDatePicker) {
-        self.dateSelect.text = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy-MM-dd HH:mm")
-    }
+    @IBOutlet weak var dateSelect: UITextField! 
+    
     
     @IBOutlet weak var userMssage: UITextField!
     @IBOutlet weak var name: UITextField!
@@ -41,6 +48,8 @@ class SubmitOrderVC : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dateSelect.inputView = self.datePicker
+        self.dateSelect.inputAccessoryView = self.toolbar
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +64,22 @@ class SubmitOrderVC : UIViewController {
         })
         self.price.text = "$" + Int(price).description
         self.bonus.text = "應得紅利 " + Int(floor(price / 10.0)).description
+    }
+    
+    @objc func onDateChanged(sender: UIDatePicker) {
+        self.selectDate = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy-MM-dd HH:mm")
+    }
+    
+    // 確定選取時間事件
+    @objc func doneTimePick(sender: UIBarButtonItem){
+        // TODO
+        self.dateSelect.text = self.selectDate
+        self.view.endEditing(true)
+    }
+    
+    // 取消選取時間事件
+    @objc func cancelTimePick(sender: UIBarButtonItem){
+        self.view.endEditing(true)
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
@@ -102,12 +127,8 @@ class SubmitOrderVC : UIViewController {
         }
     }
     
-    
-    @IBAction func selectTimePicker(_ sender: UITextField) {
-        
-    }
-    
     func reTimeRange (picker: UIDatePicker){
+        
         let currentDate: Date = Date()
         var calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         calendar.timeZone = TimeZone.init(identifier: "Asia/Taipei")!
@@ -121,6 +142,7 @@ class SubmitOrderVC : UIViewController {
         components.minute = 20
         let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
         picker.minimumDate = minDate
+        self.selectDate = DateTimeHelper.dateToStringForm(date: minDate, form: "yyyy-MM-dd HH:mm")
     }
     
     override func didReceiveMemoryWarning() {

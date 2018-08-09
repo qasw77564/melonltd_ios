@@ -125,7 +125,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         cycleBulletinView.infiniteLoop = true
         cycleBulletinView.autoScrollTimeInterval = 5.0
         cycleBulletinView.customPageControlIndicatorPadding = 0.0
-        cycleBulletinView.pageControlPosition = .left
+        cycleBulletinView.pageControlPosition = .center
         cycleBulletinView.titles = Model.NABER_BULLETINS
         // 文本　Leading约束
         cycleBulletinView.titleLeading = 16

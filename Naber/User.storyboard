@@ -334,7 +334,7 @@
                                 <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DsX-KO-B28">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="黃底NABER白字" translatesAutoresizingMaskIntoConstraints="NO" id="ljq-Nl-f5X">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -2644,9 +2644,6 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="selectTimePicker:" destination="a29-xe-qe6" eventType="touchUpInside" id="jba-L2-lLP"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="備註欄" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H11-EG-plL">
                                 <rect key="frame" x="16" y="175" width="359" height="17"/>
