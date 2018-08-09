@@ -143,6 +143,9 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
             alert.addAction(itemAction)
         }
         alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x: self.view.bounds.width/2 ,y: self.view.bounds.height , width: 1.0, height: 1.0)
+        
         self.present(alert, animated: false, completion: nil)
     }
     
@@ -161,6 +164,8 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
             alert.addAction(itemAction)
         }
         alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x: self.view.bounds.width/2 ,y: self.view.bounds.height , width: 1.0, height: 1.0)
         self.present(alert, animated: false, completion: nil)
     }
     

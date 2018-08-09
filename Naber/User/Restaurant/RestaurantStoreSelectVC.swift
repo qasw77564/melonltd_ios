@@ -210,7 +210,6 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
     // 改寫初始資料給每個cell
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let c = cell as? RestaurantStoreSelectTVCell {
-            c.radioButton.tag = indexPath.section
             switch (indexPath.section) {
             case 0:
                 c.item = self.food.food_data.scopes[indexPath.row]
@@ -243,10 +242,12 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
-        
+        cell.radioButton.tag = indexPath.section
+        cell.radioButton.imageView?.tag = indexPath.row
         cell.triggerRadioStatus(cell.radioButton.isSelected)
         return cell
     }
+
     
     // 點擊事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -273,11 +274,15 @@ extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
             self.itemVo.demands[indexPath.section - 2].datas.append(cell.item)
         default:
             break
-        
         }
         self.calculatMoney()
         tableView.reloadData()
 
+    }
+    
+    @IBAction func radioBtnSelected (_ sender: UIButton){
+        self.tableView.selectRow(at: IndexPath(row: (sender.imageView?.tag)!, section: sender.tag), animated: true, scrollPosition: .none)
+        self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: IndexPath(row: (sender.imageView?.tag)!, section: sender.tag))
     }
     
     func calculatMoney(){

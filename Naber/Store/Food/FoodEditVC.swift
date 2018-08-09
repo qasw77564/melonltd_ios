@@ -317,6 +317,8 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         }))
         
         alert.addAction(UIAlertAction(title: "取消", style: .destructive))
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x: self.view.bounds.width/2 ,y: self.view.bounds.height , width: 1.0, height: 1.0)
         self.present(alert, animated: true, completion: nil)
     }
     

@@ -12,6 +12,8 @@ class LeftSideMenuVC: UIViewController {
 
     var dateRanges: [DateRangeVo] = []
     
+    static var tmpDateRanges: [DateRangeVo] = []
+    
     @IBOutlet weak var leftSideMenu: UITableView! {
         didSet {
             self.leftSideMenu.dataSource = self
@@ -41,13 +43,17 @@ class LeftSideMenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadData(refresh: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       self.loadData(refresh: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
 
 extension LeftSideMenuVC : UITableViewDelegate, UITableViewDataSource {

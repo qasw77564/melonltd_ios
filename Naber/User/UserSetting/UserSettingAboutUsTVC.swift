@@ -18,7 +18,11 @@ class UserSettingAboutUsTVC: UITableViewController {
         self.AboutUsText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["ABOUT_US"]!, of: "$split", with: "\n" )
         
         self.ApplyOfSellerText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["APPLY_OF_SELLER"]!,of: "$split", with: "\n" )
-
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
   
 }

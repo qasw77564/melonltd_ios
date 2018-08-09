@@ -14,7 +14,7 @@ class ApiUrl{
     
     public static var DOMAIN: String = "http://192.168.1.108"
     //    public static var DOMAIN: String = "http://192.168.1.104:8080/melonltd-ap"
-//    public static var DOMAIN: String = "http://192.168.31.15:8080/melonltd-ap"
+    //    public static var DOMAIN: String = "http://192.168.31.15:8080/melonltd-ap"
     //    public static var DOMAIN: String = "https://ap.melonltd.com.tw"
     //    public static var DOMAIN: String = "http://naber.ddns.net"
     public static var LOGIN: String = DOMAIN + "/login";
@@ -23,7 +23,6 @@ class ApiUrl{
     public static var SMS_VERIFY_CODE: String = DOMAIN + "/sms/verify/code";
     public static var USER_REGISTERED: String = DOMAIN + "/registered/user";
     public static var SELLER_REGISTERED: String = DOMAIN + "/registered/seller";
-    
     
     // user
     public static var ADVERTISEMENT: String = DOMAIN + "/naber/advertisement";

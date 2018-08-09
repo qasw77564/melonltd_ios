@@ -82,8 +82,12 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         }))
         
         alert.addAction(UIAlertAction(title: "取消", style: .destructive))
+        
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x: self.view.bounds.width/2 ,y: self.view.bounds.height , width: 1.0, height: 1.0)
         self.present(alert, animated: true, completion: nil)
     }
+    
     func showAlert(withTitle title: String, andMessage message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "我知道了", style: .default))

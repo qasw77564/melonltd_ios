@@ -787,6 +787,9 @@
                                                     <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="4"/>
                                                     <state key="normal" title="Button" image="radioNoSelect"/>
+                                                    <connections>
+                                                        <action selector="radioBtnSelected:" destination="laG-Oq-0rw" eventType="touchUpInside" id="Xa3-Ar-kzz"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1203,7 +1206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2M-mo-azm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2846" y="-2486"/>
+            <point key="canvasLocation" x="2845.5999999999999" y="-2486.4532019704434"/>
         </scene>
         <!--使用者-設定-NC-->
         <scene sceneID="W9t-f8-zkG">
