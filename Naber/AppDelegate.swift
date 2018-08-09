@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        if UIDevice.current.model.range(of: "iPad") != nil{
+            print("I AM IPAD")
+        } else {
+            print("I AM IPHONE")
+        }
         
         Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
             print(user?.user.email ?? "")

@@ -981,84 +981,92 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4g-2z-jnk" customClass="FSPagerView" customModule="Naber" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zra-ut-cKy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4g-2z-jnk" customClass="FSPagerView" customModule="Naber" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.6666666666666714" width="375" height="200"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="alwaysBounceHorizontal" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="removesInfiniteLoopForSingleItem" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="XFh-nE-B1k" id="4s9-5p-ZQI"/>
+                                                        <outlet property="delegate" destination="XFh-nE-B1k" id="GwT-qf-itI"/>
+                                                    </connections>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x36-nz-xFg" customClass="FSPageControl" customModule="Naber" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="175.66666666666666" width="375" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="eq1-hN-gDr"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hidesForSinglePage" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NABER公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymp-m6-NhU">
+                                                    <rect key="frame" x="0.0" y="208.66666666666666" width="375" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="dQ1-uD-ghr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4c4-pO-UqN">
+                                                    <rect key="frame" x="0.0" y="224.66666666666666" width="375" height="39.999999999999972"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Nhz-4D-c31"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推薦商店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVh-HG-t5w">
+                                                    <rect key="frame" x="0.0" y="264.66666666666669" width="375" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="9RD-6d-mao"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVB-e5-ApJ" userLabel="line">
+                                                    <rect key="frame" x="0.0" y="284.66666666666669" width="375" height="0.33333333333331439"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="4Sf-pF-uLR"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="9Y8-Vc-p8P"/>
-                                                <constraint firstAttribute="width" secondItem="r4g-2z-jnk" secondAttribute="height" multiplier="15:8" id="MY1-78-fNb"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="alwaysBounceHorizontal" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="removesInfiniteLoopForSingleItem" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <outlet property="dataSource" destination="XFh-nE-B1k" id="4s9-5p-ZQI"/>
-                                                <outlet property="delegate" destination="XFh-nE-B1k" id="GwT-qf-itI"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x36-nz-xFg" customClass="FSPageControl" customModule="Naber" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="175.33333333333334" width="375" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="eq1-hN-gDr"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="hidesForSinglePage" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NABER公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymp-m6-NhU">
-                                            <rect key="frame" x="0.0" y="208" width="375" height="12"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="12" id="dQ1-uD-ghr"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4c4-pO-UqN">
-                                            <rect key="frame" x="0.0" y="224" width="375" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="Nhz-4D-c31"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推薦商店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVh-HG-t5w">
-                                            <rect key="frame" x="0.0" y="264" width="375" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="9RD-6d-mao"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVB-e5-ApJ" userLabel="line">
-                                            <rect key="frame" x="0.0" y="284" width="375" height="0.33333333333331439"/>
-                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="0.5" id="4Sf-pF-uLR"/>
+                                                <constraint firstItem="4c4-pO-UqN" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="0xo-ni-qtM"/>
+                                                <constraint firstItem="4c4-pO-UqN" firstAttribute="top" secondItem="Ymp-m6-NhU" secondAttribute="bottom" constant="4" id="44Q-3K-8Rg"/>
+                                                <constraint firstItem="rVh-HG-t5w" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="4x3-hl-GVM"/>
+                                                <constraint firstItem="RVB-e5-ApJ" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="6a5-si-ljg"/>
+                                                <constraint firstItem="r4g-2z-jnk" firstAttribute="top" secondItem="zra-ut-cKy" secondAttribute="top" id="9VE-zm-yHk"/>
+                                                <constraint firstItem="rVh-HG-t5w" firstAttribute="top" secondItem="4c4-pO-UqN" secondAttribute="bottom" id="9d9-cT-XN9"/>
+                                                <constraint firstItem="x36-nz-xFg" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="OzU-gF-bgY"/>
+                                                <constraint firstItem="r4g-2z-jnk" firstAttribute="leading" secondItem="zra-ut-cKy" secondAttribute="leading" id="QUv-eo-Fgj"/>
+                                                <constraint firstItem="rVh-HG-t5w" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="Qoh-D5-Abs"/>
+                                                <constraint firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="QvH-dN-hUH"/>
+                                                <constraint firstAttribute="bottom" secondItem="RVB-e5-ApJ" secondAttribute="bottom" id="WSw-T3-o8s"/>
+                                                <constraint firstItem="Ymp-m6-NhU" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="YJw-CO-ON4"/>
+                                                <constraint firstItem="x36-nz-xFg" firstAttribute="bottom" secondItem="r4g-2z-jnk" secondAttribute="bottom" id="gkk-WQ-Wgc"/>
+                                                <constraint firstItem="Ymp-m6-NhU" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="jNe-Px-fW9"/>
+                                                <constraint firstItem="RVB-e5-ApJ" firstAttribute="top" secondItem="rVh-HG-t5w" secondAttribute="bottom" id="jVN-Wd-x04"/>
+                                                <constraint firstItem="x36-nz-xFg" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="jvb-xb-Lh3"/>
+                                                <constraint firstItem="RVB-e5-ApJ" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="kY6-1c-0Uf"/>
+                                                <constraint firstItem="Ymp-m6-NhU" firstAttribute="top" secondItem="r4g-2z-jnk" secondAttribute="bottom" constant="8" id="xD0-8e-fru"/>
+                                                <constraint firstItem="4c4-pO-UqN" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="yCp-tc-3mH"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="rVh-HG-t5w" firstAttribute="top" secondItem="4c4-pO-UqN" secondAttribute="bottom" id="1Qy-uX-9zV"/>
-                                        <constraint firstItem="4c4-pO-UqN" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="5Rb-zL-PLe"/>
-                                        <constraint firstItem="r4g-2z-jnk" firstAttribute="top" secondItem="C1n-Ot-z1V" secondAttribute="top" id="CPk-ws-NU7"/>
-                                        <constraint firstItem="Ymp-m6-NhU" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="CjY-S8-6tp"/>
-                                        <constraint firstItem="x36-nz-xFg" firstAttribute="bottom" secondItem="r4g-2z-jnk" secondAttribute="bottom" id="G9Y-vu-Zfk"/>
-                                        <constraint firstItem="r4g-2z-jnk" firstAttribute="leading" secondItem="C1n-Ot-z1V" secondAttribute="leading" id="Ixr-gw-hil"/>
-                                        <constraint firstItem="RVB-e5-ApJ" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="LbS-fl-Irn"/>
-                                        <constraint firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="McF-mC-OSc"/>
-                                        <constraint firstItem="RVB-e5-ApJ" firstAttribute="top" secondItem="rVh-HG-t5w" secondAttribute="bottom" id="OMw-T2-enA"/>
-                                        <constraint firstAttribute="trailing" secondItem="x36-nz-xFg" secondAttribute="trailing" id="V7E-ZW-xeY"/>
-                                        <constraint firstItem="rVh-HG-t5w" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="VAF-4K-884"/>
-                                        <constraint firstItem="Ymp-m6-NhU" firstAttribute="top" secondItem="r4g-2z-jnk" secondAttribute="bottom" constant="8" id="VLB-KC-eTW"/>
-                                        <constraint firstItem="4c4-pO-UqN" firstAttribute="top" secondItem="Ymp-m6-NhU" secondAttribute="bottom" constant="4" id="bs5-4D-AnP"/>
-                                        <constraint firstItem="Ymp-m6-NhU" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="cdt-Tr-BLf"/>
-                                        <constraint firstItem="x36-nz-xFg" firstAttribute="leading" secondItem="C1n-Ot-z1V" secondAttribute="leading" id="dQr-Qk-LwL"/>
-                                        <constraint firstItem="rVh-HG-t5w" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="jO3-TI-yHV"/>
-                                        <constraint firstItem="4c4-pO-UqN" firstAttribute="leading" secondItem="r4g-2z-jnk" secondAttribute="leading" id="m7H-ow-Xg4"/>
-                                        <constraint firstItem="RVB-e5-ApJ" firstAttribute="trailing" secondItem="r4g-2z-jnk" secondAttribute="trailing" id="oR7-J6-OBu"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RVB-e5-ApJ" secondAttribute="bottom" id="yIk-Q1-jxI"/>
+                                        <constraint firstItem="zra-ut-cKy" firstAttribute="leading" secondItem="C1n-Ot-z1V" secondAttribute="leading" id="QSY-8w-oab"/>
+                                        <constraint firstItem="zra-ut-cKy" firstAttribute="top" secondItem="C1n-Ot-z1V" secondAttribute="top" id="Trp-3q-wmt"/>
+                                        <constraint firstAttribute="trailing" secondItem="zra-ut-cKy" secondAttribute="trailing" id="g8V-nm-dZ9"/>
+                                        <constraint firstAttribute="bottom" secondItem="zra-ut-cKy" secondAttribute="bottom" id="v69-Ek-t1b"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
