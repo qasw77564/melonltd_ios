@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var categoryRel: CategoryRelVo!
     var foods: [FoodVo] = []
@@ -105,6 +105,7 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             textField.placeholder = "請輸入價格"
             textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
             textField.addConstraint(textField.heightAnchor.constraint(equalToConstant: 36))
+            textField.delegate = self
             textField.keyboardType = .numberPad
             textField.font?.withSize(30)
             defaultPrice = textField
@@ -122,12 +123,13 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addAction(UIAlertAction(title: "我知道了", style: .default))
             self.present(alert, animated: true, completion: nil)
         }else {
+
             let food: FoodVo = FoodVo()
             food.category_uuid = self.categoryRel.category_uuid
-            food.food_name = name
-            food.default_price = price
+            food.food_name = StringsHelper.replace(str: name, of: " ", with: "")
+            food.default_price = (price as NSString).integerValue.description
             food.food_data = FoodItemVo()
-            let item: ItemVo = ItemVo.init(name: "統一規格", price: price, tag: 0)
+            let item: ItemVo = ItemVo.init(name: "統一規格", price: (price as NSString).integerValue.description, tag: 0)
             food.food_data.scopes.append(item)
             ApiManager.sellerFoodAdd(req: food, ui: self, onSuccess: { food in
                 print(food)
@@ -176,6 +178,19 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 sender.isOn = status.status()
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    // 限制輸入長度
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength: Int = text.count + string.count - range.length
+        if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
+            return false
+        }else if newLength == 1 && string == "0" {
+            return false
+        }else {
+            return true
         }
     }
 

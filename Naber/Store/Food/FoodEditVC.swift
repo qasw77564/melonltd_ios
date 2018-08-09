@@ -263,6 +263,22 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
             alert.addAction(UIAlertAction(title: "我知道了", style: .default))
             self.present(alert, animated: false)
         }else {
+            self.food.food_data.scopes.forEach { item in
+                item.name = StringsHelper.replace(str: item.name, of: " ", with: "")
+                item.price = (item.price as NSString).integerValue.description
+            }
+            self.food.food_data.opts.forEach { item in
+                item.name = StringsHelper.replace(str: item.name, of: " ", with: "")
+                item.price = (item.price as NSString).integerValue.description
+            }
+            
+            self.food.food_data.demands.forEach { dItem in
+                dItem.name = StringsHelper.replace(str: dItem.name, of: " ", with: "")
+                dItem.datas.forEach { item in
+                    item.name = StringsHelper.replace(str: item.name, of: " ", with: "")
+                }
+            }
+            
             ApiManager.sellerFoodUpdate(req: self.food, ui: self, onSuccess: {
                 self.navigationController?.popViewController(animated: true)
             }) { err_msg in

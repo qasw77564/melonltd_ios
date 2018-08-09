@@ -92,7 +92,7 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
             self.present(alert, animated: false)
         }else {
             let reqData: ReqData = ReqData()
-            reqData.name = self.categoryName.text
+            reqData.name = StringsHelper.replace(str: self.categoryName.text!, of: " ", with: "")
             ApiManager.sellerAddCategory(req: reqData, ui: self, onSuccess: { categoryRel in
                 if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "FoodList") as? FoodListVC {
                     vc.categoryRel = categoryRel

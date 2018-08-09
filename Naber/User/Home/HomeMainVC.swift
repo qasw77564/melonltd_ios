@@ -113,7 +113,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     
     func configLLCycleScrollView() {
-        cycleBulletinView = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 60 )) { index in
+        cycleBulletinView = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 40 )) { index in
         }
         cycleBulletinView.customPageControlStyle = .none
         cycleBulletinView.scrollDirection = .vertical

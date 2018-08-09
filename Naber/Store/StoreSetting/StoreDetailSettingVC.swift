@@ -120,7 +120,7 @@ class StoreDetailSettingVC : UIViewController, UIPickerViewDelegate, UIPickerVie
         }else {
             self.restaurant.store_start = self.startDate.text
             self.restaurant.store_end = self.endDate.text
-            self.restaurant.bulletin = self.bulletin.text
+            self.restaurant.bulletin = StringsHelper.replace(str: self.bulletin.text, of: " ", with: "")
             ApiManager.sellerRestaurantSetting(req: self.restaurant, ui: self, onSuccess: { restaurant in
                 self.restaurant = restaurant
                 self.tableView.reloadData()
