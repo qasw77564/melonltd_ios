@@ -124,7 +124,6 @@ class StoreDetailSettingVC : UIViewController, UIPickerViewDelegate, UIPickerVie
             ApiManager.sellerRestaurantSetting(req: self.restaurant, ui: self, onSuccess: { restaurant in
                 self.restaurant = restaurant
                 self.tableView.reloadData()
-//                LeftSideMenuVC.loads()
             }) { err_msg in
                 print(err_msg)
             }

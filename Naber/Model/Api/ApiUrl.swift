@@ -13,7 +13,7 @@ import Foundation
 class ApiUrl{   
     
     public static var DOMAIN: String = "http://192.168.1.108"
-    //    public static var DOMAIN: String = "http://192.168.1.104:8080/melonltd-ap"
+//    public static var DOMAIN: String = "http://192.168.1.107:8080/melonltd-ap"
     //    public static var DOMAIN: String = "http://192.168.31.15:8080/melonltd-ap"
     //    public static var DOMAIN: String = "https://ap.melonltd.com.tw"
     //    public static var DOMAIN: String = "http://naber.ddns.net"

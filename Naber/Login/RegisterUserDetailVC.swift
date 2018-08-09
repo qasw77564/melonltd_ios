@@ -41,7 +41,7 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     @IBAction func goBackHomePage(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC
+        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC
         {
             present(vc, animated: false, completion: nil)
         }
@@ -60,7 +60,7 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
             ApiManager.userRegistered(structs: account, ui: self, onSuccess: {
                 let alert = UIAlertController(title: "註冊成功", message: "歡迎加入NABER！" , preferredStyle: .alert)
                 alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in
-                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                    if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                         self.present(vc, animated: false, completion: nil)
                     }
                 }))

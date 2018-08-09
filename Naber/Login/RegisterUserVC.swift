@@ -165,7 +165,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
         }
 
         ApiManager.verifySMSCode(structs: self.smsCode, ui: self, onSuccess: {
-            if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RegisterUserDetail") as? RegisterUserDetailVC {
+            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RegisterUserDetail") as? RegisterUserDetailVC {
                 vc.phone = self.smsCode.phone
                 self.navigationController?.pushViewController(vc, animated: true)
             }

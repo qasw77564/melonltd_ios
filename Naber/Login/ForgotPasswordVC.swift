@@ -29,7 +29,7 @@ class ForgotPasswordVC: UIViewController {
             ApiManager.forgetPassword(req: reqDate, ui: self, onSuccess: {
                 let alert = UIAlertController(title: "", message: "密碼已經傳送至於您的手機，請於簡訊功能查看！" , preferredStyle: .alert)
                 alert.addAction(UIAlertAction.init(title: "關閉", style: .default, handler: { _ in
-                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                    if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                         self.present(vc, animated: false, completion: nil)
                     }
                 }))

@@ -38,7 +38,7 @@ class RegisterStoreVC: UIViewController {
         ApiManager.sellerRegistered(structs: account, ui: self, onSuccess:  {
             let alert = UIAlertController(title: "", message: "感謝你註冊成為商家你，\n您的信息已經提交成功，\n請待客服與您聯繫!!" , preferredStyle: .alert)
             alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                     self.present(vc, animated: false, completion: nil)
                 }
             }))
