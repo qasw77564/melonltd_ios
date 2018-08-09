@@ -11,6 +11,9 @@ import AVFoundation
 import Photos
 
 class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+    
+    var account: AccountInfoVo!
+    
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var phone: UILabel!
@@ -18,17 +21,31 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
     @IBOutlet weak var birthday: UILabel!
     @IBOutlet weak var bonus: UILabel!
     @IBOutlet weak var identity: UILabel!
-//    var accountinfo: AccountInfoVo = AccountInfoVo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        image.layer.borderWidth = 0
-//        image.layer.masksToBounds = false
-//        image.layer.borderColor = UIColor.black.cgColor
-//        image.layer.cornerRadius = image.frame.height/2
-//        image.clipsToBounds = true
-
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.name.text = self.account.name
+        self.phone.text = self.account.phone
+        self.email.text = self.account.email
+        self.birthday.text = self.account.birth_day
+        self.bonus.text = self.account.bonus
+        self.identity.text = self.account.identity
+
+        if self.account.photo == nil || self.account.photo == "" {
+            self.photo.image = UIImage(named: "白底黃閃電")
+        }else {
+            self.photo?.setImage(with: URL(string: (self.account.photo)!), transformer: TransformerHelper.transformer(identifier: (self.account.photo)!))
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     @IBAction func changePhoto(_ sender: UIButton) {
         let picker: UIImagePickerController = UIImagePickerController()
         picker.delegate = self
@@ -60,7 +77,7 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
                     self.present(picker, animated: true, completion: nil)
                 }
             }else {
-                self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no camera.")
+                self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no photo library.")
             }
         }))
         
@@ -77,11 +94,11 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let resizedImage: UIImage = ImageHelper.resizeImage(originalImage: originalImage, minLenDP: 100)
+        let resizedImage: UIImage = ImageHelper.resizeImage(originalImage: originalImage, minLenDP: 120)
 
-        ImageHelper.upLoadImage(data: UIImageJPEGRepresentation(resizedImage, 1.0)!, sourcePath: NaberConstant.STORAGE_PATH_USER, fileName: (UserSstorage.getAccount()?.account_uuid)! + ".jpg", onGetUrl: { url in
+        ImageHelper.upLoadImage(data: UIImageJPEGRepresentation(resizedImage, 1.0)!, sourcePath: NaberConstant.STORAGE_PATH_USER, fileName: self.account.account_uuid + ".jpg", onGetUrl: { url in
             let reqData: ReqData = ReqData()
-            reqData.uuid = UserSstorage.getAccount()?.account_uuid
+            reqData.uuid = self.account.account_uuid
             reqData.date = url.absoluteString
             reqData.type = "USER"
             ApiManager.uploadPhoto(req: reqData, ui: self, onSuccess: { urlString in
@@ -92,44 +109,22 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         }) { err_msg in
             print(err_msg)
         }
-
         self.dismiss(animated: true, completion: nil)
-    
-
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        ApiManager.userFindAccountInfo(ui: self, onSuccess: { (account) in
-            self.name.text = account?.name
-            self.phone.text = account?.phone
-            self.email.text = account?.email
-            self.birthday.text = account?.birth_day
-            self.bonus.text = account?.bonus
-            self.identity.text = account?.identity
-            let photo: String! = ""
-            
-            if photo == nil || photo == "" {
-                self.photo.image = UIImage(named: "白底黃閃電")
-            }else {
-                self.photo?.setImage(with: URL(string: (account?.photo)!), transformer: TransformerHelper.transformer(identifier: (account?.photo)!))
-            }
-            self.photo?.clipsToBounds = true
-            
-        }) { (err_msg) in
-            
-        }
-
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    @IBAction func goBackHomePage(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC
-        {
-            present(vc, animated: false, completion: nil)
+    @IBAction func logout(_ sender: Any) {
+        
+        ApiManager.logout(structs: UserSstorage.getAccount(), ui: self, onSuccess: {
+            UserSstorage.clearUserData()
+            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                self.present(vc, animated: false, completion: nil)
+            }
+        }) { err_msg in
+            UserSstorage.clearUserData()
+            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                self.present(vc, animated: false, completion: nil)
+            }
         }
     }
-   
 }

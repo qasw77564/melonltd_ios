@@ -10,6 +10,8 @@ import UIKit
 
 class UserSettingMainPageTVC: UITableViewController {
 
+    var account: AccountInfoVo!
+    
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var accunt: UILabel!
     @IBOutlet weak var bonus: UILabel!
@@ -20,34 +22,35 @@ class UserSettingMainPageTVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        let Version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
-        self.version.text = (" V：\(Version)")
-
-        ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
-            // TODO
-            self.accunt.text = account?.account
-            self.bonus.text = account?.bonus
-            let photo: String! = ""
-            
-            if photo == nil || photo == "" {
-                self.photo.image = UIImage(named: "白底黃閃電")
-
-            }else {
-                self.photo?.setImage(with: URL(string: (account?.photo)!), transformer: TransformerHelper.transformer(identifier: (account?.photo)!))
-            }
-            self.photo?.clipsToBounds = true
-            
-           
-            
-        }) { err_msg in
-            // TODO
+        if let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as? String {
+             self.version.text = "V." + version
         }
         
+        ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
+            
+            self.account = account
+            self.accunt.text = account?.account
+            self.bonus.text = account?.bonus
+            
+            if account?.phone == nil || account?.phone == "" {
+                self.photo.image = UIImage(named: "白底黃閃電")
+            } else {
+                self.photo?.setImage(with: URL(string: (account?.photo)!), transformer: TransformerHelper.transformer(identifier: (account?.photo)!))
+            }
+        }) { err_msg in
+            print(err_msg)
+        }
     }
     
+    override func show(_ vc: UIViewController, sender: Any?) {
+        if let nvc: UserSettingAccountDetailTVC = vc as? UserSettingAccountDetailTVC {
+            nvc.account = self.account
+            self.navigationController?.pushViewController(nvc, animated: true)
+        }else {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         

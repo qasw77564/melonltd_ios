@@ -337,6 +337,7 @@
 		209F05F5211B631300E66397 /* BadCode */ = {
 			isa = PBXGroup;
 			children = (
+				DD161D0020CAC7EA0080CFE2 /* Slider */,
 				DD161D0E20CB1D5C0080CFE2 /* FoodDetailVC.swift */,
 				DD161D1220CB1DCD0080CFE2 /* FoodDetailTypeTVCell.swift */,
 				DD161D1620CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift */,
@@ -716,7 +717,6 @@
 		DDFEA7D320B6D33D00170222 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				DD161D0020CAC7EA0080CFE2 /* Slider */,
 				DDEA6EE720CA1345008CC5D8 /* ShoppingCard */,
 				DDEA6EE620CA132C008CC5D8 /* Record */,
 				DDEA6EE520CA1315008CC5D8 /* Restaurant */,

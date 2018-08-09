@@ -218,31 +218,5 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is RestaurantStoreItemVC {
-//            //let vc = segue.destination as? RestaurantStoreItemViewController
-//            //vc?.username = "Arthur Dent"
-//        }
-//    }
 }
 
-
-//extension RestaurantStoreInfoVC : UITableViewDataSource, UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return itemClass.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cellIdentifier = "Cell"
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantStoreInfoTVCell
-//        cell.itemClass.text = itemClass[indexPath.row]
-//        return cell
-//    }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is RestaurantStoreItemVC {
-//            //let vc = segue.destination as? RestaurantStoreItemViewController
-//            //vc?.username = "Arthur Dent"
-//        }
-//    }
-//}

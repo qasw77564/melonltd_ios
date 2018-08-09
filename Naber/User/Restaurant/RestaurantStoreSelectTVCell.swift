@@ -25,7 +25,6 @@ class RestaurantStoreSelectTVCell: UITableViewCell {
         }
     }
     
-    
     func cellWillAppear() {
         self.name.text = self.item.name
         self.price.text = self.item.price

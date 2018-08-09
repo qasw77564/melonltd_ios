@@ -9,12 +9,6 @@
 
 import UIKit
 
-//
-//point: String
-//product: String
-//remarks: String
-
-
 
 class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     

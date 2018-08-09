@@ -291,11 +291,11 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
                 if status == .denied && status == .restricted {
+                    self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟")
+                }else {
                     picker.sourceType = .camera
                     picker.allowsEditing = true
                     self.present(picker, animated: true, completion: nil)
-                }else {
-                     self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟")
                 }
             } else {
                 self.showAlert(withTitle: "沒有相機設備", andMessage: "You can't take photo, there is no camera.")
@@ -306,10 +306,10 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
                 if status == .denied && status == .restricted {
+                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相簿服務 開啟")
+                }else {
                     picker.sourceType = .photoLibrary
                     self.present(picker, animated: true, completion: nil)
-                }else {
-                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相簿服務 開啟")
                 }
             }else {
                 self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no photo library.")
