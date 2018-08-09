@@ -150,4 +150,9 @@ class DateTimeHelper {
         let date: Date = Calendar.current.date(byAdding: components, to: startOfDate())!
         return dateToString(date: date.addingTimeInterval(-1))
     }
+    
+    // 依照傳入日期取得週
+    static func getWeekDate(date: String) -> String {
+        return NaberConstant.WEEK_DAY_NAME[Calendar.current.component(.weekday, from: stringToDate(date: date)) - 1]
+    }
 }

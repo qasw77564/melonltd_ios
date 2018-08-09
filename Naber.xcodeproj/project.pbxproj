@@ -10,6 +10,7 @@
 		2012D76F2118460A00E7068D /* TableViewHeadControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2012D76E2118460A00E7068D /* TableViewHeadControl.swift */; };
 		2017D8E6210CC52B00E2376D /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E5210CC52B00E2376D /* OrderStatus.swift */; };
 		2017D8E8210CF09100E2376D /* RecordInfoOrderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */; };
+		202E4FA4211BB31F00D176DF /* BadCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202E4FA3211BB31F00D176DF /* BadCode.storyboard */; };
 		2036B845210760190081FE92 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B844210760190081FE92 /* BaseVC.swift */; };
 		2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B8462107621C0081FE92 /* DateTimeHelper.swift */; };
 		204C2560210A33830000D3EE /* PageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C255F210A33830000D3EE /* PageType.swift */; };
@@ -21,6 +22,8 @@
 		20758A1921188D1F007A3ABC /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1821188D1F007A3ABC /* Store.storyboard */; };
 		20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1A2118A1FC007A3ABC /* User.storyboard */; };
 		20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */; };
+		209F05F2211B352800E66397 /* StoreDetailSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */; };
+		209F05F4211B420500E66397 /* StoreDetailSettingDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */; };
 		20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfo.swift */; };
 		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
 		20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20AF37262100447400D73F79 /* GoogleService-Info.plist */; };
@@ -160,6 +163,7 @@
 		2012D76E2118460A00E7068D /* TableViewHeadControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeadControl.swift; sourceTree = "<group>"; };
 		2017D8E5210CC52B00E2376D /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
 		2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInfoOrderTVCell.swift; sourceTree = "<group>"; };
+		202E4FA3211BB31F00D176DF /* BadCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BadCode.storyboard; sourceTree = "<group>"; };
 		2036B844210760190081FE92 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		2036B8462107621C0081FE92 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		204C255F210A33830000D3EE /* PageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageType.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 		20758A1821188D1F007A3ABC /* Store.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		20758A1A2118A1FC007A3ABC /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailVC.swift; sourceTree = "<group>"; };
+		209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingVC.swift; sourceTree = "<group>"; };
+		209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingDateCell.swift; sourceTree = "<group>"; };
 		20AF372120FF8BD000D73F79 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
 		20AF37262100447400D73F79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -244,7 +250,7 @@
 		DD161D1820CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailInnerOptionTVCell.swift; sourceTree = "<group>"; };
 		DD3FA0AC20C77173006BAA51 /* StoreSettingMainPageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSettingMainPageTVC.swift; sourceTree = "<group>"; };
 		DD3FA0AE20C77193006BAA51 /* StoreSettingAboutUsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSettingAboutUsTVC.swift; sourceTree = "<group>"; };
-		DD3FA0B020C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreSettingAccountDetailTVC.swift; path = Naber/Store/StoreSetting/StoreSettingAccountDetailTVC.swift; sourceTree = SOURCE_ROOT; };
+		DD3FA0B020C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreSettingAccountDetailTVC.swift; path = Naber/BadCode/StoreSettingAccountDetailTVC.swift; sourceTree = SOURCE_ROOT; };
 		DD3FA0B220C79292006BAA51 /* TrendMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMainVC.swift; sourceTree = "<group>"; };
 		DD3FA0B420C7B065006BAA51 /* TrendCompleteOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCompleteOrderVC.swift; sourceTree = "<group>"; };
 		DD3FA0B620C7B648006BAA51 /* TrendCompleteOrderTVCell.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrendCompleteOrderTVCell.swift; path = Naber/Store/Trend/TrendCompleteOrderTVCell.swift; sourceTree = SOURCE_ROOT; };
@@ -328,6 +334,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		209F05F5211B631300E66397 /* BadCode */ = {
+			isa = PBXGroup;
+			children = (
+				DD161D0E20CB1D5C0080CFE2 /* FoodDetailVC.swift */,
+				DD161D1220CB1DCD0080CFE2 /* FoodDetailTypeTVCell.swift */,
+				DD161D1620CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift */,
+				DD161D1820CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift */,
+				DD161D1420CB1DDF0080CFE2 /* FoodDetailExtraTVCell.swift */,
+				DD3FA0B020C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift */,
+			);
+			path = BadCode;
+			sourceTree = "<group>";
+		};
 		20AF372320FF98AA00D73F79 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,11 +501,6 @@
 				DD161D0820CAD70B0080CFE2 /* CategoryRelTVCell.swift */,
 				DD161D0A20CAEBC80080CFE2 /* FoodListVC.swift */,
 				DD161D0C20CAEBF40080CFE2 /* FoodTVCell.swift */,
-				DD161D0E20CB1D5C0080CFE2 /* FoodDetailVC.swift */,
-				DD161D1220CB1DCD0080CFE2 /* FoodDetailTypeTVCell.swift */,
-				DD161D1620CB1DF10080CFE2 /* FoodDetailOutterOptionTVCell.swift */,
-				DD161D1820CCC5780080CFE2 /* FoodDetailInnerOptionTVCell.swift */,
-				DD161D1420CB1DDF0080CFE2 /* FoodDetailExtraTVCell.swift */,
 				20EF6E2E2119474700787F4C /* FoodEditVC.swift */,
 				20EF6E302119582800787F4C /* FoodMainCell.swift */,
 				20EF6E32211958B300787F4C /* FoodSubCell.swift */,
@@ -616,7 +630,8 @@
 			children = (
 				DD3FA0AC20C77173006BAA51 /* StoreSettingMainPageTVC.swift */,
 				DD3FA0AE20C77193006BAA51 /* StoreSettingAboutUsTVC.swift */,
-				DD3FA0B020C771C2006BAA51 /* StoreSettingAccountDetailTVC.swift */,
+				209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */,
+				209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */,
 			);
 			path = StoreSetting;
 			sourceTree = "<group>";
@@ -647,6 +662,7 @@
 		DDF8C27420B1CA4400BF8904 /* Naber */ = {
 			isa = PBXGroup;
 			children = (
+				209F05F5211B631300E66397 /* BadCode */,
 				20E65E7B20FF0A1F00F9A252 /* Model */,
 				DD51D1F420C0A0C4002C5940 /* Common */,
 				DDFEA7D420B6D39E00170222 /* Login */,
@@ -662,6 +678,7 @@
 				DDF8C2B720B226E600BF8904 /* StorePageUITabBarController.swift */,
 				20758A1821188D1F007A3ABC /* Store.storyboard */,
 				20758A1A2118A1FC007A3ABC /* User.storyboard */,
+				202E4FA3211BB31F00D176DF /* BadCode.storyboard */,
 			);
 			path = Naber;
 			sourceTree = "<group>";
@@ -846,6 +863,7 @@
 				20758A1921188D1F007A3ABC /* Store.storyboard in Resources */,
 				DDF8C28020B1CA4600BF8904 /* LaunchScreen.storyboard in Resources */,
 				20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */,
+				202E4FA4211BB31F00D176DF /* BadCode.storyboard in Resources */,
 				DDF8C27D20B1CA4600BF8904 /* Assets.xcassets in Resources */,
 				DDF8C27B20B1CA4400BF8904 /* Main.storyboard in Resources */,
 				20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */,
@@ -971,6 +989,8 @@
 				DD3FA0C620C8A2DF006BAA51 /* LeftSideMenuTVCell.swift in Sources */,
 				20D9DC2E2105814300D643FE /* ReqData.swift in Sources */,
 				20AF37332100BC1500D73F79 /* UserSstorage.swift in Sources */,
+				209F05F4211B420500E66397 /* StoreDetailSettingDateCell.swift in Sources */,
+				209F05F2211B352800E66397 /* StoreDetailSettingVC.swift in Sources */,
 				DD51D20020C340BE002C5940 /* RestaurantStoreSelectVC.swift in Sources */,
 				20EF6E35211A934E00787F4C /* ImageHelper.swift in Sources */,
 				DD51D1FE20C0CC75002C5940 /* RestaurantStoreItemTVCell.swift in Sources */,

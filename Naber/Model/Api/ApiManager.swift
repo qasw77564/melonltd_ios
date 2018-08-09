@@ -342,7 +342,7 @@ class ApiManager {
         })
     }
     
-    // 取得營運概況(未測試)
+    // 取得營運概況
     public static func sellerStat (ui: UIViewController, onSuccess: @escaping (SellerStatVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_STAT, data: "" , ui:ui, complete: { response in
             let resp:  SellerStatResp = SellerStatResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -353,7 +353,7 @@ class ApiManager {
             }
         })
     }
-    // 取得營運概況已完成訂單列表(未測試)
+    // 取得營運概況已完成訂單列表
     public static func sellerStatLog (req: ReqData, ui: UIViewController, onSuccess: @escaping ([OrderVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_STAT_LOG, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: OrderResp = OrderResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -364,7 +364,7 @@ class ApiManager {
             }
         })
     }
-    // 取得種類列表(未測試)
+    // 取得種類列表
     public static func sellerCategoryList (ui: UIViewController, onSuccess: @escaping ([CategoryRelVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CATEGORY_LIST, data: "", ui:ui, complete: { response in
             let resp: CategoryRelListResp = CategoryRelListResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -375,7 +375,7 @@ class ApiManager {
             }
         })
     }
-    // 新增種類(未測試)
+    // 新增種類
     public static func sellerAddCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping (CategoryRelVo?) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_ADD_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: CategoryRelResp = CategoryRelResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -386,7 +386,7 @@ class ApiManager {
             }
         })
     }
-     // 更新種類狀態(未測試)
+     // 更新種類狀態
     public static func sellerChangeCategoryStatus (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CHANGE_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
@@ -397,7 +397,7 @@ class ApiManager {
             }
         })
     }
-    // 刪除種類(未測試)
+    // 刪除種類
     public static func sellerDeleteCategory (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_DELETE_CATEGORY, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
@@ -408,7 +408,7 @@ class ApiManager {
             }
         })
     }
-   // 品項列表(未測試)
+   // 品項列表
     public static func sellerFoodList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([FoodVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -420,7 +420,7 @@ class ApiManager {
         })
     }
     
-    // 品項更新(未測試)
+    // 品項更新
     public static func sellerFoodUpdate (req: FoodVo, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_CHANGE_FOOD, data: FoodVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
@@ -432,7 +432,7 @@ class ApiManager {
         })
     }
     
-    // 品項刪除(未測試)
+    // 品項刪除
     public static func sellerFoodDelete (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_DELETE_FOOD, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp:  RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
@@ -444,7 +444,7 @@ class ApiManager {
         })
     }
     
-    // 品項加入(未測試)
+    // 品項加入
     public static func sellerFoodAdd (req: FoodVo, ui: UIViewController, onSuccess: @escaping (FoodVo) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_ADD_FOOD, data: FoodVo.toJson(structs: req) , ui:ui, complete: { response in
             let resp: FoodResp = FoodResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -455,9 +455,10 @@ class ApiManager {
             }
         })
     }
+    
     // 取得餐館資訊(未測試)
-    public static func sellerRestaurantInfo (req: RestaurantInfoVo, ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {
-        self.postAutho(url: ApiUrl.SELLER_RESTAURANT_INFO, data: RestaurantInfoVo.toJson(structs: req) , ui:ui, complete: { response in
+    public static func sellerRestaurantInfo (ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_RESTAURANT_INFO, data: "" , ui: ui, complete: { response in
             let resp:  RestaurantInfoResp = RestaurantInfoResp.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess(resp.data)

@@ -18,6 +18,7 @@ class NaberConstant {
     static let FILTER_CATEGORYS : [String] = ["早午餐", "西式/牛排", "中式", "日式", "冰飲"]
     static let FILTER_AREAS : [String] = ["桃園區", "中壢區", "平鎮區", "龍潭區", "楊梅區", "新屋區", "觀音區", "龜山區", "八德區", "大溪區", "大園區", "蘆竹區", "復興區"]
     
+    static let HOUR_MINUTE_OPT: [[String]] = [["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"], ["00", "30"]]
     
     static let HOUR_OPT: [String] = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
     static let MINUTE_OPT : [String] = ["00", "30"]
@@ -35,6 +36,7 @@ class NaberConstant {
          "小學生":[""],
          "社會人士/其它":[""]]
 
+    static let WEEK_DAY_NAME: [String] = ["日", "ㄧ", "二", "三", "四", "五", "六"]
     
     static let COLOR_BASIS = UIColor(red:0.93, green:0.89, blue:0.41, alpha:1.0)
     static let COLOR_BASIS_BRIGHT_YELLOW = UIColor(red:1.00, green:0.94, blue:0.21, alpha:1.0)
