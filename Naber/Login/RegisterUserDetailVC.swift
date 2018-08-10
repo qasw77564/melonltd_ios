@@ -50,13 +50,13 @@ class RegisterUserDetailVC: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func sendToSeverForRegisterUser(_ sender: Any) {
         if verifyInput() {
             let account: AccountInfoVo = AccountInfoVo()
-            account.name = self.name.text
+            account.name = StringsHelper.replace(str: self.name.text!, of: " ", with: "")
             account.password = self.password.text
             account.phone = self.phone
             account.level = "USER"
             account.identity = Identity.toEnum(name: self.identity).rawValue
             account.school_name = self.schoolName
-            
+           
             ApiManager.userRegistered(structs: account, ui: self, onSuccess: {
                 let alert = UIAlertController(title: "註冊成功", message: "歡迎加入NABER！" , preferredStyle: .alert)
                 alert.addAction(UIAlertAction.init(title: "返回登入畫面", style: .default, handler: { _ in

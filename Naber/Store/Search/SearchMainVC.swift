@@ -161,6 +161,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         let alert = UIAlertController(title: "確定要取消訂單嗎？\n客戶不會獲得任何紅利點數", message: "\n告訴客人原因\n", preferredStyle: .alert)
         
         alert.addTextField{ textField in
+            textField.placeholder = StringsHelper.replace(str: textField.placeholder! , of: " ", with: "")
             textField.placeholder = "自行輸入"
             textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
             textField.addConstraint(textField.heightAnchor.constraint(equalToConstant: 36))

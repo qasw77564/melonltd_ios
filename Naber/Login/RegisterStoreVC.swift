@@ -30,9 +30,9 @@ class RegisterStoreVC: UIViewController {
     @IBAction func sendToSeverForRegisterStore(_ sender: Any) {
         if judgmentInput() {
         let account : SellerRegisteredVo = SellerRegisteredVo()
-        account.seller_name = self.restaurantName.text
-        account.address = self.restaurantAddress.text
-        account.name = self.contactPersonName.text
+        account.seller_name = StringsHelper.replace(str: self.restaurantName.text!, of: " ", with: "")
+        account.address = StringsHelper.replace(str: self.restaurantAddress.text!, of: " ", with: "")
+        account.name = StringsHelper.replace(str: self.contactPersonName.text!, of: " ", with: "")
         account.phone = self.contactPhone.text
         account.device_id = Messaging.messaging().fcmToken
         ApiManager.sellerRegistered(structs: account, ui: self, onSuccess:  {

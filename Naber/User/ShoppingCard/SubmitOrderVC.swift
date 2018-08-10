@@ -97,7 +97,7 @@ class SubmitOrderVC : UIViewController {
                 
                 let detail: OrderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
                 detail.fetch_date = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
-                detail.user_message = self.userMssage.text
+                detail.user_message = StringsHelper.replace(str: self.userMssage.text!, of: " ", with: "")
                 
                 ApiManager.userOrderSubmit(req: detail, ui: self, onSuccess: {
                     // 提交訂單成功 把該筆訂單從手機記憶中移除
