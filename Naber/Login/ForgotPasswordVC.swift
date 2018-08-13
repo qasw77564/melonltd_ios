@@ -46,7 +46,7 @@ class ForgotPasswordVC: UIViewController {
 //    找回密碼判斷
         func judgmentInput() -> Bool {
             var msg: String = ""
-            var email: String = ""
+//            var email: String = ""
             if(!ValidateHelper.shared.isVaildTelPhone(withCellPhone: self.phone.text!) ){
                 msg = "請輸入正確的手機號碼"
             }

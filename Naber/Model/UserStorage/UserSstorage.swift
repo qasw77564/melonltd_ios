@@ -16,6 +16,8 @@ class UserSstorage {
     static let ACCOUNT: String = "ACCOUNT"
     static let REMEMBER_ME: String = "REMEMBER_ME"
     static let SHOPPING_CART: String = "SHOPPING_CART"
+    static let SOUND: String = "SOUND"
+    static let SHAKE: String = "SHAKE"
 
     
     // 登入成功記錄登入時間
@@ -56,7 +58,8 @@ class UserSstorage {
             return ""
         }
     }
-    
+
+    // 只清除帳號資訊
     public static var clearAccount = { () in
         UserDefaults.standard.removeObject(forKey: ACCOUNT)
     }
@@ -68,6 +71,15 @@ class UserSstorage {
             return account.account_uuid ?? ""
         }else {
             return ""
+        }
+    }
+    
+    // 當前登入身份
+    static func getCurrentId() -> Identity? {
+        if let identity = Identity(rawValue: (getAccountInfo()?.identity)!){
+            return identity
+        }else {
+            return Identity.UNKNOWN
         }
     }
     
@@ -83,7 +95,34 @@ class UserSstorage {
             return false
         }
     }
-
+    
+    
+    // 使用者設定聲音
+    public static var setSound = { (sound: Bool)  in
+        UserDefaults.standard.setValue(sound, forKey: SOUND)
+    }
+    
+    static func getSound() -> Bool? {
+        if let sound = getValue(forKey: SOUND) as? Bool  {
+            return sound
+        }else {
+            return true
+        }
+    }
+    
+    // 使用者設定震動
+    public static var setShake = { (shake: Bool)  in
+        UserDefaults.standard.setValue(shake, forKey: SHAKE)
+    }
+    
+    static func getShake() -> Bool? {
+        if let shake = getValue(forKey: SHAKE) as? Bool  {
+            return shake
+        }else {
+            return true
+        }
+    }
+    
     // 使用者夠處車清單
     static func setShoppingCartDatas (datas : [OrderDetail]) {
         let json: String = OrderDetail.toJsonArray(structs: datas)
@@ -110,7 +149,7 @@ class UserSstorage {
     
     // 清除
     static func clearUserData() {
-        let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART]
+        let keys: [String] = [LONGIN_TIME, ACCOUNT_INFO, SHOPPING_CART, SOUND, SHAKE]
         let remember: Bool = getRememberMe()
         keys.forEach { key in
             UserDefaults.standard.removeObject(forKey: key)

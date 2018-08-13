@@ -61,10 +61,10 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
         ApiManager.getSMSCode(structs: reqCode, ui: self, onSuccess: { code in
             sender.isHidden = false
             self.smsCode.batch_id = code.batch_id
-            print(self.smsCode)
+            // print(self.smsCode)
         }) { err_msg in
             let ss :[String] = StringsHelper.splitToArray(str: err_msg, of: "$split")
-            print(ss)
+            // print(ss)
             let alert = UIAlertController(title: "", message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
                 sender.isHidden = false

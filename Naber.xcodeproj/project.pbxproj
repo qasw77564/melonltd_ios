@@ -186,7 +186,6 @@
 		20BD64842108BFE600023033 /* LLPillPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLPillPageControl.swift; sourceTree = "<group>"; };
 		20BD648C2108E84000023033 /* CustomSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchTextField.swift; sourceTree = "<group>"; };
 		20D9DBD12102563D00D643FE /* HomeMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainVC.swift; sourceTree = "<group>"; };
-		20D9DBD3210259A300D643FE /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D9DBD521025AC700D643FE /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D9DBFD21025F4600D643FE /* FSPagerViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		20D9DBFE21025F4600D643FE /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
@@ -663,7 +662,6 @@
 			isa = PBXGroup;
 			children = (
 				20D9DBD521025AC700D643FE /* Pods_Naber.framework */,
-				20D9DBD3210259A300D643FE /* FSPagerView.framework */,
 				20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */,
 				DDFEA7DF20B7808E00170222 /* UserNotifications.framework */,
 				DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */,

@@ -42,24 +42,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QKe-gB-oly">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QKe-gB-oly">
                                 <rect key="frame" x="4" y="104" width="367" height="36"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="離我最近" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhG-Gn-GBL">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="0ZB-nz-GEE"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FqS-J6-1Ra" customClass="DesignableButton" customModule="Naber">
-                                        <rect key="frame" x="124" y="0.0" width="75" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="iNg-Ff-4Ah"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="kjL-lf-qc2"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="75" id="xT8-Yf-Beb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="依照店名">
+                                            <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchForStoreName:" destination="xiK-JR-oF8" eventType="touchUpInside" id="u3F-Pb-XXK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wll-Nx-Hum" customClass="DesignableButton" customModule="Naber">
+                                        <rect key="frame" x="92.666666666666686" y="0.0" width="89" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="Syk-t8-7QB"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="hk6-ro-hEg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="依照類別">
@@ -77,15 +92,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="searchForCategory:" destination="xiK-JR-oF8" eventType="touchUpInside" id="tkn-kC-wd3"/>
+                                            <action selector="searchForCategory:" destination="xiK-JR-oF8" eventType="touchUpInside" id="0gY-3W-w34"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2J-o2-y6Y" customClass="DesignableButton" customModule="Naber">
-                                        <rect key="frame" x="203" y="0.0" width="80" height="36"/>
+                                        <rect key="frame" x="185.66666666666666" y="0.0" width="88.666666666666657" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="BV0-FB-yho"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="EGH-71-wW1"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="l8M-oG-3iH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="依照區域">
@@ -107,11 +121,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnV-Mf-E8k" customClass="DesignableButton" customModule="Naber">
-                                        <rect key="frame" x="287" y="0.0" width="80" height="36"/>
+                                        <rect key="frame" x="278.33333333333331" y="0.0" width="88.666666666666686" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="8LS-up-byj"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="Zuc-fZ-CIG"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="mzM-Y0-H0t"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="依照距離">
@@ -312,7 +325,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="訂餐" id="IMW-Jm-cvQ"/>
                     <connections>
-                        <outlet property="filterName" destination="FhG-Gn-GBL" id="RyU-7q-huH"/>
+                        <outlet property="areaBtn" destination="w2J-o2-y6Y" id="iCk-Kt-Hug"/>
+                        <outlet property="categoryBtn" destination="Wll-Nx-Hum" id="EQp-V8-Wtc"/>
+                        <outlet property="distanceBtn" destination="hnV-Mf-E8k" id="roh-V2-Rra"/>
+                        <outlet property="storeNameBtn" destination="FqS-J6-1Ra" id="ZHP-Z8-WRF"/>
                         <outlet property="tableView" destination="thE-HF-eG3" id="Eq5-rm-SSU"/>
                     </connections>
                 </viewController>
@@ -1409,6 +1425,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjW-hp-5Ve">
                                                     <rect key="frame" x="312" y="14" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="changeSound:" destination="SG6-F4-dlK" eventType="valueChanged" id="NnR-cZ-fra"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1431,6 +1450,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7lu-oQ-Qk8">
                                                     <rect key="frame" x="312" y="14" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="changeShake:" destination="SG6-F4-dlK" eventType="valueChanged" id="sDy-Td-BhK"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1553,6 +1575,8 @@
                         <outlet property="accunt" destination="uxK-NE-foi" id="zQT-9d-03W"/>
                         <outlet property="bonus" destination="fcE-iO-X6R" id="aad-ZS-f6N"/>
                         <outlet property="photo" destination="kTA-Hz-NHh" id="aCG-ot-6Vi"/>
+                        <outlet property="shake" destination="7lu-oQ-Qk8" id="OgJ-QC-iWD"/>
+                        <outlet property="sound" destination="NjW-hp-5Ve" id="6bG-cw-cEl"/>
                         <outlet property="version" destination="31K-Oa-Whc" id="6r1-Pw-KgB"/>
                     </connections>
                 </tableViewController>
@@ -2160,8 +2184,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNt-N7-Nu0">
-                                                    <rect key="frame" x="-1" y="37" width="376" height="48"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNt-N7-Nu0">
+                                                    <rect key="frame" x="-0.66666666666665719" y="36" width="375.33333333333326" height="48"/>
                                                     <color key="backgroundColor" red="0.95686274510000002" green="0.90980392160000001" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="Nwy-d9-MMJ"/>
@@ -2467,7 +2491,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="A7L-cc-OEz">
-                                                                        <rect key="frame" x="8" y="10.333333333333336" width="80" height="80"/>
+                                                                        <rect key="frame" x="8" y="11" width="80" height="80"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="DDK-hq-ztZ"/>
                                                                             <constraint firstAttribute="height" constant="80" id="r2X-ZQ-9hl"/>
@@ -2483,14 +2507,14 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="珍珠奶茶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-vr-36m">
-                                                                        <rect key="frame" x="96" y="7.3333333333333321" width="279" height="17"/>
+                                                                        <rect key="frame" x="96" y="8" width="279" height="17"/>
                                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="8" bottom="0.0" trailing="8"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="規格:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYc-Fe-ySm">
-                                                                        <rect key="frame" x="96" y="24.333333333333329" width="263" height="36"/>
+                                                                        <rect key="frame" x="96" y="25" width="263" height="36"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="9kH-2M-giH"/>
                                                                         </constraints>
@@ -2499,10 +2523,10 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEw-0O-uXK">
-                                                                        <rect key="frame" x="96" y="60.333333333333343" width="271" height="30"/>
+                                                                        <rect key="frame" x="96" y="61" width="271" height="30"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jl2-YA-YRk">
-                                                                                <rect key="frame" x="18" y="6" width="15" height="17"/>
+                                                                                <rect key="frame" x="18" y="6.0000000000000071" width="15" height="17"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -2521,7 +2545,7 @@
                                                                                 </connections>
                                                                             </stepper>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahv-RQ-sfx">
-                                                                                <rect key="frame" x="0.0" y="7" width="18" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="7.0000000000000071" width="18" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="8Vo-Eo-BFd"/>
                                                                                 </constraints>
@@ -2541,7 +2565,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="752" verticalHuggingPriority="251" text="100000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXm-bG-VBK">
-                                                                                <rect key="frame" x="181" y="6" width="56" height="17"/>
+                                                                                <rect key="frame" x="181" y="6.0000000000000071" width="56" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="56" id="3lW-QC-qQt"/>
                                                                                 </constraints>
@@ -3681,6 +3705,6 @@
         <image name="黃底NABER白字" width="674" height="477"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VUG-v7-N3B"/>
+        <segue reference="xMS-ZR-voG"/>
     </inferredMetricsTieBreakers>
 </document>

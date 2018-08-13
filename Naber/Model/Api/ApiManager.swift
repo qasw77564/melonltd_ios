@@ -137,9 +137,9 @@ class ApiManager {
         })
     }
     
-    //Category=種類,Detail=細節,Area=區域
+    //Category=種類,Detail=細節,Area=區域, STORE_NAME=店家名稱
     //3.取得餐館列表(TOP,列表無分頁) 4.餐館頁面取得(AREA,CATEGORY)
-    // 餐館列表 TOP, AREA, CATEGORY, DISTANCE(測試OK)
+    // 餐館列表 TOP, AREA, CATEGORY, DISTANCE(測試OK), STORE_NAME
     public static func restaurantList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([RestaurantInfoVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.RESTAURANT_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RestaurantListResp = RestaurantListResp.parse(src: base64Decoding(decode: response.result.value!))!

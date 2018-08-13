@@ -11,8 +11,8 @@ import Foundation
 class NaberConstant {
     static let IS_DEBUG : Bool = false
     static let REMEMBER_DAY : Int = 1000 * 60 * 60 * 24 * 7 * 2;
-    static let SELLER_STAT_REFRESH_TIMER : Int =  1000 * 60 * 10;
-    static let SELLER_LIVE_ORDER_REFRESH_TIMER : Int = 1000 * 60 * 5;
+    static let SELLER_STAT_REFRESH_TIMER : Double =  1000 * 60 * 10;
+    static let SELLER_LIVE_ORDER_REFRESH_TIMER : Double = 1000 * 60 * 5;
     static let PAGE : Int = 10
     
     static let FILTER_CATEGORYS : [String] = ["早午餐", "西式/牛排", "中式", "日式", "冰飲"]

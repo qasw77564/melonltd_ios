@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import UserNotifications
 
-
-class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UNUserNotificationCenterDelegate{
     
+
     var orders: [OrderVo] = []
     var uiButtons: [UIButton] = []
     var timer: Timer!
@@ -48,11 +49,11 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             self.dateSelect.text = DateTimeHelper.getNow(from: "yyyy年 MM月 dd日")
         }
     }
+    
     @IBOutlet weak var liveBtn: UIButton!
     @IBOutlet weak var unfinishBtn: UIButton!
     @IBOutlet weak var processingBtn: UIButton!
     @IBOutlet weak var canFetchBtn: UIButton!
-    
     
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var table: UITableView! {
@@ -103,6 +104,13 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.uiButtons.append(contentsOf: [self.liveBtn, self.unfinishBtn, self.processingBtn, self.canFetchBtn])
         // 第一次進入使用即時訂單
 //        self.callLiveOrders()
+        
+        
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+        }
+
     }
 
     func loadData(refresh: Bool){
@@ -125,7 +133,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 self.reqData.loadingMore = orders.count % NaberConstant.PAGE == 0 && orders.count != 0
                 self.table.reloadData()
             }) { err_msg in
-                print(err_msg)
+                // print(err_msg)
             }
         }
     }
@@ -155,10 +163,10 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 o.order_detail = OrderDetail.parse(src: o.order_data)!
                 return o
             }))
-            print(Date())
+            // print(Date())
             self.table.reloadData()
         }) { err_msg in
-            print(err_msg)
+            // print(err_msg)
         }
     }
     
@@ -171,16 +179,16 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func startTimer(){
         self.stopTimer()
         if self.timer == nil {
-            print("call start timer ok")
+//            // print("call start timer ok")
             self.callLiveOrders()
-            timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(scheduledLiveOrder), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: NaberConstant.SELLER_LIVE_ORDER_REFRESH_TIMER, target: self, selector: #selector(scheduledLiveOrder), userInfo: nil, repeats: true)
         }
     }
     
     // 將timer的執行緒停止
     func stopTimer(){
         if self.timer != nil {
-            print("call stop timer ok")
+//            // print("call stop timer ok")
             self.timer.invalidate()
             self.timer = nil
         }
@@ -275,6 +283,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.queryStatus = OrderStatus.LIVE
         self.loadData(refresh: true)
     }
+
     
     // 未處理 Tab
     @IBAction func unfinishSelect(_ sender: UIButton) {
@@ -438,7 +447,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         ApiManager.sellerChangeOrder(req: reqData, ui: self, onSuccess: {
             self.loadData(refresh: true)
         }, onFail: { err_msg in
-            print(err_msg)
+            // print(err_msg)
            self.loadData(refresh: true)
         })
     }
@@ -477,7 +486,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             ApiManager.sellerChangeOrder(req: reqData, ui: self, onSuccess: {
                 self.loadData(refresh: true)
             }, onFail: { err_msg in
-                print(err_msg)
+                // print(err_msg)
             })
         }))
         self.present(alert, animated: false)
@@ -497,7 +506,24 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
         picker.minimumDate = minDate
     }
+    
+    
+    @available(iOS 10, *)
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
+        completionHandler( [.alert, .badge, .sound])
+        if self.queryStatus == OrderStatus.LIVE {
+            self.stopTimer()
+            self.startTimer()
+        }
+    }
+    @available(iOS 10, *)
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // print("Do what ever you want")
+        
+    }
 
 }
+
+
 
 
