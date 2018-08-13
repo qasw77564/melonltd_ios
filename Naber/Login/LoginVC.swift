@@ -82,6 +82,8 @@ class LoginVC: UIViewController {
             ApiManager.login(structs: reqData, ui: self, onSuccess: { account in
                 if account != nil {
                     let now: Int = DateTimeHelper.getNowMilliseconds()
+                    account?.device_token = reqData.device_token
+                    account?.device_category = "IOS"
                     UserSstorage.setLoginTime(now)
                     UserSstorage.setAccountInfo(account!)
                     let remember: Bool = (self.rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))!

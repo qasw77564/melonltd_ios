@@ -374,6 +374,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         
         alert.addAction(UIAlertAction(title: "使用自訂內容", style: .default, handler: { _ in
+            text.text = StringsHelper.replace(str: text.text! , of: " ", with: "")
             self.changeToCancelHandler(dataIndex: sender.tag, message: text.text!)
         }))
         
@@ -426,7 +427,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         if self.queryStatus == OrderStatus.LIVE {
             self.stopTimer()
         }
-        let alert = UIAlertController(title: "", message:"確定客戶跑單嗎？\n會影響客戶點餐的權益以及紅利點數", preferredStyle: .alert)
+        let alert = UIAlertController(title: Optional.none, message:"確定客戶跑單嗎？\n會影響客戶點餐的權益以及紅利點數", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "返回", style: .destructive, handler:{ _ in
             if self.queryStatus == OrderStatus.LIVE {
                 self.startTimer()
@@ -476,8 +477,8 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         reqData.uuid = self.orders[dataIndex].order_uuid
         reqData.type = status.get().name
         
-        let alert = UIAlertController(title: "", message: alertMsg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "返回", style: .cancel, handler:{ _ in
+        let alert = UIAlertController(title: Optional.none, message: alertMsg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "返回", style: .destructive, handler:{ _ in
             if self.queryStatus == OrderStatus.LIVE {
                 self.startTimer()
             }

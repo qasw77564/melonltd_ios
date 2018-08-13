@@ -40,7 +40,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
     @IBAction func getVerifyCode(_ sender: UIButton) {
         sender.isHidden = true
         if !ValidateHelper.shared.isVaildTelPhone(withCellPhone: self.phone.text!) {
-            let alert = UIAlertController(title: "", message: "請輸入正確手機號碼，避免無法正常接收SMS", preferredStyle: .alert)
+            let alert = UIAlertController(title: Optional.none, message: "請輸入正確手機號碼，避免無法正常接收SMS", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
                sender.isHidden = false
             })
@@ -48,7 +48,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
             return
         }
         if (self.checkImageView.image?.isEqual(UIImage(named: "cbNoSelect")))! {
-            let alert = UIAlertController(title: "", message: "請先閱讀隱私權政策條款，再進行註冊！", preferredStyle: .alert)
+            let alert = UIAlertController(title: Optional.none, message: "請先閱讀隱私權政策條款，再進行註冊！", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
                 sender.isHidden = false
             })
@@ -65,7 +65,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
         }) { err_msg in
             let ss :[String] = StringsHelper.splitToArray(str: err_msg, of: "$split")
             // print(ss)
-            let alert = UIAlertController(title: "", message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
+            let alert = UIAlertController(title: Optional.none, message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
                 sender.isHidden = false
             })
@@ -170,7 +170,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }) { err_msg in
-            let alert = UIAlertController(title: "", message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
+            let alert = UIAlertController(title: Optional.none, message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
                 self.verifyCode.text = ""
             })

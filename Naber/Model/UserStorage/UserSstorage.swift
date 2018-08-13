@@ -18,6 +18,7 @@ class UserSstorage {
     static let SHOPPING_CART: String = "SHOPPING_CART"
     static let SOUND: String = "SOUND"
     static let SHAKE: String = "SHAKE"
+    static let DEVICE_TOKEN: String = "DEVICE_TOKEN"
 
     
     // 登入成功記錄登入時間
@@ -93,6 +94,19 @@ class UserSstorage {
             return remember
         } else {
             return false
+        }
+    }
+    
+    // 記住 DEVICE_TOKEN
+    public static var setDeviceToken = { (deviceToken: String)  in
+        UserDefaults.standard.setValue(deviceToken, forKey: DEVICE_TOKEN)
+    }
+    
+    static func getDeviceToken() -> String {
+        if let deviceToken = getValue(forKey: DEVICE_TOKEN) as? String {
+            return deviceToken
+        } else {
+            return ""
         }
     }
     

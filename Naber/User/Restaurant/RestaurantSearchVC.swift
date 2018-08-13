@@ -143,7 +143,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     
     // 依照選取區域名稱查找
     @IBAction func searchForArea (_ sender: UIButton){
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Optional.none, message: Optional.none, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "請選擇區域", style: .destructive))
         NaberConstant.FILTER_AREAS.forEach{ name in
             let itemAction = UIAlertAction(title: name, style: .default) { itemAction in
@@ -168,7 +168,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     
     // 依照選取種類名稱查找
     @IBAction func searchForCategory (_ sender: UIButton){
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Optional.none, message: Optional.none, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "請選擇種類", style: .destructive))
         NaberConstant.FILTER_CATEGORYS.forEach{ name in
             let itemAction = UIAlertAction(title: name, style: .default) { itemAction in
@@ -194,7 +194,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func searchForStoreName (_ sender: UIButton){
         var foodName: UITextField!
         
-        let alert = UIAlertController( title: "", message: "請輸入查詢店家名稱", preferredStyle: .alert)
+        let alert = UIAlertController( title: Optional.none, message: "請輸入查詢店家名稱", preferredStyle: .alert)
         alert.addTextField{ textField in
             textField.placeholder = "店家名稱"
             textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))

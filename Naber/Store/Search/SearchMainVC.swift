@@ -161,7 +161,6 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         let alert = UIAlertController(title: "確定要取消訂單嗎？\n客戶不會獲得任何紅利點數", message: "\n告訴客人原因\n", preferredStyle: .alert)
         
         alert.addTextField{ textField in
-            textField.placeholder = StringsHelper.replace(str: textField.placeholder! , of: " ", with: "")
             textField.placeholder = "自行輸入"
             textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
             textField.addConstraint(textField.heightAnchor.constraint(equalToConstant: 36))
@@ -170,6 +169,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         }
         
         alert.addAction(UIAlertAction(title: "使用自訂內容", style: .default, handler: { _ in
+            text.text = StringsHelper.replace(str: text.text! , of: " ", with: "")
             self.changeToCancelHandler(dataIndex: sender.tag, message: text.text!)
         }))
         
@@ -205,7 +205,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
     }
     
     @IBAction func changeToFailure (_ sender: UIButton ) {
-        let alert = UIAlertController(title: "", message:"確定客戶跑單嗎？\n會影響客戶點餐的權益以及紅利點數", preferredStyle: .alert)
+        let alert = UIAlertController(title: Optional.none, message:"確定客戶跑單嗎？\n會影響客戶點餐的權益以及紅利點數", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "返回", style: .destructive))
         alert.addAction(UIAlertAction(title: "送出", style: .default, handler: { _ in
             let reqData: ReqData = ReqData()
@@ -245,8 +245,8 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         reqData.uuid = self.orders[dataIndex].order_uuid
         reqData.type = status.get().name
         
-        let alert = UIAlertController(title: "", message: alertMsg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "返回", style: .cancel))
+        let alert = UIAlertController(title: Optional.none, message: alertMsg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "返回", style: .destructive))
         alert.addAction(UIAlertAction(title: "確定", style: .default, handler: { _ in
             ApiManager.sellerChangeOrder(req: reqData, ui: self, onSuccess: {
                 self.loadData(refresh: true)
