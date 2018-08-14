@@ -220,6 +220,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         cell.count.text = "(" + self.orders[indexPath.row].order_detail.orders.count.description + ")"
         cell.price.text = "$" + self.orders[indexPath.row].order_price
         cell.name.text = self.orders[indexPath.row].order_detail.user_name
+        cell.phone.text = self.orders[indexPath.row].order_detail.user_phone
         cell.fetchTime.text = DateTimeHelper.formToString(date: self.orders[indexPath.row].fetch_date, from: "dd日 HH時 mm分")
         cell.userMessage.text = self.orders[indexPath.row].user_message
         
@@ -243,6 +244,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             content += "\n------------------------------------------\n\n"
         }
         
+        
         cell.foodDatas.text = content
         
         cell.finishBtn.isHidden = true
@@ -250,6 +252,7 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         cell.processingBtn.isHidden = true
         cell.canFetchBtn.isHidden = true
         cell.cancelBtn.isHidden = false
+        
         
         let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status)
         switch status {
