@@ -9,24 +9,17 @@
 import UIKit
 
 class UserSettingTutorialTVC: UITableViewController {
-    @IBOutlet weak var OrderStepTitleView: UIView!
-    @IBOutlet weak var OrderStepText: UITextView!
+
+    @IBOutlet weak var teachingText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        OrderStepTitleView.layer.borderWidth = 1.0
-        OrderStepTitleView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        OrderStepText.layer.borderWidth = 1.0
-        OrderStepText.layer.borderColor = UIColor.lightGray.cgColor
-       
+        self.teachingText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["TEACHING"]!, of: "$split", with: "\n" )
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
               // Dispose of any resources that can be recreated.
     }
-
 
 }

@@ -10,14 +10,15 @@ import UIKit
 
 class StoreSettingAboutUsTVC: UITableViewController {
 
+    
+    @IBOutlet weak var AboutUsText: UILabel!
+    @IBOutlet weak var ApplyOfSellerText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.AboutUsText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["ABOUT_US"]!, of: "$split", with: "\n" )
+        
+        self.ApplyOfSellerText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["APPLY_OF_SELLER"]!,of: "$split", with: "\n" )
     }
 
     override func didReceiveMemoryWarning() {

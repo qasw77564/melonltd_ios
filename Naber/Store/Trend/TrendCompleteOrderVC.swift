@@ -8,220 +8,223 @@
 
 import UIKit
 
-class CellData {
-    var orderStatus:String = ""
-    var orderMoney:String = ""
-    var telephone:String = ""
-    var name:String = ""
-}
 
-//UNFINISH,PROCESSING,CAN_FETCH,FINISH,CANCEL,FAIL
-//未處理、製作中、可領取、交易完成、取消、跑單
-
-class TrendCompleteOrderVC: UIViewController {
+class TrendCompleteOrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var cellDatas = [CellData]()
     
-    @IBOutlet weak var resultTable: UITableView!
+    var reqData: ReqData!
+    var orders: [OrderVo] = []
     
-    @IBOutlet weak var startDateTextField: UITextField!
+    @IBOutlet weak var startSelect: UITextField!
+    @IBOutlet weak var endSelect: UITextField!
     
-    @IBOutlet weak var endDateTextField: UITextField!
-    
-    var oldStartDateText:String = ""
-    
-    var oldEndDateText:String = ""
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        resultTable.delegate = self
-        resultTable.dataSource = self
-        setupDate()
+    @IBOutlet weak var tabelView: UITableView! {
+        didSet{
+            self.tabelView.delegate = self
+            self.tabelView.dataSource = self
+            let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+            refreshControl.tintColor = UIColor.clear
+            self.tabelView.addSubview(refreshControl)
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-    
-
-    
-    var datePicker: UIDatePicker {
+    var startDatePicker: UIDatePicker {
         get {
             let datePicker = UIDatePicker()
-            // 設置 UIDatePicker 格式
             datePicker.datePickerMode = .date
-            
-            
-            
-            
-            // 設置 NSDate 的格式
-            let formatter = DateFormatter()
-            
-            // 設置時間顯示的格式
-            formatter.dateFormat = "yyyy-MM-dd"
-            
-            // 設置顯示的語言環境
-            datePicker.locale = NSLocale(
-                localeIdentifier: "zh_TW") as Locale
-            
-            
-            let currentDate: Date = Date()
-            var calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-            calendar.timeZone = TimeZone(identifier: "UTC")!
-            var components: DateComponents = DateComponents()
-            components.calendar = calendar
-            components.month = 0
-            let maxDate: Date = calendar.date(byAdding: components, to: currentDate)!
-            components.month = -2
-            let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
-            datePicker.minimumDate = minDate
-            datePicker.maximumDate = maxDate
-            
-            print("minDate: \(minDate)")
-            print("maxDate: \(maxDate)")
-            
-            datePicker.addTarget(self,
-                                 action: #selector(onDateChanged(sender:)),
-                                 for: .valueChanged)
+            datePicker.locale = Locale.init(identifier: "zh_TW")
+            datePicker.timeZone = TimeZone.init(identifier: "Asia/Taipei")
+            self.reTimeRange(picker: datePicker)
+            datePicker.tag = 0
+            datePicker.addTarget(self, action: #selector(onDateChanged), for: .valueChanged)
             datePicker.backgroundColor = UIColor.white
-            
-            
             return datePicker
         }
     }
     
-    var accessoryToolbar: UIToolbar {
+    var startToolbar: UIToolbar {
         get {
-            let toolbarFrame = CGRect(x: 0, y: 0,
-                                      width: view.frame.width, height: 44)
-            let accessoryToolbar = UIToolbar(frame: toolbarFrame)
-            let doneButton = UIBarButtonItem(title: "完成" , style: .done,
-                                             target: self,
-                                             action: #selector(onDoneButtonTapped(sender:)))
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                                target: nil,
-                                                action: nil                                                )
-            let cancelButton = UIBarButtonItem(title:"取消" , style: .plain,
-                                               target: self,
-                                               action: #selector(onCancelButtonTapped(sender:)))
-            let titleBarButton = UIBarButtonItem(title: "請選擇" , style: .done, target: nil, action: nil)
-            titleBarButton.isEnabled = false
-            
-            accessoryToolbar.items = [cancelButton, flexibleSpace,titleBarButton, flexibleSpace, doneButton]
-            accessoryToolbar.barTintColor = UIColor.white
-            return accessoryToolbar
+            let accessory = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let doneBtn = UIBarButtonItem(title: "完成" , style: .done, target: self,action: #selector(onToolbarDone))
+            doneBtn.tag = 0
+            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let cancelBtn = UIBarButtonItem(title:"取消" , style: .plain, target: self,action: #selector(onToolbarCancel))
+            cancelBtn.tag = 0
+            accessory.items = [cancelBtn, space , doneBtn]
+            accessory.barTintColor = UIColor.white
+            return accessory
         }
     }
     
-    var toolbar: UIToolbar!
+    var endDatePicker: UIDatePicker {
+        get {
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            datePicker.locale = Locale.init(identifier: "zh_TW")
+            datePicker.timeZone = TimeZone.init(identifier: "Asia/Taipei")
+            self.reTimeRange(picker: datePicker)
+            datePicker.tag = 1
+            datePicker.addTarget(self, action: #selector(onDateChanged), for: .valueChanged)
+            datePicker.backgroundColor = UIColor.white
+            return datePicker
+        }
+    }
     
-    func setupDate(){
+    var endToolbar: UIToolbar {
+        get {
+            let accessory = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let doneBtn = UIBarButtonItem(title: "完成" , style: .done, target: self, action: #selector(onToolbarDone))
+            doneBtn.tag = 1
+            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let cancelBtn = UIBarButtonItem(title:"取消" , style: .plain, target: self,action: #selector(onToolbarCancel))
+            cancelBtn.tag = 1
+            accessory.items = [cancelBtn, space , doneBtn]
+            accessory.barTintColor = UIColor.white
+            return accessory
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.startSelect.inputView = self.startDatePicker
+        self.startSelect.text = DateTimeHelper.getNow(from: "yyyy年 MM月 dd日")
+        self.startSelect.tag = DateTimeHelper.startOfDateMiliseconds()
+        self.startSelect.inputAccessoryView = self.startToolbar
+        self.endSelect.inputView = self.endDatePicker
+        self.endSelect.text = DateTimeHelper.getNow(from: "yyyy年 MM月 dd日")
+        self.endSelect.tag = DateTimeHelper.endOfDateMiliseconds()
+        self.endSelect.inputAccessoryView = self.endToolbar
+        self.reqData = ReqData()
+        self.loadData(refresh: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    @objc func refresh(sender: UIRefreshControl){
+        sender.endRefreshing()
+        self.loadData(refresh: true)
+    }
+    
+    func loadData(refresh: Bool){
+        if refresh {
+            self.reqData.page = 0
+            self.reqData.loadingMore = false
+            self.orders.removeAll()
+            self.tabelView.reloadData()
+        }
         
-        startDateTextField.inputView = datePicker
-        startDateTextField.inputAccessoryView = accessoryToolbar
-        
-        endDateTextField.inputView = datePicker
-        endDateTextField.inputAccessoryView = accessoryToolbar
-        
-        
-        let data1 = CellData()
-        data1.orderStatus = "FINISH"
-        data1.orderMoney = "$999999"
-        data1.telephone = "0975123456"
-        data1.name = "某某某"
-        
-        let data2 = CellData()
-        data2.orderStatus = "CANCEL"
-        data2.orderMoney = "$999991"
-        data2.telephone = "0975123456"
-        data2.name = "某某某"
-        
-        cellDatas.append(data1)
-        cellDatas.append(data2)
+        self.reqData.page = self.reqData.page + 1
+        self.reqData.start_date = DateTimeHelper.formToString(date: self.startSelect.text!, fromDate: "yyyy年 MM月 dd日")
+        self.reqData.end_date = DateTimeHelper.formToString(date: self.endSelect.text!, fromDate: "yyyy年 MM月 dd日")
+        ApiManager.sellerStatLog(req: self.reqData, ui: self, onSuccess: { orders in
+            self.orders.append(contentsOf: orders.map({ o -> OrderVo in
+                o.order_detail = OrderDetail.parse(src: o.order_data)!
+                return o
+            }))
+            
+            print(self.orders.count)
+            self.reqData.loadingMore = orders.count % NaberConstant.PAGE == 0 && orders.count != 0
+            self.tabelView.reloadData()
+            
+        }) { err_msg in
+            print(err_msg)
+        }
     }
     
     @objc func onDateChanged(sender: UIDatePicker) {
-        if startDateTextField.isFirstResponder {
-            startDateTextField.text = sender.date.mediumDateString
-        }
-        if endDateTextField.isFirstResponder {
-            endDateTextField.text = sender.date.mediumDateString
-        }
-    }
-    
-    @objc func onDoneButtonTapped(sender: UIBarButtonItem) {
-        if startDateTextField.isFirstResponder {
-            oldStartDateText = startDateTextField.text!
-            startDateTextField.resignFirstResponder()
-        }
-        if endDateTextField.isFirstResponder {
-            oldEndDateText = endDateTextField.text!
-            endDateTextField.resignFirstResponder()
+        if sender.tag == 0 {
+            self.startSelect.tag = DateTimeHelper.startOfDateMiliseconds(date: sender.date)
+            self.startSelect.text = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy年 MM月 dd日")
+        } else {
+            self.endSelect.tag = DateTimeHelper.endOfDateMiliseconds(date: sender.date)
+            self.endSelect.text = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy年 MM月 dd日")
         }
     }
     
-    @objc func onCancelButtonTapped(sender: UIBarButtonItem) {
-        if startDateTextField.isFirstResponder {
-            startDateTextField.resignFirstResponder()
-            startDateTextField.text = oldStartDateText
+    // tag 0 == start time
+    // tag 1 == end time
+    @objc func onToolbarDone(sender: UIBarButtonItem) {
+        if sender.tag == 0 {
+            self.startSelect.endEditing(true)
+        } else {
+            self.endSelect.endEditing(true)
         }
-        if endDateTextField.isFirstResponder {
-            endDateTextField.text = oldEndDateText
-            endDateTextField.resignFirstResponder()
-        }
-    }
-    
-    @objc func dateChanged(datePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        if startDateTextField.isFirstResponder {
-            startDateTextField.text = dateFormatter.string(from: datePicker.date)
-        }
-        if endDateTextField.isFirstResponder {
-            endDateTextField.text = dateFormatter.string(from: datePicker.date)
-        }
-    }
-    
-    
-}
 
-extension TrendCompleteOrderVC : UITableViewDelegate, UITableViewDataSource {
-    
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 100
+        if self.startSelect.tag > self.endSelect.tag {
+            let alert = UIAlertController(title: "系統提示", message: "開始時間不可大於結束時間", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+            self.present(alert, animated: false)
+        } else {
+            self.loadData(refresh: true)
+        }
     }
     
+    @objc func onToolbarCancel(sender: UIBarButtonItem) {
+        if sender.tag == 0 {
+            self.startSelect.endEditing(true)
+        } else {
+            self.endSelect.endEditing(true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellDatas.count
+        return self.orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TrendCompleteOrderTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! TrendCompleteOrderTVCell
+        cell.tag = indexPath.row
         
-        cell.buyerName.text = cellDatas[indexPath.row].name
-        cell.buyerPhone.text = cellDatas[indexPath.row].telephone
+        cell.name.text = self.orders[indexPath.row].order_detail.user_name
+        cell.phone.text = self.orders[indexPath.row].order_detail.user_phone
+        cell.price.text = "$ " + self.orders[indexPath.row].order_price
         
-        cell.orderMoney.text = cellDatas[indexPath.row].orderMoney
+        let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status)
+        cell.orderStatus.backgroundColor = status.get().color
+        cell.orderStatus.setTitle(status.get().value, for: .normal)
         
-        switch cellDatas[indexPath.row].orderStatus {
-        case "FINISH":
-            cell.orderStatus.setTitle("交易完成", for: .normal)
-        case "CANCEL":
-            cell.orderStatus.setTitle("取消", for: .normal)
-            cell.orderStatus.backgroundColor = UIColor.red
-        default:
-            break
+        if self.orders.count - 1 == indexPath.row && self.reqData.loadingMore {
+            self.loadData(refresh: false)
         }
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "TrendOrderLogDetail") as? TrendOrderLogDetailVC {
+            vc.order = self.orders[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    override func show(_ vc: UIViewController, sender: Any?) {
+
+    }
+    
+    func reTimeRange (picker: UIDatePicker){
+        let currentDate: Date = Date()
+        var calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        calendar.timeZone = TimeZone.init(identifier: "Asia/Taipei")!
+        calendar.locale = Locale.init(identifier: "zh_TW")
+        var components: DateComponents = DateComponents()
+        components.calendar = calendar
+        components.month = 0
+        let maxDate: Date = calendar.date(byAdding: components, to: currentDate)!
+        picker.maximumDate = maxDate
+        components.month = -2
+        let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
+        picker.minimumDate = minDate
+    }
+    
+   
+
 }
+

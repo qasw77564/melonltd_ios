@@ -10,11 +10,9 @@ import UIKit
 
 class RestaurantStoreItemTVCell: UITableViewCell {
 
-    @IBOutlet weak var itemImage: UIImageView!
-    
-    @IBOutlet weak var itemName: UILabel!
-    
-    @IBOutlet weak var itemMoney: UILabel!
+    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var price: UILabel!
     
     
     override func awakeFromNib() {
@@ -24,8 +22,10 @@ class RestaurantStoreItemTVCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
+    
+    
 
 }

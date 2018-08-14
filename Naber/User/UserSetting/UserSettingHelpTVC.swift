@@ -10,31 +10,17 @@ import UIKit
 
 class UserSettingHelpTVC: UITableViewController {
 
-    @IBOutlet weak var CommonQuestion: UIView!
-    @IBOutlet weak var CommonQuestionTwo: UIView!
-    @IBOutlet weak var CommonQuestionText: UITextView!
-    @IBOutlet weak var CommonQuestionTwoText: UITextView!
+    @IBOutlet weak var contactUsText: UILabel!
+    @IBOutlet weak var faqText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        CommonQuestion.layer.borderWidth = 1.0
-        CommonQuestion.layer.borderColor = UIColor.lightGray.cgColor
-        
-        CommonQuestionTwo.layer.borderWidth = 1.0
-        CommonQuestionTwo.layer.borderColor = UIColor.lightGray.cgColor
-        
-        CommonQuestionText.layer.borderWidth = 1.0
-        CommonQuestionText.layer.borderColor = UIColor.lightGray.cgColor
-        
-        CommonQuestionTwoText.layer.borderWidth = 1.0
-        CommonQuestionTwoText.layer.borderColor = UIColor.lightGray.cgColor
+        self.faqText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["FAQ"]!, of: "$split", with: "\n" )
+
+        self.contactUsText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["CONTACT_US"]!,of: "$split", with: "\n" )
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    
-
 }

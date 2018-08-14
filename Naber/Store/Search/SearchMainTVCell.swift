@@ -11,26 +11,40 @@ import UIKit
 class SearchMainTVCell: UITableViewCell {
 
     @IBOutlet weak var orderStatus: UILabel!
-
-    @IBOutlet weak var itemNumberAndStatus: UILabel!
-    
-    @IBOutlet weak var itemList: UILabel!
-    
-    @IBOutlet weak var memoList: UILabel!
-
-    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var foodDatas: UILabel!
+    @IBOutlet weak var userMessage: UILabel!
+    @IBOutlet weak var fetchTime: UILabel!
     
     @IBOutlet weak var phone: UILabel!
-    
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var price: UILabel!
     
-    @IBOutlet weak var money: UILabel!
-    
-    @IBOutlet weak var button1: UIButton!
-    
-    @IBOutlet weak var button2: UIButton!
-    
-    @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!{
+        didSet{
+            self.cancelBtn.isHidden = true
+        }
+    }
+    @IBOutlet weak var failureBtn: UIButton!{
+        didSet{
+            self.failureBtn.isHidden = true
+        }
+    }
+    @IBOutlet weak var processingBtn: UIButton!{
+        didSet{
+            self.processingBtn.isHidden = true
+        }
+    }
+    @IBOutlet weak var canFetchBtn: UIButton!{
+        didSet{
+            self.canFetchBtn.isHidden = true
+        }
+    }
+    @IBOutlet weak var finishBtn: UIButton!{
+        didSet{
+            self.finishBtn.isHidden = true
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -10,33 +10,23 @@ import UIKit
 
 class UserSettingAboutUsTVC: UITableViewController {
 
-    @IBOutlet weak var AboutUsTitleView: UIView!
-    @IBOutlet weak var BecomeStoreTitleView: UIView!
-    @IBOutlet weak var AboutUsText: UITextView!
-    @IBOutlet weak var BecomeStoreText: UITextView!
+    @IBOutlet weak var AboutUsText: UILabel!
+    @IBOutlet weak var ApplyOfSellerText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        AboutUsTitleView.layer.borderWidth = 1.0
-        AboutUsTitleView.layer.borderColor = UIColor.lightGray.cgColor
+        self.AboutUsText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["ABOUT_US"]!, of: "$split", with: "\n" )
         
-        BecomeStoreTitleView.layer.borderWidth = 1.0
-        BecomeStoreTitleView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        AboutUsText.layer.borderWidth = 1.0
-        AboutUsText.layer.borderColor = UIColor.lightGray.cgColor
-        
-        BecomeStoreText.layer.borderWidth = 1.0
-        BecomeStoreText.layer.borderColor = UIColor.lightGray.cgColor
-        
+        self.ApplyOfSellerText.text = StringsHelper.replace(str: Model.ALL_BULLETINS["APPLY_OF_SELLER"]!,of: "$split", with: "\n" )
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+  
 }
+
+
+
+

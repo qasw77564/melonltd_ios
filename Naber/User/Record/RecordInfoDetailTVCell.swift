@@ -10,10 +10,11 @@ import UIKit
 
 class RecordInfoDetailTVCell: UITableViewCell {
     
-    @IBOutlet var storeName: UILabel!
-    @IBOutlet var time: UILabel!
+    @IBOutlet var name: UILabel!
+//    @IBOutlet var time: UILabel!
     @IBOutlet var recordTime: UILabel!
     @IBOutlet var totalPayment: UILabel!
+    @IBOutlet var status: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,8 +23,6 @@ class RecordInfoDetailTVCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
 
 }

@@ -8,54 +8,22 @@
 
 import UIKit
 
-
-class SelectMenuClass{
-    var scopes   = [SelectMenuScope]()
-    var demands = [SelectMenuDemand]()
-    var options  = [SelectMenuOption]()
-}
-class SelectMenuScope{
-    var name:String = ""
-    var money:String = ""
-    var isSelected:Bool = false
-    init (name:String,money:String){
-        self.name = name
-        self.money = money
-    }
-}
-class SelectMenuDemand{
-    var name : String = ""
-    var subs = [SelectMenuSubDemand]()
-}
-class SelectMenuSubDemand{
-    var name:String = ""
-    var isSelected:Bool = false
-    init (name:String){
-        self.name = name
-    }
-}
-class SelectMenuOption{
-    var name:String = ""
-    var money:String = ""
-    var isSelected:Bool = false
-    
-    init (name:String,money:String){
-        self.name = name
-        self.money = money
-    }
-}
-
-
 class RestaurantStoreSelectVC: UIViewController {
     
-    @IBOutlet weak var selectMenuTable: UITableView!
-    
-    var selectMenu = SelectMenuClass()
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
+
+    var food: FoodVo!
+    var itemVo: FoodItemVo!
+    var restaurantInfo: RestaurantInfoVo!
+    var categoryRel: CategoryRelVo!
     
     @IBOutlet weak var orderTotal: UILabel!
-    
     @IBOutlet weak var orderNumber: UILabel!
-    
     @IBOutlet weak var numberStepper: UIStepper!
     
     @IBAction func numberStepperAction(_ sender: UIStepper) {
@@ -63,71 +31,123 @@ class RestaurantStoreSelectVC: UIViewController {
         calculatMoney()
     }
     
-    func setupValue () {
-        let scope1 = SelectMenuScope(name:"大杯",money:"50")
-        let scope2 = SelectMenuScope(name:"中杯",money:"40")
-        let scope3 = SelectMenuScope(name:"小杯",money:"30")
-        selectMenu.scopes.append(scope1)
-        selectMenu.scopes.append(scope2)
-        selectMenu.scopes.append(scope3)
+    @IBAction func addToShoppingCart(_ sender: UIButton) {
+        var msg: String  = "規格："
+        msg += self.itemVo.scopes[0].name + "\n"
         
-        let demand1 = SelectMenuDemand()
-        demand1.name = "甜度"
-        let subDemand1 = SelectMenuSubDemand(name:"全糖")
-        let subDemand2 = SelectMenuSubDemand(name:"8分糖")
-        let subDemand3 = SelectMenuSubDemand(name:"半糖")
-        let subDemand4 = SelectMenuSubDemand(name:"3分糖")
-        let subDemand5 = SelectMenuSubDemand(name:"無糖")
+        self.itemVo.demands.forEach{ demand in
+            msg += demand.name + ": "
+            msg += demand.datas[0].name + "\n"
+        }
         
-        demand1.subs.append(subDemand1)
-        demand1.subs.append(subDemand2)
-        demand1.subs.append(subDemand3)
-        demand1.subs.append(subDemand4)
-        demand1.subs.append(subDemand5)
+        if !self.itemVo.opts.isEmpty {
+            msg += "追加項目："
+            self.itemVo.opts.forEach{ opt in
+                msg += opt.name + ","
+            }
+            msg += "\n"
+        }
 
-        selectMenu.demands.append(demand1)
+        msg += "數量：" + self.orderNumber.text! + "\n"
+        msg += "金額：" + self.orderTotal.text! + "\n"
+        msg += "品項內容以規格為主！";
         
-        let demand2 = SelectMenuDemand()
-        demand2.name = "冰塊"
-        let subDemand1st = SelectMenuSubDemand(name:"多冰")
-        let subDemand2nd = SelectMenuSubDemand(name:"正常冰")
-        let subDemand3rd = SelectMenuSubDemand(name:"少冰")
-        let subDemand4th = SelectMenuSubDemand(name:"碎冰")
-        let subDemand5th = SelectMenuSubDemand(name:"去冰")
-        let subDemand6th = SelectMenuSubDemand(name:"無冰")
-
-        demand2.subs.append(subDemand1st)
-        demand2.subs.append(subDemand2nd)
-        demand2.subs.append(subDemand3rd)
-        demand2.subs.append(subDemand4th)
-        demand2.subs.append(subDemand5th)
-        demand2.subs.append(subDemand6th)
-
-        selectMenu.demands.append(demand2)
-
-        let option1 = SelectMenuOption(name:"珍珠",money:"10")
-        let option2 = SelectMenuOption(name:"芉圓",money:"10")
-        let option3 = SelectMenuOption(name:"粉圓",money:"10")
-
-        selectMenu.options.append(option1)
-        selectMenu.options.append(option2)
-        selectMenu.options.append(option3)
+        let alert = UIAlertController(title: "已成功加入購物車", message: msg , preferredStyle: .alert)
+        let message: UILabel = alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel
+        message.textAlignment = .left
         
+        // 取出儲存購物車資料
+        var shoppingCartDatas = UserSstorage.getShoppingCartDatas()
 
+        let order: OrderData = OrderData()
+        order.item = self.itemVo
+        order.count = self.orderNumber.text
+        order.category_uuid = self.food.category_uuid
+        
+        order.item.category_name = self.categoryRel.category_name
+        order.item.food_uuid = self.food.food_uuid
+        order.item.food_name = self.food.food_name
+        order.item.price = self.orderTotal.text
+        order.item.food_photo = self.food.photo
+        
+        let account = UserSstorage.getAccountInfo()
+        var has: Bool = false;
+        
+        for o in shoppingCartDatas {
+            if self.restaurantInfo.restaurant_uuid == o.restaurant_uuid {
+                o.restaurant_name = self.restaurantInfo.name
+                o.restaurant_address = self.restaurantInfo.address
+                o.user_name = account?.name
+                o.user_phone = account?.phone
+                o.orders.insert(order, at: 0)
+                has = true
+            }
+        }
+        
+        if !has {
+            let detail: OrderDetail = OrderDetail()
+            detail.restaurant_uuid = self.restaurantInfo.restaurant_uuid
+            detail.restaurant_name = self.restaurantInfo.name
+            detail.restaurant_address = self.restaurantInfo.address
+            detail.user_name = account?.name
+            detail.user_phone = account?.phone
+            detail.orders.insert(order, at: 0)
+            shoppingCartDatas.insert(detail, at: 0)
+        }
+        
+        UserSstorage.setShoppingCartDatas(datas: shoppingCartDatas)
+ 
+        alert.addAction(UIAlertAction(title: "前往購物車", style: .default){ _ in
+            // 使用 tabbar 控制到 購物車頁面
+            // 並把當前頁面返回
+            self.tabBarController?.selectedIndex = 2
+            self.navigationController?.popToRootViewController(animated: false)
+        })
+        
+        alert.addAction(UIAlertAction(title: "繼續購物", style: .default){ _ in
+            // 反回上兩層定義
+            // vcs = Main餐館列表 or Main首頁 >> 餐館細節（種類列表）>> 品項列表 >> 品項細節
+            // vcs.count == 4
+            // back to index 2 餐館細節（種類列表）
+            // pop to vcs.count[ vcs.count - 3 ]
+            self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 3])!, animated: true)
+        })
+        self.present(alert, animated: false)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.orderTotal.text = "0"
+        self.orderNumber.text = "1"
+        self.numberStepper.maximumValue = 50
+        self.numberStepper.minimumValue = 1
+        self.numberStepper.value = 1
         
-        setupValue ()
-        orderTotal.text = "0"
-        orderNumber.text = "1"
-        numberStepper.maximumValue = 50
-        numberStepper.minimumValue = 1
-        selectMenuTable.delegate=self
-        selectMenuTable.dataSource=self
+        self.itemVo = FoodItemVo();
+        for i in 0..<self.food.food_data.scopes.count {
+            if self.food.food_data.scopes[i].price == self.food.default_price {
+                if self.itemVo.scopes.isEmpty {
+                    self.itemVo.scopes.append(ItemVo.init(name: self.food.food_data.scopes[i].name, price: self.food.food_data.scopes[i].price, tag: i))
+                }
+            }
+            self.food.food_data.scopes[i].tag = i
+        }
         
-        // Do any additional setup after loading the view.
+        for i in 0..<self.food.food_data.opts.count {
+            self.food.food_data.opts[i].tag = i
+        }
+        
+        for i in 0..<self.food.food_data.demands.count {
+            self.itemVo.demands.append(DemandsItemVo.init(name: self.food.food_data.demands[i].name))
+            for j in 0..<self.food.food_data.demands[i].datas.count {
+                if self.itemVo.demands[i].datas.isEmpty {
+                    self.itemVo.demands[i].datas.append(ItemVo.init(name: self.food.food_data.demands[i].datas[j].name, price: self.food.food_data.demands[i].datas[j].price, tag: j))
+                }
+                self.food.food_data.demands[i].datas[j].tag = j
+            }
+        }
+        self.calculatMoney()
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,184 +157,145 @@ class RestaurantStoreSelectVC: UIViewController {
 
 }
 
-extension RestaurantStoreSelectVC:UITableViewDelegate, UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 30
-    }
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        let scopeCount = 1
-        let option = 1
-        let demandCount = selectMenu.demands.count
-        let sectionNumber = scopeCount + option + demandCount
-        return sectionNumber
-    }
-
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let  footerCell = tableView.dequeueReusableCell(withIdentifier: "Footer") as! RestaurantStoreSelectTVCellFoot
-        footerCell.contentView.layer.addBorder(edge: UIRectEdge.top, color: UIColor.gray, thickness: 0.5)
-
-        return footerCell
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-
+extension RestaurantStoreSelectVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowNum = 0;
         switch (section) {
-            case 0:
-                rowNum = selectMenu.scopes.count
-            case 1:
-                rowNum = selectMenu.options.count
-            case 2...99:
-                rowNum = selectMenu.demands[section-2].subs.count
-            default:
-                rowNum = 0
+        case 0:
+            return self.food.food_data.scopes.count
+        case 1:
+            return self.food.food_data.opts.count
+        case 2...:
+            return self.food.food_data.demands[section - 2].datas.count
+        default:
+            return 0
         }
-        return rowNum
+    }
+    
+    // 計算 Sections Cell 數量給 tableView
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.food.food_data.demands.count + 2
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "Header") as! RestaurantStoreSelectTCCellHead
-        headerCell.backgroundColor = UIColor.yellow
-        headerCell.borderWidth=1
-        headerCell.borderColor=UIColor.gray
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "Header") as! RestaurantStoreSelectTCCellHead
         switch (section) {
         case 0:
-            headerCell.name.text = "規格必選"
-        //return sectionHeaderView
+            cell.name.text = "規格(必選)"
         case 1:
-            headerCell.name.text = "追加項目";
-        //return sectionHeaderView
-        case 2...99:
-            headerCell.name.text = selectMenu.demands[section-2].name
-        //return sectionHeaderView
+            cell.name.text = "追加項目";
+        case 2...:
+            cell.name.text = self.food.food_data.demands[section - 2].name
         default:
-            headerCell.name.text = ""
-        }
-        
-        return headerCell
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RestaurantStoreSelectTVCell
-        
-        
-        cell.contentView.layer.addBorder(edge: UIRectEdge.left, color: UIColor.gray, thickness: 0.5)
-        cell.contentView.layer.addBorder(edge: UIRectEdge.right, color: UIColor.gray, thickness: 0.5)
-        
-        switch (indexPath.section) {
-        case 0:
-            cell.name?.text = selectMenu.scopes[indexPath.row].name
-            cell.money?.text = selectMenu.scopes[indexPath.row].money
-            if selectMenu.scopes[indexPath.row].isSelected {
-                cell.radioButton.setImage(UIImage(named: "radioSelect"), for: .normal)
-            }else{
-                cell.radioButton.setImage(UIImage(named: "radioNoSelect"), for: .normal)
-            }
-
-            
-        case 1:
-            cell.name?.text = selectMenu.options[indexPath.row].name
-            cell.money?.text = selectMenu.options[indexPath.row].money
-            if selectMenu.options[indexPath.row].isSelected {
-                cell.radioButton.setImage(UIImage(named: "radioSelect"), for: .normal)
-            }else{
-                cell.radioButton.setImage(UIImage(named: "radioNoSelect"), for: .normal)
-            }
-
-        case 2...99:
-            cell.name?.text = selectMenu.demands[indexPath.section-2].subs[indexPath.row].name
-            cell.money?.text = ""
-            
-            if selectMenu.demands[indexPath.section-2].subs[indexPath.row].isSelected {
-                cell.radioButton.setImage(UIImage(named: "radioSelect"), for: .normal)
-            }else{
-                cell.radioButton.setImage(UIImage(named: "radioNoSelect"), for: .normal)
-            }
-
-        default:
-            break
+            cell.name.text = ""
         }
         return cell
     }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let  footerCell = tableView.dequeueReusableCell(withIdentifier: "Footer") as! RestaurantStoreSelectTVCellFoot
+        return footerCell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 36
+    }
     
+    // 改寫初始資料給每個cell
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let c = cell as? RestaurantStoreSelectTVCell {
+            switch (indexPath.section) {
+            case 0:
+                c.item = self.food.food_data.scopes[indexPath.row]
+                c.tag = indexPath.row
+            case 1:
+                c.item = self.food.food_data.opts[indexPath.row]
+                c.tag = indexPath.row
+            case 2...:
+                c.item = self.food.food_data.demands[indexPath.section - 2].datas[indexPath.row]
+                c.tag = indexPath.row
+            default:
+                break
+            }
+            c.cellWillAppear()
+        }
+    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        print("section: \(indexPath.section)")
-        print("row: \(indexPath.row)")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! RestaurantStoreSelectTVCell
         
         switch (indexPath.section) {
         case 0:
-            
-            for tempRow in selectMenu.scopes {
-                tempRow.isSelected = false
-            }
-            selectMenu.scopes[indexPath.row].isSelected = true
-            tableView.reloadData()
+            cell.radioButton.isSelected = self.itemVo.scopes[0].equal(item: self.food.food_data.scopes[indexPath.row])
         case 1:
-            if selectMenu.options[indexPath.row].isSelected {
-                selectMenu.options[indexPath.row].isSelected = false
-            }else{
-                selectMenu.options[indexPath.row].isSelected = true
+            cell.radioButton.isSelected = self.itemVo.opts.contains { opt -> Bool in
+                return opt.equal(item: self.food.food_data.opts[indexPath.row])
             }
-            tableView.reloadData()
-
-        case 2...99:
-            
-            for tempRow in selectMenu.demands[indexPath.section-2].subs {
-                tempRow.isSelected = false
-            }
-            
-            if selectMenu.demands[indexPath.section-2].subs[indexPath.row].isSelected {
-                selectMenu.demands[indexPath.section-2].subs[indexPath.row].isSelected = false
-            }else{
-                selectMenu.demands[indexPath.section-2].subs[indexPath.row].isSelected = true
-            }
-            tableView.reloadData()
-
+        case 2...:
+            cell.radioButton.isSelected = self.itemVo.demands[indexPath.section - 2].datas[0].equal(item: self.food.food_data.demands[indexPath.section - 2].datas[indexPath.row])
         default:
             break
         }
+        cell.radioButton.tag = indexPath.section
+        cell.radioButton.imageView?.tag = indexPath.row
+        cell.triggerRadioStatus(cell.radioButton.isSelected)
+        return cell
+    }
+
+    
+    // 點擊事件
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        calculatMoney()
-        
+        let cell : RestaurantStoreSelectTVCell = (tableView.cellForRow(at: indexPath) as? RestaurantStoreSelectTVCell)!
+        switch (indexPath.section) {
+        case 0: // 必選 單選 規格
+            self.itemVo.scopes.removeAll()
+            self.itemVo.scopes.append(cell.item)
+        case 1: // 多選 追加項目
+            var index: Int!
+            for i in 0..<self.itemVo.opts.count {
+                if self.itemVo.opts[i].equal(item: cell.item) {
+                    index = i
+                }
+            }
+            if index != nil {
+                self.itemVo.opts.remove(at: index)
+            }else {
+                self.itemVo.opts.append(cell.item)
+            }
+        case 2...: // 必選多需求
+            self.itemVo.demands[indexPath.section - 2].datas.removeAll()
+            self.itemVo.demands[indexPath.section - 2].datas.append(cell.item)
+        default:
+            break
+        }
+        self.calculatMoney()
+        tableView.reloadData()
+
+    }
+    
+    @IBAction func radioBtnSelected (_ sender: UIButton){
+        self.tableView.selectRow(at: IndexPath(row: (sender.imageView?.tag)!, section: sender.tag), animated: true, scrollPosition: .none)
+        self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: IndexPath(row: (sender.imageView?.tag)!, section: sender.tag))
     }
     
     func calculatMoney(){
         let orderNumber = self.orderNumber.text
         let number:Int = Int (orderNumber!)!
         
-        var selectMoney:Int = 0
-        for tempRow in selectMenu.scopes {
-            if tempRow.isSelected {
-                let selectPrice:Int = Int(tempRow.money)!
-                selectMoney+=selectPrice
-            }
-            
+        var selectMoney: Int = 0
+        for scopes in self.itemVo.scopes {
+            selectMoney += Int(scopes.price)!
         }
-        for tempRow in selectMenu.options {
-            if tempRow.isSelected {
-                let selectPrice:Int = Int(tempRow.money)!
-                selectMoney+=selectPrice
-            }
-            
+        for opt in self.itemVo.opts {
+            selectMoney += Int(opt.price)!
         }
+        
         selectMoney = selectMoney * number
-        print("selectMoney:" ,selectMoney)
         self.orderTotal.text = String(selectMoney)
     }
 }

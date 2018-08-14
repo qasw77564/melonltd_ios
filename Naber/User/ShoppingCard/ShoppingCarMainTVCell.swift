@@ -8,68 +8,47 @@
 
 import UIKit
 
+class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
 
-protocol MainCellDelegate: class {
-    func contentDidChange(cell: ShoppingCarMainTVCell)
-}
-
-class ShoppingCarMainTVCell: UITableViewCell{
-
-    var oldIndexFromData = 0;
-    var oldIndexSubFromData=0;
-    
-    weak var mainCellDelegate: MainCellDelegate?
-
-    
-    var totalSubItem =  [SubItemClass]()
+    // 依照商家所加入的品項列表
+    // Model.USER_CACHE_SHOPPING_CART[self.tag].orders
 
     @IBOutlet weak var storeName: UILabel!
-    @IBOutlet weak var itemTable: UITableView!
-    @IBOutlet weak var totalMoney: UILabel!
-    @IBOutlet weak var totalBonus: UILabel!
-    @IBOutlet weak var submitOrder: UIButton!
-    @IBOutlet weak var cancelOrder: UIButton!
+    @IBOutlet weak var itemTable: UITableView! {
+        didSet {
+            self.itemTable.delegate = self
+            self.itemTable.dataSource = self
+        }
+    }
+    
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var bonus: UILabel!
+    @IBOutlet weak var submitBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.itemTable.delegate = self
-        self.itemTable.dataSource = self
-        self.itemTable.estimatedRowHeight = 44
-        self.itemTable.rowHeight = UITableViewAutomaticDimension
-        
-        self.totalMoney.text = "0"
-        self.totalBonus.text = "0"
-        // Initialization code
+        self.price.text = "0"
+        self.bonus.text = "0"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-
-}
-
-extension ShoppingCarMainTVCell: SubCellDelegate {
-    func contentDidChange(cell: ShoppingCardSubTVCell) {
-        totalSubItem[cell.oldDateIndex].numberLabel = cell.numberLabel.text!
-        //self.itemTable.beginUpdates()
-        print("second content changed")
-        self.oldIndexSubFromData = cell.oldDateIndex
-        //self.itemTable.endUpdates()
-        print("totalSubItem.count", totalSubItem.count)
-        print("in ShoppingCarMainTableViewCell, totalSubItem.count",totalSubItem.count)
-        if totalSubItem.count > 1 {
-            mainCellDelegate?.contentDidChange(cell: self)
+        var price: Double = 0.0
+        for i in 0..<Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count {
+            price += Double(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[i].item.price)!
         }
+        self.price.text = Int(price).description
+        self.bonus.text = Int(floor(price / 10.0)).description
     }
-}
-
-extension ShoppingCarMainTVCell: UITableViewDataSource, UITableViewDelegate{
-   
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 100
+    
+    func cellWillAppear (){
+        let price: Double = Model.USER_CACHE_SHOPPING_CART[self.tag].orders.reduce(0.0, { (sum, num) -> Double in
+            return sum + Double(num.item.price)!
+        })
+        self.price.text = Int(price).description
+        self.bonus.text = Int(floor(price / 10.0)).description
+        self.itemTable.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,88 +57,72 @@ extension ShoppingCarMainTVCell: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print(totalSubItem.count)
-        return totalSubItem.count
-        
+        return Model.USER_CACHE_SHOPPING_CART[self.tag].orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "ItemCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ShoppingCardSubTVCell
+        cell.foodName.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_name
+    
+        if Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo != nil {
+            cell.foodPhoto.setImage(with: URL(string: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo), transformer: TransformerHelper.transformer(identifier: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo))
+        }else {
+            cell.foodPhoto.image = UIImage(named: "Logo")
+        }
         
-        cell.oldDateIndex = indexPath.row
+        cell.foodCount.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].count
+        cell.foodPrice.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.price
+        cell.countStepper.autorepeat = false
+        cell.countStepper.tag = indexPath.row
+        cell.countStepper.value = Double(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].count)!
+        cell.countStepper.addTarget(self, action: #selector(changedCount), for: .touchUpInside)
+        // sudIndex
+        cell.deleteFoodBtn.tag = indexPath.row
+        // rootIndex
+        cell.deleteFoodBtn.imageView?.tag = self.tag
+        cell.deleteFoodBtn.titleLabel?.text = self.tag.description
         
-        cell.itemImage.image = UIImage(named: totalSubItem[indexPath.row].itemImage)
-        cell.itemName.text = totalSubItem[indexPath.row].itemName
-        cell.itemMoney.text = totalSubItem[indexPath.row].itemMoney
-        cell.itemType.text = totalSubItem[indexPath.row].itemType
-        cell.numberLabel.text = totalSubItem[indexPath.row].numberLabel
-        cell.numberPicker.value = Double(totalSubItem[indexPath.row].numberLabel)!
-        cell.trashCanImageView.tag = indexPath.row
-        cell.numberPicker.tag = indexPath.row
-        cell.numberPicker.addTarget(self, action: #selector(stepperAction(sender:)), for: .valueChanged)
-        cell.trashCanImageView.addTarget(self, action: #selector(deleteCellItem(sender:)), for: .touchUpInside)
+        var foodDatas: String = ""
+        foodDatas += "規格: "
+        if !Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.scopes.isEmpty {
+            Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.scopes.forEach { s in
+                foodDatas += s.name + ", "
+            }
+            foodDatas += "\n"
+        }else {
+            foodDatas += "預設, "
+            foodDatas += "\n"
+        }
         
-        var oldMoney = (self.totalMoney.text! as NSString).doubleValue
+        if !Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.opts.isEmpty {
+            foodDatas += "追加: "
+            Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.opts.forEach{ o in
+                foodDatas +=  o.name + ","
+            }
+            foodDatas += "\n"
+        }
         
-        let itemMoney = (totalSubItem[indexPath.row].itemMoney as NSString).doubleValue
-        let itemNumber = (totalSubItem[indexPath.row].numberLabel as NSString).doubleValue
-        oldMoney += itemMoney*itemNumber
-        var totalBounus:Double = 0
-        totalBounus = oldMoney * 0.1
-        let totalPayInt = Int(oldMoney)
-        let totalBounusInt = Int(totalBounus)
-        self.totalMoney.text = String(totalPayInt)
-        self.totalBonus.text = String(totalBounusInt)
+        Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.demands.forEach { md in
+            foodDatas += md.name + ": "
+            md.datas.forEach{ sd in
+                foodDatas += sd.name
+            }
+            foodDatas += "  "
+        }
         
-        cell.delegate = self
-        
+        cell.foodDatas.text = foodDatas
         return cell
     }
-
-    @objc func deleteCellItem(sender : UIButton!) {
-        //print(sender.tag)
-        
-        print("totalSubItem.count",totalSubItem.count)
-        
-        if totalSubItem.count > 1  {
-            self.totalSubItem.remove(at: sender.tag) // this is the dataSource array of your tableView
-            let indexPath = IndexPath(row: sender.tag, section: 0)
-            self.itemTable.beginUpdates()
-            self.itemTable.deleteRows(at: [indexPath], with: .fade)
-            self.itemTable.endUpdates()
-            self.itemTable!.reloadData()
-            calculateMoney()
-            oldIndexSubFromData = sender.tag
-            
-        }
-        print("totalSubItem.count",totalSubItem.count)
-        print("numberOfrow",self.itemTable.numberOfRows(inSection: 0))
-
-    }
     
-    @objc func stepperAction(sender: UIStepper)  {
-        //print("Stepper \(sender.tag) clicked. Its value \(sender.value)")
-        calculateMoney()
-    }
-    
-    func calculateMoney (){
-        let totalRow = self.itemTable.numberOfRows(inSection: 0)
-        var totalPay:Double = 0
-        var totalBounus:Double = 0
-        for index in 0...totalRow-1 {
-            let indexPath = IndexPath(row: index, section: 0)
-            let cell = self.itemTable.cellForRow(at: indexPath) as! ShoppingCardSubTVCell
-            totalSubItem[indexPath.row].numberLabel = cell.numberLabel.text!
-            totalPay += Double(totalSubItem[index].itemMoney)! * Double(cell.numberPicker.value)
-        }
-        totalBounus = totalPay * 0.1
-        let totalPayInt = Int(totalPay)
-        let totalBounusInt = Int(totalBounus)
-        self.totalMoney.text = String(totalPayInt)
-        self.totalBonus.text = String(totalBounusInt)
-        
+    @objc func changedCount(_ sender: UIStepper) {
+        let price: Int = Int(Int(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].item.price)! /
+        Int(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].count)!)
+        Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].count = Int(sender.value).description
+        Model.USER_CACHE_SHOPPING_CART[self.tag].orders[sender.tag].item.price = Int(price * Int(sender.value)).description
+        UserSstorage.setShoppingCartDatas(datas: Model.USER_CACHE_SHOPPING_CART)
     }
     
 }
+
 

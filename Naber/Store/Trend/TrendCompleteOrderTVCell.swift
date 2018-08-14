@@ -12,12 +12,10 @@ class TrendCompleteOrderTVCell: UITableViewCell {
 
 
     @IBOutlet weak var orderStatus: UIButton!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var phone: UILabel!
+    @IBOutlet weak var name: UILabel!
     
-    @IBOutlet weak var orderMoney: UILabel!
-    
-    @IBOutlet weak var buyerPhone: UILabel!
-    
-    @IBOutlet weak var buyerName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
