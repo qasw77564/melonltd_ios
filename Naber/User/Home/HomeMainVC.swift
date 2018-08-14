@@ -209,7 +209,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
             if let pad_photo: String? = Model.ADVERTISEMENTS[index].pad_photo {
                 cell.imageView?.setImage(with: URL(string: pad_photo!), transformer: TransformerHelper.transformer(identifier: pad_photo!))
             }else {
-                cell.imageView?.image = UIImage(named: "naber_default_image.png")
+                cell.imageView?.image = UIImage(named: "naber_pad_default_image.png")
             }
         } else {
             if let photo: String? = Model.ADVERTISEMENTS[index].photo {

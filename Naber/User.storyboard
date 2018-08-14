@@ -52,7 +52,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="kjL-lf-qc2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="依照店名">
+                                        <state key="normal" title="店名搜索">
                                             <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -77,7 +77,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="hk6-ro-hEg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="依照類別">
+                                        <state key="normal" title="類別搜索">
                                             <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -102,7 +102,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="EGH-71-wW1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="依照區域">
+                                        <state key="normal" title="區域搜索">
                                             <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -127,7 +127,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="Zuc-fZ-CIG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="依照距離">
+                                        <state key="normal" title="離我最近">
                                             <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
