@@ -61,10 +61,7 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
         ApiManager.getSMSCode(structs: reqCode, ui: self, onSuccess: { code in
             sender.isHidden = false
             self.smsCode.batch_id = code.batch_id
-            // print(self.smsCode)
         }) { err_msg in
-            let ss :[String] = StringsHelper.splitToArray(str: err_msg, of: "$split")
-            // print(ss)
             let alert = UIAlertController(title: Optional.none, message: StringsHelper.replace(str: err_msg, of: "$split", with: "\n"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
                 sender.isHidden = false
@@ -115,6 +112,12 @@ class RegisterUserVC: UIViewController, UIAlertViewDelegate {
 
     override func show(_ vc: UIViewController, sender: Any?) {
 
+    }
+    
+    @IBAction func isReadBtn (_ sender: UIButton){
+        if (self.checkImageView.image?.isEqual(UIImage(named: "cbNoSelect")))! {
+            self.checkImageView.image = UIImage(named: "cbSelect")
+        }
     }
 
     @IBAction func nextRegister (_ sender: UIButton){

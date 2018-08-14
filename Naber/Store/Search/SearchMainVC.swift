@@ -40,6 +40,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
     func loadData(refresh: Bool){
         self.view.endEditing(true)
         self.orders.removeAll()
+        self.table.reloadData()
         if self.phone.text?.count != 4 {
             let alert = UIAlertController(title: "系統提示", message: "請正確輸入手機後四碼", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "取消", style: .default))
@@ -173,8 +174,8 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
             self.changeToCancelHandler(dataIndex: sender.tag, message: text.text!)
         }))
         
-        alert.addAction(UIAlertAction(title: "我現在忙不過來，抱歉!", style: .default, handler: { _ in
-            self.changeToCancelHandler(dataIndex: sender.tag, message: "我現在忙不過來，抱歉!")
+        alert.addAction(UIAlertAction(title: "我現在忙不過來，抱歉", style: .default, handler: { _ in
+            self.changeToCancelHandler(dataIndex: sender.tag, message: "我現在忙不過來，抱歉")
         }))
         
         alert.addAction(UIAlertAction(title: "產品賣完了，很抱歉請改選其他產品", style: .default,  handler: { _ in

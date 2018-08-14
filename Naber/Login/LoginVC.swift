@@ -78,7 +78,6 @@ class LoginVC: UIViewController {
             reqData.device_category = "IOS"
             reqData.device_token = (UIApplication.shared.delegate as! AppDelegate).token
             
-            // print(reqData.device_token)
             ApiManager.login(structs: reqData, ui: self, onSuccess: { account in
                 if account != nil {
                     let now: Int = DateTimeHelper.getNowMilliseconds()

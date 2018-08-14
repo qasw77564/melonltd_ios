@@ -78,7 +78,6 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 self.tableView.reloadData()
             }) { err_msg in
-                // print(err_msg)
                 self.tableView.reloadData()
             }
         }
@@ -136,7 +135,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
                 self.reqData.uuids.append(contentsOf: self.templates[0])
                 self.loadData(refresh: true)
             }) { err_msg in
-                // print(err_msg)
+
             }
         }
     }
@@ -282,7 +281,6 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         if Model.TMPE_RESTAURANT_LIST.count - 1 == indexPath.row  && self.reqData.loadingMore {
-            // print("load mode")
             self.loadData(refresh: false)
         }
         

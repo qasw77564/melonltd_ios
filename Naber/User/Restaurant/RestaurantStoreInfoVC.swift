@@ -135,7 +135,6 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("viewWillDisappear")
     }
     
     func loadData(refresh: Bool){
@@ -149,7 +148,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
                 self.categoryList.append(contentsOf: restaurantCategorys)
                 self.tableView.reloadData()
             }, onFail: { err_msg in
-                print(err_msg)
+
             })
         }
     }

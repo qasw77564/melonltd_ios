@@ -378,8 +378,8 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             self.changeToCancelHandler(dataIndex: sender.tag, message: text.text!)
         }))
         
-        alert.addAction(UIAlertAction(title: "我現在忙不過來，抱歉!", style: .default, handler: { _ in
-            self.changeToCancelHandler(dataIndex: sender.tag, message: "我現在忙不過來，抱歉!")
+        alert.addAction(UIAlertAction(title: "我現在忙不過來，抱歉", style: .default, handler: { _ in
+            self.changeToCancelHandler(dataIndex: sender.tag, message: "我現在忙不過來，抱歉")
         }))
         
         alert.addAction(UIAlertAction(title: "產品賣完了，很抱歉請改選其他產品", style: .default,  handler: { _ in
