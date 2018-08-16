@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserSettingMainPageTVC: UITableViewController {
 
@@ -22,6 +23,11 @@ class UserSettingMainPageTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if Model.CURRENT_FIRUSER == Optional.none {
+            Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
+                Model.CURRENT_FIRUSER = user?.user
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +44,7 @@ class UserSettingMainPageTVC: UITableViewController {
             self.bonus.text = account?.bonus
             
             if account?.photo == nil || account?.photo == "" {
-                self.photo.image = UIImage(named: "白底黃閃電")
+                self.photo.image = UIImage(named: "LogoReverse")
             } else {
                 self.photo?.setImage(with: URL(string: (account?.photo)!), transformer: TransformerHelper.transformer(identifier: (account?.photo)!))
             }

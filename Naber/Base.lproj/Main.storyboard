@@ -32,21 +32,12 @@
                                 <rect key="frame" x="0.0" y="336.66666666666669" width="375" height="48"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.90980392160000001" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="UJY-Gd-GGi"/>
                                     <constraint firstAttribute="height" constant="48" id="VOM-ep-Kdq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="送出">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="sendToServerForAskPassword:" destination="MFZ-hB-ebg" eventType="touchUpInside" id="rWY-2m-B2o"/>
                                 </connections>
@@ -79,6 +70,7 @@
                             <constraint firstItem="h4R-bK-raK" firstAttribute="trailing" secondItem="vC5-11-bRv" secondAttribute="trailing" constant="16" id="Ych-JE-JRb"/>
                             <constraint firstItem="KVG-cN-7th" firstAttribute="leading" secondItem="h4R-bK-raK" secondAttribute="leading" constant="16" id="dRm-cI-xhQ"/>
                             <constraint firstItem="vC5-11-bRv" firstAttribute="leading" secondItem="h4R-bK-raK" secondAttribute="leading" constant="16" id="fYW-P1-e00"/>
+                            <constraint firstItem="h4R-bK-raK" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="foP-EM-PGJ" secondAttribute="bottom" constant="8" id="fbe-4g-NOL"/>
                             <constraint firstItem="h4R-bK-raK" firstAttribute="trailing" secondItem="foP-EM-PGJ" secondAttribute="trailing" id="fsB-Ly-BUL"/>
                             <constraint firstItem="h4R-bK-raK" firstAttribute="trailing" secondItem="fjW-BZ-zfM" secondAttribute="trailing" constant="16" id="nr7-zM-VTj"/>
                             <constraint firstItem="foP-EM-PGJ" firstAttribute="leading" secondItem="h4R-bK-raK" secondAttribute="leading" id="oI5-Nv-Jz2"/>
@@ -203,14 +195,6 @@
                                 <state key="normal" title="送出">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="nextRegister:" destination="B82-Ny-LmJ" eventType="touchUpInside" id="ibf-7V-1Yj"/>
                                     <segue destination="jkb-My-OcZ" kind="show" id="dDy-Yq-9nn"/>
@@ -455,14 +439,6 @@
                                 <state key="normal" title="註冊">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="sendToSeverForRegisterUser:" destination="jkb-My-OcZ" eventType="touchUpInside" id="ScV-ZN-f6B"/>
                                 </connections>
@@ -561,7 +537,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="白底黃閃電" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-ka-To4">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoReverse" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-ka-To4">
                                             <rect key="frame" x="87.666666666666686" y="16" width="200" height="200"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="9u5-Uc-asE"/>
@@ -600,20 +576,6 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8V-ng-RD9">
-                                            <rect key="frame" x="267" y="320" width="24" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="6DC-rl-NaQ"/>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="Mm9-ba-j9d"/>
-                                                <constraint firstAttribute="width" constant="24" id="TxV-4x-MfH"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="cRY-ob-MwA"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="kcj-vd-1aY"/>
-                                            </constraints>
-                                            <state key="normal" title="Button" image="cbNoSelect"/>
-                                            <connections>
-                                                <action selector="rememberMeSwithOnImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yrx-fm-uIS"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc4-Kz-et6">
                                             <rect key="frame" x="293" y="316" width="66" height="32"/>
                                             <constraints>
@@ -650,12 +612,6 @@
                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                     <real key="value" value="0.0"/>
                                                 </userDefinedRuntimeAttribute>
@@ -734,6 +690,17 @@
                                                 <segue destination="B82-Ny-LmJ" kind="show" id="XzE-gR-WLn"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8V-ng-RD9">
+                                            <rect key="frame" x="267" y="320" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="6DC-rl-NaQ"/>
+                                                <constraint firstAttribute="width" constant="24" id="qul-ry-7lx"/>
+                                            </constraints>
+                                            <state key="normal" image="cbNoSelect"/>
+                                            <connections>
+                                                <action selector="rememberMeSwithOnImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yrx-fm-uIS"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -744,6 +711,7 @@
                                         <constraint firstItem="UDG-yd-0Uv" firstAttribute="top" secondItem="DGr-Yo-Km2" secondAttribute="bottom" constant="8" id="3rA-bU-eBd"/>
                                         <constraint firstItem="O47-DX-ahO" firstAttribute="top" secondItem="GbD-gl-OnQ" secondAttribute="bottom" constant="8" id="40k-4A-lnf"/>
                                         <constraint firstItem="HCU-JY-Afh" firstAttribute="top" secondItem="GbD-gl-OnQ" secondAttribute="bottom" constant="50" id="4Ib-Zi-kE8"/>
+                                        <constraint firstItem="v8V-ng-RD9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J6E-q7-of3" secondAttribute="leading" constant="8" id="4LB-Se-ff8"/>
                                         <constraint firstItem="O47-DX-ahO" firstAttribute="trailing" secondItem="Hc4-Kz-et6" secondAttribute="trailing" id="8V2-C7-C0d"/>
                                         <constraint firstItem="zfr-Q7-4KP" firstAttribute="centerY" secondItem="irM-kq-hv6" secondAttribute="centerY" id="9WY-pd-ox6"/>
                                         <constraint firstItem="GbD-gl-OnQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UDG-yd-0Uv" secondAttribute="trailing" id="EGi-3I-UPv"/>
@@ -760,7 +728,6 @@
                                         <constraint firstItem="Hc4-Kz-et6" firstAttribute="leading" secondItem="v8V-ng-RD9" secondAttribute="trailing" constant="2" id="YTw-k8-F9C"/>
                                         <constraint firstItem="UDG-yd-0Uv" firstAttribute="leading" secondItem="J6E-q7-of3" secondAttribute="leading" constant="16" id="cHL-lL-yHd"/>
                                         <constraint firstItem="YG0-3A-Zmp" firstAttribute="top" secondItem="Ifg-ka-To4" secondAttribute="bottom" constant="8" id="eea-0o-rsf"/>
-                                        <constraint firstItem="HCU-JY-Afh" firstAttribute="centerX" secondItem="GbD-gl-OnQ" secondAttribute="centerX" id="esH-Th-btZ"/>
                                         <constraint firstItem="Hc4-Kz-et6" firstAttribute="centerY" secondItem="v8V-ng-RD9" secondAttribute="centerY" id="gri-Uo-CGl"/>
                                         <constraint firstItem="Ifg-ka-To4" firstAttribute="top" secondItem="J6E-q7-of3" secondAttribute="top" constant="16" id="iJo-wq-tMO"/>
                                         <constraint firstItem="zfr-Q7-4KP" firstAttribute="leading" secondItem="irM-kq-hv6" secondAttribute="trailing" constant="8" id="jkQ-9O-V4f"/>
@@ -964,14 +931,6 @@
                                 <state key="normal" title="註冊">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="sendToSeverForRegisterStore:" destination="B5r-nR-55Q" eventType="touchUpInside" id="duM-PM-wCL"/>
                                 </connections>
@@ -1038,9 +997,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LogoReverse" width="200" height="200"/>
         <image name="cbNoSelect" width="24" height="24"/>
         <image name="dropDownArraw" width="48" height="48"/>
-        <image name="白底黃閃電" width="1767" height="1767"/>
     </resources>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

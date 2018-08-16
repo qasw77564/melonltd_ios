@@ -35,7 +35,7 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
 
         if self.account.photo == nil || self.account.photo == "" {
-            self.photo.image = UIImage(named: "白底黃閃電")
+            self.photo.image = UIImage(named: "LogoReverse")
         }else {
             self.photo?.setImage(with: URL(string: (self.account.photo)!), transformer: TransformerHelper.transformer(identifier: (self.account.photo)!))
         }

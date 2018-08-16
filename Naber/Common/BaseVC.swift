@@ -7,8 +7,7 @@
 //
 
 import UIKit
-//import CoreLocation
-
+import Firebase
 
 class BaseVC: UIViewController{
     let USER_TYPES: [Identity] = Identity.getUserValues()
@@ -36,6 +35,13 @@ class BaseVC: UIViewController{
     
     // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
     override func viewDidAppear(_ animated: Bool) {
+        
+        // 取得 FireBase 權限
+        if Model.CURRENT_FIRUSER == nil {
+            Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
+                Model.CURRENT_FIRUSER = user?.user
+            }
+        }
         
         let msg: String = "\n" +
         "    10點 -> 下次消費折抵3元 (無上限)\n" +

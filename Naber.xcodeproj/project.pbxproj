@@ -355,6 +355,14 @@
 			path = Typ;
 			sourceTree = "<group>";
 		};
+		20C0463C2123C06000C0F60F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20D9DC1A210265D400D643FE /* Sources */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		20D9DC0B21025F9200D643FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +421,7 @@
 		20E65E7B20FF0A1F00F9A252 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20C0463C2123C06000C0F60F /* View */,
 				20DEC9D52107890100476917 /* Bean */,
 				20D9DC1D2103673C00D643FE /* Util */,
 				20B477792101A7DC007F6EA8 /* Typ */,
@@ -601,7 +610,6 @@
 		DDF8C26920B1CA4400BF8904 = {
 			isa = PBXGroup;
 			children = (
-				20D9DC1A210265D400D643FE /* Sources */,
 				DDF8C27420B1CA4400BF8904 /* Naber */,
 				DDF8C28920B1CA4600BF8904 /* NaberTests */,
 				DDF8C29420B1CA4600BF8904 /* NaberUITests */,
@@ -858,7 +866,6 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MapleBacon/MapleBacon.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -868,7 +875,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapleBacon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

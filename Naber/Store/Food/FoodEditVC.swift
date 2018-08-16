@@ -9,71 +9,7 @@
 import UIKit
 import AVFoundation
 import Photos
-
-//public protocol ShouldPopDelegate {
-//    func currentViewControllerShouldPop() -> Bool
-//}
-//
-//extension UIViewController: ShouldPopDelegate {
-//    public func currentViewControllerShouldPop() -> Bool {
-//        let alert = UIAlertController(title: "", message: "請確認您所編輯的產品是否已經儲存，\n否則離開後所編輯之數據將會清空！", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "取消", style: .destructive))
-//        alert.addAction(UIAlertAction(title: "確定離開", style: .default, handler : { _ in
-//            self.navigationController?.popViewController(animated: true)
-//        }))
-//        self.present(alert, animated: false)
-//        return false
-//    }
-//}
-//
-//extension UINavigationController: UINavigationBarDelegate {
-//    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-//        var shouldPop = true
-//        // 看一下当前控制器有没有实现代理方法 currentViewControllerShouldPop
-//        // 如果实现了，根据当前控制器的代理方法的返回值决定
-//        // 没过没有实现 shouldPop = YES
-//        let currentVC = self.topViewController
-//        shouldPop = (currentVC?.currentViewControllerShouldPop())!
-//        if (shouldPop == true) {
-//            DispatchQueue.main.async {
-//                self.popViewController(animated: true)
-//            }
-//            // 这里要return, 否则这个方法将会被再次调用
-//            return true
-//        } else {
-//            // 让系统backIndicator 按钮透明度恢复为1
-//            for subview in navigationBar.subviews {
-//                if (0.0 < subview.alpha && subview.alpha < 1.0) {
-//                    UIView.animate(withDuration: 0.25, animations: {
-//                        subview.alpha = 1.0
-//                    })
-//                }
-//            }
-//            return false
-//        }
-//    }
-//}
-
-
-// TODO
-//extension UINavigationController: UINavigationBarDelegate {
-//    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-//
-//        if navigationBar.tag == -99 {
-//            let alert = UIAlertController(title: "", message: "請確認您所編輯的產品是否已經儲存，\n否則離開後所編輯之數據將會清空！", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "取消", style: .destructive))
-//            alert.addAction(UIAlertAction(title: "確定離開", style: .default, handler : { _ in
-//
-//                self.navigationController?.popViewController(animated: true)
-//            }))
-//            self.present(alert, animated: false)
-//            return false
-//        } else {
-//            return true
-//        }
-//    }
-//}
-
+import Firebase
 
 class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -98,8 +34,12 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         }else {
             self.photo.image = UIImage(named: "Logo")
         }
-//        self.navigationController?.delegate = self
-//        self.navigationController?.navigationBar.tag = -99
+        
+        if Model.CURRENT_FIRUSER == Optional.none {
+            Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
+                Model.CURRENT_FIRUSER = user?.user
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

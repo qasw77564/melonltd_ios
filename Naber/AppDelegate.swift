@@ -13,27 +13,16 @@ import Firebase
 //import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     public var token: String = ""
     let USER_TYPES: [Identity] = Identity.getUserValues()
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        if UIDevice.current.model.range(of: "iPad") != nil{
-//            print("I AM IPAD")
-//        } else {
-//            print("I AM IPHONE")
-//        }
-       
-        
+
         FirebaseApp.configure()
-        
-        Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
-            print(user?.user.email ?? "")
-            print(error?.localizedDescription ?? "")
-        }
-        
+
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
@@ -42,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
         }
 
-    
         return true
     }
     
@@ -63,14 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("APNs registration failed: \(error)")
     }
     
-    
     // Push notification received
     func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
         // Print notification payload data
         print("Push notification received: \(data)")
-
     }
-    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -95,13 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-}
-
-// [START ios_10_message_handling]
-@available(iOS 10, *)
-extension AppDelegate : UNUserNotificationCenterDelegate {
-
-    // Receive displayed notifications for iOS 10 devices.
+    
+    @available(iOS 10, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         let currentId: Identity = UserSstorage.getCurrentId()!
@@ -117,24 +97,17 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             
             if identity == Identity.SELLERS  && currentId == Identity.SELLERS {
                 completionHandler([.alert, .badge, .sound])
-
             }
         }
-
     }
-
+    
+    @available(iOS 10, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
-
-        // Print full message.
-        print(userInfo)
-
+//        let userInfo = response.notification.request.content.userInfo
         completionHandler()
     }
+
 }
+
 
 

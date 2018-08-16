@@ -7,10 +7,11 @@
 //
 
 import Foundation
-
+import Firebase
 
 class Model {
     
+    public static var CURRENT_FIRUSER: User! = Optional.none
     public static var ADVERTISEMENTS : [AdvertisementVo] = []
     // HOME
     public static var TOP_RESTAURANT_LIST : [RestaurantInfoVo] = []
