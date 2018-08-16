@@ -50,7 +50,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         // 確認 GPS 權限
-        enableBasicLocationServices()
+        self.enableBasicLocationServices()
         
         switch self.pageType {
         case .HOME:
@@ -114,8 +114,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             }
         }
     }
-    
-    
+
     func setWarning(){
         if !self.restaurantInfo.is_store_now_open.isEmpty {
             self.workStatus.isHidden = true
@@ -201,9 +200,9 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus ) {
         switch status {
         case .restricted, .denied:
-            let alertController = UIAlertController( title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "確認", style: .default, handler:nil))
-            self.present(alertController, animated: true, completion: nil)
+//            let alertController = UIAlertController( title: "定位權限已關閉", message: "我們無法幫您計算店家距離，\n如要開啟GPS權限，可以點\"前往設置\"，\n將位置權限開啟。", preferredStyle: .alert)
+//            alertController.addAction(UIAlertAction(title: "確認", style: .default, handler:nil))
+//            self.present(alertController, animated: true, completion: nil)
             break
         case .authorizedWhenInUse:
             self.LM.startUpdatingLocation()

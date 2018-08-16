@@ -264,13 +264,23 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus ) {
         switch status {
-        case .restricted, .denied:
-            let alertController = UIAlertController( title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "確認", style: .default, handler:nil))
-            self.present(alertController, animated: true, completion: nil)
+        case .restricted:
+            let alert = UIAlertController( title: "GPS權限已關閉", message: "我們無法幫您計算店家距離，\n如要開啟GPS權限，可以點\"前往設置\"，\n將位置權限開啟。", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "前往設置", style: .default) { _ in
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                if UIApplication.shared.canOpenURL(url!){
+                    UIApplication.shared.open(url!, options: [:])
+                }
+            })
+            alert.addAction(UIAlertAction(title: "返回", style: .destructive))
+            self.present(alert, animated: true, completion: nil)
+            break
+        case .denied:
             break
         case .authorizedWhenInUse:
             self.LM.startUpdatingLocation()
+            self.location = self.LM.location
+            self.tableView.reloadData()
             break
         case .notDetermined, .authorizedAlways:
             break
