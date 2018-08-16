@@ -35,7 +35,7 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
 
         if self.account.photo == nil || self.account.photo == "" {
-            self.photo.image = UIImage(named: "白底黃閃電")
+            self.photo.image = UIImage(named: "LogoReverse")
         }else {
             self.photo?.setImage(with: URL(string: (self.account.photo)!), transformer: TransformerHelper.transformer(identifier: (self.account.photo)!))
         }
@@ -53,32 +53,11 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         let alert = UIAlertController.init(title: Optional.none , message: Optional.none , preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "相機", style: .default, handler: { _ in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-                if status == .denied || status == .restricted {
-                    self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟")
-                }else {
-                    picker.sourceType = .camera
-                    picker.allowsEditing = true
-                    self.present(picker, animated: true, completion: nil)
-                }
-            } else {
-                self.showAlert(withTitle: "沒有相機設備", andMessage: "You can't take photo, there is no camera.")
-            }
+            self.openCamera()
         }))
         
         alert.addAction(UIAlertAction(title: "相簿", style: .default, handler: { _ in
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
-                if status == .denied || status == .restricted {
-                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相簿服務 開啟")
-                }else {
-                    picker.sourceType = .photoLibrary
-                    self.present(picker, animated: true, completion: nil)
-                }
-            }else {
-                self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no photo library.")
-            }
+            self.openPhotoLibrary()
         }))
         
         alert.addAction(UIAlertAction(title: "取消", style: .destructive))
@@ -88,11 +67,68 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showAlert(withTitle title: String, andMessage message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+    //.notDetermined:  第一次安裝App，尚未選取狀態
+    //.restricted:  此應用程序沒有被授權訪問的照片數據
+    //.denied:  已經選取並拒絕，無訪問權限狀態
+    //.authorized:  已经有权限
+    func openPhotoLibrary(){
+        let pickCtl: UIImagePickerController = UIImagePickerController.init()
+        if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            PHPhotoLibrary.requestAuthorization({ status in
+                if status == .authorized {
+                    pickCtl.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                    pickCtl.sourceType = .photoLibrary;
+                    pickCtl.allowsEditing = true
+                    self.present(pickCtl, animated: true, completion: Optional.none)
+                }else if status == .denied || status == .restricted {
+                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要開啟相簿權限，可以點\"前往設置\"，\n將相簿讀取和寫入權限開啟。", isGoSetting: true)
+                }
+            })
+        }else {
+            self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no photo library.", isGoSetting: false)
+        }
+    }
+    
+    func openCamera() {
+        let pickCtl: UIImagePickerController = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { _ in
+                let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+                if status == .authorized {
+                    pickCtl.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                    pickCtl.sourceType = .camera
+                    pickCtl.allowsEditing = true
+                    self.present(pickCtl, animated: true, completion: Optional.none)
+                }else if  status == .denied || status == .restricted {
+                    self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要開啟相機權限，可以點\"前往設置\"，\n將相機權限開啟。", isGoSetting: true)
+                }
+            })
+        } else {
+            self.showAlert(withTitle: "沒有相機設備", andMessage: "You can't take photo, there is no camera.", isGoSetting: false)
+        }
+    }
+    
+    // 可選去設定頁面
+    func showAlert(withTitle title: String, andMessage message: String , isGoSetting: Bool) {
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if isGoSetting {
+            alert.addAction(UIAlertAction(title: "前往設置", style: .default) { _ in
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                if UIApplication.shared.canOpenURL(url!){
+                    UIApplication.shared.open(url!, options: [:])
+//                    UIApplication.shared.open(url!, options: [:], completionHandler: { (ist) in
+//                        print(ist)
+//                    })
+                }
+            })
+            alert.addAction(UIAlertAction(title: "返回", style: .destructive))
+        } else {
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+        }
         self.present(alert, animated: true)
     }
+    
+    
 
     // 接到相機 ＆ 相簿回傳的data
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

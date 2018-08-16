@@ -9,71 +9,7 @@
 import UIKit
 import AVFoundation
 import Photos
-
-//public protocol ShouldPopDelegate {
-//    func currentViewControllerShouldPop() -> Bool
-//}
-//
-//extension UIViewController: ShouldPopDelegate {
-//    public func currentViewControllerShouldPop() -> Bool {
-//        let alert = UIAlertController(title: "", message: "請確認您所編輯的產品是否已經儲存，\n否則離開後所編輯之數據將會清空！", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "取消", style: .destructive))
-//        alert.addAction(UIAlertAction(title: "確定離開", style: .default, handler : { _ in
-//            self.navigationController?.popViewController(animated: true)
-//        }))
-//        self.present(alert, animated: false)
-//        return false
-//    }
-//}
-//
-//extension UINavigationController: UINavigationBarDelegate {
-//    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-//        var shouldPop = true
-//        // 看一下当前控制器有没有实现代理方法 currentViewControllerShouldPop
-//        // 如果实现了，根据当前控制器的代理方法的返回值决定
-//        // 没过没有实现 shouldPop = YES
-//        let currentVC = self.topViewController
-//        shouldPop = (currentVC?.currentViewControllerShouldPop())!
-//        if (shouldPop == true) {
-//            DispatchQueue.main.async {
-//                self.popViewController(animated: true)
-//            }
-//            // 这里要return, 否则这个方法将会被再次调用
-//            return true
-//        } else {
-//            // 让系统backIndicator 按钮透明度恢复为1
-//            for subview in navigationBar.subviews {
-//                if (0.0 < subview.alpha && subview.alpha < 1.0) {
-//                    UIView.animate(withDuration: 0.25, animations: {
-//                        subview.alpha = 1.0
-//                    })
-//                }
-//            }
-//            return false
-//        }
-//    }
-//}
-
-
-// TODO
-//extension UINavigationController: UINavigationBarDelegate {
-//    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-//
-//        if navigationBar.tag == -99 {
-//            let alert = UIAlertController(title: "", message: "請確認您所編輯的產品是否已經儲存，\n否則離開後所編輯之數據將會清空！", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "取消", style: .destructive))
-//            alert.addAction(UIAlertAction(title: "確定離開", style: .default, handler : { _ in
-//
-//                self.navigationController?.popViewController(animated: true)
-//            }))
-//            self.present(alert, animated: false)
-//            return false
-//        } else {
-//            return true
-//        }
-//    }
-//}
-
+import Firebase
 
 class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -98,8 +34,12 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         }else {
             self.photo.image = UIImage(named: "Logo")
         }
-//        self.navigationController?.delegate = self
-//        self.navigationController?.navigationBar.tag = -99
+        
+        if Model.CURRENT_FIRUSER == Optional.none {
+            Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
+                Model.CURRENT_FIRUSER = user?.user
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -304,32 +244,11 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         let alert = UIAlertController.init(title: Optional.none , message: Optional.none , preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "相機", style: .default, handler: { _ in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-                if status == .denied && status == .restricted {
-                    self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相機服務 開啟")
-                }else {
-                    picker.sourceType = .camera
-                    picker.allowsEditing = true
-                    self.present(picker, animated: true, completion: nil)
-                }
-            } else {
-                self.showAlert(withTitle: "沒有相機設備", andMessage: "You can't take photo, there is no camera.")
-            }
+            self.openCamera()
         }))
         
         alert.addAction(UIAlertAction(title: "相簿", style: .default, handler: { _ in
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
-                if status == .denied && status == .restricted {
-                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要變更權限，請至 設定 > 隱私權 > 相簿服務 開啟")
-                }else {
-                    picker.sourceType = .photoLibrary
-                    self.present(picker, animated: true, completion: nil)
-                }
-            }else {
-                self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no photo library.")
-            }
+            self.openPhotoLibrary()
         }))
         
         alert.addAction(UIAlertAction(title: "取消", style: .destructive))
@@ -338,12 +257,65 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showAlert(withTitle title: String, andMessage message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+    //.notDetermined:  第一次安裝App，尚未選取狀態
+    //.restricted:  此應用程序沒有被授權訪問的照片數據
+    //.denied:  已經選取並拒絕，無訪問權限狀態
+    //.authorized:  已经有权限
+    func openPhotoLibrary(){
+        let pickCtl: UIImagePickerController = UIImagePickerController.init()
+        if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            PHPhotoLibrary.requestAuthorization({ status in
+                if status == .authorized {
+                    pickCtl.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                    pickCtl.sourceType = .photoLibrary;
+                    pickCtl.allowsEditing = true
+                    self.present(pickCtl, animated: true, completion: Optional.none)
+                }else if status == .denied || status == .restricted {
+                    self.showAlert(withTitle: "相簿權限已關閉", andMessage: "如要開啟相簿權限，可以點\"前往設置\"，\n將相簿讀取和寫入權限開啟。", isGoSetting: true)
+                }
+            })
+        }else {
+            self.showAlert(withTitle: "沒有相簿功能", andMessage: "You can't take photo, there is no photo library.", isGoSetting: false)
+        }
+    }
+    
+    func openCamera() {
+        let pickCtl: UIImagePickerController = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { _ in
+                let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+                if status == .authorized {
+                    pickCtl.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                    pickCtl.sourceType = .camera
+                    pickCtl.allowsEditing = true
+                    self.present(pickCtl, animated: true, completion: Optional.none)
+                }else if  status == .denied || status == .restricted {
+                    self.showAlert(withTitle: "相機權限已關閉", andMessage: "如要開啟相機權限，可以點\"前往設置\"，\n將相機權限開啟。", isGoSetting: true)
+                }
+            })
+        } else {
+            self.showAlert(withTitle: "沒有相機設備", andMessage: "You can't take photo, there is no camera.", isGoSetting: false)
+        }
+    }
+
+    // 可選去設定頁面
+    func showAlert(withTitle title: String, andMessage message: String , isGoSetting: Bool) {
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if isGoSetting {
+            alert.addAction(UIAlertAction(title: "前往設置", style: .default) { _ in
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                if UIApplication.shared.canOpenURL(url!){
+                    UIApplication.shared.open(url!, options: [:])
+                }
+            })
+            alert.addAction(UIAlertAction(title: "返回", style: .destructive))
+        } else {
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+        }
         self.present(alert, animated: true)
     }
-   
+    
+    
     // 接到相機 ＆ 相簿回傳的data
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage

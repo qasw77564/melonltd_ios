@@ -34,15 +34,13 @@ class ImageHelper {
         return resizedImage
     }
     
-//    return FirebaseStorage
-//    .getInstance(path)
-//    .getReference()
-//    .child(child + fileName);
-    
-    static func getReference(path: String, child: String, fileName: String ) -> StorageReference {
-        return Storage.storage(url: path)
-            .reference()
-            .child(child + fileName)
+    static func getReference(path: String, child: String, fileName: String ) -> StorageReference! {
+        
+        if Model.CURRENT_FIRUSER == Optional.none {
+            return Optional.none
+        } else {
+            return Storage.storage(url: path).reference().child(child + fileName)
+        }
     }
     
     // sourcePath == "/user/" || "/restaurant/food/"
@@ -50,33 +48,34 @@ class ImageHelper {
         Loading.show()
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        
-        let ref: StorageReference = getReference(path: NaberConstant.STORAGE_PATH, child:sourcePath, fileName: fileName);
-        
-        ref.putData(data, metadata: metadata) { metadata, error in
-//            guard let metadata = metadata else {
-//                return
-//            }
-            
-            ref.downloadURL { (url, error) in
-                guard let downloadURL = url else {
+
+        if let ref: StorageReference = getReference(path: NaberConstant.STORAGE_PATH, child:sourcePath, fileName: fileName) {
+            ref.putData(data, metadata: metadata) { metadata, error in
+                ref.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        onFail("upload failure")
+                        Loading.hide()
+                        return
+                    }
+                    
+                    if error != nil {
+                        onFail("upload failure")
+                        Loading.hide()
+                    }else {
+                        onGetUrl(downloadURL)
+                        Loading.hide()
+                    }
+                }
+                }.observe(.failure) { snapshot in
                     onFail("upload failure")
                     Loading.hide()
-                    return
-                }
-                
-                if error != nil {
-                    onFail("upload failure")
-                    Loading.hide()
-                }else {
-                    onGetUrl(downloadURL)
-                    Loading.hide()
-                }
             }
-        }.observe(.failure) { snapshot in
-            onFail("upload failure")
+        }else {
+            onFail("CURRENT_FIRUSER not atuh failure")
             Loading.hide()
         }
+      
+        
     }
 
 }

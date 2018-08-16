@@ -22,6 +22,7 @@ class TransformerHelper {
         init(identifier: String) {
             self.identifier = identifier
         }
+        
         func transform(image: UIImage) -> UIImage? {
             guard let filter = CIFilter(name: "CISepiaTone") else { return image }
             let ciImage = CIImage(image: image)
@@ -30,6 +31,7 @@ class TransformerHelper {
             let context = CIContext()
             guard let outputImage = filter.outputImage,
                 let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else { return image }
+            
             return UIImage(cgImage: cgImage)
         }
     }

@@ -54,8 +54,10 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         if self.reqData != nil {
             self.reqData.page = self.reqData.page + 1
             if self.reqData.search_type.elementsEqual("DISTANCE") {
-                self.reqData.uuids = []
-                self.reqData.uuids.append(contentsOf: self.templates[self.reqData.page - 1])
+                if self.LM.location != nil {
+                    self.reqData.uuids = []
+                    self.reqData.uuids.append(contentsOf: self.templates[self.reqData.page - 1])
+                }
             }
             ApiManager.restaurantList(req: self.reqData, ui: self, onSuccess: { restaurantInfos in
                 if self.reqData.search_type.elementsEqual("DISTANCE") {
@@ -86,7 +88,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reqData = ReqData()
-        self.enableBasicLocationServices()
+//        self.enableBasicLocationServices()
         
         self.searchForDistance(self.distanceBtn)
         self.uiButtons.append(contentsOf: [self.distanceBtn, self.areaBtn, self.categoryBtn, self.storeNameBtn])
@@ -96,7 +98,6 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     // 依照店家地理位置模板排序後分頁查找
     @IBAction func searchForDistance (_ sender: UIButton){
         self.setButtonsDefaultColor(sender: sender)
-//        self.filterName.text = "離我最近"
         self.reqData.search_type = "DISTANCE";
         self.reqData.category = ""
         self.reqData.area = ""
@@ -143,7 +144,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     // 依照選取區域名稱查找
     @IBAction func searchForArea (_ sender: UIButton){
         let alert = UIAlertController(title: Optional.none, message: Optional.none, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "請選擇區域", style: .destructive))
+//        alert.addAction(UIAlertAction(title: "請選擇區域", style: .destructive))
         NaberConstant.FILTER_AREAS.forEach{ name in
             let itemAction = UIAlertAction(title: name, style: .default) { itemAction in
                 self.setButtonsDefaultColor(sender: sender)
@@ -152,7 +153,6 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
                 self.reqData.name = ""
                 self.reqData.category = ""
                 self.reqData.uuids = []
-//                self.filterName.text = name
                 self.loadData(refresh: true)
             }
             alert.addAction(itemAction)
@@ -168,14 +168,13 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     // 依照選取種類名稱查找
     @IBAction func searchForCategory (_ sender: UIButton){
         let alert = UIAlertController(title: Optional.none, message: Optional.none, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "請選擇種類", style: .destructive))
+//        alert.addAction(UIAlertAction(title: "請選擇種類", style: .destructive))
         NaberConstant.FILTER_CATEGORYS.forEach{ name in
             let itemAction = UIAlertAction(title: name, style: .default) { itemAction in
                 self.setButtonsDefaultColor(sender: sender)
                 self.reqData.search_type = "CATEGORY";
                 self.reqData.category = name
                 self.reqData.name = ""
-//                self.filterName.text = name
                 self.reqData.area = ""
                 self.reqData.uuids = []
                 self.loadData(refresh: true)
@@ -306,10 +305,18 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus ) {
         switch status {
-        case .restricted, .denied:
-            let alertController = UIAlertController( title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "確認", style: .default, handler:nil))
-            self.present(alertController, animated: true, completion: nil)
+        case .restricted:
+            break
+        case .denied:
+            let alert = UIAlertController( title: "GPS權限已關閉", message: "我們無法幫您計算店家距離，\n如要開啟GPS權限，可以點\"前往設置\"，\n將位置權限開啟。", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "前往設置", style: .default) { _ in
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                if UIApplication.shared.canOpenURL(url!){
+                    UIApplication.shared.open(url!, options: [:])
+                }
+            })
+            alert.addAction(UIAlertAction(title: "返回", style: .destructive))
+            self.present(alert, animated: true, completion: nil)
             break
         case .authorizedWhenInUse:
             self.LM.startUpdatingLocation()

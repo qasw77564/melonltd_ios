@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseMessaging
+//import FirebaseMessaging
 
 class LoginVC: UIViewController {
     
@@ -46,9 +46,11 @@ class LoginVC: UIViewController {
             self.account_text.text = ""
         }
         
-//        if NaberConstant.IS_DEBUG {
+//        if true {
 //            self.account_text.text = "NER-18X1X14"
 //            self.password_text.text = "a123456"
+//            self.account_text.text = "demo"
+//            self.password_text.text = "d654321"
 //        }
         
     }
