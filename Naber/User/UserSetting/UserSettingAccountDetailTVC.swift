@@ -12,7 +12,7 @@ import Photos
 
 class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
-    var account: AccountInfoVo!
+    var account: AccountInfoVo! = Optional.none
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -27,17 +27,20 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.name.text = self.account.name
-        self.phone.text = self.account.phone
-        self.email.text = self.account.email
-        self.birthday.text = self.account.birth_day
-        self.bonus.text = self.account.bonus
-        self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
-
-        if self.account.photo == nil || self.account.photo == "" {
-            self.photo.image = UIImage(named: "LogoReverse")
-        }else {
-            self.photo?.setImage(with: URL(string: (self.account.photo)!), transformer: TransformerHelper.transformer(identifier: (self.account.photo)!))
+        
+        if self.account != nil {
+            self.name.text = self.account.name
+            self.phone.text = self.account.phone
+            self.email.text = self.account.email
+            self.birthday.text = self.account.birth_day
+            self.bonus.text = self.account.bonus
+            self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
+            
+            if self.account.photo == nil || self.account.photo == "" {
+                self.photo.image = UIImage(named: "LogoReverse")
+            }else {
+                self.photo?.setImage(with: URL(string: (self.account.photo)!), transformer: TransformerHelper.transformer(identifier: (self.account.photo)!))
+            }
         }
     }
     
@@ -136,7 +139,14 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
         let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let resizedImage: UIImage = ImageHelper.resizeImage(originalImage: originalImage, minLenDP: 120)
 
-        ImageHelper.upLoadImage(data: UIImageJPEGRepresentation(resizedImage, 1.0)!, sourcePath: NaberConstant.STORAGE_PATH_USER, fileName: self.account.account_uuid + ".jpg", onGetUrl: { url in
+        var imageName: String = "defult.jpg"
+        if self.account != nil {
+            imageName = self.account.account_uuid + ".jpg"
+        }else {
+            imageName = UserSstorage.getAutho() + ".jpg"
+        }
+        
+        ImageHelper.upLoadImage(data: UIImageJPEGRepresentation(resizedImage, 1.0)!, sourcePath: NaberConstant.STORAGE_PATH_USER, fileName: imageName, onGetUrl: { url in
             let reqData: ReqData = ReqData()
             reqData.uuid = self.account.account_uuid
             reqData.date = url.absoluteString
@@ -150,7 +160,6 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
             print(err_msg)
         }
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func logout(_ sender: Any) {

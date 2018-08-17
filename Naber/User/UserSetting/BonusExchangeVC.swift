@@ -42,12 +42,11 @@ class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func textData (){
         self.eventContent.text =
-        "凡是透過NABER訂餐，\n一律回饋消費金額之3%紅利點數\n" +
+        "凡是透過NABER訂餐，\n一律回饋消費金額之10%紅利點數\n" +
         "，並能兌換NABER所提供之獎勵。\n\n" +
         "* 10月起 開放兌換獎勵及現金折抵\n" +
         "* 消費10元獲得1點紅利點數\n"
-        
-        
+
         self.datas.append(contentsOf:[["10點", "下次消費折抵3元" ,"(無上限)"],
                                 ["500點", "KKBOX 30天","(點數卡)"],
                                 ["667點", "中壢威尼斯","(電影票)"],
