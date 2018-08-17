@@ -53,17 +53,17 @@ class BaseVC: UIViewController{
         "  834點 -> SBC星橋 (電影票)\n" +
         "  834點 -> 威秀影城(電影票)\n" +
         "1000點 -> SOGO 300(禮卷)\n" +
-        "1000點 -> MYCARD 300P (點數卡)\n" +
+        "1000點 -> MYCARD 300P (點數卡)\n\n" +
         
         
-        "\n\n活動說明：\n" +
-        "凡是透過NABER訂餐，\n" +
-        "一律回饋消費金額之3%紅利點數\n" +
-        "，並能兌換NABER所提供之獎勵。\n\n" +
+//        "\n\n活動說明：\n" +
+//        "凡是透過NABER訂餐，\n" +
+//        "一律回饋消費金額之3%紅利點數\n" +
+//        "，並能兌換NABER所提供之獎勵。\n\n" +
         "* 10月開始兌換獎勵及現金折抵\n" +
         "* 消費10元獲得1點紅利點數\n"
  
-        let alert = UIAlertController(title: "用NABER訂餐享3%紅利回饋\n紅利兌換項目", message: msg, preferredStyle: .alert)
+        let alert = UIAlertController(title: "用NABER訂餐享10%紅利回饋\n紅利兌換項目", message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "開始使用", style: .default){ _ in
             let now: Int = Int(Date().timeIntervalSince1970 * 1000)
             if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
