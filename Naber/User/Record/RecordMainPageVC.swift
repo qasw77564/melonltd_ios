@@ -55,6 +55,9 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reqData = ReqData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.loadData(refresh: true)
     }
 
