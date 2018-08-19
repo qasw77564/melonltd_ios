@@ -56,7 +56,9 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
             if self.reqData.search_type.elementsEqual("DISTANCE") {
                 if self.LM.location != nil {
                     self.reqData.uuids = []
-                    self.reqData.uuids.append(contentsOf: self.templates[self.reqData.page - 1])
+                    if self.templates.count > self.reqData.page - 1 {
+                        self.reqData.uuids.append(contentsOf: self.templates[self.reqData.page - 1])
+                    }
                 }
             }
             ApiManager.restaurantList(req: self.reqData, ui: self, onSuccess: { restaurantInfos in
