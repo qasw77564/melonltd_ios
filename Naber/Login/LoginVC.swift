@@ -96,9 +96,22 @@ class LoginVC: UIViewController {
                     }
                     
                     if self.USER_TYPES.contains(Identity.init(rawValue: (account?.identity.uppercased())!)!) {
-                        // 使用者
-                        if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
-                            self.present(vc, animated: false, completion: nil)
+                        if account?.account == "demo" {
+                            if let error: Error = (UIApplication.shared.delegate as! AppDelegate).error {
+                                let alert = UIAlertController(title: "註冊APNs失敗", message: error.localizedDescription, preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                self.present(alert, animated: false)
+                            }else {
+                                // 使用者
+                                if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+                                    self.present(vc, animated: false, completion: nil)
+                                }
+                            }
+                        }else {
+                            // 使用者
+                            if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+                                self.present(vc, animated: false, completion: nil)
+                            }
                         }
                     } else if Identity.SELLERS == Identity.init(rawValue: (account?.identity.uppercased())!)! {
                         // 商家端

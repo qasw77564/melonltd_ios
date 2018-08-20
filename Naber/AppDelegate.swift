@@ -16,6 +16,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     public var token: String = ""
+    public var error: Error! = Optional.none
     let USER_TYPES: [Identity] = Identity.getUserValues()
     var window: UIWindow?
 
@@ -44,10 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.token = deviceTokenString
         // Persist it in your backend in case it's new
     }
-    
+
     // Called when APNs failed to register the device for push notifications
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         // Print the error to console (you should alert the user that registration failed)
+        self.error = error
         print("APNs registration failed: \(error)")
     }
     
