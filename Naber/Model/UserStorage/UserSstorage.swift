@@ -68,7 +68,7 @@ class UserSstorage {
     
     // 取得使用者認證
     static func getAutho() -> String {
-        if let account = getAccountInfo() {
+        if let account: AccountInfoVo = getAccountInfo() {
             return account.account_uuid ?? ""
         }else {
             return ""
@@ -77,10 +77,10 @@ class UserSstorage {
     
     // 當前登入身份
     static func getCurrentId() -> Identity? {
-        if let identity = Identity(rawValue: (getAccountInfo()?.identity)!){
-            return identity
+        if let account: AccountInfoVo = getAccountInfo() {
+            return Identity(rawValue: account.identity)
         }else {
-            return Identity.UNKNOWN
+           return Identity.UNKNOWN
         }
     }
     
