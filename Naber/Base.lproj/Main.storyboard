@@ -77,6 +77,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h4R-bK-raK"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="fjW-BZ-zfM" id="jTQ-7z-Whk"/>
+                        <outlet property="phone" destination="KVG-cN-7th" id="rXN-Ur-IhM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XzH-33-5PE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -531,7 +535,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jNi-xW-yga">
-                                <rect key="frame" x="0.0" y="88" width="375" height="615"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="J6E-q7-of3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
@@ -742,51 +746,13 @@
                                     <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 </view>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UN4-gO-zQL" customClass="DesignableView" customModule="Naber" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="703" width="375" height="75"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" text="©2017 Melon LTD, Inc. 保留所有權利" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4b-VI-MCt">
-                                        <rect key="frame" x="0.0" y="38" width="375" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邁倫資訊科技有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUF-Hq-Kh2">
-                                        <rect key="frame" x="0.0" y="19" width="375" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="R4b-VI-MCt" secondAttribute="bottom" constant="20" id="645-gt-fqT"/>
-                                    <constraint firstItem="hUF-Hq-Kh2" firstAttribute="leading" secondItem="UN4-gO-zQL" secondAttribute="leading" id="N6g-G2-YoJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="hUF-Hq-Kh2" secondAttribute="trailing" id="PPp-RD-SUj"/>
-                                    <constraint firstAttribute="trailing" secondItem="R4b-VI-MCt" secondAttribute="trailing" id="WAb-AQ-tZP"/>
-                                    <constraint firstItem="hUF-Hq-Kh2" firstAttribute="top" secondItem="UN4-gO-zQL" secondAttribute="top" constant="19" id="YnB-3W-Gg8"/>
-                                    <constraint firstItem="R4b-VI-MCt" firstAttribute="top" secondItem="hUF-Hq-Kh2" secondAttribute="bottom" constant="2" id="dm3-42-t6t"/>
-                                    <constraint firstItem="R4b-VI-MCt" firstAttribute="leading" secondItem="UN4-gO-zQL" secondAttribute="leading" id="iEx-pl-FP0"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                        <size key="value" width="0.0" height="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jNi-xW-yga" firstAttribute="top" secondItem="uqV-2n-QtD" secondAttribute="top" id="0XO-ox-O9h"/>
                             <constraint firstItem="jNi-xW-yga" firstAttribute="leading" secondItem="uqV-2n-QtD" secondAttribute="leading" id="Au2-TL-3NR"/>
-                            <constraint firstItem="UN4-gO-zQL" firstAttribute="trailing" secondItem="uqV-2n-QtD" secondAttribute="trailing" id="QNX-UM-fUR"/>
-                            <constraint firstItem="UN4-gO-zQL" firstAttribute="leading" secondItem="uqV-2n-QtD" secondAttribute="leading" id="Sga-GQ-zlk"/>
                             <constraint firstItem="uqV-2n-QtD" firstAttribute="trailing" secondItem="jNi-xW-yga" secondAttribute="trailing" id="Vvp-2f-NAQ"/>
-                            <constraint firstItem="UN4-gO-zQL" firstAttribute="top" secondItem="jNi-xW-yga" secondAttribute="bottom" id="b2r-WK-rrR"/>
-                            <constraint firstItem="uqV-2n-QtD" firstAttribute="bottom" secondItem="UN4-gO-zQL" secondAttribute="bottom" id="hiU-PB-NYJ"/>
+                            <constraint firstItem="uqV-2n-QtD" firstAttribute="bottom" secondItem="jNi-xW-yga" secondAttribute="bottom" id="rT1-sF-Gaa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uqV-2n-QtD"/>
                     </view>
