@@ -41,15 +41,33 @@ class SubmitOrderVC : UIViewController {
     
     
     @IBOutlet weak var userMssage: UITextField!
+//    @IBOutlet weak var userMssage: UITextView!
+    
+    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var bonus: UILabel!
+    
+//    var placeHolder: UILabel {
+//        get {
+//            let placeHolder = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.width, height: 80))
+//            placeHolder.text = "外送請輸入外送地址，\n外送地址請依照店家公告規範，不符合規範的訂單將會被取消。"
+//            placeHolder.textColor = NaberConstant.COLOR_BASIS_GRAY
+//            placeHolder.font = placeHolder.font.withSize(12)
+//            
+//            placeHolder.contentMode = .top
+//            return placeHolder
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dateSelect.inputView = self.datePicker
         self.dateSelect.inputAccessoryView = self.toolbar
+//        self.userMssage.addSubview(self.placeHolder)
+//        self.userMssage.setValue(placeHolder, forKey: "_placeholderLabel")
+//        [textView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +81,11 @@ class SubmitOrderVC : UIViewController {
             return sum + Double(num.item.price)!
         })
         self.price.text = "$" + Int(price).description
-        self.bonus.text = "應得紅利 " + Int(floor(price / 10.0)).description
+        
+        if let can_discount: String = list[self.orderIndex].can_discount {
+            self.bonus.text = can_discount == "Y" ? "應得紅利 " + Int(floor(price / 10.0)).description : "該店家不提供紅利"
+        }
+
     }
     
     @objc func onDateChanged(sender: UIDatePicker) {

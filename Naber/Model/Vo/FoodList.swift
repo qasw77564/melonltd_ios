@@ -12,7 +12,7 @@ class FoodListResp : Codable {
     var status : String!
     var err_code : String!
     var err_msg : String!
-    var data : [FoodVo]!
+    var data : [FoodVo]! = []
 
     public static func toJson(structs : FoodListResp) -> String {
         do {

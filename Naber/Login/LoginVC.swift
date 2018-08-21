@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-//import FirebaseMessaging
+
 
 class LoginVC: UIViewController {
     
@@ -47,7 +47,7 @@ class LoginVC: UIViewController {
         }
         
 //        if true {
-//            self.account_text.text = "NER-18X1X14"
+//            self.account_text.text = "NER-18X6XX1"
 //            self.password_text.text = "a123456"
 //            self.account_text.text = "demo"
 //            self.password_text.text = "d654321"
@@ -78,7 +78,7 @@ class LoginVC: UIViewController {
             reqData.phone = self.account_text.text
             reqData.password = self.password_text.text
             reqData.device_category = "IOS"
-            reqData.device_token = (UIApplication.shared.delegate as! AppDelegate).token
+            reqData.device_token = Messaging.messaging().fcmToken
             
             ApiManager.login(structs: reqData, ui: self, onSuccess: { account in
                 if account != nil {

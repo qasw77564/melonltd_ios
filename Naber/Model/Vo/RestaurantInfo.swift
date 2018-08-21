@@ -41,6 +41,7 @@ class RestaurantInfoVo : Codable {
     var is_store_now_open: String!
     var not_business: [String]! = []
     var can_store_range: [DateRangeVo]! = []
+    var can_discount: String!
     var restaurant_category: String!
     var latitude: String!
     var longitude: String!
@@ -50,7 +51,6 @@ class RestaurantInfoVo : Codable {
     var top: String!
     var distance : Double!
     var status: String!
-    var can_discount: String!
     var date: String!
     
     var isShowOne: Bool! = true

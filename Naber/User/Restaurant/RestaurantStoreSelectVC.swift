@@ -78,6 +78,7 @@ class RestaurantStoreSelectVC: UIViewController {
                 o.restaurant_name = self.restaurantInfo.name
                 o.restaurant_address = self.restaurantInfo.address
                 o.user_name = account?.name
+                o.can_discount = self.restaurantInfo.can_discount
                 o.user_phone = account?.phone
                 o.orders.insert(order, at: 0)
                 has = true
@@ -89,12 +90,15 @@ class RestaurantStoreSelectVC: UIViewController {
             detail.restaurant_uuid = self.restaurantInfo.restaurant_uuid
             detail.restaurant_name = self.restaurantInfo.name
             detail.restaurant_address = self.restaurantInfo.address
+            detail.can_discount = self.restaurantInfo.can_discount
             detail.user_name = account?.name
             detail.user_phone = account?.phone
             detail.orders.insert(order, at: 0)
             shoppingCartDatas.insert(detail, at: 0)
         }
         
+        
+//        can_discount
         UserSstorage.setShoppingCartDatas(datas: shoppingCartDatas)
  
         alert.addAction(UIAlertAction(title: "前往購物車", style: .default){ _ in

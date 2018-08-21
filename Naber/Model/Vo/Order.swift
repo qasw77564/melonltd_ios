@@ -69,8 +69,9 @@ class OrderDetail : Codable {
     
     var restaurant_uuid : String!
     var restaurant_name : String!
-    var restaurant_address : String!
     var user_name : String!
+    var restaurant_address : String!
+    var can_discount : String!
     var user_phone : String!
     var fetch_date : String!
     var user_message : String!
