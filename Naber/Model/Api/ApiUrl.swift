@@ -11,9 +11,9 @@ import Foundation
 
 
 class ApiUrl{   
-    
-//    public static var DOMAIN: String = "http://192.168.1.108"
+
     public static var DOMAIN: String = "https://ap.melonltd.com.tw"
+    
     public static var LOGIN: String = DOMAIN + "/login";
     public static var LOGOUT: String = DOMAIN + "/logout";
     public static var GET_SMS_CODE: String = DOMAIN + "/sms/get/code";

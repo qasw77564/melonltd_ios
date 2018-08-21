@@ -14,6 +14,8 @@ class ForgotPasswordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.phone.text = ""
+        self.email.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +26,8 @@ class ForgotPasswordVC: UIViewController {
         
         if judgmentInput(){
             let reqDate : ReqData = ReqData()
-            reqDate.email = self.email.text
+//            reqDate.email = self.email.text
+            reqDate.email = ""
             reqDate.phone = self.phone.text
             ApiManager.forgetPassword(req: reqDate, ui: self, onSuccess: {
                 let alert = UIAlertController(title: Optional.none, message: "密碼已經傳送至於您的手機，請於簡訊功能查看！", preferredStyle: .alert)
