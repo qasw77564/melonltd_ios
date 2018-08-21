@@ -44,18 +44,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // [START receive_message]
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        if let messageID = userInfo[gcmMessageIDKey] {
+//        if let messageID = userInfo[gcmMessageIDKey] {
 //            print("Message ID: \(messageID)")
-        }
+//        }
         
         // Print full message.
 //        print(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let messageID = userInfo[gcmMessageIDKey] {
+//        if let messageID = userInfo[gcmMessageIDKey] {
 //            print("Message ID: \(messageID)")
-        }
+//        }
         
         // Print full message.
 //        print(userInfo)
@@ -106,9 +106,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         
-        if let messageID = userInfo[gcmMessageIDKey] {
+//        if let messageID = userInfo[gcmMessageIDKey] {
 //            print("Message ID: \(messageID)")
-        }
+//        }
 
         let currentId: Identity = UserSstorage.getCurrentId()!
         if let identity: Identity = Identity(rawValue: userInfo["identity"] as! String) {
@@ -127,11 +127,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
+//        let userInfo = response.notification.request.content.userInfo
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
+//        if let messageID = userInfo[gcmMessageIDKey] {
 //            print("Message ID: \(messageID)")
-        }
+//        }
         
         // Print full message.
 //        print(userInfo)
