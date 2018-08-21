@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import UserNotifications
 
-
-class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDelegate{
+class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate{
 
     var reqData: ReqData!
     var orders : [OrderVo] = []
+    let USER_TYPES: [Identity] = Identity.getUserValues()
 
     @IBOutlet weak var tableView: UITableView! {
         didSet{
@@ -55,6 +56,11 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reqData = ReqData()
+        
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +110,29 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.orders.count
+    }
+
+    // 當接到訂單改變通知，刷新訂單歷史資料
+    @available(iOS 10, *)
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
+        let userInfo = notification.request.content.userInfo
+        let currentId: Identity = UserSstorage.getCurrentId()!
+        if let identity: Identity = Identity(rawValue: userInfo["identity"] as! String) {
+            if USER_TYPES.contains(identity) && USER_TYPES.contains(currentId) {
+                if UserSstorage.getSound()!{
+                    completionHandler([.alert, .badge, .sound])
+                }else {
+                    completionHandler([.alert, .badge])
+                }
+                self.loadData(refresh: true)
+            }
+        }
+    }
+    
+    @available(iOS 10, *)
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // print("Do what ever you want")
+        
     }
     
 }

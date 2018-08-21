@@ -67,6 +67,8 @@
 		20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF8C2A520B1CC2A00BF8904 /* MapKit.framework */; };
 		20E65E8220FF17F100F9A252 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8120FF17F100F9A252 /* Loading.swift */; };
 		20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E65E8620FF2F7200F9A252 /* Bulletin.swift */; };
+		20EA6308212BF5F6002E81C3 /* StoreCategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EA6307212BF5F6002E81C3 /* StoreCategoryList.swift */; };
+		20EA630A212C019E002E81C3 /* Enable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EA6309212C019E002E81C3 /* Enable.swift */; };
 		20EF6E2F2119474700787F4C /* FoodEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EF6E2E2119474700787F4C /* FoodEditVC.swift */; };
 		20EF6E312119582800787F4C /* FoodMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EF6E302119582800787F4C /* FoodMainCell.swift */; };
 		20EF6E33211958B300787F4C /* FoodSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EF6E32211958B300787F4C /* FoodSubCell.swift */; };
@@ -212,6 +214,8 @@
 		20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Naber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E65E8120FF17F100F9A252 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		20E65E8620FF2F7200F9A252 /* Bulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulletin.swift; sourceTree = "<group>"; };
+		20EA6307212BF5F6002E81C3 /* StoreCategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCategoryList.swift; sourceTree = "<group>"; };
+		20EA6309212C019E002E81C3 /* Enable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enable.swift; sourceTree = "<group>"; };
 		20EF6E2E2119474700787F4C /* FoodEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEditVC.swift; sourceTree = "<group>"; };
 		20EF6E302119582800787F4C /* FoodMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMainCell.swift; sourceTree = "<group>"; };
 		20EF6E32211958B300787F4C /* FoodSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSubCell.swift; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				204C255F210A33830000D3EE /* PageType.swift */,
 				2017D8E5210CC52B00E2376D /* OrderStatus.swift */,
 				20E181DB2112BC03000ADD37 /* DateRangeStatus.swift */,
+				20EA6309212C019E002E81C3 /* Enable.swift */,
 			);
 			path = Typ;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				77376C5B2105A2930087F08E /* SellerStat.swift */,
 				77376C5D2105B6E00087F08E /* RestaurantListResp.swift */,
 				20EF6E36211AA98E00787F4C /* UploadFile.swift */,
+				20EA6307212BF5F6002E81C3 /* StoreCategoryList.swift */,
 			);
 			path = Vo;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MapleBacon/MapleBacon.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -875,6 +882,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapleBacon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,6 +931,7 @@
 				DDFECA0120BBEFFF00E253B6 /* ShoppingCarMainVC.swift in Sources */,
 				DDFEA7D620B6D47300170222 /* UserSettingAboutUsTVC.swift in Sources */,
 				DD161CFF20CA2E320080CFE2 /* SearchMainTVCell.swift in Sources */,
+				20EA6308212BF5F6002E81C3 /* StoreCategoryList.swift in Sources */,
 				20BB18E221154825005B7E83 /* TrendOrderLogDetailTVCell.swift in Sources */,
 				DD161D0920CAD70B0080CFE2 /* CategoryRelTVCell.swift in Sources */,
 				DDFEA7D220B6BC4800170222 /* UserSettingAccountDetailTVC.swift in Sources */,
@@ -1014,6 +1023,7 @@
 				DDFEA7CE20B661E500170222 /* UserSettingPageVC.swift in Sources */,
 				20BD64862108BFE600023033 /* LLImagePageControl.swift in Sources */,
 				77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */,
+				20EA630A212C019E002E81C3 /* Enable.swift in Sources */,
 				2012D76F2118460A00E7068D /* TableViewHeadControl.swift in Sources */,
 				20EF6E37211AA98E00787F4C /* UploadFile.swift in Sources */,
 				DDFEA7D020B6A60A00170222 /* UserSettingMainPageTVC.swift in Sources */,
@@ -1124,7 +1134,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1178,7 +1188,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1197,7 +1207,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HB4HJB5J8;
 				INFOPLIST_FILE = Naber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1220,7 +1230,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HB4HJB5J8;
 				INFOPLIST_FILE = Naber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

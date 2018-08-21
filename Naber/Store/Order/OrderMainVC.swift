@@ -110,7 +110,6 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
         }
-
     }
 
     func loadData(refresh: Bool){
@@ -514,12 +513,19 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     @available(iOS 10, *)
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
-        completionHandler( [.alert, .badge, .sound])
-        if self.queryStatus == OrderStatus.LIVE {
-            self.stopTimer()
-            self.startTimer()
+        let userInfo = notification.request.content.userInfo
+        let currentId: Identity = UserSstorage.getCurrentId()!
+        if let identity: Identity = Identity(rawValue: userInfo["identity"] as! String) {
+            if identity == Identity.SELLERS  && currentId == Identity.SELLERS {
+                completionHandler( [.alert, .badge, .sound])
+                if self.queryStatus == OrderStatus.LIVE {
+                    self.stopTimer()
+                    self.startTimer()
+                }
+            }
         }
     }
+    
     @available(iOS 10, *)
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // print("Do what ever you want")

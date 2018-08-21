@@ -39,7 +39,10 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
             price += Double(Model.USER_CACHE_SHOPPING_CART[self.tag].orders[i].item.price)!
         }
         self.price.text = Int(price).description
-        self.bonus.text = Int(floor(price / 10.0)).description
+        
+        if let can_discount: String = Model.USER_CACHE_SHOPPING_CART[self.tag].can_discount {
+            self.bonus.text = can_discount == "Y" ? Int(floor(price / 10.0)).description : "該店家不提供紅利"
+        }
     }
     
     func cellWillAppear (){
@@ -47,7 +50,9 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
             return sum + Double(num.item.price)!
         })
         self.price.text = Int(price).description
-        self.bonus.text = Int(floor(price / 10.0)).description
+        if let can_discount: String = Model.USER_CACHE_SHOPPING_CART[self.tag].can_discount {
+            self.bonus.text = can_discount == "Y" ? Int(floor(price / 10.0)).description : "該店家不提供紅利"
+        }
         self.itemTable.reloadData()
     }
     
