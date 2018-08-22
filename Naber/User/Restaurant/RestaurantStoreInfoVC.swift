@@ -154,6 +154,11 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
         }
     }
 
+    
+    override func show(_ vc: UIViewController, sender: Any?) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
