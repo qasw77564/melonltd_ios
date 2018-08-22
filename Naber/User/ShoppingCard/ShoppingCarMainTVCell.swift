@@ -70,11 +70,19 @@ class ShoppingCarMainTVCell: UITableViewCell, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ShoppingCardSubTVCell
         cell.foodName.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_name
     
-        if Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo != nil {
-            cell.foodPhoto.setImage(with: URL(string: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo), transformer: TransformerHelper.transformer(identifier: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo))
-        }else {
-            cell.foodPhoto.image = UIImage(named: "Logo")
-        }
+        
+        cell.foodPhoto.setImage(with: URL(string: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo ?? ""),  completion: { image in
+            if image == nil {
+                cell.foodPhoto.image = UIImage(named: "Logo")
+            }
+        })
+        
+        
+//        if Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo != nil {
+//            cell.foodPhoto.setImage(with: URL(string: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo), transformer: TransformerHelper.transformer(identifier: Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.food_photo))
+//        }else {
+//            cell.foodPhoto.image = UIImage(named: "Logo")
+//        }
         
         cell.foodCount.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].count
         cell.foodPrice.text = Model.USER_CACHE_SHOPPING_CART[self.tag].orders[indexPath.row].item.price

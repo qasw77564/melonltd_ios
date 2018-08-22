@@ -75,17 +75,19 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             self.bulletin.text = self.restaurantInfo.bulletin
             
             self.time.text = self.restaurantInfo.store_start + " ~ " + self.restaurantInfo.store_end
-            if self.restaurantInfo.photo != nil {
-                self.photo.setImage(with: URL(string: self.restaurantInfo.photo), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.photo))
-            }else {
-                self.photo.image = UIImage(named: "Logo")
-            }
+
+            self.photo.setImage(with: URL(string: self.restaurantInfo.photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.photo ?? ""),  completion: { image in
+                if image == nil {
+                    self.photo.image = UIImage(named: "Logo")
+                }
+            })
             
-            if self.restaurantInfo.background_photo != nil {
-                self.backgroundPhoto.setImage(with: URL(string: self.restaurantInfo.background_photo), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.background_photo))
-            }else {
-                self.backgroundPhoto.image = UIImage(named: "naber_default_image")
-            }
+            self.backgroundPhoto.setImage(with: URL(string: self.restaurantInfo.background_photo ?? ""), placeholder: UIImage(named: "naber_default_image"), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.background_photo ?? ""),  completion: { image in
+                if image == nil {
+                    self.backgroundPhoto.image = UIImage(named: "naber_default_image")
+                }
+            })
+            
             
             if self.LM.location != nil {
                 let lant: Double = Double(self.restaurantInfo.latitude)!

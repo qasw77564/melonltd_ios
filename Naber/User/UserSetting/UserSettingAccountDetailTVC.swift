@@ -36,11 +36,11 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
             self.bonus.text = self.account.bonus
             self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
             
-            if self.account.photo == nil || self.account.photo == "" {
-                self.photo.image = UIImage(named: "LogoReverse")
-            }else {
-                self.photo?.setImage(with: URL(string: (self.account.photo)!), transformer: TransformerHelper.transformer(identifier: (self.account.photo)!))
-            }
+            self.photo.setImage(with: URL(string: account?.photo ?? "" ), placeholder: UIImage(named: "LogoReverse"), transformer: TransformerHelper.transformer(identifier: account?.photo ?? "" ),  completion: { image in
+                if image == nil {
+                    self.photo.image = UIImage(named: "LogoReverse")
+                }
+            })
         }
     }
     
@@ -152,7 +152,11 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
             reqData.date = url.absoluteString
             reqData.type = "USER"
             ApiManager.uploadPhoto(req: reqData, ui: self, onSuccess: { urlString in
-                self.photo.setImage(with: URL(string: url.absoluteString), transformer: TransformerHelper.transformer(identifier: url.absoluteString))
+                self.photo.setImage(with: URL(string:  url.absoluteString ), placeholder: UIImage(named: "LogoReverse"), transformer: TransformerHelper.transformer(identifier:  url.absoluteString ),  completion: { image in
+                    if image == nil {
+                        self.photo.image = UIImage(named: "LogoReverse")
+                    }
+                })
             }, onFail: { err_msg in
                 print(err_msg)
             })

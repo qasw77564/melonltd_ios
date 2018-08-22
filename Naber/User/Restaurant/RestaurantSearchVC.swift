@@ -252,11 +252,21 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         cell.name.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].name
         cell.address.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].address
         cell.time.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].store_start + " ~ " + Model.TMPE_RESTAURANT_LIST[indexPath.row].store_end
-        if Model.TMPE_RESTAURANT_LIST[indexPath.row].photo != nil {
-            cell.photo.setImage(with: URL(string: Model.TMPE_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TMPE_RESTAURANT_LIST[indexPath.row].photo))
-        }else {
-            cell.photo.image = UIImage(named: "Logo")
-        }
+        
+        cell.photo.setImage(with: URL(string:  Model.TMPE_RESTAURANT_LIST[indexPath.row].photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier:  Model.TMPE_RESTAURANT_LIST[indexPath.row].photo ?? ""),  completion: { image in
+            if image == nil {
+                cell.photo.image = UIImage(named: "Logo")
+            }
+        })
+        
+        
+        
+//        if Model.TMPE_RESTAURANT_LIST[indexPath.row].photo != nil {
+//            cell.photo.setImage(with: URL(string: Model.TMPE_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TMPE_RESTAURANT_LIST[indexPath.row].photo))
+//        }else {
+//            cell.photo.image = UIImage(named: "Logo")
+//        }
+        
         
         cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
         if Model.TMPE_RESTAURANT_LIST[indexPath.row].not_business.count > 0 {
