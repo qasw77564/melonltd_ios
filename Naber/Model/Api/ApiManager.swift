@@ -99,10 +99,23 @@ class ApiManager {
 
     
     /**
-     * 以下為使用者是使用 API
+     * common
      */
     
-    // 取得店家類型列表
+    // 1.檢查app版本，並確認是否需要更新
+    public static func checkAppVersion (ui: UIViewController, onSuccess: @escaping (AppVersionLogVo) -> (), onFail: @escaping (String) -> ()) {
+        self.postData(url: ApiUrl.CHECK_APP_VERSION, data: "IOS", ui:ui, complete: { response in
+            let resp: AppVersionLogResp = AppVersionLogResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    
+    // 2.取得店家類型列表
     public static func storeCategoryList (ui: UIViewController, onSuccess: @escaping ([String]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.STORE_CATEGORY_LIST, data: "", ui:ui, complete: { response in
             let resp: StoreCategoryListResp = StoreCategoryListResp.parse(src: base64Decoding(decode: response.result.value!))!
@@ -114,6 +127,15 @@ class ApiManager {
         })
     }
     
+    
+    
+    
+    
+    
+    
+    /**
+     * 以下為使用者是使用 API
+     */
     //1.首頁
     // 輪播圖(測試OK)
     public static func advertisement (ui: UIViewController, onSuccess: @escaping ([AdvertisementVo]) -> (), onFail: @escaping (String) -> ()) {
@@ -562,8 +584,8 @@ class ApiManager {
         if NaberConstant.IS_DEBUG {
             return decode
         }
-        let decodedData = Data(base64Encoded: decode, options: Data.Base64DecodingOptions.init(rawValue: 0))
-        let decodedString = String(data: decodedData! as Data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! as String
+        let decodedData: Data! = Data(base64Encoded: decode, options: [.ignoreUnknownCharacters, Data.Base64DecodingOptions(rawValue: 0)])
+        let decodedString: String = String(data: decodedData! as Data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! as String
         return urlDecoded(str: decodedString)
     }
     
@@ -574,7 +596,8 @@ class ApiManager {
     
     // URL 解密
     private static func urlDecoded(str : String) -> String {
-        return str.removingPercentEncoding!
+        // 處理解碼後空白字傳變成'+'號問題
+        return StringsHelper.replace(str: str, of: "+", with: "%20").removingPercentEncoding!
     }
     
 }

@@ -55,7 +55,7 @@ class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                                 ["800點", "LINE 240P","(點數卡)"],
                                 ["834點", "SBC星橋","(電影票)"],
                                 ["834點", "威秀影城","(電影票)"],
-                                ["834點", "SOGO 300","(禮卷)"],
+                                ["1000點", "SOGO 300","(禮卷)"],
                                 ["1000點", "MYCARD 300P","(點數卡)"]])
     }
     

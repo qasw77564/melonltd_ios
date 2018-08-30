@@ -19,6 +19,7 @@ public class Loading {
     )
     
     public static func show(){
+        
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.data, nil)
     }
     

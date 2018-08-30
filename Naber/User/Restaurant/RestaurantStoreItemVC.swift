@@ -55,6 +55,10 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         self.loadData(refresh: true)
     }
+    
+    override func show(_ vc: UIViewController, sender: Any?) {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

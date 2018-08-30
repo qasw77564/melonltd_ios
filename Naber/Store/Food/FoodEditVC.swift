@@ -29,11 +29,11 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.foodName.text = self.food.food_name
         // TODO
         
-        if let photo: String? = self.food.photo {
-            self.photo.setImage(with: URL(string: photo!), transformer: TransformerHelper.transformer(identifier: photo!))
-        }else {
-            self.photo.image = UIImage(named: "Logo")
-        }
+        self.photo.setImage(with: URL(string: self.food.photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: self.food.photo ?? ""),  completion: { image in
+            if image == nil {
+                self.photo.image = UIImage(named: "Logo")
+            }
+        })
         
         if Model.CURRENT_FIRUSER == Optional.none {
             Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
@@ -326,7 +326,13 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
             reqData.date = url.absoluteString
             reqData.type = "FOOD"
             ApiManager.uploadPhoto(req: reqData, ui: self, onSuccess: { urlString in
-                self.photo.setImage(with: URL(string: url.absoluteString), transformer: TransformerHelper.transformer(identifier: url.absoluteString))
+                
+                self.photo.setImage(with: URL(string: url.absoluteString), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: url.absoluteString),  completion: { image in
+                    if image == nil {
+                        self.photo.image = UIImage(named: "Logo")
+                    }
+                })
+                
             }, onFail: { err_msg in
                 print(err_msg)
             })

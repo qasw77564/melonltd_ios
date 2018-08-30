@@ -67,15 +67,16 @@ class OrderVo : Codable {
 
 class OrderDetail : Codable {
     
-    var restaurant_uuid : String!
-    var restaurant_name : String!
-    var user_name : String!
-    var restaurant_address : String!
-    var can_discount : String!
-    var user_phone : String!
-    var fetch_date : String!
-    var user_message : String!
-    var orders : [OrderData]! = []
+    var restaurant_uuid: String!
+    var restaurant_name: String!
+    var user_name: String!
+    var restaurant_address: String!
+    var can_discount: String!
+    var user_phone: String!
+    var fetch_date: String!
+    var user_message: String!
+    var order_type: OrderType!
+    var orders: [OrderData]! = []
 
     public static func toJson(structs : OrderDetail) -> String {
         do {
@@ -110,6 +111,35 @@ class OrderDetail : Codable {
     }
 }
 
+
+class OrderType: Codable {
+    var billing: String!
+    var delivery: String!
+    
+    public static func setDefault() -> OrderType {
+        let orderType: OrderType = OrderType()
+        orderType.billing = "ORIGINAL"
+        orderType.delivery = "OUT"
+        return orderType
+    }
+    
+    
+    public static func toJson(structs : OrderType) -> String {
+        do {
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+        } catch {
+            return ""
+        }
+    }
+    
+    public static func parse(src : String) -> OrderType? {
+        do {
+            return try JSONDecoder().decode(OrderType.self, from: src.data(using:.utf8)!)
+        }catch {
+            return nil
+        }
+    }
+}
 
 class OrderData: Codable {
     var count: String!

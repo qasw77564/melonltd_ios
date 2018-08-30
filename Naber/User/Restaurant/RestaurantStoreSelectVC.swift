@@ -76,6 +76,8 @@ class RestaurantStoreSelectVC: UIViewController {
         for o in shoppingCartDatas {
             if self.restaurantInfo.restaurant_uuid == o.restaurant_uuid {
                 o.restaurant_name = self.restaurantInfo.name
+                // TODO 位置配送類型 ＆ 結算類型，預設 原價 自取
+                o.order_type = OrderType.setDefault()
                 o.restaurant_address = self.restaurantInfo.address
                 o.user_name = account?.name
                 o.can_discount = self.restaurantInfo.can_discount
@@ -89,6 +91,8 @@ class RestaurantStoreSelectVC: UIViewController {
             let detail: OrderDetail = OrderDetail()
             detail.restaurant_uuid = self.restaurantInfo.restaurant_uuid
             detail.restaurant_name = self.restaurantInfo.name
+            // TODO 位置配送類型 ＆ 結算類型，預設 原價 自取
+            detail.order_type = OrderType.setDefault()
             detail.restaurant_address = self.restaurantInfo.address
             detail.can_discount = self.restaurantInfo.can_discount
             detail.user_name = account?.name

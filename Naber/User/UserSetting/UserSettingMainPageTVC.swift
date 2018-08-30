@@ -28,6 +28,34 @@ class UserSettingMainPageTVC: UITableViewController {
                 Model.CURRENT_FIRUSER = user?.user
             }
         }
+        
+        let refreshControl: UIRefreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)])
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.tintColor = UIColor.clear
+        
+        self.view.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(sender: UIRefreshControl){
+        sender.endRefreshing()
+        self.loadData(refresh: true)
+    }
+    
+    func loadData (refresh: Bool){
+        ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
+            self.account = account
+            self.accunt.text = account?.account
+            self.bonus.text = account?.bonus
+            
+            self.photo.setImage(with: URL(string: account?.photo ?? ""), placeholder: UIImage(named: "LogoReverse"), transformer: TransformerHelper.transformer(identifier: account?.photo ?? ""),  completion: { image in
+                if image == nil {
+                    self.photo.image = UIImage(named: "LogoReverse")
+                }
+            })
+        }) { err_msg in
+            print(err_msg)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,20 +65,8 @@ class UserSettingMainPageTVC: UITableViewController {
              self.version.text = "V." + version
         }
         
-        ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
-            
-            self.account = account
-            self.accunt.text = account?.account
-            self.bonus.text = account?.bonus
-            
-            if account?.photo == nil || account?.photo == "" {
-                self.photo.image = UIImage(named: "LogoReverse")
-            } else {
-                self.photo?.setImage(with: URL(string: (account?.photo)!), transformer: TransformerHelper.transformer(identifier: (account?.photo)!))
-            }
-        }) { err_msg in
-            print(err_msg)
-        }
+        self.loadData(refresh: true)
+        
     }
     
     override func show(_ vc: UIViewController, sender: Any?) {

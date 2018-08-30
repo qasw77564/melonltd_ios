@@ -143,7 +143,6 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
     }
-    
 }
 
 

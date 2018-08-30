@@ -11,16 +11,7 @@ import Firebase
 
 class BaseVC: UIViewController{
     let USER_TYPES: [Identity] = Identity.getUserValues()
-    
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+
     override func loadView() {
         super.loadView()
     }
@@ -30,40 +21,76 @@ class BaseVC: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
-    override func viewDidAppear(_ animated: Bool) {
-        
         // 取得 FireBase 權限
         if Model.CURRENT_FIRUSER == nil {
             Auth.auth().signIn(withEmail: "naber_android@gmail.com", password: "melonltd1102") { (user, error) in
                 Model.CURRENT_FIRUSER = user?.user
             }
         }
+        self.startUse()
+    }
+    
+
+    // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
+    override func viewDidAppear(_ animated: Bool) {
         
+        ApiManager.checkAppVersion(ui: self, onSuccess: { appVersion in
+            if let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as? String {
+                if !appVersion.version.elementsEqual(version) {
+                    let alert = UIAlertController(title: "NABER 系統提示", message: "您目前的APP版本(V" + version + ")，不是最新版本(V" + appVersion.version + ")，\n為了您的使用權益，請前往App Store更新您的App", preferredStyle: .alert)
+                    
+                    if appVersion.need_upgrade.elementsEqual("Y") {
+                        alert.addAction(UIAlertAction(title: "前往更新", style: .default){ _ in
+                            let urlStr = "https://itunes.apple.com/us/app/naber/id1426204136?l=zh&ls=1&mt=8"
+                            if #available(iOS 10.0, *) {
+                                UIApplication.shared.open(URL(string: urlStr)!, options: [ : ], completionHandler: { success in
+                                })
+                            } else {
+                                UIApplication.shared.openURL(URL(string: urlStr)!)
+                            }
+                        })
+                    }else {
+                        alert.addAction(UIAlertAction(title: "我知道了", style: .default) { _ in
+                            self.startUse()
+                        })
+                    }
+                    self.present(alert, animated: false)
+                }else {
+                    self.startUse()
+                }
+            } 
+        }) { err_msg in
+            self.startUse()
+        }
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+
+    
+    func startUse (){
         let msg: String = "\n" +
-        "    10點 -> 下次消費折抵3元 (無上限)\n" +
-        "  500點 -> KKBOX 30天 (點數卡)\n" +
-        "  667點 -> 中壢威尼斯 (電影票)\n" +
-        "  767點 -> 桃園IN89統領 (電影票)\n" +
-        "  767點 -> 美麗華影城 (電影票)\n" +
-        "  800點 -> LINE 240P (點數卡)\n" +
-        "  834點 -> SBC星橋 (電影票)\n" +
-        "  834點 -> 威秀影城(電影票)\n" +
-        "1000點 -> SOGO 300(禮卷)\n" +
-        "1000點 -> MYCARD 300P (點數卡)\n\n" +
+            "    10點 -> 下次消費折抵3元 (無上限)\n" +
+            "  500點 -> KKBOX 30天 (點數卡)\n" +
+            "  667點 -> 中壢威尼斯 (電影票)\n" +
+            "  767點 -> 桃園IN89統領 (電影票)\n" +
+            "  767點 -> 美麗華影城 (電影票)\n" +
+            "  800點 -> LINE 240P (點數卡)\n" +
+            "  834點 -> SBC星橋 (電影票)\n" +
+            "  834點 -> 威秀影城(電影票)\n" +
+            "1000點 -> SOGO 300(禮卷)\n" +
+            "1000點 -> MYCARD 300P (點數卡)\n\n" +
+            "* 10月開始兌換獎勵及現金折抵\n" +
+            "* 消費10元獲得1點紅利點數\n"
         
-        
-//        "\n\n活動說明：\n" +
-//        "凡是透過NABER訂餐，\n" +
-//        "一律回饋消費金額之3%紅利點數\n" +
-//        "，並能兌換NABER所提供之獎勵。\n\n" +
-        "* 10月開始兌換獎勵及現金折抵\n" +
-        "* 消費10元獲得1點紅利點數\n"
- 
         let alert = UIAlertController(title: "用NABER訂餐享10%紅利回饋\n紅利兌換項目", message: msg, preferredStyle: .alert)
+        
         alert.addAction(UIAlertAction(title: "開始使用", style: .default){ _ in
             let now: Int = Int(Date().timeIntervalSince1970 * 1000)
             if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
@@ -100,8 +127,8 @@ class BaseVC: UIViewController{
         let message: UILabel = subView5.subviews[1] as! UILabel
         message.textAlignment = .left
         self.present(alert, animated: false)
-        
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

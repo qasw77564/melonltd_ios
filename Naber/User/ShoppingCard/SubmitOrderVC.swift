@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class SubmitOrderVC : UIViewController {
+class SubmitOrderVC : UIViewController, UITextViewDelegate {
 
     var orderIndex: Int!
     
@@ -39,35 +39,29 @@ class SubmitOrderVC : UIViewController {
     
     @IBOutlet weak var dateSelect: UITextField! 
     
-    
-    @IBOutlet weak var userMssage: UITextField!
-//    @IBOutlet weak var userMssage: UITextView!
-    
+    @IBOutlet weak var placeHolder: UILabel! {
+        didSet {
+            self.placeHolder.text = "外送請輸入外送地址，\n外送地址請依照店家公告規範，\n不符合規範的訂單將會被取消。"
+        }
+    }
+    @IBOutlet weak var userMssage: UITextView! {
+        didSet {
+            self.userMssage.delegate = self
+        }
+    }
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var bonus: UILabel!
     
-//    var placeHolder: UILabel {
-//        get {
-//            let placeHolder = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.width, height: 80))
-//            placeHolder.text = "外送請輸入外送地址，\n外送地址請依照店家公告規範，不符合規範的訂單將會被取消。"
-//            placeHolder.textColor = NaberConstant.COLOR_BASIS_GRAY
-//            placeHolder.font = placeHolder.font.withSize(12)
-//            
-//            placeHolder.contentMode = .top
-//            return placeHolder
-//        }
-//    }
+    @IBOutlet weak var readRuleBtn: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dateSelect.inputView = self.datePicker
         self.dateSelect.inputAccessoryView = self.toolbar
-//        self.userMssage.addSubview(self.placeHolder)
-//        self.userMssage.setValue(placeHolder, forKey: "_placeholderLabel")
-//        [textView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,10 +98,41 @@ class SubmitOrderVC : UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func readRuleAction(_ sender: UIButton) {
+        print(sender.isSelected)
+        let msg: String = "1.您同意無論任何理由，您都會在所填選擇之取餐時間到場取餐。\n" +
+        "2.您非常同意，取餐時間、外送地址是由您本人自行填寫。\n" +
+        "3.當您使用外送服務時，您全權擔保您所填寫的地址，可以聯繫到您本人。\n" +
+        "4.當我們接獲店家投訴，您棄單造成店家損失，我們可能會與您聯繫。\n" +
+        "5.當您棄單造成店家損失，我們可能會依照法律途徑處理。"
+        
+        let alert = UIAlertController(title: "使用者規範", message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "我知道了", style: .default){ _ in
+            if !self.readRuleBtn.isSelected {
+                self.readRuleBtn.isSelected = true
+                self.readRuleBtn.setImage(UIImage(named:"cbSelect"), for: .normal)
+            }
+        })
+        
+        let subView1: UIView = alert.view.subviews[0]
+        let subView2: UIView = subView1.subviews[0]
+        let subView3: UIView = subView2.subviews[0]
+        let subView4: UIView = subView3.subviews[0]
+        let subView5: UIView = subView4.subviews[0]
+        // let title: UILabel = subView5.subviews[0] as! UILabel
+        let message: UILabel = subView5.subviews[1] as! UILabel
+        message.textAlignment = .left
+        self.present(alert, animated: false)
+    }
+    
     @IBAction func submitAction(_ sender: UIButton) {
   
         if self.dateSelect.text == "" {
             let alert = UIAlertController(title: Optional.none, message: "請選擇取餐時間", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+            self.present(alert, animated: false)
+        }else if !self.readRuleBtn.isSelected {
+            let alert = UIAlertController(title: Optional.none, message: "請先閱讀\"使用者規範\"，再提交訂單。", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "我知道了", style: .default))
             self.present(alert, animated: false)
         }else {
@@ -168,6 +193,17 @@ class SubmitOrderVC : UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
+    func textViewDidChange(_ textView: UITextView) {
+//        print(textView.text.count)
+        if textView.text.count == 0 {
+            self.placeHolder.isHidden = false
+        } else {
+            self.placeHolder.isHidden = true
+        }
+    }
+    
     
     // 鍵盤點擊背景縮放
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

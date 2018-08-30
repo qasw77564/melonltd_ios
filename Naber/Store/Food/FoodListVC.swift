@@ -80,12 +80,12 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let status: SwitchStatus = SwitchStatus.of(name: self.foods[indexPath.row].status)
         cell.switchBtn.isOn = status.status()
         
-//        cell.photo.image = UIImage(named: "Logo")
-        if self.foods[indexPath.row].photo != nil {
-            cell.photo.setImage(with: URL(string: self.foods[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: self.foods[indexPath.row].photo))
-        }else{
-            cell.photo.image = UIImage(named: "Logo")
-        }
+        cell.photo.setImage(with: URL(string: self.foods[indexPath.row].photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: self.foods[indexPath.row].photo ?? ""),  completion: { image in
+            if image == nil {
+                cell.photo.image = UIImage(named: "Logo")
+            }
+        })
+        
         return cell
     }
     
