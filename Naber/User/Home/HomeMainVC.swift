@@ -108,7 +108,6 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         }
         
         self.loadData(refresh: true)
-        
     }
     
     
@@ -231,47 +230,50 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
         self.adPageControl.currentPage = index
-        
-        if let type: String = Model.ADVERTISEMENTS[index].link_type {
-            if let to: String = Model.ADVERTISEMENTS[index].link_to {
-                switch type {
-                case "APP":
-                    if let url: String = LinkToVo.parse(src: to)?.ios {
-                        print(url)
+        if UIDevice.current.model.range(of: "iPad") != nil{
+            // Pad not click event
+        } else {
+            if let type: String = Model.ADVERTISEMENTS[index].link_type {
+                if let to: String = Model.ADVERTISEMENTS[index].link_to {
+                    switch type {
+                    case "APP":
+                        if let url: String = LinkToVo.parse(src: to)?.ios {
+                            print(url)
+                            if #available(iOS 10.0, *) {
+                                UIApplication.shared.open(URL(string: url)!, options: [ : ], completionHandler: { success in
+                                })
+                            } else {
+                                UIApplication.shared.openURL(URL(string: url)!)
+                            }
+                        }
+                        break
+                    case "WEB":
                         if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(URL(string: url)!, options: [ : ], completionHandler: { success in
+                            UIApplication.shared.open(URL(string: to)!, options: [ : ], completionHandler: { success in
                             })
                         } else {
-                            UIApplication.shared.openURL(URL(string: url)!)
+                            UIApplication.shared.openURL(URL(string: to)!)
                         }
-                    }
-                    break
-                case "WEB":
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(URL(string: to)!, options: [ : ], completionHandler: { success in
-                        })
-                    } else {
-                        UIApplication.shared.openURL(URL(string: to)!)
-                    }
-                    break
-                case "INSIDE":
-                    Model.AD_RESTAURANT_LIST.removeAll()
-                    let req: ReqData = ReqData()
-                    req.search_type = "DISTANCE"
-                    req.uuids = [to]
-                    ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurants in
-                        Model.AD_RESTAURANT_LIST.append(contentsOf: restaurants)
-                        if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
-                            vc.restaurantIndex = 0
-                            vc.pageType = .AD
-                            self.navigationController?.pushViewController(vc, animated: true)
+                        break
+                    case "INSIDE":
+                        Model.AD_RESTAURANT_LIST.removeAll()
+                        let req: ReqData = ReqData()
+                        req.search_type = "DISTANCE"
+                        req.uuids = [to]
+                        ApiManager.restaurantList(req: req, ui: self, onSuccess: { restaurants in
+                            Model.AD_RESTAURANT_LIST.append(contentsOf: restaurants)
+                            if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
+                                vc.restaurantIndex = 0
+                                vc.pageType = .AD
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        }) { err_msg in
+                            
                         }
-                    }) { err_msg in
-                        
+                        break
+                    default:
+                        break
                     }
-                    break
-                default:
-                    break
                 }
             }
         }
