@@ -11,7 +11,7 @@ import Foundation
 class ApiUrl{   
 
     public static var DOMAIN: String = "http://192.168.1.108"
-//    public static var DOMAIN: String = "http://192.168.31.15:8080/melonltd-ap"
+//    public static var DOMAIN: String = "http://192.168.1.107:8080/melonltd-ap"
 //    public static var DOMAIN: String = "https://ap.melonltd.com.tw"
     
     public static var LOGIN: String = DOMAIN + "/login"
@@ -21,8 +21,11 @@ class ApiUrl{
     public static var USER_REGISTERED: String = DOMAIN + "/registered/user"
     public static var SELLER_REGISTERED: String = DOMAIN + "/registered/seller"
     
-    // user
+    // common
     public static var STORE_CATEGORY_LIST: String = DOMAIN + "/common/store/category/list"
+    public static var CHECK_APP_VERSION: String = DOMAIN + "/common/check/app/version"
+    
+    // user
     public static var ADVERTISEMENT: String = DOMAIN + "/naber/advertisement"
     public static var BULLETIN: String = DOMAIN + "/naber/bulletin"
     public static var RESTAURANT_TEMPLATE: String = DOMAIN + "/restaurant/location/template"
@@ -37,7 +40,6 @@ class ApiUrl{
     public static var FORGET_PSW: String = DOMAIN + "/account/forget/password"
     
     public static var IMAGE_UPLOAD: String = DOMAIN + "/image/upload"
-    
     
     // seller
     public static var QUICK_SEARCH: String = DOMAIN + "/seller/quick/search"
@@ -60,6 +62,5 @@ class ApiUrl{
     public static var SELLER_RESTAURANT_INFO: String = DOMAIN + "/seller/setting/find/restaurant"
     public static var SELLER_RESTAURANT_SETTING: String = DOMAIN + "/seller/setting"
     public static var SELLER_RESTAURANT_SETTING_BUSINESS: String = DOMAIN + "/seller/setting/business"
-    
     
 }

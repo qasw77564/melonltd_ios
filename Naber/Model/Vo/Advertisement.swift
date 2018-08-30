@@ -38,6 +38,8 @@ class AdvertisementVo: Codable {
     var content_text: String!
     var photo: String!
     var pad_photo: String!
+    var link_type: String!
+    var link_to: String!
     
     public static func toJson(structs: AdvertisementVo) -> String {
         do {
@@ -50,6 +52,28 @@ class AdvertisementVo: Codable {
     public  static func parse(src : String) -> AdvertisementVo? {
         do {
             return try JSONDecoder().decode(AdvertisementVo.self, from: src.data(using:.utf8)!)
+        }catch {
+            return nil
+        }
+    }
+}
+
+
+class LinkToVo: Codable {
+    var android: String!
+    var ios: String!
+    
+    public static func toJson(structs: LinkToVo) -> String {
+        do {
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+        } catch {
+            return ""
+        }
+    }
+    
+    public  static func parse(src : String) -> LinkToVo? {
+        do {
+            return try JSONDecoder().decode(LinkToVo.self, from: src.data(using:.utf8)!)
         }catch {
             return nil
         }

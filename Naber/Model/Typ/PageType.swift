@@ -13,6 +13,7 @@ enum PageType {
     case HOME
     case RESTAURANT
     case NONE
+    case AD
 }
 
 

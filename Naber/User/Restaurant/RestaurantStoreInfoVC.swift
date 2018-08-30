@@ -61,6 +61,11 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             if Model.TMPE_RESTAURANT_LIST.count > self.restaurantIndex {
                 self.restaurantInfo = Model.TMPE_RESTAURANT_LIST[self.restaurantIndex]
             }
+        case .AD:
+            if Model.AD_RESTAURANT_LIST.count > self.restaurantIndex {
+                self.restaurantInfo = Model.AD_RESTAURANT_LIST[self.restaurantIndex]
+            }
+            break
         case .NONE:
             break
         }

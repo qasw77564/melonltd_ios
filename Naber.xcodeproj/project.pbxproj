@@ -22,6 +22,11 @@
 		206AECDE211028C2005E64E6 /* SubmitOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AECDD211028C2005E64E6 /* SubmitOrderVC.swift */; };
 		20758A1921188D1F007A3ABC /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1821188D1F007A3ABC /* Store.storyboard */; };
 		20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1A2118A1FC007A3ABC /* User.storyboard */; };
+		207A5D8C212EA1920061396F /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207A5D8B212EA1920061396F /* FirebaseAuth.framework */; };
+		207A5D8E212EA1920061396F /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207A5D8D212EA1920061396F /* FirebaseCore.framework */; };
+		207A5D90212EA1920061396F /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207A5D8F212EA1920061396F /* FirebaseMessaging.framework */; };
+		207A5D92212EA1920061396F /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207A5D91212EA1920061396F /* FirebaseStorage.framework */; };
+		207A5D94212FB2700061396F /* AppVersionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A5D93212FB2700061396F /* AppVersionLog.swift */; };
 		20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */; };
 		209F05F2211B352800E66397 /* StoreDetailSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */; };
 		209F05F4211B420500E66397 /* StoreDetailSettingDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */; };
@@ -169,6 +174,11 @@
 		206AECDD211028C2005E64E6 /* SubmitOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitOrderVC.swift; sourceTree = "<group>"; };
 		20758A1821188D1F007A3ABC /* Store.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		20758A1A2118A1FC007A3ABC /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		207A5D8B212EA1920061396F /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		207A5D8D212EA1920061396F /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		207A5D8F212EA1920061396F /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		207A5D91212EA1920061396F /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		207A5D93212FB2700061396F /* AppVersionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionLog.swift; sourceTree = "<group>"; };
 		20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailVC.swift; sourceTree = "<group>"; };
 		209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingVC.swift; sourceTree = "<group>"; };
 		209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingDateCell.swift; sourceTree = "<group>"; };
@@ -298,6 +308,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				207A5D8C212EA1920061396F /* FirebaseAuth.framework in Frameworks */,
+				207A5D8E212EA1920061396F /* FirebaseCore.framework in Frameworks */,
+				207A5D90212EA1920061396F /* FirebaseMessaging.framework in Frameworks */,
+				207A5D92212EA1920061396F /* FirebaseStorage.framework in Frameworks */,
 				20D9DBD621025AC700D643FE /* Pods_Naber.framework in Frameworks */,
 				20E65E8020FF0ABE00F9A252 /* MapKit.framework in Frameworks */,
 				DDFEA7E020B7808E00170222 /* UserNotifications.framework in Frameworks */,
@@ -459,6 +473,7 @@
 				77376C5D2105B6E00087F08E /* RestaurantListResp.swift */,
 				20EF6E36211AA98E00787F4C /* UploadFile.swift */,
 				20EA6307212BF5F6002E81C3 /* StoreCategoryList.swift */,
+				207A5D93212FB2700061396F /* AppVersionLog.swift */,
 			);
 			path = Vo;
 			sourceTree = "<group>";
@@ -678,6 +693,10 @@
 		DDF8C2A420B1CC2A00BF8904 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				207A5D8B212EA1920061396F /* FirebaseAuth.framework */,
+				207A5D8D212EA1920061396F /* FirebaseCore.framework */,
+				207A5D8F212EA1920061396F /* FirebaseMessaging.framework */,
+				207A5D91212EA1920061396F /* FirebaseStorage.framework */,
 				20D9DBD521025AC700D643FE /* Pods_Naber.framework */,
 				20E65E7E20FF0AB300F9A252 /* Pods_Naber.framework */,
 				DDFEA7DF20B7808E00170222 /* UserNotifications.framework */,
@@ -1007,6 +1026,7 @@
 				20BD64852108BFE600023033 /* LLCycleScrollView.swift in Sources */,
 				20D9DC0421025F4700D643FE /* FSPagerViewLayoutAttributes.swift in Sources */,
 				DD3FA0B520C7B065006BAA51 /* TrendCompleteOrderVC.swift in Sources */,
+				207A5D94212FB2700061396F /* AppVersionLog.swift in Sources */,
 				205015F6210B8C8A00FDE2E8 /* StringsHelper.swift in Sources */,
 				DD3FA0B720C7B648006BAA51 /* TrendCompleteOrderTVCell.swift in Sources */,
 				DD161D0D20CAEBF40080CFE2 /* FoodTVCell.swift in Sources */,

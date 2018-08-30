@@ -196,8 +196,7 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate {
     
     
     func textViewDidChange(_ textView: UITextView) {
-        
-        print(textView.text.count)
+//        print(textView.text.count)
         if textView.text.count == 0 {
             self.placeHolder.isHidden = false
         } else {

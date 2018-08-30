@@ -13,6 +13,8 @@ class Model {
     
     public static var CURRENT_FIRUSER: User! = Optional.none
     public static var ADVERTISEMENTS : [AdvertisementVo] = []
+    // AD
+    public static var AD_RESTAURANT_LIST : [RestaurantInfoVo] = []
     // HOME
     public static var TOP_RESTAURANT_LIST : [RestaurantInfoVo] = []
     // TMPE
