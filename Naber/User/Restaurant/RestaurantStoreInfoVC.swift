@@ -108,7 +108,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             
             self.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
             if self.restaurantInfo.not_business.count > 0 {
-                self.workStatus.text = "今日不營業"
+                self.workStatus.text = "今日已結束接單"
             } else if self.restaurantInfo.is_store_now_open.uppercased() == "FALSE" {
                 self.workStatus.text = "該商家尚未營業"
             } else {
@@ -127,7 +127,7 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             self.workStatus.isHidden = true
             if self.restaurantInfo.not_business.count > 0 {
                 self.workStatus.isHidden = false
-                let alert = UIAlertController(title: Optional.none, message: "該商家今日不營業", preferredStyle: .alert)
+                let alert = UIAlertController(title: Optional.none, message: "該商家今日已結束接單", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "我知道了", style: .default))
                 self.present(alert, animated: false)
             } else if self.restaurantInfo.is_store_now_open.uppercased().elementsEqual("FALSE") {

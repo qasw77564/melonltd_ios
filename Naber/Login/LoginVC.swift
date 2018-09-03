@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController  {
     
     
     let USER_TYPES: [Identity] = Identity.getUserValues()
@@ -23,7 +23,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var rememberMeImage: UIButton!
  
     @IBOutlet weak var table: UITableView!
-
+    
     @IBAction func rememberMeSwithOnImage(_ sender: Any) {
         if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
             let image = UIImage(named: "cbNoSelect") as UIImage?
@@ -36,7 +36,6 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-  
         if UserSstorage.getRememberMe() {
             self.rememberMeImage.setImage(UIImage(named:"cbSelect"), for: .normal)
             self.account_text.text = UserSstorage.getAccount()
