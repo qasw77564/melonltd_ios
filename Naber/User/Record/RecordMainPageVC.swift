@@ -81,7 +81,11 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
         cell.totalPayment.text = "$" + self.orders[indexPath.row].order_price
         let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status!)
         cell.status.textColor = status.get().color
-        cell.status.text = status.get().value
+        if status == OrderStatus.UNFINISH{
+            cell.status.text = ""
+        } else {
+            cell.status.text = status.get().value
+        }
         if self.orders.count - 1 == indexPath.row  && self.reqData.loadingMore {
             self.loadData(refresh: false)
         }

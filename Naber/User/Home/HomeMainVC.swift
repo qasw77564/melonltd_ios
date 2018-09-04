@@ -150,7 +150,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         
         cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
         if Model.TOP_RESTAURANT_LIST[indexPath.row].not_business.count > 0 {
-            cell.workStatus.text = "今日不營業"
+            cell.workStatus.text = "今日已結束接單"
         } else if Model.TOP_RESTAURANT_LIST[indexPath.row].is_store_now_open.uppercased().elementsEqual("FALSE") {
             cell.workStatus.text = "該商家尚未營業"
         } else {

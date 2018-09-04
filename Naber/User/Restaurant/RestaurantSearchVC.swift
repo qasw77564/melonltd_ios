@@ -95,53 +95,52 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         self.searchForDistance(self.distanceBtn)
         self.uiButtons.append(contentsOf: [self.distanceBtn, self.areaBtn, self.categoryBtn, self.storeNameBtn])
     }
-    
-    
+
     // 依照店家地理位置模板排序後分頁查找
     @IBAction func searchForDistance (_ sender: UIButton){
-        self.setButtonsDefaultColor(sender: sender)
-        self.reqData.search_type = "DISTANCE";
-        self.reqData.category = ""
-        self.reqData.area = ""
-        self.reqData.name = ""
-        self.reqData.loadingMore = false
-        self.reqData.uuids = []
-        self.templates = []
-        self.enableBasicLocationServices()
-        if self.LM.location != nil {
-            self.location = self.LM.location!
-            ApiManager.restaurantTemplate(ui: self, onSuccess: { tmps in
-                tmps.forEach{ tmp in
-                    let lant: Double = Double(tmp!.latitude)!
-                    let long: Double = Double(tmp!.longitude)!
-                    let distance: Double = self.location.distance(from: CLLocation.init(latitude: lant, longitude: long))
-                    tmp?.distance = distance
-                }
-                var list = tmps
-                list.sort(by: {(o1, o2) -> Bool in
-                    return o1!.distance < o2!.distance
-                })
-
-                var uuids: [String] = []
-                for index in 0..<list.count {
-                    if index % 10 != 0 || index == 0 {
-                        uuids.append((list[index]?.restaurant_uuid)!)
-                    } else if index % 10 == 0 && index != 0 {
-                        self.templates.append(uuids)
-                        uuids = []
-                        uuids.append((list[index]?.restaurant_uuid)!)
+            self.reqData.search_type = "DISTANCE";
+            self.reqData.category = ""
+            self.reqData.area = ""
+            self.reqData.name = ""
+            self.reqData.loadingMore = false
+            self.reqData.uuids = []
+            self.templates = []
+            self.enableBasicLocationServices()
+            if self.LM.location != nil {
+                self.setButtonsDefaultColor(sender: sender)
+                self.location = self.LM.location!
+                ApiManager.restaurantTemplate(ui: self, onSuccess: { tmps in
+                    tmps.forEach{ tmp in
+                        let lant: Double = Double(tmp!.latitude)!
+                        let long: Double = Double(tmp!.longitude)!
+                        let distance: Double = self.location.distance(from: CLLocation.init(latitude: lant, longitude: long))
+                        tmp?.distance = distance
                     }
-                    if index == list.count - 1 {
-                        self.templates.append(uuids)
+                    var list = tmps
+                    list.sort(by: {(o1, o2) -> Bool in
+                        return o1!.distance < o2!.distance
+                    })
+                    
+                    var uuids: [String] = []
+                    for index in 0..<list.count {
+                        if index % 10 != 0 || index == 0 {
+                            uuids.append((list[index]?.restaurant_uuid)!)
+                        } else if index % 10 == 0 && index != 0 {
+                            self.templates.append(uuids)
+                            uuids = []
+                            uuids.append((list[index]?.restaurant_uuid)!)
+                        }
+                        if index == list.count - 1 {
+                            self.templates.append(uuids)
+                        }
                     }
+                    self.reqData.uuids.append(contentsOf: self.templates[0])
+                    self.loadData(refresh: true)
+                }) { err_msg in
+                
                 }
-                self.reqData.uuids.append(contentsOf: self.templates[0])
-                self.loadData(refresh: true)
-            }) { err_msg in
-
-            }
-        }
     }
+}
     
     // 依照選取區域名稱查找
     @IBAction func searchForArea (_ sender: UIButton){
@@ -270,7 +269,7 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
         if Model.TMPE_RESTAURANT_LIST[indexPath.row].not_business.count > 0 {
-            cell.workStatus.text = "今日不營業"
+            cell.workStatus.text = "今日已結束接單"
         } else if Model.TMPE_RESTAURANT_LIST[indexPath.row].is_store_now_open.uppercased().elementsEqual("FALSE") {
             cell.workStatus.text = "該商家尚未營業"
         } else {
@@ -350,5 +349,12 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         sender.setTitleColor(UIColor.white, for: .normal)
         sender.backgroundColor = NaberConstant.COLOR_BASIS
     }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let currentLocation = locations.last!
+//        print("Current location: \(currentLocation)")
+//    }
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("Error \(error)")
+//    }
 }
 
