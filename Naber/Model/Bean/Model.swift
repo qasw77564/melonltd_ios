@@ -26,6 +26,7 @@ class Model {
     public static var NABER_BULLETINS : [String] = []
     
     public static var USER_CACHE_SHOPPING_CART : [OrderDetail] = []
+    public static var STORE_DATE_RANGES: [DateRangeVo] = []
     
 //    var shoppingCartDatas: [OrderDetail] = []
     

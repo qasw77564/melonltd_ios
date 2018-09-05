@@ -123,6 +123,10 @@ class StoreDetailSettingVC : UIViewController, UIPickerViewDelegate, UIPickerVie
             self.restaurant.bulletin = StringsHelper.replace(str: self.bulletin.text, of: " ", with: "")
             ApiManager.sellerRestaurantSetting(req: self.restaurant, ui: self, onSuccess: { restaurant in
                 self.restaurant = restaurant
+                if self.restaurant.can_store_range.count != 0 {
+                    Model.STORE_DATE_RANGES.removeAll()
+                    Model.STORE_DATE_RANGES.append(contentsOf: self.restaurant.can_store_range)
+                }
                 self.tableView.reloadData()
             }) { err_msg in
                 print(err_msg)

@@ -48,7 +48,7 @@ class UserSettingMainPageTVC: UITableViewController {
             self.accunt.text = account?.account
             self.bonus.text = account?.bonus
             
-            self.photo.setImage(with: URL(string: account?.photo ?? ""), placeholder: UIImage(named: "LogoReverse"), transformer: TransformerHelper.transformer(identifier: account?.photo ?? ""),  completion: { image in
+            self.photo.setImage(with: URL(string: account?.photo ?? ""), transformer: TransformerHelper.transformer(identifier: account?.photo ?? ""),  completion: { image in
                 if image == nil {
                     self.photo.image = UIImage(named: "LogoReverse")
                 }

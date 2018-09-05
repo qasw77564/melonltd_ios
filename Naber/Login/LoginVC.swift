@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController  {
     
     
     let USER_TYPES: [Identity] = Identity.getUserValues()
@@ -21,9 +21,22 @@ class LoginVC: UIViewController {
     @IBOutlet weak var store_register_button: UIButton!
 //    @IBOutlet weak var rememberMeButton: UIButton!
     @IBOutlet weak var rememberMeImage: UIButton!
- 
-    @IBOutlet weak var table: UITableView!
-
+    
+    
+    @IBOutlet weak var table: UITableView! {
+        didSet {
+            let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+            gestureRecognizer.numberOfTapsRequired = 1
+            gestureRecognizer.cancelsTouchesInView = false
+            self.table.addGestureRecognizer(gestureRecognizer)
+        }
+    }
+    // UITableView click bk hide keyboard
+    @objc func hideKeyboard(sender: Any){
+        self.view.endEditing(true)
+    }
+    
+    
     @IBAction func rememberMeSwithOnImage(_ sender: Any) {
         if (rememberMeImage.currentImage?.isEqual(UIImage(named: "cbSelect")))! {
             let image = UIImage(named: "cbNoSelect") as UIImage?
@@ -36,7 +49,6 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-  
         if UserSstorage.getRememberMe() {
             self.rememberMeImage.setImage(UIImage(named:"cbSelect"), for: .normal)
             self.account_text.text = UserSstorage.getAccount()
@@ -45,14 +57,6 @@ class LoginVC: UIViewController {
             UserSstorage.clearAccount()
             self.account_text.text = ""
         }
-        
-//        if true {
-//            self.account_text.text = "NER-18X6XX1"
-//            self.password_text.text = "a123456"
-//            self.account_text.text = "demo"
-//            self.password_text.text = "d654321"
-//        }
-        
     }
   
     private func verifyInput () -> String {
