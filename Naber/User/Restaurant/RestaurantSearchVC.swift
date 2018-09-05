@@ -98,15 +98,16 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
 
     // 依照店家地理位置模板排序後分頁查找
     @IBAction func searchForDistance (_ sender: UIButton){
-            self.reqData.search_type = "DISTANCE";
-            self.reqData.category = ""
-            self.reqData.area = ""
-            self.reqData.name = ""
-            self.reqData.loadingMore = false
-            self.reqData.uuids = []
-            self.templates = []
             self.enableBasicLocationServices()
             if self.LM.location != nil {
+                self.reqData.search_type = "DISTANCE";
+                self.reqData.category = ""
+                self.reqData.area = ""
+                self.reqData.name = ""
+                self.reqData.loadingMore = false
+                self.reqData.uuids = []
+                self.templates = []
+                
                 self.setButtonsDefaultColor(sender: sender)
                 self.location = self.LM.location!
                 ApiManager.restaurantTemplate(ui: self, onSuccess: { tmps in
@@ -252,21 +253,12 @@ class RestaurantSearchVC: UIViewController, UITableViewDataSource, UITableViewDe
         cell.address.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].address
         cell.time.text = Model.TMPE_RESTAURANT_LIST[indexPath.row].store_start + " ~ " + Model.TMPE_RESTAURANT_LIST[indexPath.row].store_end
         
-        cell.photo.setImage(with: URL(string:  Model.TMPE_RESTAURANT_LIST[indexPath.row].photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier:  Model.TMPE_RESTAURANT_LIST[indexPath.row].photo ?? ""),  completion: { image in
+        cell.photo.setImage(with: URL(string:  Model.TMPE_RESTAURANT_LIST[indexPath.row].photo ?? ""), transformer: TransformerHelper.transformer(identifier:  Model.TMPE_RESTAURANT_LIST[indexPath.row].photo ?? ""),  completion: { image in
             if image == nil {
                 cell.photo.image = UIImage(named: "Logo")
             }
         })
-        
-        
-        
-//        if Model.TMPE_RESTAURANT_LIST[indexPath.row].photo != nil {
-//            cell.photo.setImage(with: URL(string: Model.TMPE_RESTAURANT_LIST[indexPath.row].photo), transformer: TransformerHelper.transformer(identifier: Model.TMPE_RESTAURANT_LIST[indexPath.row].photo))
-//        }else {
-//            cell.photo.image = UIImage(named: "Logo")
-//        }
-        
-        
+      
         cell.workStatus.textColor = UIColor.init(red: 234/255, green: 33/255, blue: 5/255, alpha: 1.0)
         if Model.TMPE_RESTAURANT_LIST[indexPath.row].not_business.count > 0 {
             cell.workStatus.text = "今日已結束接單"

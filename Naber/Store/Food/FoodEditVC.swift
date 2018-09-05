@@ -29,7 +29,7 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.foodName.text = self.food.food_name
         // TODO
         
-        self.photo.setImage(with: URL(string: self.food.photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: self.food.photo ?? ""),  completion: { image in
+        self.photo.setImage(with: URL(string: self.food.photo ?? ""), transformer: TransformerHelper.transformer(identifier: self.food.photo ?? ""),  completion: { image in
             if image == nil {
                 self.photo.image = UIImage(named: "Logo")
             }
@@ -326,8 +326,7 @@ class FoodEditVC : UIViewController, UITableViewDelegate, UITableViewDataSource,
             reqData.date = url.absoluteString
             reqData.type = "FOOD"
             ApiManager.uploadPhoto(req: reqData, ui: self, onSuccess: { urlString in
-                
-                self.photo.setImage(with: URL(string: url.absoluteString), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: url.absoluteString),  completion: { image in
+                self.photo.setImage(with: URL(string: url.absoluteString), transformer: TransformerHelper.transformer(identifier: url.absoluteString),  completion: { image in
                     if image == nil {
                         self.photo.image = UIImage(named: "Logo")
                     }

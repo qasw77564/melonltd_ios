@@ -142,7 +142,7 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         cell.address.text = Model.TOP_RESTAURANT_LIST[indexPath.row].address
         cell.time.text = Model.TOP_RESTAURANT_LIST[indexPath.row].store_start + " ~ " + Model.TOP_RESTAURANT_LIST[indexPath.row].store_end
 
-        cell.photo.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo ?? ""),  completion: { image in
+        cell.photo.setImage(with: URL(string: Model.TOP_RESTAURANT_LIST[indexPath.row].photo ?? ""), transformer: TransformerHelper.transformer(identifier: Model.TOP_RESTAURANT_LIST[indexPath.row].photo ?? ""),  completion: { image in
             if image == nil {
                 cell.photo.image = UIImage(named: "Logo")
             }
@@ -206,13 +206,13 @@ class HomeMainVC: UIViewController,UITableViewDataSource, UITableViewDelegate ,F
         
         // isPad insert pad_photo
         if UIDevice.current.model.range(of: "iPad") != nil{
-            cell.imageView?.setImage(with: URL(string: Model.ADVERTISEMENTS[index].pad_photo ?? ""), placeholder: UIImage(named: "naber_pad_default_image.png"), transformer: TransformerHelper.transformer(identifier: Model.ADVERTISEMENTS[index].pad_photo ?? ""),  completion: { image in
+            cell.imageView?.setImage(with: URL(string: Model.ADVERTISEMENTS[index].pad_photo ?? ""), transformer: TransformerHelper.transformer(identifier: Model.ADVERTISEMENTS[index].pad_photo ?? ""),  completion: { image in
                 if image == nil {
                     cell.imageView?.image = UIImage(named: "naber_pad_default_image.png")
                 }
             })
         } else {
-            cell.imageView?.setImage(with: URL(string: Model.ADVERTISEMENTS[index].photo ?? ""), placeholder: UIImage(named: "naber_default_image.png"), transformer: TransformerHelper.transformer(identifier: Model.ADVERTISEMENTS[index].photo ?? ""),  completion: { image in
+            cell.imageView?.setImage(with: URL(string: Model.ADVERTISEMENTS[index].photo ?? ""), transformer: TransformerHelper.transformer(identifier: Model.ADVERTISEMENTS[index].photo ?? ""),  completion: { image in
                 if image == nil {
                     cell.imageView?.image = UIImage(named: "naber_default_image.png")
                 }

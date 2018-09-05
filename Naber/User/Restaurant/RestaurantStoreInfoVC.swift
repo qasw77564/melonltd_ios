@@ -81,13 +81,13 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
             
             self.time.text = self.restaurantInfo.store_start + " ~ " + self.restaurantInfo.store_end
 
-            self.photo.setImage(with: URL(string: self.restaurantInfo.photo ?? ""), placeholder: UIImage(named: "Logo"), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.photo ?? ""),  completion: { image in
+            self.photo.setImage(with: URL(string: self.restaurantInfo.photo ?? ""), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.photo ?? ""),  completion: { image in
                 if image == nil {
                     self.photo.image = UIImage(named: "Logo")
                 }
             })
             
-            self.backgroundPhoto.setImage(with: URL(string: self.restaurantInfo.background_photo ?? ""), placeholder: UIImage(named: "naber_default_image"), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.background_photo ?? ""),  completion: { image in
+            self.backgroundPhoto.setImage(with: URL(string: self.restaurantInfo.background_photo ?? ""), transformer: TransformerHelper.transformer(identifier: self.restaurantInfo.background_photo ?? ""),  completion: { image in
                 if image == nil {
                     self.backgroundPhoto.image = UIImage(named: "naber_default_image")
                 }
