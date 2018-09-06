@@ -11,6 +11,10 @@ import Firebase
 
 class BaseVC: UIViewController{
     let USER_TYPES: [Identity] = Identity.getUserValues()
+    
+    
+    @IBOutlet weak var btn: UIButton!
+    @IBOutlet weak var intro: UIImageView!
 
     override func loadView() {
         super.loadView()

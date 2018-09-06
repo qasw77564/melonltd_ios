@@ -10,6 +10,7 @@ import UIKit
 
 class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    var IS_SORT_FOOD: Bool = false
     var categoryRel: CategoryRelVo!
     var foods: [FoodVo] = []
 
@@ -22,7 +23,16 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
             refreshControl.tintColor = UIColor.clear
             self.tableView.addSubview(refreshControl)
+            
+            let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+            gestureRecognizer.numberOfTapsRequired = 1
+            gestureRecognizer.cancelsTouchesInView = false
+            self.tableView.addGestureRecognizer(gestureRecognizer)
         }
+    }
+    // UITableView click bk hide keyboard
+    @objc func hideKeyboard(sender: Any){
+        self.view.endEditing(true)
     }
 
     @objc func refresh(sender: UIRefreshControl){
@@ -32,11 +42,14 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func loadData(refresh: Bool){
         self.foods.removeAll()
+        self.tableView.reloadData()
         let reqData: ReqData = ReqData()
         reqData.uuid = self.categoryRel.category_uuid
         ApiManager.sellerFoodList(req: reqData, ui: self, onSuccess: { foods in
-            print(foods)
-            self.foods.append(contentsOf: foods)
+            let sortedArray = foods.sorted(by: { (o1, o2) -> Bool in
+                Int(o1.top)! < Int(o2.top)!
+            })
+            self.foods.append(contentsOf: sortedArray)
             self.tableView.reloadData()
         }) { err_msg in
             print(err_msg)
@@ -52,6 +65,7 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.IS_SORT_FOOD = false
         self.loadData(refresh: true)
         self.name.text = self.categoryRel.category_name
     }
@@ -85,7 +99,9 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 cell.photo.image = UIImage(named: "Logo")
             }
         })
-        
+        cell.sortNum.tag = indexPath.row
+        cell.sortNum.text = self.foods[indexPath.row].top
+        cell.sortNum.isEnabled = self.IS_SORT_FOOD
         return cell
     }
     
@@ -179,6 +195,42 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func changeSortNum(_ sender: UITextField) {
+        let top: String = sender.text! == "" ? "0" : sender.text!
+        self.foods[sender.tag].top = Int(top)!.description
+        print("changeSortNum : ", self.foods[sender.tag].top)
+    }
+    
+    @IBAction func sortFoodAction(_ sender: UIBarButtonItem) {
+        
+        if self.IS_SORT_FOOD {
+            let alert = UIAlertController(title: Optional.none, message: "確認排序結果", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .destructive){ _ in
+                self.loadData(refresh: true)
+            })
+            alert.addAction(UIAlertAction(title: "確定", style: .default){ _ in
+                ApiManager.sellerFoodSort(req: self.foods, ui: self, onSuccess: { foods in
+                    self.foods.removeAll()
+                    let sortedArray = foods.sorted(by: { (o1, o2) -> Bool in
+                        Int(o1.top)! < Int(o2.top)!
+                    })
+                    self.foods.append(contentsOf: sortedArray)
+                    self.tableView.reloadData()
+                    
+                }, onFail: { err_msg in
+                    print(err_msg)
+                    self.loadData(refresh: true)
+                })
+            })
+            self.present(alert, animated: false)
+        }
+        
+        self.IS_SORT_FOOD = !self.IS_SORT_FOOD
+        self.tableView.reloadData()
+        sender.title = self.IS_SORT_FOOD ? "儲存排序" : "編輯排序"
+        
     }
     
     // 限制輸入長度

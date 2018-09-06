@@ -30,14 +30,13 @@ class CategoryRelListResp : Codable {
             return nil
         }
     }
-    
 }
 
 class CategoryRelResp : Codable {
-    var status : String!
-    var err_code : String!
-    var err_msg : String!
-    var data : CategoryRelVo!
+    var status: String!
+    var err_code: String!
+    var err_msg: String!
+    var data: CategoryRelVo!
     
     public static func toJson(structs : CategoryRelResp) -> String {
         do {
@@ -54,17 +53,26 @@ class CategoryRelResp : Codable {
             return nil
         }
     }
-    
 }
 
 
 
 class CategoryRelVo : Codable {
-    
     var category_uuid: String!
     var restaurant_uuid: String!
     var category_name: String!
-    var status : String!
+    var top: String!
+    var status: String!
+    
+    
+    public static func toJsonArray(structs : [CategoryRelVo]) -> String {
+        do {
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+        } catch {
+            return ""
+        }
+    }
+    
     
     public static func toJson(structs : CategoryRelVo) -> String {
         do {

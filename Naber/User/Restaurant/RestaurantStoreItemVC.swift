@@ -43,7 +43,10 @@ class RestaurantStoreItemVC: UIViewController, UITableViewDelegate, UITableViewD
             self.categoryName.text = self.categoryRel.category_name
             let uuid : String = self.categoryRel.category_uuid
             ApiManager.restaurantFoodList(uuid: uuid, ui: self, onSuccess: { foods in
-                self.foodList.append(contentsOf: foods)
+                let sortedArray = foods.sorted(by: { (o1, o2) -> Bool in
+                    Int(o1.top)! < Int(o2.top)!
+                })
+                self.foodList.append(contentsOf: sortedArray)
                 self.tableView.reloadData()
             }) { err_msg in
                 print(err_msg)

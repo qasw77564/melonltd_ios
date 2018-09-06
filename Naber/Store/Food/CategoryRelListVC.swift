@@ -9,8 +9,10 @@
 import UIKit
 
 
-class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+    
+    var IS_SORT_CAT: Bool = false
     var categorys: [CategoryRelVo] = []
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -21,7 +23,16 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
             refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
             refreshControl.tintColor = UIColor.clear
             self.tableView.addSubview(refreshControl)
+            
+            let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+            gestureRecognizer.numberOfTapsRequired = 1
+            gestureRecognizer.cancelsTouchesInView = false
+            self.tableView.addGestureRecognizer(gestureRecognizer)
         }
+    }
+    // UITableView click bk hide keyboard
+    @objc func hideKeyboard(sender: Any){
+        self.view.endEditing(true)
     }
     
     @objc func refresh(sender: UIRefreshControl){
@@ -33,7 +44,10 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.categorys.removeAll()
         self.tableView.reloadData()
         ApiManager.sellerCategoryList(ui: self, onSuccess: { categorys in
-            self.categorys.append(contentsOf: categorys)
+            let sortedArray = categorys.sorted(by: { (o1, o2) -> Bool in
+                Int(o1.top)! < Int(o2.top)!
+            })
+            self.categorys.append(contentsOf: sortedArray)
             self.tableView.reloadData()
         }) { err_msg in
             print(err_msg)
@@ -54,6 +68,7 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
    override func viewWillAppear(_ animated: Bool) {
+        self.IS_SORT_CAT = false
         self.loadData(refresh: true)
         self.categoryName.text = ""
     }
@@ -79,9 +94,11 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.deleteBtn.tag = indexPath.row
         cell.editBtn.tag = indexPath.row
         cell.switchBtn.tag = indexPath.row
-        
         cell.name.text = self.categorys[indexPath.row].category_name
-
+        cell.sortNum.delegate = self
+        cell.sortNum.tag = indexPath.row
+        cell.sortNum.text = self.categorys[indexPath.row].top
+        cell.sortNum.isEnabled = self.IS_SORT_CAT
         return cell
     }
     
@@ -142,6 +159,54 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func changeSortNum(_ sender: UITextField) {
+        let top: String = sender.text! == "" ? "0" : sender.text!
+        self.categorys[sender.tag].top = Int(top)!.description
+        print("changeSortNum : ", self.categorys[sender.tag].top)
+    }
+    
+    // 限制輸入長度
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength: Int = text.count + string.count - range.length
+        if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
+            return false
+        }
+        return newLength <= 2
+    }
+    
+    
+    @IBAction func sortCategoryAction(_ sender: UIBarButtonItem) {
+        
+        if self.IS_SORT_CAT {
+            let alert = UIAlertController(title: Optional.none, message: "確認排序結果", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .destructive){ _ in
+                self.loadData(refresh: true)
+            })
+            alert.addAction(UIAlertAction(title: "確定", style: .default){ _ in
+                ApiManager.sellerSortCategory(req: self.categorys, ui: self, onSuccess: { categorys in
+                    self.categorys.removeAll()
+                    
+                    let sortedArray = categorys.sorted(by: { (o1, o2) -> Bool in
+                        Int(o1.top)! < Int(o2.top)!
+                    })
+                    
+                    self.categorys.append(contentsOf: sortedArray)
+                    self.tableView.reloadData()
+                }) {err_msg in
+                    print(err_msg)
+                    self.loadData(refresh: true)
+                }
+            })
+            self.present(alert, animated: false)
+        }
+        
+        self.IS_SORT_CAT = !self.IS_SORT_CAT
+        self.tableView.reloadData()
+        sender.title = self.IS_SORT_CAT ? "儲存排序" : "編輯排序"
+  
     }
 }
 

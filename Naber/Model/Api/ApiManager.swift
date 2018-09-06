@@ -188,7 +188,7 @@ class ApiManager {
     }
 
     // 餐館細節，系列列表
-    public static func restaurantCategoryList (uuid: String, ui: UIViewController, onSuccess: @escaping ([CategoryRelVo?]) -> (), onFail: @escaping (String) -> ()) {
+    public static func restaurantCategoryList (uuid: String, ui: UIViewController, onSuccess: @escaping ([CategoryRelVo]) -> (), onFail: @escaping (String) -> ()) {
         let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_DETAIL, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
@@ -202,7 +202,7 @@ class ApiManager {
     }
     
     // 系列下品項列表
-    public static func restaurantFoodList (uuid: String, ui: UIViewController, onSuccess: @escaping ([FoodVo?]) -> (), onFail: @escaping (String) -> ()) {
+    public static func restaurantFoodList (uuid: String, ui: UIViewController, onSuccess: @escaping ([FoodVo]) -> (), onFail: @escaping (String) -> ()) {
         let req: ReqData = ReqData()
         req.uuid = uuid
         self.postAutho(url: ApiUrl.RESTAURANT_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
@@ -444,6 +444,19 @@ class ApiManager {
             }
         })
     }
+    
+    // 排序種類
+    public static func sellerSortCategory (req: [CategoryRelVo], ui: UIViewController, onSuccess: @escaping ([CategoryRelVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_SORT_CATEGORY, data: CategoryRelVo.toJsonArray(structs: req) , ui:ui, complete: { response in
+            let resp:  CategoryRelListResp = CategoryRelListResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
    // 品項列表
     public static func sellerFoodList (req: ReqData, ui: UIViewController, onSuccess: @escaping ([FoodVo]) -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.SELLER_FOOD_LIST, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
@@ -491,6 +504,19 @@ class ApiManager {
             }
         })
     }
+    
+    // 品項排序
+    public static func sellerFoodSort (req: [FoodVo], ui: UIViewController, onSuccess: @escaping ( [FoodVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SELLER_SORT_FOOD, data: FoodVo.toJsonArray(structs: req) , ui:ui, complete: { response in
+            let resp: FoodListResp = FoodListResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
     
     // 取得餐館資訊(未測試)
     public static func sellerRestaurantInfo (ui: UIViewController, onSuccess: @escaping (RestaurantInfoVo) -> (), onFail: @escaping (String) -> ()) {

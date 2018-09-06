@@ -11,6 +11,11 @@ import UIKit
 class CategoryRelCell: UITableViewCell {
 
 
+    @IBOutlet weak var sortNum: UITextField!{
+        didSet{
+            self.sortNum.isEnabled = false
+        }
+    }
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var switchBtn: UISwitch!
     @IBOutlet weak var deleteBtn: UIButton!
