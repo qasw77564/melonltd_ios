@@ -11,6 +11,7 @@ import UIKit
 class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var IS_SORT_FOOD: Bool = false
+    @IBOutlet weak var sortBtnItem: UIBarButtonItem!
     var categoryRel: CategoryRelVo!
     var foods: [FoodVo] = []
 
@@ -66,6 +67,7 @@ class FoodListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     override func viewWillAppear(_ animated: Bool) {
         self.IS_SORT_FOOD = false
+        self.sortBtnItem.title = "編輯排序"
         self.loadData(refresh: true)
         self.name.text = self.categoryRel.category_name
     }

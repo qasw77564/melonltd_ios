@@ -14,6 +14,8 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var IS_SORT_CAT: Bool = false
     var categorys: [CategoryRelVo] = []
+    @IBOutlet weak var sortBtnItem: UIBarButtonItem!
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             self.tableView.dataSource = self
@@ -69,6 +71,7 @@ class CategoryRelListVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
    override func viewWillAppear(_ animated: Bool) {
         self.IS_SORT_CAT = false
+        self.sortBtnItem.title = "編輯排序"
         self.loadData(refresh: true)
         self.categoryName.text = ""
     }

@@ -1936,6 +1936,7 @@
                     <connections>
                         <outlet property="addCategoryBtn" destination="oQk-hy-MF0" id="YEn-yq-OeJ"/>
                         <outlet property="categoryName" destination="zXn-e4-OuV" id="RRX-PR-8rt"/>
+                        <outlet property="sortBtnItem" destination="zyf-b7-rpq" id="GKD-Dr-Obx"/>
                         <outlet property="tableView" destination="EaA-AI-qp0" id="Yyz-i6-rtH"/>
                     </connections>
                 </viewController>
@@ -3304,6 +3305,7 @@
                     <connections>
                         <outlet property="addFoodBtn" destination="JPJ-uk-NSZ" id="FA0-Gk-Fr9"/>
                         <outlet property="name" destination="Mrz-dh-sQN" id="gNH-cD-Ucs"/>
+                        <outlet property="sortBtnItem" destination="bn1-zU-0m2" id="PM9-JK-31P"/>
                         <outlet property="tableView" destination="AvR-wT-59x" id="DPV-qz-ALw"/>
                     </connections>
                 </viewController>
@@ -3656,7 +3658,7 @@
                                                                         </connections>
                                                                     </textField>
                                                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgO-nS-nf6">
-                                                                        <rect key="frame" x="311" y="-0.66666666666666785" width="40" height="40.666666666666671"/>
+                                                                        <rect key="frame" x="311" y="-0.66666666666666785" width="40" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="QgO-nS-nf6" secondAttribute="height" multiplier="1:1" id="3RI-gk-1wr"/>
                                                                             <constraint firstAttribute="height" constant="40" id="7Uj-e1-AuP"/>
