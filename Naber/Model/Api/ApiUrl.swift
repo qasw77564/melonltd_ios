@@ -10,9 +10,9 @@ import Foundation
 
 class ApiUrl{   
 
-    public static var DOMAIN: String = "http://192.168.1.108"
-//    public static var DOMAIN: String = "http://192.168.1.107:8080/melonltd-ap"
-//    public static var DOMAIN: String = "https://ap.melonltd.com.tw"
+//    public static var DOMAIN: String = "http://192.168.1.108"
+//    public static var DOMAIN: String = "http://192.168.31.14:8080/melonltd-ap"
+    public static var DOMAIN: String = "https://ap.melonltd.com.tw"
     
     public static var LOGIN: String = DOMAIN + "/login"
     public static var LOGOUT: String = DOMAIN + "/logout"
@@ -22,7 +22,9 @@ class ApiUrl{
     public static var SELLER_REGISTERED: String = DOMAIN + "/registered/seller"
     
     // common
+    public static var APP_INTRO_BULLETIN: String = DOMAIN + "/common/app/intro/bulletin"
     public static var STORE_CATEGORY_LIST: String = DOMAIN + "/common/store/category/list"
+    public static var STORE_AREA_LIST: String = DOMAIN + "/common/store/area/list"
     public static var CHECK_APP_VERSION: String = DOMAIN + "/common/check/app/version"
     
     // user

@@ -128,7 +128,29 @@ class ApiManager {
     }
     
     
+    // 3.取得店家類型列表
+    public static func storeAreaList (ui: UIViewController, onSuccess: @escaping ([String]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.STORE_AREA_LIST, data: "", ui:ui, complete: { response in
+            let resp: StoreAreaListResp = StoreAreaListResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
     
+    // 4.取得App進入引導公告圖
+    public static func appIntroBulletin (ui: UIViewController, onSuccess: @escaping (String) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.APP_INTRO_BULLETIN, data: "", ui:ui, complete: { response in
+            let resp: AppIntroBulletinResp = AppIntroBulletinResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
     
     
     
