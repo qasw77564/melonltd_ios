@@ -25,7 +25,8 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var backgroundPhoto: UIImageView!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var bulletin: UILabel!
+//    @IBOutlet weak var bulletin: UILabel!
+    @IBOutlet weak var bulletin: UITextView!
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
