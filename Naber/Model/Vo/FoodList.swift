@@ -32,18 +32,29 @@ class FoodListResp : Codable {
 
 }
 
-class FoodVo : Codable {
-    var food_uuid : String!
-    var category_uuid : String!
-    var food_name : String!
-    var default_price : String!
-    var photo : String!
-    var photo_type : String!
-    var food_data : FoodItemVo!
-    var status : String!
+class FoodVo: Codable {
+    var food_uuid: String!
+    var category_uuid: String!
+    var food_name: String!
+    var default_price: String!
+    var photo: String!
+    var photo_type: String!
+    var food_data: FoodItemVo!
+    var top: String!
+    var status: String!
+    var enable: String!
+    var create_date: String!
 
 
     public static func toJson(structs : FoodVo) -> String {
+        do {
+            return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
+        } catch {
+            return ""
+        }
+    }
+    
+    public static func toJsonArray(structs : [FoodVo]) -> String {
         do {
             return String(data: try JSONEncoder().encode(structs), encoding: .utf8)!
         } catch {

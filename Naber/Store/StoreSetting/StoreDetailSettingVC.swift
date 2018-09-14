@@ -118,18 +118,24 @@ class StoreDetailSettingVC : UIViewController, UIPickerViewDelegate, UIPickerVie
             alert.addAction(UIAlertAction(title: "我知道了", style: .default))
             self.present(alert, animated: false)
         }else {
-            self.restaurant.store_start = self.startDate.text
-            self.restaurant.store_end = self.endDate.text
-            self.restaurant.bulletin = StringsHelper.replace(str: self.bulletin.text, of: " ", with: "")
-            ApiManager.sellerRestaurantSetting(req: self.restaurant, ui: self, onSuccess: { restaurant in
-                self.restaurant = restaurant
-                if self.restaurant.can_store_range.count != 0 {
-                    Model.STORE_DATE_RANGES.removeAll()
-                    Model.STORE_DATE_RANGES.append(contentsOf: self.restaurant.can_store_range)
+            if self.bulletin.text.count > 100 {
+                let alert = UIAlertController(title: Optional.none, message: "公告編輯字數已超出最大範圍，\n請重新編輯至 100 字數以下。", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+                self.present(alert, animated: false)
+            }else {
+                self.restaurant.store_start = self.startDate.text
+                self.restaurant.store_end = self.endDate.text
+                self.restaurant.bulletin = StringsHelper.replace(str: self.bulletin.text, of: " ", with: "")
+                ApiManager.sellerRestaurantSetting(req: self.restaurant, ui: self, onSuccess: { restaurant in
+                    self.restaurant = restaurant
+                    if self.restaurant.can_store_range.count != 0 {
+                        Model.STORE_DATE_RANGES.removeAll()
+                        Model.STORE_DATE_RANGES.append(contentsOf: self.restaurant.can_store_range)
+                    }
+                    self.tableView.reloadData()
+                }) { err_msg in
+                    print(err_msg)
                 }
-                self.tableView.reloadData()
-            }) { err_msg in
-                print(err_msg)
             }
         }
     }

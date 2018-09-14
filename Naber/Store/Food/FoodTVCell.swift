@@ -8,9 +8,14 @@
 
 import UIKit
 
-class FoodTVCell: UITableViewCell {
+class FoodTVCell: UITableViewCell, UITextFieldDelegate {
 
-    
+    @IBOutlet weak var sortNum: UITextField! {
+        didSet {
+            self.sortNum.isEnabled = false
+            self.sortNum.delegate = self
+        }
+    }
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var photo: UIImageView!{
@@ -32,6 +37,17 @@ class FoodTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    // 限制輸入長度
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength: Int = text.count + string.count - range.length
+        if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
+            return false
+        }
+        return newLength <= 2
     }
 
 }

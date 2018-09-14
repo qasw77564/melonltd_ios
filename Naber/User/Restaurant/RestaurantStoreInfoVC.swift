@@ -25,7 +25,8 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var backgroundPhoto: UIImageView!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var bulletin: UILabel!
+//    @IBOutlet weak var bulletin: UILabel!
+    @IBOutlet weak var bulletin: UITextView!
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -151,7 +152,11 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
         if self.restaurantInfo != nil {
             let uuid: String = self.restaurantInfo.restaurant_uuid
             ApiManager.restaurantCategoryList(uuid: uuid, ui: self, onSuccess: { restaurantCategorys in
-                self.categoryList.append(contentsOf: restaurantCategorys)
+                let sortedArray = restaurantCategorys.sorted(by: { (o1, o2) -> Bool in
+                    Int(o1.top)! < Int(o2.top)!
+                })
+                self.categoryList.append(contentsOf: sortedArray)
+              
                 self.tableView.reloadData()
             }, onFail: { err_msg in
 
@@ -159,7 +164,6 @@ class RestaurantStoreInfoVC: UIViewController, UITableViewDataSource, UITableVie
         }
     }
 
-    
     override func show(_ vc: UIViewController, sender: Any?) {
         
     }

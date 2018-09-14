@@ -11,6 +11,10 @@ import Firebase
 
 class BaseVC: UIViewController{
     let USER_TYPES: [Identity] = Identity.getUserValues()
+    
+    
+    @IBOutlet weak var btn: UIButton!
+    @IBOutlet weak var intro: UIImageView!
 
     override func loadView() {
         super.loadView()
@@ -18,6 +22,24 @@ class BaseVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.btn.isEnabled = false
+        self.btn.isHidden = true
+        if UIDevice.current.model.range(of: "iPad") != nil{
+            self.btn.isHidden = true
+            self.intro.isHidden = true
+        } else {
+//            self.btn.isHidden = false
+            self.intro.isHidden = false
+            ApiManager.appIntroBulletin(ui: self, onSuccess: { url in
+                self.intro.setImage(with: URL(string: url), transformer: TransformerHelper.transformer(identifier: url),  completion: { image in
+                    self.btn.isEnabled = true
+                    self.btn.isHidden = false
+                })
+            }) { err_msg in
+                    self.btn.isEnabled = true
+                    self.btn.isHidden = false
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,13 +49,11 @@ class BaseVC: UIViewController{
                 Model.CURRENT_FIRUSER = user?.user
             }
         }
-        self.startUse()
     }
     
 
     // 判斷是否登入過無超過兩週，並判斷上次登入的帳號類別
     override func viewDidAppear(_ animated: Bool) {
-        
         ApiManager.checkAppVersion(ui: self, onSuccess: { appVersion in
             if let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as? String {
                 if !appVersion.version.elementsEqual(version) {
@@ -51,17 +71,24 @@ class BaseVC: UIViewController{
                         })
                     }else {
                         alert.addAction(UIAlertAction(title: "我知道了", style: .default) { _ in
-                            self.startUse()
+                            if UIDevice.current.model.range(of: "iPad") != nil{
+                                self.startUse()
+                            }
                         })
                     }
                     self.present(alert, animated: false)
                 }else {
-                    self.startUse()
+                    if UIDevice.current.model.range(of: "iPad") != nil{
+                        self.startUse()
+                    }
                 }
-            } 
+            }
         }) { err_msg in
-            self.startUse()
+            if UIDevice.current.model.range(of: "iPad") != nil{
+                self.startUse()
+            }
         }
+
     }
     
     
@@ -73,6 +100,36 @@ class BaseVC: UIViewController{
         super.viewDidDisappear(animated)
     }
 
+    @IBAction func goToNext(_ sender: UIButton) {
+        self.checkLoginAccount()
+    }
+    
+    func checkLoginAccount(){
+        let now: Int = Int(Date().timeIntervalSince1970 * 1000)
+        if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
+            let account: AccountInfoVo? = UserSstorage.getAccountInfo()
+            if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
+                // 已登入使用者
+                if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+                    self.present(vc, animated: false, completion: nil)
+                }
+            } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
+                // 已登入過商家
+                if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
+                    self.present(vc, animated: false, completion: nil)
+                }
+            } else {
+                UserSstorage.clearUserData()
+                if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                    self.present(vc, animated: false, completion: nil)
+                }
+            }
+        } else {
+            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+                self.present(vc, animated: false, completion: nil)
+            }
+        }
+    }
     
     func startUse (){
         let msg: String = "\n" +
@@ -92,30 +149,7 @@ class BaseVC: UIViewController{
         let alert = UIAlertController(title: "用NABER訂餐享10%紅利回饋\n紅利兌換項目", message: msg, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "開始使用", style: .default){ _ in
-            let now: Int = Int(Date().timeIntervalSince1970 * 1000)
-            if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
-                let account: AccountInfoVo? = UserSstorage.getAccountInfo()
-                if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
-                    // 已登入使用者
-                    if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
-                        self.present(vc, animated: false, completion: nil)
-                    }
-                } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
-                    // 已登入過商家
-                    if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
-                        self.present(vc, animated: false, completion: nil)
-                    }
-                } else {
-                    UserSstorage.clearUserData()
-                    if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
-                        self.present(vc, animated: false, completion: nil)
-                    }
-                }
-            } else {
-                if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
-                    self.present(vc, animated: false, completion: nil)
-                }
-            }
+            self.checkLoginAccount()
         })
         
         let subView1: UIView = alert.view.subviews[0]

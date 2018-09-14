@@ -12,6 +12,8 @@
 		2017D8E8210CF09100E2376D /* RecordInfoOrderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */; };
 		2036B845210760190081FE92 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B844210760190081FE92 /* BaseVC.swift */; };
 		2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036B8462107621C0081FE92 /* DateTimeHelper.swift */; };
+		20441B8D21429C24005D72AF /* StoreAreaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20441B8C21429C24005D72AF /* StoreAreaList.swift */; };
+		20441B8F2142A936005D72AF /* AppIntroBulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20441B8E2142A936005D72AF /* AppIntroBulletin.swift */; };
 		204C2560210A33830000D3EE /* PageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C255F210A33830000D3EE /* PageType.swift */; };
 		204FF8A42122C1CB00F7ECA5 /* naber_pad_default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 204FF8A32122C1CB00F7ECA5 /* naber_pad_default_image.png */; };
 		204FF8A62122C5AD00F7ECA5 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204FF8A52122C5AD00F7ECA5 /* ApiUrl.swift */; };
@@ -26,6 +28,7 @@
 		20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */; };
 		209F05F2211B352800E66397 /* StoreDetailSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */; };
 		209F05F4211B420500E66397 /* StoreDetailSettingDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */; };
+		20A874C2214A5030002170A6 /* SellerSettingAcountRPTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A874C1214A5030002170A6 /* SellerSettingAcountRPTVC.swift */; };
 		20AF372220FF8BD000D73F79 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372120FF8BD000D73F79 /* AccountInfo.swift */; };
 		20AF372520FF98BA00D73F79 /* NaberConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AF372420FF98BA00D73F79 /* NaberConstant.swift */; };
 		20AF37272100447400D73F79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20AF37262100447400D73F79 /* GoogleService-Info.plist */; };
@@ -160,6 +163,8 @@
 		2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInfoOrderTVCell.swift; sourceTree = "<group>"; };
 		2036B844210760190081FE92 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		2036B8462107621C0081FE92 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
+		20441B8C21429C24005D72AF /* StoreAreaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAreaList.swift; sourceTree = "<group>"; };
+		20441B8E2142A936005D72AF /* AppIntroBulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntroBulletin.swift; sourceTree = "<group>"; };
 		204C255F210A33830000D3EE /* PageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageType.swift; sourceTree = "<group>"; };
 		204FF8A32122C1CB00F7ECA5 /* naber_pad_default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = naber_pad_default_image.png; sourceTree = "<group>"; };
 		204FF8A52122C5AD00F7ECA5 /* ApiUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
@@ -178,6 +183,7 @@
 		20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailVC.swift; sourceTree = "<group>"; };
 		209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingVC.swift; sourceTree = "<group>"; };
 		209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingDateCell.swift; sourceTree = "<group>"; };
+		20A874C1214A5030002170A6 /* SellerSettingAcountRPTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerSettingAcountRPTVC.swift; sourceTree = "<group>"; };
 		20AF372120FF8BD000D73F79 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		20AF372420FF98BA00D73F79 /* NaberConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaberConstant.swift; sourceTree = "<group>"; };
 		20AF37262100447400D73F79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -466,6 +472,8 @@
 				20EF6E36211AA98E00787F4C /* UploadFile.swift */,
 				20EA6307212BF5F6002E81C3 /* StoreCategoryList.swift */,
 				207A5D93212FB2700061396F /* AppVersionLog.swift */,
+				20441B8C21429C24005D72AF /* StoreAreaList.swift */,
+				20441B8E2142A936005D72AF /* AppIntroBulletin.swift */,
 			);
 			path = Vo;
 			sourceTree = "<group>";
@@ -616,6 +624,7 @@
 				DD3FA0AE20C77193006BAA51 /* StoreSettingAboutUsTVC.swift */,
 				209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */,
 				209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */,
+				20A874C1214A5030002170A6 /* SellerSettingAcountRPTVC.swift */,
 			);
 			path = StoreSetting;
 			sourceTree = "<group>";
@@ -978,8 +987,10 @@
 				DD3FA0C420C8A23F006BAA51 /* LeftSideMenuVC.swift in Sources */,
 				20EF6E312119582800787F4C /* FoodMainCell.swift in Sources */,
 				2036B845210760190081FE92 /* BaseVC.swift in Sources */,
+				20441B8D21429C24005D72AF /* StoreAreaList.swift in Sources */,
 				77376C5C2105A2930087F08E /* SellerStat.swift in Sources */,
 				DDFEA7DC20B74A8E00170222 /* UserSettingTutorialTVC.swift in Sources */,
+				20A874C2214A5030002170A6 /* SellerSettingAcountRPTVC.swift in Sources */,
 				20AF372B2100551500D73F79 /* RespData.swift in Sources */,
 				2036B8472107621C0081FE92 /* DateTimeHelper.swift in Sources */,
 				DDF8C27820B1CA4400BF8904 /* LoginVC.swift in Sources */,
@@ -1028,6 +1039,7 @@
 				DD51D1FC20C0CC1E002C5940 /* RestaurantStoreItemVC.swift in Sources */,
 				20E65E7D20FF0A4400F9A252 /* ApiManager.swift in Sources */,
 				20E65E8720FF2F7200F9A252 /* Bulletin.swift in Sources */,
+				20441B8F2142A936005D72AF /* AppIntroBulletin.swift in Sources */,
 				20D9DC2B2105814300D643FE /* RestaurantTemplate.swift in Sources */,
 				DDCAE00520B9B76E005E65C4 /* RestaurantSearchUINC.swift in Sources */,
 				20DEC9D72107891000476917 /* Model.swift in Sources */,

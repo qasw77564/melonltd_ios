@@ -11,7 +11,7 @@ import Foundation
 class ApiUrl{   
 
 //    public static var DOMAIN: String = "http://192.168.1.108"
-//    public static var DOMAIN: String = "http://192.168.1.107:8080/melonltd-ap"
+//    public static var DOMAIN: String = "http://192.168.31.14:8080/melonltd-ap"
     public static var DOMAIN: String = "https://ap.melonltd.com.tw"
     
     public static var LOGIN: String = DOMAIN + "/login"
@@ -22,7 +22,9 @@ class ApiUrl{
     public static var SELLER_REGISTERED: String = DOMAIN + "/registered/seller"
     
     // common
+    public static var APP_INTRO_BULLETIN: String = DOMAIN + "/common/app/intro/bulletin"
     public static var STORE_CATEGORY_LIST: String = DOMAIN + "/common/store/category/list"
+    public static var STORE_AREA_LIST: String = DOMAIN + "/common/store/area/list"
     public static var CHECK_APP_VERSION: String = DOMAIN + "/common/check/app/version"
     
     // user
@@ -55,10 +57,13 @@ class ApiUrl{
     public static var SELLER_ADD_CATEGORY: String = DOMAIN + "/seller/category/add"
     public static var SELLER_CHANGE_CATEGORY: String = DOMAIN + "/seller/category/update"
     public static var SELLER_DELETE_CATEGORY: String = DOMAIN + "/seller/category/delete"
+    public static var SELLER_SORT_CATEGORY: String = DOMAIN + "/seller/category/sort"
+    
     public static var SELLER_FOOD_LIST: String = DOMAIN + "/seller/food/list"
     public static var SELLER_ADD_FOOD: String = DOMAIN + "/seller/food/add"
     public static var SELLER_CHANGE_FOOD: String = DOMAIN + "/seller/food/update"
     public static var SELLER_DELETE_FOOD: String = DOMAIN + "/seller/food/delete"
+    public static var SELLER_SORT_FOOD: String = DOMAIN + "/seller/food/sort"
     public static var SELLER_RESTAURANT_INFO: String = DOMAIN + "/seller/setting/find/restaurant"
     public static var SELLER_RESTAURANT_SETTING: String = DOMAIN + "/seller/setting"
     public static var SELLER_RESTAURANT_SETTING_BUSINESS: String = DOMAIN + "/seller/setting/business"

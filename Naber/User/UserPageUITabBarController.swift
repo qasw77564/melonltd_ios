@@ -19,6 +19,13 @@ class UserPageUITabBarController: UITabBarController {
         }) { err_msg in
             print(err_msg)
         }
+        
+        ApiManager.storeAreaList(ui: self, onSuccess: { categorys in
+            NaberConstant.FILTER_AREAS.removeAll()
+            NaberConstant.FILTER_AREAS.append(contentsOf: categorys)
+        }) { err_msg in
+            print(err_msg)
+        }
     }
 
     override func didReceiveMemoryWarning() {
