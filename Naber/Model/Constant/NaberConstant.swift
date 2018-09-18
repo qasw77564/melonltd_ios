@@ -36,6 +36,8 @@ class NaberConstant {
          "小學生":[""],
          "社會人士/其它":[""]]
 
+    
+    
     static let WEEK_DAY_NAME: [String] = ["日", "ㄧ", "二", "三", "四", "五", "六"]
     
     static let COLOR_BASIS = UIColor(red:0.93, green:0.89, blue:0.41, alpha:1.0)

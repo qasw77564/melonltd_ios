@@ -66,7 +66,7 @@ class OrderVo : Codable {
 
 
 class OrderDetail : Codable {
-    
+    var use_bonus : String!
     var restaurant_uuid: String!
     var restaurant_name: String!
     var user_name: String!

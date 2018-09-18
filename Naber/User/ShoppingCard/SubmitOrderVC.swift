@@ -7,9 +7,23 @@
 //
 
 import UIKit
-class SubmitOrderVC : UIViewController, UITextViewDelegate {
+class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource  {
 
     var orderIndex: Int!
+    var orderDetail: OrderDetail!
+    
+    @IBOutlet weak var table: UITableView! {
+        didSet {
+            let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+            gestureRecognizer.numberOfTapsRequired = 1
+            gestureRecognizer.cancelsTouchesInView = false
+            self.table.addGestureRecognizer(gestureRecognizer)
+        }
+    }
+    // UITableView click bk hide keyboard
+    @objc func hideKeyboard(sender: Any){
+        self.view.endEditing(true)
+    }
     
     var selectDate: String = ""
     var datePicker: UIDatePicker {
@@ -55,6 +69,60 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var bonus: UILabel!
     
+    // 紅利選單
+    var canBnonusDates: [String] = []
+    var bnonusDate: Int = -1
+    @IBOutlet weak var selectBnonus: UITextField! {
+        didSet {
+            self.selectBnonus.isEnabled = false
+        }
+    }
+    var nonusToolbar: UIToolbar {
+        get {
+            let nonusToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let doneBtn = UIBarButtonItem(title: "選擇紅利" , style: .done, target: self, action: #selector(onDoneBtn))
+            let cancelBtn = UIBarButtonItem(title: "取消折抵" , style: .plain, target: self, action: #selector(onCancelBtn))
+            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            nonusToolbar.items = [cancelBtn, space, doneBtn]
+            nonusToolbar.barTintColor = UIColor.white
+            return nonusToolbar
+        }
+    }
+    var nonusPicker: UIPickerView {
+        get {
+            let pickerView = UIPickerView()
+            pickerView.dataSource = self
+            pickerView.delegate = self
+            pickerView.backgroundColor = UIColor.white
+            return pickerView
+        }
+    }
+    
+    @objc func onDoneBtn(sender: UIBarButtonItem) {
+        if self.selectBnonus.isEditing && self.bnonusDate >= 0 {
+            self.selectBnonus.text = self.canBnonusDates[self.bnonusDate]
+            // 訂單總金額 與紅利 重新計算
+            let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
+                return sum + Double(num.item.price)!
+            })
+            self.calculatePrice(price: price - (Double(self.bnonusDate + 1) * 3.0))
+        }
+        self.view.endEditing(true)
+    }
+    
+    @objc func onCancelBtn(sender: UIBarButtonItem) {
+        // 取消折抵
+        // 訂單總金額 與紅利 重新計算
+        self.bnonusDate = -1
+        self.selectBnonus.text = ""
+        self.selectBnonus.placeholder = "選取紅利"
+        let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
+            return sum + Double(num.item.price)!
+        })
+        self.calculatePrice(price: price)
+        self.view.endEditing(true)
+    }
+    
     @IBOutlet weak var readRuleBtn: UIButton!
     
 
@@ -62,25 +130,67 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         self.dateSelect.inputView = self.datePicker
         self.dateSelect.inputAccessoryView = self.toolbar
+        // 紅利選單
+        self.selectBnonus.inputView = self.nonusPicker
+        self.selectBnonus.inputAccessoryView = self.nonusToolbar
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.reTimeRange(picker: self.datePicker)
         self.dateSelect.text = ""
-        let list: [OrderDetail] = UserSstorage.getShoppingCartDatas()
-        let orderDates: [OrderData] = list[self.orderIndex].orders
-        self.name.text = list[self.orderIndex].user_name
-        self.phone.text = list[self.orderIndex].user_phone
-        let price: Double = orderDates.reduce(0.0, { (sum, num) -> Double in
+        self.bnonusDate = -1
+        self.selectBnonus.text = ""
+        self.selectBnonus.placeholder = "選取紅利"
+        self.orderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
+//        let orderDates: [OrderData] = orderDetail.orders
+        self.name.text = orderDetail.user_name
+        self.phone.text = orderDetail.user_phone
+        let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
             return sum + Double(num.item.price)!
         })
-        self.price.text = "$" + Int(price).description
         
-        if let can_discount: String = list[self.orderIndex].can_discount {
+        self.calculatePrice(price: price)
+        
+        if let can_discount: String = orderDetail.can_discount {
+            if can_discount.elementsEqual("Y") {
+                ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
+                    if let user_bonus: Int  = Int((account?.bonus)!) {
+                        let count: Int = user_bonus / 10
+                        if count <= 0 {
+                            self.selectBnonus.placeholder = "紅利不足折抵"
+                        } else if price < 10 {
+                            self.selectBnonus.placeholder = "該品項無法折抵"
+                        } else if count > 0 {
+                            // 產出pick資料
+                            self.canBnonusDates.removeAll()
+                            for index in 1..<count + 1 {
+                                // 連同判斷 訂單總金額
+                                if index > Int(price / 3) {
+                                } else {
+                                    self.canBnonusDates.append((index * 10).description + " 點紅利，折抵" + (index * 3).description + "元" )
+                                }
+                            }
+                            self.selectBnonus.isEnabled = true
+                        }
+                    }
+                }) { err_msg in
+                    print(err_msg)
+                    self.selectBnonus.placeholder = "紅利不足折抵"
+                }
+            }else {
+               self.selectBnonus.placeholder = "該店家不提供紅利"
+            }
+        }
+    }
+    
+    
+    func calculatePrice (price: Double){
+        self.price.text = "$" + Int(price).description
+        if let can_discount: String = self.orderDetail.can_discount {
             self.bonus.text = can_discount == "Y" ? "應得紅利 " + Int(floor(price / 10.0)).description : "該店家不提供紅利"
         }
-
     }
+
     
     @objc func onDateChanged(sender: UIDatePicker) {
         self.selectDate = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy-MM-dd HH:mm")
@@ -140,11 +250,20 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate {
             alert.addAction(UIAlertAction(title: "取消", style: .destructive))
             alert.addAction(UIAlertAction(title: "確認", style: .default){ _ in
                 
-                let detail: OrderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
-                detail.fetch_date = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
-                detail.user_message = StringsHelper.replace(str: self.userMssage.text!, of: " ", with: "")
+                self.orderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
+                self.orderDetail.fetch_date = DateTimeHelper.formToString(date: self.dateSelect.text!, fromDate: "yyyy-MM-dd HH:mm")
+                self.orderDetail.user_message = StringsHelper.replace(str: self.userMssage.text!, of: " ", with: "")
+                self.orderDetail.use_bonus = "0"
                 
-                ApiManager.userOrderSubmit(req: detail, ui: self, onSuccess: {
+                // TODO 送出之前 判斷 order type
+                // 如果計算金額結果 == 原購物車內訂單金額 detail.order_type.billing = "ORIGINAL"
+                // 如果計算金額結果 ！= 原購物車內訂單金額 detail.order_type.billing = "DISCOUNT"
+                if self.bnonusDate > 0 {
+                    self.orderDetail.order_type.billing = "DISCOUNT"
+                    self.orderDetail.use_bonus = ((self.bnonusDate + 1) * 10).description
+                }
+                
+                ApiManager.userOrderSubmit(req: self.orderDetail, ui: self, onSuccess: {
                     // 提交訂單成功 把該筆訂單從手機記憶中移除
                     var shoppingCartData: [OrderDetail] = UserSstorage.getShoppingCartDatas()
                     shoppingCartData.remove(at: self.orderIndex)
@@ -196,7 +315,6 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate {
     
     
     func textViewDidChange(_ textView: UITextView) {
-//        print(textView.text.count)
         if textView.text.count == 0 {
             self.placeHolder.isHidden = false
         } else {
@@ -204,6 +322,23 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate {
         }
     }
     
+    //紅利選擇
+    // MARK: - UIPickerView Methods
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.canBnonusDates.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.canBnonusDates[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.bnonusDate = row
+    }
     
     // 鍵盤點擊背景縮放
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
