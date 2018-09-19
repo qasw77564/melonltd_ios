@@ -154,11 +154,17 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
         if let can_discount: String = orderDetail.can_discount {
             if can_discount.elementsEqual("Y") {
                 ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
-                    if let user_bonus: Int  = Int((account?.bonus)!) {
-                        let count: Int = user_bonus / 10
+                    if let userBonus: Int = Int((account?.bonus)!) {
+                        var count: Int = 0
+                        if let userUseBonus: Int = Int((account?.use_bonus)!) {
+                            // 多端登入，使用紅利有可能超出所得紅利
+                            if userUseBonus < userBonus {
+                                count = (userBonus - userUseBonus) / 10
+                            }
+                        }
                         if count <= 0 {
                             self.selectBnonus.placeholder = "紅利不足折抵"
-                        } else if price < 10 {
+                        } else if price < 3 {
                             self.selectBnonus.placeholder = "該品項無法折抵"
                         } else if count > 0 {
                             // 產出pick資料
@@ -183,14 +189,12 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
         }
     }
     
-    
     func calculatePrice (price: Double){
         self.price.text = "$" + Int(price).description
         if let can_discount: String = self.orderDetail.can_discount {
             self.bonus.text = can_discount == "Y" ? "應得紅利 " + Int(floor(price / 10.0)).description : "該店家不提供紅利"
         }
     }
-
     
     @objc func onDateChanged(sender: UIDatePicker) {
         self.selectDate = DateTimeHelper.dateToStringForm(date: sender.date, form: "yyyy-MM-dd HH:mm")
@@ -209,7 +213,7 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
     }
     
     @IBAction func readRuleAction(_ sender: UIButton) {
-        print(sender.isSelected)
+//        print(sender.isSelected)
         let msg: String = "1.您同意無論任何理由，您都會在所填選擇之取餐時間到場取餐。\n" +
         "2.您非常同意，取餐時間、外送地址是由您本人自行填寫。\n" +
         "3.當您使用外送服務時，您全權擔保您所填寫的地址，可以聯繫到您本人。\n" +

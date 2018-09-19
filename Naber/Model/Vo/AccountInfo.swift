@@ -45,6 +45,7 @@ class AccountInfoVo : Codable{
     var identity : String!
     var school_name : String!
     var bonus : String!
+    var use_bonus : String!
     var level : String!
     var enable : String!
     var is_login : String!

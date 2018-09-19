@@ -36,6 +36,13 @@ class TrendOrderLogDetailVC : UIViewController, UITableViewDelegate, UITableView
         
         self.count.text = "(" + self.order.order_detail.orders.count.description + ")"
         self.price.text = "$ " + self.order.order_price
+        if self.order.order_detail.use_bonus != nil {
+            let price: Int = Int(self.order.order_price)! - (Int(self.order.order_detail.use_bonus)! / 10 * 3)
+            self.price.text = "$" + price.description + ", div. " + self.order.order_detail.use_bonus
+        }else {
+            self.price.text = "$" + self.order.order_price
+        }
+        
         self.name.text = self.order.order_detail.user_name
         self.fetchTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "dd日 HH時 mm分")
         self.userMessage.text = self.order.user_message

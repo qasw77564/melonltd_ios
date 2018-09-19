@@ -217,7 +217,15 @@ class OrderMainVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         cell.orderStatus.isHidden = true
         
         cell.count.text = "(" + self.orders[indexPath.row].order_detail.orders.count.description + ")"
-        cell.price.text = "$" + self.orders[indexPath.row].order_price
+        
+        if self.orders[indexPath.row].order_detail.use_bonus != nil {
+            let price: Int = Int(self.orders[indexPath.row].order_price)! - (Int(self.orders[indexPath.row].order_detail.use_bonus)! / 10 * 3)
+            cell.price.text = "$" + price.description + ", div. " + self.orders[indexPath.row].order_detail.use_bonus
+        }else {
+            cell.price.text = "$" + self.orders[indexPath.row].order_price
+        }
+        
+//        cell.price.text = "$" + self.orders[indexPath.row].order_price
         cell.name.text = self.orders[indexPath.row].order_detail.user_name
         cell.phone.text = self.orders[indexPath.row].order_detail.user_phone
         cell.fetchTime.text = DateTimeHelper.formToString(date: self.orders[indexPath.row].fetch_date, from: "dd日 HH時 mm分")
