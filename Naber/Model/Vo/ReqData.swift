@@ -19,6 +19,7 @@ class ReqData : Codable {
     var email: String!
     var name: String!
     var date: String!
+    var data: String!
     var status: String!
     var search_type: String!
     var uuids: [String]! = []

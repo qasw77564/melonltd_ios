@@ -101,6 +101,7 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         
         let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status)
         cell.orderStatus.text = status.get().value
+        cell.orderType.text = self.orders[indexPath.row].order_detail.order_type.delivery == "OUT" ? "外帶" : "內用"
         cell.count.text = "(" + self.orders[indexPath.row].order_detail.orders.count.description + ")"
         
         if self.orders[indexPath.row].order_detail.use_bonus != nil {

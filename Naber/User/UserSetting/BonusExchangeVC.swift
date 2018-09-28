@@ -13,12 +13,12 @@ import UIKit
 class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var datas : [[String]] = []
+    var activities: [ActivitiesVo] = []
     
 //    @IBOutlet var eventDescription: UILabel!
     @IBOutlet var eventContent: UILabel!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            
             self.tableView.dataSource = self
             self.tableView.delegate = self
             let refreshControl: UIRefreshControl = UIRefreshControl()
@@ -27,19 +27,56 @@ class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             refreshControl.tintColor = UIColor.clear
             self.tableView.addSubview(refreshControl)
         }
-        
     }
     
     @objc func refresh(sender: UIRefreshControl){
-        sender.endRefreshing()
+        self.loadData(refresh: true) {
+            sender.endRefreshing()
+            self.tableView.reloadData()
+        }
     }
     
+    
+    func loadData (refresh: Bool, complete: @escaping () -> ()){
+        if refresh {
+            self.activities.removeAll()
+            self.tableView.reloadData()
+        }
+        
+        let test: [SubjectionRegionVo] = SubjectionRegionVo.parseArray(src: NaberConstant.SUBJECTION_REGIONS)
+        print(test.description)
+        
+        ApiManager.getSubjectionRegions(ui: self, onSuccess: { regions in
+            print(regions)
+        }) { err_msg in
+            print(err_msg)
+        }
+        
+        ApiManager.getAllActivities(ui: self, onSuccess: { activities in
+            self.activities.append(contentsOf: activities)
+            complete()
+        }) { err_msg in
+            print(err_msg)
+        }
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.textData()
-        self.tableView.reloadData()
+//        self.textData()
+        self.loadData(refresh: true) {
+            self.tableView.reloadData()
+        }
     }
-    
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        ApiManager.getAllActivities(ui: self, onSuccess: { activities in
+//            self.activities.append(contentsOf: activities)
+//            self.tableView.reloadData()
+//        }) { err_msg in
+//            print(err_msg)
+//        }
+//    }
+//
     func textData (){
         self.eventContent.text =
         "凡是透過NABER訂餐，\n一律回饋消費金額之10%紅利點數\n" +
@@ -68,25 +105,24 @@ class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     // Cell 所需數量
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.datas.count
+        return self.activities.count
     }
     
     //回傳 Ｃell 樣式
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentifier.CELL.rawValue, for: indexPath) as! BonusExchangeTVCell
-        cell.point.text = self.datas[indexPath.row][0]
-        cell.productName.text = self.datas[indexPath.row][1]
-        cell.remarks.text = self.datas[indexPath.row][2]
+        cell.point.text = self.activities[indexPath.row].need_bonus
+        cell.productName.text = self.activities[indexPath.row].title
+        cell.remarks.text = self.activities[indexPath.row].content_text
         return cell
     }
     
     // 點擊事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "RestaurantStoreInfo") as? RestaurantStoreInfoVC {
-//            vc.restaurantIndex = indexPath.row
-//            vc.pageType = .HOME
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "ActivitiesSendSubmitVC") as? ActivitiesSendSubmitVC {
+            vc.act = self.activities[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

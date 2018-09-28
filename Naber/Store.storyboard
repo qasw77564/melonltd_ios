@@ -142,9 +142,14 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狀態" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD5-28-9p9">
-                                                                    <rect key="frame" x="8" y="6" width="343" height="19.333333333333332"/>
+                                                                    <rect key="frame" x="8" y="6" width="32.666666666666664" height="19.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                     <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="外帶" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="las-RD-xWK">
+                                                                    <rect key="frame" x="318.33333333333331" y="6.9999999999999982" width="32.666666666666686" height="19.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -153,7 +158,9 @@
                                                                 <constraint firstItem="QD5-28-9p9" firstAttribute="centerY" secondItem="C5t-wc-gkt" secondAttribute="centerY" id="2G0-0G-CFo"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="DHf-Q1-RXJ"/>
                                                                 <constraint firstAttribute="height" constant="30" id="Fqn-e3-uCz"/>
-                                                                <constraint firstAttribute="trailing" secondItem="QD5-28-9p9" secondAttribute="trailing" constant="8" id="Gcp-EA-Lb8"/>
+                                                                <constraint firstItem="las-RD-xWK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QD5-28-9p9" secondAttribute="trailing" constant="8" id="WH7-vK-w3c"/>
+                                                                <constraint firstItem="las-RD-xWK" firstAttribute="centerY" secondItem="QD5-28-9p9" secondAttribute="centerY" id="cGO-yv-VgH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="las-RD-xWK" secondAttribute="trailing" constant="8" id="meV-8f-sJZ"/>
                                                                 <constraint firstItem="QD5-28-9p9" firstAttribute="leading" secondItem="C5t-wc-gkt" secondAttribute="leading" constant="8" id="rLM-1b-RMH"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
@@ -575,6 +582,7 @@
                                             <outlet property="foodDatas" destination="Bbt-Dg-tMu" id="AvP-Pq-cSa"/>
                                             <outlet property="name" destination="5gU-S3-yst" id="a97-x9-ucS"/>
                                             <outlet property="orderStatus" destination="QD5-28-9p9" id="NYN-fV-9bJ"/>
+                                            <outlet property="orderType" destination="las-RD-xWK" id="70n-Ri-ZvC"/>
                                             <outlet property="phone" destination="3JF-9Y-GxV" id="Ela-QY-08p"/>
                                             <outlet property="price" destination="iPi-HH-Xsf" id="VHr-SJ-6yL"/>
                                             <outlet property="processingBtn" destination="nIG-dL-Fbx" id="chT-CT-Nqh"/>
@@ -2511,16 +2519,24 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狀態" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWW-Fe-6Yy">
-                                                                    <rect key="frame" x="8" y="6" width="343" height="19.333333333333332"/>
+                                                                    <rect key="frame" x="8" y="6" width="32.666666666666664" height="19.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                     <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="外帶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nn-YN-yUs">
+                                                                    <rect key="frame" x="320.33333333333331" y="7" width="30.666666666666686" height="18"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.95686274510000002" green="0.90980392160000001" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="bWW-Fe-6Yy" secondAttribute="trailing" constant="8" id="08r-uH-IKX"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="1D0-Wg-g6m"/>
+                                                                <constraint firstItem="4Nn-YN-yUs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bWW-Fe-6Yy" secondAttribute="trailing" constant="8" id="6oE-Tf-Nx5"/>
+                                                                <constraint firstItem="4Nn-YN-yUs" firstAttribute="centerY" secondItem="bWW-Fe-6Yy" secondAttribute="centerY" id="8aE-PD-xrZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="4Nn-YN-yUs" secondAttribute="trailing" constant="8" id="HKy-7q-5ba"/>
                                                                 <constraint firstAttribute="height" constant="30" id="TL9-OC-Um7"/>
                                                                 <constraint firstItem="bWW-Fe-6Yy" firstAttribute="leading" secondItem="J0h-yR-xqq" secondAttribute="leading" constant="8" id="bvy-xL-jLK"/>
                                                                 <constraint firstItem="bWW-Fe-6Yy" firstAttribute="centerY" secondItem="J0h-yR-xqq" secondAttribute="centerY" id="qLA-py-RNE"/>
@@ -2944,6 +2960,7 @@
                                             <outlet property="foodDatas" destination="uUL-dr-UFO" id="SW7-F5-gW7"/>
                                             <outlet property="name" destination="kAO-h9-tAW" id="1td-cc-uWE"/>
                                             <outlet property="orderStatus" destination="bWW-Fe-6Yy" id="gIy-Fp-7NS"/>
+                                            <outlet property="orderType" destination="4Nn-YN-yUs" id="fel-gL-UHJ"/>
                                             <outlet property="phone" destination="MoT-Bn-X67" id="ckf-U6-0QB"/>
                                             <outlet property="price" destination="bG7-ac-IFj" id="Hpi-3c-J8J"/>
                                             <outlet property="processingBtn" destination="htL-gH-1vX" id="LoY-7Q-zyQ"/>
@@ -3671,7 +3688,7 @@
                                                                         </connections>
                                                                     </textField>
                                                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgO-nS-nf6">
-                                                                        <rect key="frame" x="311" y="-0.66666666666666785" width="40" height="40"/>
+                                                                        <rect key="frame" x="311" y="-0.66666666666666785" width="40" height="40.666666666666671"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="QgO-nS-nf6" secondAttribute="height" multiplier="1:1" id="3RI-gk-1wr"/>
                                                                             <constraint firstAttribute="height" constant="40" id="7Uj-e1-AuP"/>

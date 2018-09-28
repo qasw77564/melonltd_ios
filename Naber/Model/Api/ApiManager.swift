@@ -153,6 +153,31 @@ class ApiManager {
     }
     
     
+    // 5.取得全部營消活動列表
+    public static func getAllActivities (ui: UIViewController, onSuccess: @escaping ([ActivitiesVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.ACT_LIST, data: "", ui:ui, complete: { response in
+            let resp: ActivitiesResp = ActivitiesResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    
+    // 6.取得行政區域列表
+    public static func getSubjectionRegions (ui: UIViewController, onSuccess: @escaping ([SubjectionRegionVo]) -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.SUBJECTION_REGIONS, data: "", ui:ui, complete: { response in
+            let resp: SubjectionRegionResp = SubjectionRegionResp.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess(resp.data)
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
     
     
     /**
@@ -312,6 +337,18 @@ class ApiManager {
     // 提交訂單
     public static func userOrderSubmit (req: OrderDetail, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
         self.postAutho(url: ApiUrl.ORDER_SUBMIT, data: OrderDetail.toJson(structs: req) , ui:ui, complete: { response in
+            let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
+            if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
+                onSuccess()
+            }else {
+                onFail(resp.err_msg)
+            }
+        })
+    }
+    
+    //提交兌換
+    public static func actSubmit (req: ReqData, ui: UIViewController, onSuccess: @escaping () -> (), onFail: @escaping (String) -> ()) {
+        self.postAutho(url: ApiUrl.ACT_SUBMIT, data: ReqData.toJson(structs: req) , ui:ui, complete: { response in
             let resp: RespData = RespData.parse(src: base64Decoding(decode: response.result.value!))!
             if resp.status.uppercased().elementsEqual(RespStatus.TRUE.rawValue) {
                 onSuccess()

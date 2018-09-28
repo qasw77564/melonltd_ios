@@ -107,15 +107,41 @@ class BaseVC: UIViewController{
     }
     
     func checkLoginAccount(){
-        let now: Int = Int(Date().timeIntervalSince1970 * 1000)
-        if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
-            let account: AccountInfoVo? = UserSstorage.getAccountInfo()
-            if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
+//        let now: Int = Int(Date().timeIntervalSince1970 * 1000)
+//        if now - NaberConstant.REMEMBER_DAY < UserSstorage.getLoginTime() {
+//            let account: AccountInfoVo? = UserSstorage.getAccountInfo()
+//            if self.USER_TYPES.contains(Identity(rawValue: (account?.identity)!)!) {
+//                // 已登入使用者
+//                if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
+//                    self.present(vc, animated: false, completion: nil)
+//                }
+//            } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
+//                // 已登入過商家
+//                if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
+//                    self.present(vc, animated: false, completion: nil)
+//                }
+//            } else {
+//                UserSstorage.clearUserData()
+//                if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+//                    self.present(vc, animated: false, completion: nil)
+//                }
+//            }
+//        } else {
+//            if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
+//                self.present(vc, animated: false, completion: nil)
+//            }
+//        }
+        
+        
+        
+        // 更改為 如果沒登出就一直保持登入狀態
+        if let account: AccountInfoVo = UserSstorage.getAccountInfo() {
+            if self.USER_TYPES.contains(Identity(rawValue: (account.identity)!)!) {
                 // 已登入使用者
                 if let vc = UIStoryboard(name: UIIdentifier.USER.rawValue, bundle: nil).instantiateViewController(withIdentifier: "UserPage") as? UserPageUITabBarController {
                     self.present(vc, animated: false, completion: nil)
                 }
-            } else if Identity.SELLERS == Identity(rawValue: (account?.identity)!)! {
+            } else if Identity.SELLERS == Identity(rawValue: (account.identity)!)! {
                 // 已登入過商家
                 if let vc = UIStoryboard(name: UIIdentifier.STORE.rawValue, bundle: nil).instantiateViewController(withIdentifier: "StorePage") as? StorePageUITabBarController {
                     self.present(vc, animated: false, completion: nil)
@@ -126,11 +152,13 @@ class BaseVC: UIViewController{
                     self.present(vc, animated: false, completion: nil)
                 }
             }
-        } else {
+        }else {
+            UserSstorage.clearUserData()
             if let vc = UIStoryboard(name: UIIdentifier.MAIN.rawValue, bundle: nil).instantiateViewController(withIdentifier: "LoginHomeRoot") as? LoginHomeRootUINC {
                 self.present(vc, animated: false, completion: nil)
             }
         }
+       
     }
     
     func startUse (){

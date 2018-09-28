@@ -123,6 +123,40 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
         self.view.endEditing(true)
     }
     
+    ///
+    @IBOutlet weak var delivery: UITextField!
+    var deliveryDates: [String] = ["外帶", "內用"]
+    var deliveryDate: Int = 0
+    var deliveryToolbar: UIToolbar {
+        get {
+            let deliveryToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let doneBtn = UIBarButtonItem(title: "確定" , style: .done, target: self, action: #selector(onDeliveryDoneBtn))
+            let cancelBtn = UIBarButtonItem(title: "取消" , style: .plain, target: self, action: #selector(onDeliveryCancelBtn))
+            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            deliveryToolbar.items = [cancelBtn, space, doneBtn]
+            deliveryToolbar.barTintColor = UIColor.white
+            return deliveryToolbar
+        }
+    }
+    var deliveryPicker: UIPickerView {
+        get {
+            let pickerView = UIPickerView()
+            pickerView.dataSource = self
+            pickerView.delegate = self
+            pickerView.backgroundColor = UIColor.white
+            return pickerView
+        }
+    }
+    
+    @objc func onDeliveryDoneBtn(sender: UIBarButtonItem) {
+        self.delivery.text = self.deliveryDates[self.deliveryDate]
+        self.view.endEditing(true)
+    }
+    
+    @objc func onDeliveryCancelBtn(sender: UIBarButtonItem) {
+        self.view.endEditing(true)
+    }
+    
     @IBOutlet weak var readRuleBtn: UIButton!
     
 
@@ -133,6 +167,11 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
         // 紅利選單
         self.selectBnonus.inputView = self.nonusPicker
         self.selectBnonus.inputAccessoryView = self.nonusToolbar
+        
+        //取餐方式
+        self.delivery.inputView = self.deliveryPicker
+        self.delivery.inputAccessoryView = self.deliveryToolbar
+        self.delivery.text = self.deliveryDates[0]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -262,10 +301,12 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
                 // TODO 送出之前 判斷 order type
                 // 如果計算金額結果 == 原購物車內訂單金額 detail.order_type.billing = "ORIGINAL"
                 // 如果計算金額結果 ！= 原購物車內訂單金額 detail.order_type.billing = "DISCOUNT"
-                if self.bnonusDate > 0 {
+                if self.bnonusDate >= 0 {
                     self.orderDetail.order_type.billing = "DISCOUNT"
                     self.orderDetail.use_bonus = ((self.bnonusDate + 1) * 10).description
                 }
+                // 判斷外帶或內送
+                self.orderDetail.order_type.delivery = self.deliveryDate == 0 ? "OUT" : "IN"
                 
                 ApiManager.userOrderSubmit(req: self.orderDetail, ui: self, onSuccess: {
                     // 提交訂單成功 把該筆訂單從手機記憶中移除
@@ -281,7 +322,7 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
                         // 跳制訂記錄頁面
                         self.tabBarController?.selectedIndex = 3
                         // 把當前畫面返回到購物車列表
-                        self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2])!, animated: true)
+                    self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2])!, animated: true)
                     }))
                     
                     self.present(alert, animated: false)
@@ -333,15 +374,31 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.canBnonusDates.count
+        if self.delivery.isEditing {
+            return self.deliveryDates.count
+        }else {
+            return self.canBnonusDates.count
+        }
+//        return self.canBnonusDates.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.canBnonusDates[row]
+        
+        if self.delivery.isEditing {
+            return self.deliveryDates[row]
+        }else {
+            return self.canBnonusDates[row]
+        }
+//        return self.canBnonusDates[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.bnonusDate = row
+        if self.delivery.isEditing {
+            self.deliveryDate = row
+        }else {
+            self.bnonusDate = row
+        }
+//        self.bnonusDate = row
     }
     
     // 鍵盤點擊背景縮放

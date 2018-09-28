@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2010EF0B21558E2600FD3379 /* SubjectionRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010EF0A21558E2600FD3379 /* SubjectionRegion.swift */; };
 		2012D76F2118460A00E7068D /* TableViewHeadControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2012D76E2118460A00E7068D /* TableViewHeadControl.swift */; };
 		2017D8E6210CC52B00E2376D /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E5210CC52B00E2376D /* OrderStatus.swift */; };
 		2017D8E8210CF09100E2376D /* RecordInfoOrderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */; };
@@ -25,6 +26,9 @@
 		20758A1921188D1F007A3ABC /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1821188D1F007A3ABC /* Store.storyboard */; };
 		20758A1B2118A1FC007A3ABC /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20758A1A2118A1FC007A3ABC /* User.storyboard */; };
 		207A5D94212FB2700061396F /* AppVersionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A5D93212FB2700061396F /* AppVersionLog.swift */; };
+		207CC06B2154BC65002BF83F /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CC06A2154BC65002BF83F /* Activities.swift */; };
+		207CC06E2154C69D002BF83F /* ActivitiesSendSubmitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CC06D2154C69D002BF83F /* ActivitiesSendSubmitVC.swift */; };
+		207F12CA215CB0C10081D85C /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207F12C9215CB0C10081D85C /* ContactInfo.swift */; };
 		20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */; };
 		209F05F2211B352800E66397 /* StoreDetailSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */; };
 		209F05F4211B420500E66397 /* StoreDetailSettingDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */; };
@@ -158,6 +162,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2010EF0A21558E2600FD3379 /* SubjectionRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectionRegion.swift; sourceTree = "<group>"; };
 		2012D76E2118460A00E7068D /* TableViewHeadControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeadControl.swift; sourceTree = "<group>"; };
 		2017D8E5210CC52B00E2376D /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
 		2017D8E7210CF09100E2376D /* RecordInfoOrderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInfoOrderTVCell.swift; sourceTree = "<group>"; };
@@ -180,6 +185,9 @@
 		207A5D8F212EA1920061396F /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		207A5D91212EA1920061396F /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		207A5D93212FB2700061396F /* AppVersionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionLog.swift; sourceTree = "<group>"; };
+		207CC06A2154BC65002BF83F /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
+		207CC06D2154C69D002BF83F /* ActivitiesSendSubmitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesSendSubmitVC.swift; sourceTree = "<group>"; };
+		207F12C9215CB0C10081D85C /* ContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		20834B142114BFFA0031AC0A /* TrendOrderLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendOrderLogDetailVC.swift; sourceTree = "<group>"; };
 		209F05F1211B352800E66397 /* StoreDetailSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingVC.swift; sourceTree = "<group>"; };
 		209F05F3211B420500E66397 /* StoreDetailSettingDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSettingDateCell.swift; sourceTree = "<group>"; };
@@ -333,6 +341,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		207CC06C2154C665002BF83F /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				207CC06D2154C69D002BF83F /* ActivitiesSendSubmitVC.swift */,
+			);
+			path = Activities;
+			sourceTree = "<group>";
+		};
 		20AF372320FF98AA00D73F79 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +490,9 @@
 				207A5D93212FB2700061396F /* AppVersionLog.swift */,
 				20441B8C21429C24005D72AF /* StoreAreaList.swift */,
 				20441B8E2142A936005D72AF /* AppIntroBulletin.swift */,
+				207CC06A2154BC65002BF83F /* Activities.swift */,
+				2010EF0A21558E2600FD3379 /* SubjectionRegion.swift */,
+				207F12C9215CB0C10081D85C /* ContactInfo.swift */,
 			);
 			path = Vo;
 			sourceTree = "<group>";
@@ -709,6 +728,7 @@
 		DDFEA7D320B6D33D00170222 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				207CC06C2154C665002BF83F /* Activities */,
 				DDEA6EE720CA1345008CC5D8 /* ShoppingCard */,
 				DDEA6EE620CA132C008CC5D8 /* Record */,
 				DDEA6EE520CA1315008CC5D8 /* Restaurant */,
@@ -938,6 +958,7 @@
 				20E65E8220FF17F100F9A252 /* Loading.swift in Sources */,
 				20BD64882108BFE600023033 /* LLSnakePageControl.swift in Sources */,
 				DD51D1FA20C0B17B002C5940 /* RestaurantStoreInfoTVCell.swift in Sources */,
+				2010EF0B21558E2600FD3379 /* SubjectionRegion.swift in Sources */,
 				20D9DC0821025F4700D643FE /* FSPagerViewCell.swift in Sources */,
 				20AF372F21007E7600D73F79 /* SellerRegistered.swift in Sources */,
 				20603EEA210A260E00F2BCAB /* RespStatus.swift in Sources */,
@@ -969,6 +990,7 @@
 				20834B152114BFFA0031AC0A /* TrendOrderLogDetailVC.swift in Sources */,
 				20E181DA2112AC74000ADD37 /* BonusExchangeVC.swift in Sources */,
 				20D9DC0621025F4700D643FE /* FSPageViewTransformer.swift in Sources */,
+				207CC06B2154BC65002BF83F /* Activities.swift in Sources */,
 				DD51D20820C359A5002C5940 /* RestaurantStoreSelectTVCellFoot.swift in Sources */,
 				2017D8E6210CC52B00E2376D /* OrderStatus.swift in Sources */,
 				20D9DBD22102563E00D643FE /* HomeMainVC.swift in Sources */,
@@ -1010,6 +1032,7 @@
 				DD51D20620C3598E002C5940 /* RestaurantStoreSelectTCCellHead.swift in Sources */,
 				DD51D20420C34204002C5940 /* RestaurantStoreSelectTVCell.swift in Sources */,
 				77376C58210587510087F08E /* DateRange.swift in Sources */,
+				207CC06E2154C69D002BF83F /* ActivitiesSendSubmitVC.swift in Sources */,
 				DD161CFD20CA2C220080CFE2 /* SearchMainVC.swift in Sources */,
 				77376C5E2105B6E00087F08E /* RestaurantListResp.swift in Sources */,
 				20D9DC302105814300D643FE /* Order.swift in Sources */,
@@ -1048,6 +1071,7 @@
 				20BD64862108BFE600023033 /* LLImagePageControl.swift in Sources */,
 				77376C5A21058F110087F08E /* RestaurantInfo.swift in Sources */,
 				20EA630A212C019E002E81C3 /* Enable.swift in Sources */,
+				207F12CA215CB0C10081D85C /* ContactInfo.swift in Sources */,
 				2012D76F2118460A00E7068D /* TableViewHeadControl.swift in Sources */,
 				20EF6E37211AA98E00787F4C /* UploadFile.swift in Sources */,
 				DDFEA7D020B6A60A00170222 /* UserSettingMainPageTVC.swift in Sources */,
