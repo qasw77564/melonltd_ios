@@ -46,6 +46,8 @@ class ApiUrl{
     
     public static var IMAGE_UPLOAD: String = DOMAIN + "/image/upload"
     public static var ACT_SUBMIT: String = DOMAIN + "/activities/submit"
+    public static var SERIAL_SUBMIT: String = DOMAIN + "/serial/number/submit"
+    
     
     
     

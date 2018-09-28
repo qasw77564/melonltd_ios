@@ -16,6 +16,8 @@ class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var activities: [ActivitiesVo] = []
     
 //    @IBOutlet var eventDescription: UILabel!
+    
+    @IBOutlet var serial: UITextField!
     @IBOutlet var eventContent: UILabel!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -77,6 +79,29 @@ class BonusExchangeVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 //        }
 //    }
 //
+    
+    @IBAction func submitSerialAction(_ sender: UIButton){
+        
+        if (self.serial.text?.isEmpty)! {
+            let alert = UIAlertController(title: "系統提示", message: "請正確輸入8碼兌換序號", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+            self.present(alert, animated: false)
+        }else {
+            let req: ReqData = ReqData()
+            ApiManager.serialSubmit(req: req, ui: self, onSuccess: { msg in
+                let alert = UIAlertController(title: "兌換成功", message: msg, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "我知道了", style: .default) {_ in
+                    self.serial.text = ""
+                })
+                self.present(alert, animated: false)
+            }) { err_msg in
+                let alert = UIAlertController(title: "兌換失敗", message: err_msg, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "我知道了", style: .default))
+                self.present(alert, animated: false)
+            }
+        }
+    }
+    
     func textData (){
         self.eventContent.text =
         "凡是透過NABER訂餐，\n一律回饋消費金額之10%紅利點數\n" +
