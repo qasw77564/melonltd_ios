@@ -12,6 +12,7 @@ class ApiUrl{
 
 //    public static var DOMAIN: String = "http://192.168.1.108"
 //    public static var DOMAIN: String = "http://192.168.31.14:8080/melonltd-ap"
+//    public static var DOMAIN: String = "http://192.168.1.107:8080/melonltd-ap"
     public static var DOMAIN: String = "https://ap.melonltd.com.tw"
     
     public static var LOGIN: String = DOMAIN + "/login"
@@ -26,6 +27,9 @@ class ApiUrl{
     public static var STORE_CATEGORY_LIST: String = DOMAIN + "/common/store/category/list"
     public static var STORE_AREA_LIST: String = DOMAIN + "/common/store/area/list"
     public static var CHECK_APP_VERSION: String = DOMAIN + "/common/check/app/version"
+    public static var ACT_LIST: String = DOMAIN + "/common/activities/list"
+    public static var SUBJECTION_REGIONS: String = DOMAIN + "/common/subjection/region/list"
+    public static var SCHOOL_DIVIDED: String = DOMAIN + "/common/school/divided/list"
     
     // user
     public static var ADVERTISEMENT: String = DOMAIN + "/naber/advertisement"
@@ -42,6 +46,11 @@ class ApiUrl{
     public static var FORGET_PSW: String = DOMAIN + "/account/forget/password"
     
     public static var IMAGE_UPLOAD: String = DOMAIN + "/image/upload"
+    public static var ACT_SUBMIT: String = DOMAIN + "/activities/submit"
+    public static var SERIAL_SUBMIT: String = DOMAIN + "/serial/number/submit"
+    public static var RES_EVENT_SUBMIT: String = DOMAIN + "/serial/res/event/submit"
+    
+    
     
     // seller
     public static var QUICK_SEARCH: String = DOMAIN + "/seller/quick/search"

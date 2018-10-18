@@ -20,6 +20,7 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var memoInfo: UILabel!
     @IBOutlet weak var bonus: UILabel!
+    @IBOutlet weak var useBonus: UILabel!
     
     @IBOutlet weak var tableView: UITableView!{
         didSet {
@@ -41,13 +42,20 @@ class RecordInfoDetailVC: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.name.text = self.order.order_detail.restaurant_name
-        self.totalPayment.text = "$" + self.order.order_price
+        
         self.orderTime.text = DateTimeHelper.formToString(date: self.order.create_date, from: "yyyy年 MM月 dd日 HH:mm")
         self.recordTime.text = DateTimeHelper.formToString(date: self.order.fetch_date, from: "yyyy年 MM月 dd日 HH:mm")
         self.address.text = self.order.order_detail.restaurant_address
         self.memoInfo.text = self.order.order_detail.user_message
         self.bonus.text = self.order.order_bonus
         
+        if self.order.order_detail.use_bonus != nil {
+            let price: Int = Int(self.order.order_price)! - (Int(self.order.order_detail.use_bonus)! / 10 * 3)
+            self.totalPayment.text = "$" + price.description
+            self.useBonus.text = self.order.order_detail.use_bonus
+        }else {
+            self.totalPayment.text = "$" + self.order.order_price
+        }
     }
 
     // MARK: - Table view data source

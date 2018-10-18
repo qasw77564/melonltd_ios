@@ -78,7 +78,14 @@ class RecordMainPageVC: UIViewController ,UITableViewDataSource, UITableViewDele
         cell.recordTime.text = self.orders[indexPath.row].fetch_date
         cell.recordTime.text = DateTimeHelper.formToString(date: self.orders[indexPath.row].fetch_date , from: "dd日 HH時 mm分")
         cell.name.text = self.orders[indexPath.row].order_detail.restaurant_name
-        cell.totalPayment.text = "$" + self.orders[indexPath.row].order_price
+        
+        if self.orders[indexPath.row].order_detail.use_bonus != nil {
+            let price: Int = Int(self.orders[indexPath.row].order_price)! - (Int(self.orders[indexPath.row].order_detail.use_bonus)! / 10 * 3)
+            cell.totalPayment.text = "$" + price.description
+        } else {
+            cell.totalPayment.text = "$" + self.orders[indexPath.row].order_price
+        }
+        
         let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status!)
         cell.status.textColor = status.get().color
         if status == OrderStatus.UNFINISH{

@@ -101,8 +101,17 @@ class SearchMainVC: UIViewController, UITextFieldDelegate,  UITableViewDelegate 
         
         let status: OrderStatus = OrderStatus.of(name: self.orders[indexPath.row].status)
         cell.orderStatus.text = status.get().value
+        cell.orderType.text = self.orders[indexPath.row].order_detail.order_type.delivery == "OUT" ? "外帶" : "內用"
         cell.count.text = "(" + self.orders[indexPath.row].order_detail.orders.count.description + ")"
-        cell.price.text = "$" + self.orders[indexPath.row].order_price
+        
+        if self.orders[indexPath.row].order_detail.use_bonus != nil {
+            let price: Int = Int(self.orders[indexPath.row].order_price)! - (Int(self.orders[indexPath.row].order_detail.use_bonus)! / 10 * 3)
+            cell.price.text = "$" + price.description + ", div. " + self.orders[indexPath.row].order_detail.use_bonus
+        }else {
+            cell.price.text = "$" + self.orders[indexPath.row].order_price
+        }
+        
+//        cell.price.text = "$" + self.orders[indexPath.row].order_price
         cell.name.text = self.orders[indexPath.row].order_detail.user_name
         cell.phone.text = self.orders[indexPath.row].order_detail.user_phone
         cell.fetchTime.text = DateTimeHelper.formToString(date: self.orders[indexPath.row].fetch_date, from: "dd日 HH時 mm分")

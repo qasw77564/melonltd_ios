@@ -33,7 +33,13 @@ class UserSettingAccountDetailTVC: UITableViewController , UIImagePickerControll
             self.phone.text = self.account.phone
             self.email.text = self.account.email
             self.birthday.text = self.account.birth_day
-            self.bonus.text = self.account.bonus
+            
+            self.bonus.text = "0"
+            if let userBonus: Int = Int((self.account?.bonus)!) {
+                if let userUseBonus: Int = Int((self.account?.use_bonus)!) {
+                    self.bonus.text = (userBonus - userUseBonus).description
+                }
+            }
             self.identity.text = Identity.init(rawValue: self.account.identity)?.getName()
             
             self.photo.setImage(with: URL(string: account?.photo ?? "" ), transformer: TransformerHelper.transformer(identifier: account?.photo ?? "" ),  completion: { image in

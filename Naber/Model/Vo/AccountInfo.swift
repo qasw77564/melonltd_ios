@@ -42,9 +42,11 @@ class AccountInfoVo : Codable{
     var phone : String!
     var address : String!
     var birth_day : String!
+    var gender: String!
     var identity : String!
     var school_name : String!
     var bonus : String!
+    var use_bonus : String!
     var level : String!
     var enable : String!
     var is_login : String!
@@ -53,8 +55,6 @@ class AccountInfoVo : Codable{
     var photo_type : String!
     var device_token : String!
     var device_category : String!
-    
-    
     
     public static func toJson(structs : AccountInfoVo) -> String {
         do {

@@ -11,6 +11,7 @@ import UIKit
 class OrderMainTVCell: UITableViewCell {
 
     @IBOutlet weak var orderStatus: UILabel!
+    @IBOutlet weak var orderType: UILabel!
     @IBOutlet weak var count: UILabel!
     @IBOutlet weak var foodDatas: UILabel!
     @IBOutlet weak var userMessage: UILabel!

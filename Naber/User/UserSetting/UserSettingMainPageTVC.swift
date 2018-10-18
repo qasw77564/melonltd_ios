@@ -46,7 +46,13 @@ class UserSettingMainPageTVC: UITableViewController {
         ApiManager.userFindAccountInfo(ui: self, onSuccess: { account in
             self.account = account
             self.accunt.text = account?.account
-            self.bonus.text = account?.bonus
+            
+            self.bonus.text = "0"
+            if let userBonus: Int = Int((account?.bonus)!) {
+                if let userUseBonus: Int = Int((account?.use_bonus)!) {
+                    self.bonus.text = (userBonus - userUseBonus).description
+                }
+            }
             
             self.photo.setImage(with: URL(string: account?.photo ?? ""), transformer: TransformerHelper.transformer(identifier: account?.photo ?? ""),  completion: { image in
                 if image == nil {
