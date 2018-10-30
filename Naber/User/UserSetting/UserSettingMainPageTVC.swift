@@ -79,6 +79,9 @@ class UserSettingMainPageTVC: UITableViewController {
         if let nvc: UserSettingAccountDetailTVC = vc as? UserSettingAccountDetailTVC {
             nvc.account = self.account
             self.navigationController?.pushViewController(nvc, animated: true)
+        } else if let lvc:LoyaltyCardActionVC = vc as? LoyaltyCardActionVC {
+            lvc.IS_STORE_DETAIL = false
+            self.navigationController?.pushViewController(lvc, animated: true)
         }else {
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -86,7 +89,6 @@ class UserSettingMainPageTVC: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
         // Dispose of any resources that can be recreated.
     }
     
@@ -98,4 +100,17 @@ class UserSettingMainPageTVC: UITableViewController {
     @IBAction func changeShake(_ sender: UISwitch) {
         UserSstorage.setShake(sender.isOn)
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 16)!
+        header.textLabel?.textColor = UIColor.darkGray
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 42.0
+    }
+    
+    
 }

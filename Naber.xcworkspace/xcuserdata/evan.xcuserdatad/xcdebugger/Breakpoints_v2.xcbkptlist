@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
             endingLineNumber = "247"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "startTimer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
             endingLineNumber = "241"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "scheduledLiveOrder()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "426"
             endingLineNumber = "426"
-            landmarkName = "changeToCancelHandler(dataIndex:message:)"
+            landmarkName = "setButtonsDefaultColor(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
