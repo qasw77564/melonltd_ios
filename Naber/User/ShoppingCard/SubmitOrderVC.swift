@@ -76,11 +76,11 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
     // 紅利選單
     var canBnonusDates: [String] = []
     var bnonusDate: Int = -1
-    @IBOutlet weak var selectBnonus: UITextField! {
-        didSet {
-            self.selectBnonus.isEnabled = false
-        }
-    }
+//    @IBOutlet weak var selectBnonus: UITextField! {
+//        didSet {
+//            self.selectBnonus.isEnabled = false
+//        }
+//    }
     var nonusToolbar: UIToolbar {
         get {
             let nonusToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
@@ -103,27 +103,27 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
     }
     
     @objc func onDoneBtn(sender: UIBarButtonItem) {
-        if self.selectBnonus.isEditing && self.bnonusDate >= 0 {
-            self.selectBnonus.text = self.canBnonusDates[self.bnonusDate]
-            // 訂單總金額 與紅利 重新計算
-            let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
-                return sum + Double(num.item.price)!
-            })
-            self.calculatePrice(price: price - (Double(self.bnonusDate + 1) * 3.0))
-        }
+//        if self.selectBnonus.isEditing && self.bnonusDate >= 0 {
+//            self.selectBnonus.text = self.canBnonusDates[self.bnonusDate]
+//            // 訂單總金額 與紅利 重新計算
+//            let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
+//                return sum + Double(num.item.price)!
+//            })
+//            self.calculatePrice(price: price - (Double(self.bnonusDate + 1) * 3.0))
+//        }
         self.view.endEditing(true)
     }
     
     @objc func onCancelBtn(sender: UIBarButtonItem) {
         // 取消折抵
         // 訂單總金額 與紅利 重新計算
-        self.bnonusDate = -1
-        self.selectBnonus.text = ""
-        self.selectBnonus.placeholder = "選取紅利"
-        let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
-            return sum + Double(num.item.price)!
-        })
-        self.calculatePrice(price: price)
+//        self.bnonusDate = -1
+//        self.selectBnonus.text = ""
+//        self.selectBnonus.placeholder = "選取紅利"
+//        let price: Double = self.orderDetail.orders.reduce(0.0, { (sum, num) -> Double in
+//            return sum + Double(num.item.price)!
+//        })
+//        self.calculatePrice(price: price)
         self.view.endEditing(true)
     }
     
@@ -169,8 +169,8 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
         self.dateSelect.inputView = self.datePicker
         self.dateSelect.inputAccessoryView = self.toolbar
         // 紅利選單
-        self.selectBnonus.inputView = self.nonusPicker
-        self.selectBnonus.inputAccessoryView = self.nonusToolbar
+//        self.selectBnonus.inputView = self.nonusPicker
+//        self.selectBnonus.inputAccessoryView = self.nonusToolbar
         
         //取餐方式
         self.delivery.inputView = self.deliveryPicker
@@ -182,8 +182,8 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
         self.reTimeRange(picker: self.datePicker, isInit: false)
         self.dateSelect.text = ""
         self.bnonusDate = -1
-        self.selectBnonus.text = ""
-        self.selectBnonus.placeholder = "選取紅利"
+//        self.selectBnonus.text = ""
+//        self.selectBnonus.placeholder = "選取紅利"
         self.orderDetail = UserSstorage.getShoppingCartDatas()[self.orderIndex]
 //        let orderDates: [OrderData] = orderDetail.orders
         self.name.text = orderDetail.user_name
@@ -206,9 +206,9 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
                             }
                         }
                         if count <= 0 {
-                            self.selectBnonus.placeholder = "紅利不足折抵"
+//                            self.selectBnonus.placeholder = "紅利不足折抵"
                         } else if price < 3 {
-                            self.selectBnonus.placeholder = "該品項無法折抵"
+//                            self.selectBnonus.placeholder = "該品項無法折抵"
                         } else if count > 0 {
                             // 產出pick資料
                             self.canBnonusDates.removeAll()
@@ -219,15 +219,15 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
                                     self.canBnonusDates.append((index * 10).description + " 點紅利，折抵" + (index * 3).description + "元" )
                                 }
                             }
-                            self.selectBnonus.isEnabled = true
+//                            self.selectBnonus.isEnabled = true
                         }
                     }
                 }) { err_msg in
                     print(err_msg)
-                    self.selectBnonus.placeholder = "紅利不足折抵"
+//                    self.selectBnonus.placeholder = "紅利不足折抵"
                 }
             }else {
-               self.selectBnonus.placeholder = "該店家不提供紅利"
+//               self.selectBnonus.placeholder = "該店家不提供紅利"
             }
         }
     }
@@ -303,10 +303,10 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
                 // TODO 送出之前 判斷 order type
                 // 如果計算金額結果 == 原購物車內訂單金額 detail.order_type.billing = "ORIGINAL"
                 // 如果計算金額結果 ！= 原購物車內訂單金額 detail.order_type.billing = "DISCOUNT"
-                if self.bnonusDate >= 0 {
-                    self.orderDetail.order_type.billing = "DISCOUNT"
-                    self.orderDetail.use_bonus = ((self.bnonusDate + 1) * 10).description
-                }
+//                if self.bnonusDate >= 0 {
+//                    self.orderDetail.order_type.billing = "DISCOUNT"
+//                    self.orderDetail.use_bonus = ((self.bnonusDate + 1) * 10).description
+//                }
                 // 判斷外帶或內送
                 self.orderDetail.order_type.delivery = self.deliveryDate == 0 ? "OUT" : "IN"
                 
@@ -388,28 +388,30 @@ class SubmitOrderVC : UIViewController, UITextViewDelegate, UIPickerViewDelegate
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if self.delivery.isEditing {
-            return self.deliveryDates.count
-        }else {
-            return self.canBnonusDates.count
-        }
+        return self.deliveryDates.count
+//        if self.delivery.isEditing {
+//            return self.deliveryDates.count
+//        }else {
+//            return self.canBnonusDates.count
+//        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if self.delivery.isEditing {
-            return self.deliveryDates[row]
-        }else {
-            return self.canBnonusDates[row]
-        }
+        return self.deliveryDates[row]
+//        if self.delivery.isEditing {
+//            return self.deliveryDates[row]
+//        }else {
+//            return self.canBnonusDates[row]
+//        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if self.delivery.isEditing {
-            self.deliveryDate = row
-        }else {
-            self.bnonusDate = row
-        }
+        self.deliveryDate = row
+//        if self.delivery.isEditing {
+//            self.deliveryDate = row
+//        }else {
+//            self.bnonusDate = row
+//        }
     }
     
     // 鍵盤點擊背景縮放
